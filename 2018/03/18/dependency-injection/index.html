@@ -1,244 +1,183 @@
-
-
 <!DOCTYPE html>
-<html lang="">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>dependency_injection | Hexo</title>
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <!-- Open Graph -->
-    <meta name="description" content="&amp;#x4F9D;&amp;#x8D56;&amp;#x6CE8;&amp;#x5165;1. &amp;#x4F9D;&amp;#x8D56;&amp;#x5982;&amp;#x679C;&amp;#x5728; Class A &amp;#x4E2D;&amp;#xFF0C;&amp;#x6709; Class B &amp;#x7684;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF0C;&amp;#x5219;&amp;#x79F0; Class A &amp;#x5BF9; Class B &amp;#x6709;&amp;">
-<meta property="og:type" content="article">
-<meta property="og:title" content="dependency_injection">
-<meta property="og:url" content="http://yoursite.com/2018/03/18/dependency-injection/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="&amp;#x4F9D;&amp;#x8D56;&amp;#x6CE8;&amp;#x5165;1. &amp;#x4F9D;&amp;#x8D56;&amp;#x5982;&amp;#x679C;&amp;#x5728; Class A &amp;#x4E2D;&amp;#xFF0C;&amp;#x6709; Class B &amp;#x7684;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF0C;&amp;#x5219;&amp;#x79F0; Class A &amp;#x5BF9; Class B &amp;#x6709;&amp;">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-03-18T09:17:12.563Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dependency_injection">
-<meta name="twitter:description" content="&amp;#x4F9D;&amp;#x8D56;&amp;#x6CE8;&amp;#x5165;1. &amp;#x4F9D;&amp;#x8D56;&amp;#x5982;&amp;#x679C;&amp;#x5728; Class A &amp;#x4E2D;&amp;#xFF0C;&amp;#x6709; Class B &amp;#x7684;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF0C;&amp;#x5219;&amp;#x79F0; Class A &amp;#x5BF9; Class B &amp;#x6709;&amp;">
-
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "John Doe",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
-</script>
-
-    
-
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
+    <title>
         
-        <link rel="stylesheet" href="/css/aloha.css">
+        dependency_injection - undefined
         
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
+    </title>
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
 </head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
-    </div>
+<body>
 
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
-
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>Hexo</h3>
-        </div>
-    </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">John Doe</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
-
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
 </div>
 
-    
-    
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        HOME
-    </a>
-
-    
-
-    
+<div class="index-about">
+    <i>  </i>
 </div>
 
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        <div id="poet-dependency-injection" class="ui main container article-type-poet">
-
+<div class="index-container">
     
-
-    <div class="ui  grid">
-
-        <div class="two column row" id="article-content">
-
-            <div class="sixteen wide column">
-                
-
-<h1 class="ui header">
-    
-    dependency_injection
-</h1>
-
-
-
-                <div class="article-inner">
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                        <h1 id="&#x4F9D;&#x8D56;&#x6CE8;&#x5165;"><a href="#&#x4F9D;&#x8D56;&#x6CE8;&#x5165;" class="headerlink" title="&#x4F9D;&#x8D56;&#x6CE8;&#x5165;"></a>&#x4F9D;&#x8D56;&#x6CE8;&#x5165;</h1><h3 id="1-&#x4F9D;&#x8D56;"><a href="#1-&#x4F9D;&#x8D56;" class="headerlink" title="1. &#x4F9D;&#x8D56;"></a>1. &#x4F9D;&#x8D56;</h3><p>&#x5982;&#x679C;&#x5728; Class A &#x4E2D;&#xFF0C;&#x6709; Class B &#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5219;&#x79F0; Class A &#x5BF9; Class B &#x6709;&#x4E00;&#x4E2A;&#x4F9D;&#x8D56;&#x3002;&#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x7C7B; Human &#x4E2D;&#x7528;&#x5230;&#x4E00;&#x4E2A; Father &#x5BF9;&#x8C61;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x8BF4;&#x7C7B; Human &#x5BF9;&#x7C7B; Father &#x6709;&#x4E00;&#x4E2A;&#x4F9D;&#x8D56;&#x3002;</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>{</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">()</span> </span>{</span><br><span class="line">        father = <span class="keyword">new</span> Father();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>&#x4ED4;&#x7EC6;&#x770B;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x6211;&#x4EEC;&#x4F1A;&#x53D1;&#x73B0;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x95EE;&#x9898;&#xFF1A;<br>(1). &#x5982;&#x679C;&#x73B0;&#x5728;&#x8981;&#x6539;&#x53D8; father &#x751F;&#x6210;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;&#x9700;&#x8981;&#x7528;<code>new Father(String name)</code>&#x521D;&#x59CB;&#x5316; father&#xFF0C;&#x9700;&#x8981;&#x4FEE;&#x6539; Human &#x4EE3;&#x7801;&#xFF1B;<br>(2). &#x5982;&#x679C;&#x60F3;&#x6D4B;&#x8BD5;&#x4E0D;&#x540C; Father &#x5BF9;&#x8C61;&#x5BF9; Human &#x7684;&#x5F71;&#x54CD;&#x5F88;&#x56F0;&#x96BE;&#xFF0C;&#x56E0;&#x4E3A; father &#x7684;&#x521D;&#x59CB;&#x5316;&#x88AB;&#x5199;&#x6B7B;&#x5728;&#x4E86; Human &#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#xFF1B;<br>(3). &#x5982;&#x679C;<code>new Father()</code>&#x8FC7;&#x7A0B;&#x975E;&#x5E38;&#x7F13;&#x6162;&#xFF0C;&#x5355;&#x6D4B;&#x65F6;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x7528;&#x5DF2;&#x7ECF;&#x521D;&#x59CB;&#x5316;&#x597D;&#x7684; father &#x5BF9;&#x8C61; Mock &#x6389;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x4E5F;&#x5F88;&#x56F0;&#x96BE;&#x3002;  </p>
-<h3 id="2-&#x4F9D;&#x8D56;&#x6CE8;&#x5165;"><a href="#2-&#x4F9D;&#x8D56;&#x6CE8;&#x5165;" class="headerlink" title="2. &#x4F9D;&#x8D56;&#x6CE8;&#x5165;"></a>2. &#x4F9D;&#x8D56;&#x6CE8;&#x5165;</h3><p>&#x4E0A;&#x9762;&#x5C06;&#x4F9D;&#x8D56;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x76F4;&#x63A5;&#x521D;&#x59CB;&#x5316;&#x662F;&#x4E00;&#x79CD; Hard init &#x65B9;&#x5F0F;&#xFF0C;&#x5F0A;&#x7AEF;&#x5728;&#x4E8E;&#x4E24;&#x4E2A;&#x7C7B;&#x4E0D;&#x591F;&#x72EC;&#x7ACB;&#xFF0C;&#x4E0D;&#x65B9;&#x4FBF;&#x6D4B;&#x8BD5;&#x3002;&#x6211;&#x4EEC;&#x8FD8;&#x6709;&#x53E6;&#x5916;&#x4E00;&#x79CD; Init &#x65B9;&#x5F0F;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>{</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">(Father father)</span> </span>{</span><br><span class="line">        <span class="keyword">this</span>.father = father;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06; father &#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x3002;&#x5728;&#x8C03;&#x7528; Human &#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E4B;&#x524D;&#x5916;&#x90E8;&#x5C31;&#x5DF2;&#x7ECF;&#x521D;&#x59CB;&#x5316;&#x597D;&#x4E86; Father &#x5BF9;&#x8C61;&#x3002;<strong>&#x50CF;&#x8FD9;&#x79CD;&#x975E;&#x81EA;&#x5DF1;&#x4E3B;&#x52A8;&#x521D;&#x59CB;&#x5316;&#x4F9D;&#x8D56;&#xFF0C;&#x800C;&#x901A;&#x8FC7;&#x5916;&#x90E8;&#x6765;&#x4F20;&#x5165;&#x4F9D;&#x8D56;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x79F0;&#x4E3A;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x3002;</strong><br>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#x4E0A;&#x9762; 1 &#x4E2D;&#x5B58;&#x5728;&#x7684;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#x90FD;&#x5F88;&#x597D;&#x89E3;&#x51B3;&#x4E86;&#xFF0C;&#x7B80;&#x5355;&#x7684;&#x8BF4;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x4E3B;&#x8981;&#x6709;&#x4E24;&#x4E2A;&#x597D;&#x5904;&#xFF1A;<br>(1). &#x89E3;&#x8026;&#xFF0C;&#x5C06;&#x4F9D;&#x8D56;&#x4E4B;&#x95F4;&#x89E3;&#x8026;&#x3002;<br>(2). &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x89E3;&#x8026;&#xFF0C;&#x6240;&#x4EE5;&#x65B9;&#x4FBF;&#x505A;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#xFF0C;&#x5C24;&#x5176;&#x662F; Mock &#x6D4B;&#x8BD5;&#x3002;</p>
-
-                        
-                    </div>
-
-                    
-                    
-                    
-
-                    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2018-03-18T09:02:17.000Z" itemprop="datePublished">2018-03-18</time>
-
-    </span>
-    <span class="post-description-item">
+    <div class="index-left">
         
-    </span>
-</div>
-
-                </div>
-                
-                <div id="pagination" class="nav-web ui text container pagination">
-
-    <div class="ui stackable two column divided grid container">
-        <div class="row">
-            <div class="column nav-left">
-                
-
-                <a href="/2018/03/19/与运算/" class="ui tiny button">
-
-                    <i class="angle left icon"></i>
-                    
-                    与运算
-                    
-
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/" />
+        </div>
+        <div class="name">
+            <i>John Doe</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
                 </a>
-
-                
-            </div>
-            <div class="column nav-right">
-                
-
-                <a class="ui tiny button disabled">Next<i class="angle right icon"></i></a>
-
-                
-            </div>
-        </div>
-    </div>
-
-</div>
-                
-            </div>
-
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
             
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#依赖注入"><span class="toc-text">依赖注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-依赖"><span class="toc-text">1. 依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-依赖注入"><span class="toc-text">2. 依赖注入</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
 
         </div>
     </div>
 </div>
-
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+        <div class="index-about-mobile">
+            <i>  </i>
         </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2018 <a href="/">John Doe</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        dependency_injection
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2018-03-18 17:02:17</span></span>
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><h3 id="1-依赖"><a href="#1-依赖" class="headerlink" title="1. 依赖"></a>1. 依赖</h3><p>如果在 Class A 中，有 Class B 的实例，则称 Class A 对 Class B 有一个依赖。例如下面类 Human 中用到一个 Father 对象，我们就说类 Human 对类 Father 有一个依赖。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        father = <span class="keyword">new</span> Father();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>仔细看这段代码我们会发现存在一些问题：<br>(1). 如果现在要改变 father 生成方式，如需要用<code>new Father(String name)</code>初始化 father，需要修改 Human 代码；<br>(2). 如果想测试不同 Father 对象对 Human 的影响很困难，因为 father 的初始化被写死在了 Human 的构造函数中；<br>(3). 如果<code>new Father()</code>过程非常缓慢，单测时我们希望用已经初始化好的 father 对象 Mock 掉这个过程也很困难。  </p>
+<h3 id="2-依赖注入"><a href="#2-依赖注入" class="headerlink" title="2. 依赖注入"></a>2. 依赖注入</h3><p>上面将依赖在构造函数中直接初始化是一种 Hard init 方式，弊端在于两个类不够独立，不方便测试。我们还有另外一种 Init 方式，如下：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">(Father father)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.father = father;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，我们将 father 对象作为构造函数的一个参数传入。在调用 Human 的构造方法之前外部就已经初始化好了 Father 对象。<strong>像这种非自己主动初始化依赖，而通过外部来传入依赖的方式，我们就称为依赖注入。</strong><br>现在我们发现上面 1 中存在的两个问题都很好解决了，简单的说依赖注入主要有两个好处：<br>(1). 解耦，将依赖之间解耦。<br>(2). 因为已经解耦，所以方便做单元测试，尤其是 Mock 测试。</p>
+
+        
+        <div id="comment-container">
+        </div>
+    </div>
+</div>
     </div>
 </div>
 
-    </div>
 
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
 
+        
 
+        
 
-<!-- scripts list from theme config.yml -->
+        
 
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+        
 
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
 
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
 
 
 
 </body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 </html>
