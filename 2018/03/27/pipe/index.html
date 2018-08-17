@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html lang="">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>pipe | Hexo</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="1&amp;#x3001;&amp;#x533F;&amp;#x540D;&amp;#x7BA1;&amp;#x9053;package main import (    &amp;#x201C;os/exec&amp;#x201D;    &amp;#x201C;fmt&amp;#x201D;    &amp;#x201C;os&amp;#x201D;    &amp;#x201C;bufio&amp;#x201D;    &amp;#x201C;bytes&amp;#x201D;    &amp;#x201C;io&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pipe">
+<meta property="og:url" content="http://yoursite.com/2018/03/27/pipe/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1&amp;#x3001;&amp;#x533F;&amp;#x540D;&amp;#x7BA1;&amp;#x9053;package main import (    &amp;#x201C;os/exec&amp;#x201D;    &amp;#x201C;fmt&amp;#x201D;    &amp;#x201C;os&amp;#x201D;    &amp;#x201C;bufio&amp;#x201D;    &amp;#x201C;bytes&amp;#x201D;    &amp;#x201C;io&amp;#">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-28T07:23:06.442Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pipe">
+<meta name="twitter:description" content="1&amp;#x3001;&amp;#x533F;&amp;#x540D;&amp;#x7BA1;&amp;#x9053;package main import (    &amp;#x201C;os/exec&amp;#x201D;    &amp;#x201C;fmt&amp;#x201D;    &amp;#x201C;os&amp;#x201D;    &amp;#x201C;bufio&amp;#x201D;    &amp;#x201C;bytes&amp;#x201D;    &amp;#x201C;io&amp;#">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "John Doe",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>Hexo</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">John Doe</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-pipe" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    pipe
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="1&#x3001;&#x533F;&#x540D;&#x7BA1;&#x9053;"><a href="#1&#x3001;&#x533F;&#x540D;&#x7BA1;&#x9053;" class="headerlink" title="1&#x3001;&#x533F;&#x540D;&#x7BA1;&#x9053;"></a>1&#x3001;&#x533F;&#x540D;&#x7BA1;&#x9053;</h3><p>package main</p>
+<p>import (<br>    &#x201C;os/exec&#x201D;<br>    &#x201C;fmt&#x201D;<br>    &#x201C;os&#x201D;<br>    &#x201C;bufio&#x201D;<br>    &#x201C;bytes&#x201D;<br>    &#x201C;io&#x201D;<br>)<br>func runCmd() {<br>    var useBufIO=false<br>    cmd0 := exec.Command(&#x201C;echo&#x201D;, &#x201C;-n&#x201D;, &#x201C;My first command comes from golang.&#x201D;)</p>
+<pre><code>// &#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x8F93;&#x51FA;&#x901A;&#x9053;
+stdout0, err := cmd0.StdoutPipe()
+
+if err != nil {
+    fmt.Printf(&quot;Error:Counld&apos;t obtain the stdout pipe from command NO.0:%s\n&quot;, err)
+    return
+}
+// Start
+if err := cmd0.Start(); err != nil {
+    fmt.Printf(&quot;Error:The command NO.0 can not be startup:%s\n&quot;, err)
+    return
+}
+
+// &#x8C03;&#x7528;read&#x65B9;&#x6CD5;&#x83B7;&#x53D6;&#x547D;&#x4EE4;
+var output0 = make([]byte, 30)
+
+if !useBufIO {
+    var outputBuf0 bytes.Buffer
+    for {
+        tempOutput0 := make([]byte, 5)
+        n, err := stdout0.Read(tempOutput0)
+        if err != nil {
+            if err == io.EOF {
+                break
+            } else {
+                fmt.Printf(&quot;Error:Couldn&apos;t read data from the pipe:%s\n&quot;, err)
+                os.Exit(1)
+            }
+        }
+        if n &gt; 0 {
+            outputBuf0.Write(tempOutput0[:n])
+        }
+    }
+    fmt.Printf(&quot;%s\n&quot;, outputBuf0.String())
+} else {
+    // &#x7F13;&#x5B58;&#x8BFB;&#x53D6;&#x5668;
+    var isPrefix bool
+    for {
+        outputBuf0 := bufio.NewReaderSize(stdout0, 5)
+        output0, isPrefix, err = outputBuf0.ReadLine()
+        if err != nil {
+            fmt.Printf(&quot;Error:Couldn&apos;t read data from the pipe:%s\n&quot;, err)
+            os.Exit(1)
+        }
+        fmt.Printf(&quot;%s&quot;, string(output0))
+        if isPrefix == false {
+            break
+        }
+    }
+}
+</code></pre><p>}</p>
+<p>// &#x901A;&#x8FC7;&#x7BA1;&#x9053;&#x5C06;&#x8F93;&#x51FA;&#x503C;&#x4F5C;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x7684;&#x8F93;&#x5165;<br>func runCmdPipe(){<br>    var outputBuf1 bytes.Buffer<br>    var outputBuf2 bytes.Buffer<br>    cmd1:=exec.Command(&#x201C;ps&#x201D;,&#x201D;aux&#x201D;)<br>    cmd2:=exec.Command(&#x201C;grep&#x201D;,&#x201D;apipe&#x201D;)<br>    //&#x5C06;&#x6240;&#x6709;&#x7684;&#x8F93;&#x51FA;&#x5185;&#x5BB9;&#x90FD;&#x8BB0;&#x5F55;&#x5230;&#x8FD9;&#x91CC;<br>    cmd1.Stdout=&amp;outputBuf1<br>    if err:=cmd1.Start();err!=nil{<br>        fmt.Printf(&#x201C;Error:The frist command can not be startup:%s\n&#x201D;,err)<br>        return<br>    }<br>    //cmd1&#x7ED3;&#x675F;&#x8FD0;&#x884C;&#x4E4B;&#x524D;&#xFF0C;wait()&#x8C03;&#x7528;&#x4F1A;&#x4E00;&#x76F4;&#x963B;&#x585E;<br>    if err:=cmd1.Wait();err!=nil{<br>        fmt.Printf(&#x201C;Error:Can&#x2019;t wait for the first command:%s\n&#x201D;,err)<br>        return<br>    }</p>
+<pre><code>cmd2.Stdin=&amp;outputBuf1
+cmd2.Stdout=&amp;outputBuf2
+if err:=cmd2.Start();err!=nil{
+    fmt.Printf(&quot;Error:The second command can not be startup:%s\n&quot;,err)
+    return
+}
+if err:=cmd2.Wait();err!=nil{
+    fmt.Printf(&quot;Error:Cant&apos;t wait for the second command:%s\n&quot;,err)
+    return
+}
+fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
+</code></pre><p>}</p>
+<p>func main(){<br>    runCmd()<br>    fmt.Println()<br>    runCmdPipe()<br>}</p>
+<h3 id="2&#x3001;&#x547D;&#x540D;&#x7BA1;&#x9053;&#xFF08;&#x6587;&#x4EF6;&#x7BA1;&#x9053;&#xFF09;&#x548C;&#x5185;&#x5B58;&#x7BA1;&#x9053;"><a href="#2&#x3001;&#x547D;&#x540D;&#x7BA1;&#x9053;&#xFF08;&#x6587;&#x4EF6;&#x7BA1;&#x9053;&#xFF09;&#x548C;&#x5185;&#x5B58;&#x7BA1;&#x9053;" class="headerlink" title="2&#x3001;&#x547D;&#x540D;&#x7BA1;&#x9053;&#xFF08;&#x6587;&#x4EF6;&#x7BA1;&#x9053;&#xFF09;&#x548C;&#x5185;&#x5B58;&#x7BA1;&#x9053;"></a>2&#x3001;&#x547D;&#x540D;&#x7BA1;&#x9053;&#xFF08;&#x6587;&#x4EF6;&#x7BA1;&#x9053;&#xFF09;&#x548C;&#x5185;&#x5B58;&#x7BA1;&#x9053;</h3><p>package main</p>
+<p>import (<br>    &#x201C;os&#x201D;<br>    &#x201C;fmt&#x201D;<br>    &#x201C;time&#x201D;<br>    &#x201C;io&#x201D;<br>)</p>
+<p>// &#x57FA;&#x4E8E;&#x6587;&#x4EF6;&#x7684;&#x7BA1;&#x9053;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x7AEF;&#x672A;&#x7EEA;&#x524D;&#x963B;&#x585E;&#x53E6;&#x4E00;&#x7AEF;&#x7684;&#x8FDB;&#x7A0B;<br>func fileBasePipe() {<br>    reader,writer,err:=os.Pipe()<br>    if err!=nil{<br>        fmt.Printf(&#x201C;Error:Create named pipe failed:%s\n&#x201D;,err)<br>        return<br>    }<br>    go func() {<br>        outPut:=make([]byte,100)<br>        n,err:=reader.Read(outPut)<br>        if err!=nil{<br>            fmt.Printf(&#x201C;Error:Could&#x2019;t read data from the named pipe: %s\n&#x201D;,err)<br>        }<br>        fmt.Printf(&#x201C;Readed %d byte(s)[based pipe]\n&#x201D;,n)<br>        fmt.Println(string(outPut))<br>    }()<br>    inPut:=make([]byte,26)<br>    for i:=65;i&lt;90;i++{<br>        inPut[i-65]=byte(i)<br>    }<br>    n,err:=writer.Write(inPut)<br>    if err!=nil{<br>        fmt.Printf(&#x201C;Error: Couldn&#x2019;t write data to the named pipe: %s\n&#x201D;,err)<br>    }<br>    fmt.Printf(&#x201C;Written %d byte(s).[based pipe]\n&#x201D;,n)<br>    time.Sleep(200*time.Millisecond)<br>}</p>
+<p>// &#x57FA;&#x4E8E;&#x5185;&#x5B58;&#x7684;&#x6709;&#x539F;&#x5B50;&#x6027;&#x64CD;&#x4F5C;&#x7684;&#x7BA1;&#x9053;<br>func memoryBasePipe() {<br>    reader, writer := io.Pipe()<br>    go func() {<br>        outPut := make([]byte, 100)<br>        n,err := reader.Read(outPut)<br>        if err != nil {<br>            fmt.Printf(&#x201C;Error:Read fatal: %s\n&#x201D;, err)<br>        }<br>        fmt.Printf(&#x201C;Readed %d byte(s)[based pipe]\n&#x201D;, n)<br>        fmt.Println(string(outPut))<br>    }()<br>    inPut:=make([]byte,26)<br>    for i:=65;i&lt;90;i++{<br>        inPut[i-65]=byte(i)<br>    }<br>    n, err := writer.Write(inPut)<br>    if err != nil {<br>        fmt.Printf(&#x201C;Error:Write fatal: %s\n&#x201D;, err)<br>    }<br>    fmt.Printf(&#x201C;Written %d byte(s).[based pipe]\n&#x201D;, n)<br>    time.Sleep(200*time.Millisecond)<br>}</p>
+<p>func main() {<br>    fileBasePipe()<br>    fmt.Println()<br>    memoryBasePipe()<br>}</p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-03-27T15:41:34.000Z" itemprop="datePublished">2018-03-27</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/03/28/channel/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    channel
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/03/27/panic和recover/" class="ui tiny button">
+                    
+                    panic和recover
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#1、匿名管道"><span>1、匿名管道</span></a></li><li><a href="#2、命名管道（文件管道）和内存管道"><span>2、命名管道（文件管道）和内存管道</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2018 <a href="/">John Doe</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

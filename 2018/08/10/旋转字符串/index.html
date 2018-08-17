@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<html lang="">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>旋转字符串 | Hexo</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051//&amp;#x7ED9;&amp;#x51FA;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;abcdefg&amp;#xFF0C;&amp;#x65CB;&amp;#x8F6C;2&amp;#xFF0C;&amp;#x53D8;&amp;#x6210;cdefgab #">
+<meta property="og:type" content="article">
+<meta property="og:title" content="旋转字符串">
+<meta property="og:url" content="http://yoursite.com/2018/08/10/旋转字符串/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051//&amp;#x7ED9;&amp;#x51FA;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;abcdefg&amp;#xFF0C;&amp;#x65CB;&amp;#x8F6C;2&amp;#xFF0C;&amp;#x53D8;&amp;#x6210;cdefgab #">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-10T08:34:42.922Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="旋转字符串">
+<meta name="twitter:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051//&amp;#x7ED9;&amp;#x51FA;&amp;#x5B57;&amp;#x7B26;&amp;#x4E32;abcdefg&amp;#xFF0C;&amp;#x65CB;&amp;#x8F6C;2&amp;#xFF0C;&amp;#x53D8;&amp;#x6210;cdefgab #">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "John Doe",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>Hexo</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">John Doe</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-旋转字符串" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    旋转字符串
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//&#x7ED9;&#x51FA;&#x5B57;&#x7B26;&#x4E32;abcdefg&#xFF0C;&#x65CB;&#x8F6C;2&#xFF0C;&#x53D8;&#x6210;cdefgab </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//&#x6CD5;&#x4E00;&#xFF1A;&#x66B4;&#x529B;&#x79FB;&#x4F4D;&#x6CD5;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">leftShiftOne</span><span class="params">(<span class="built_in">string</span> &amp;str)</span></span>{</span><br><span class="line">	<span class="keyword">int</span> n = str.length();</span><br><span class="line">	<span class="keyword">if</span>(n&lt;<span class="number">2</span>){</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">char</span> t = str[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++){</span><br><span class="line">		str[i<span class="number">-1</span>]=str[i];</span><br><span class="line">	}</span><br><span class="line">	str[n<span class="number">-1</span>]=t;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate_1</span><span class="params">(<span class="built_in">string</span> &amp;str,<span class="keyword">int</span> m)</span></span>{</span><br><span class="line">	<span class="keyword">while</span>(m--){</span><br><span class="line">		leftShiftOne(str);</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//&#x6CD5;&#x4E8C;&#xFF1A;&#x4E09;&#x6B65;&#x8F6C;&#x6362;&#x6CD5; </span></span><br><span class="line"><span class="comment">//ab-&gt;ba</span></span><br><span class="line"><span class="comment">//cdefg-&gt;gfedc</span></span><br><span class="line"><span class="comment">//bagfedc-&gt;cdefgab </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reserveString</span><span class="params">(<span class="built_in">string</span> &amp;str,<span class="keyword">int</span> from,<span class="keyword">int</span> to)</span></span>{</span><br><span class="line">	<span class="keyword">while</span>(from &lt; to){</span><br><span class="line">		<span class="keyword">char</span> t = str[from];</span><br><span class="line">		str[from]=str[to];</span><br><span class="line">		str[to]=t;</span><br><span class="line">		from++;</span><br><span class="line">		to--;</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate_2</span><span class="params">(<span class="built_in">string</span> &amp;str,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>{</span><br><span class="line">	m %= n;</span><br><span class="line">	reserveString(str,<span class="number">0</span>,m<span class="number">-1</span>);</span><br><span class="line">	reserveString(str,m,n<span class="number">-1</span>);</span><br><span class="line">	reserveString(str,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line">	<span class="built_in">string</span> s =<span class="string">&quot;abcdef&quot;</span>;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">7</span>;</span><br><span class="line">	rotate_2(s,num,s.size());</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-08-10T08:31:00.000Z" itemprop="datePublished">2018-08-10</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/08/18/hello-world/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    Hello World
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/08/09/发送邮件/" class="ui tiny button">
+                    
+                    发送邮件
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2018 <a href="/">John Doe</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

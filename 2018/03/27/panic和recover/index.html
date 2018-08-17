@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html lang="">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <title>panic和recover | Hexo</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="panic&amp;#x7528;&amp;#x4E8E;&amp;#x505C;&amp;#x6B62;&amp;#x5F53;&amp;#x524D;&amp;#x7684;&amp;#x63A7;&amp;#x5236;&amp;#x6D41;&amp;#x7A0B;&amp;#x5E76;&amp;#x5F15;&amp;#x53D1;&amp;#x4E00;&amp;#x4E2A;&amp;#x6050;&amp;#x614C; recover&amp;#x7528;&amp;#x4E8E;&amp;#x4F7F;&amp;#x5F53;&amp;#x524D;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="panic和recover">
+<meta property="og:url" content="http://yoursite.com/2018/03/27/panic和recover/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="panic&amp;#x7528;&amp;#x4E8E;&amp;#x505C;&amp;#x6B62;&amp;#x5F53;&amp;#x524D;&amp;#x7684;&amp;#x63A7;&amp;#x5236;&amp;#x6D41;&amp;#x7A0B;&amp;#x5E76;&amp;#x5F15;&amp;#x53D1;&amp;#x4E00;&amp;#x4E2A;&amp;#x6050;&amp;#x614C; recover&amp;#x7528;&amp;#x4E8E;&amp;#x4F7F;&amp;#x5F53;&amp;#x524D;&amp;#">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-27T09:06:40.267Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="panic和recover">
+<meta name="twitter:description" content="panic&amp;#x7528;&amp;#x4E8E;&amp;#x505C;&amp;#x6B62;&amp;#x5F53;&amp;#x524D;&amp;#x7684;&amp;#x63A7;&amp;#x5236;&amp;#x6D41;&amp;#x7A0B;&amp;#x5E76;&amp;#x5F15;&amp;#x53D1;&amp;#x4E00;&amp;#x4E2A;&amp;#x6050;&amp;#x614C; recover&amp;#x7528;&amp;#x4E8E;&amp;#x4F7F;&amp;#x5F53;&amp;#x524D;&amp;#">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:",
+  "image": "",
+  "name": "John Doe",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>Hexo</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">John Doe</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-panic和recover" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    panic和recover
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <ul class="ui list">
+<li>panic&#x7528;&#x4E8E;&#x505C;&#x6B62;&#x5F53;&#x524D;&#x7684;&#x63A7;&#x5236;&#x6D41;&#x7A0B;&#x5E76;&#x5F15;&#x53D1;&#x4E00;&#x4E2A;&#x6050;&#x614C;</li>
+<li>recover&#x7528;&#x4E8E;&#x4F7F;&#x5F53;&#x524D;&#x7A0B;&#x5E8F;&#x4ECE;&#x6050;&#x614C;&#x4E2D;&#x6062;&#x590D;&#x5E76;&#x91CD;&#x65B0;&#x83B7;&#x5F97;&#x6D41;&#x7A0B;&#x63A7;&#x5236;&#x6743;</li>
+<li>recover&#x51FD;&#x6570;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x4E00;&#x4E2A;interface{}&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x679C;&#x7ED3;&#x679C;&#x4E0D;&#x662F;nil&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x6709;&#x95EE;&#x9898;&#x5566;&#xFF01;</li>
+<li>recover&#x548C;defer&#x5E94;&#x8BE5;&#x914D;&#x5408;&#x4F7F;&#x7528;</li>
+</ul>
+<p>&#x6211;&#x4EEC;&#x770B;&#x4E0B;&#x6807;&#x51C6;&#x5E93;fmt&#x4E2D;&#x7684;Token&#x662F;&#x600E;&#x4E48;&#x5904;&#x7406;&#x7684;<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *ss)</span> <span class="title">Token</span><span class="params">(skipSpace <span class="keyword">bool</span>, f <span class="keyword">func</span>(<span class="keyword">rune</span>)</span> <span class="title">bool</span>) <span class="params">(tok []<span class="keyword">byte</span>, err error)</span></span> {</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> {</span><br><span class="line">		<span class="keyword">if</span> e := <span class="built_in">recover</span>(); e != <span class="literal">nil</span> {		<span class="comment">//&#x5224;&#x65AD;recover&#x51FD;&#x6570;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x5426;&#x4E3A;nil</span></span><br><span class="line">			<span class="keyword">if</span> se, ok := e.(scanError); ok {	<span class="comment">//&#x5224;&#x65AD;panic&#x7684;&#x7C7B;&#x578B;</span></span><br><span class="line">				err = se.err		</span><br><span class="line"><span class="comment">//&#x5982;&#x679C;panic&#x662F;&#x8FD9;&#x4E2A;&#x7C7B;&#x578B;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x503C;&#x5C31;&#x4F1A;&#x8D4B;&#x503C;&#x7ED9;&#x7ED3;&#x679C;&#x503C;&#x53D8;&#x91CF;err&#xFF0C;</span></span><br><span class="line"><span class="comment">//&#x8FD9;&#x6837;&#x505A;&#x5230;&#x4E86;&#x7CBE;&#x786E;&#x63A7;&#x5236;panic&#xFF0C;&#x5C06;&#x5DF2;&#x7ECF;recover&#x7684;&#x6050;&#x614C;&#x5F53;&#x4F5C;&#x5E38;&#x89C4;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;</span></span><br><span class="line">			} <span class="keyword">else</span> {</span><br><span class="line">				<span class="built_in">panic</span>(e)</span><br><span class="line"><span class="comment">//&#x5426;&#x5219;&#x6050;&#x614C;&#x4F1A;&#x518D;&#x6B21;&#x5F15;&#x53D1;</span></span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}()</span><br><span class="line">...</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>&#x6050;&#x614C;&#x88AB;&#x4F20;&#x9012;&#x5230;&#x8C03;&#x7528;&#x6808;&#x7684;&#x6700;&#x9876;&#x5C42;&#x7684;&#x7ED3;&#x679C;&#xFF1A;<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">panic</span>: An intended fatal error! [recovered]</span><br><span class="line">	<span class="built_in">panic</span>: An intended fatal error!</span><br></pre></td></tr></table></figure></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2018-03-27T08:49:57.000Z" itemprop="datePublished">2018-03-27</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2018/03/27/pipe/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    pipe
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2018/03/27/defer/" class="ui tiny button">
+                    
+                    defer和闭包
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2018 <a href="/">John Doe</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
