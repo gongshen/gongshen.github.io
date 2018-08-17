@@ -127,7 +127,9 @@
         <h1 id="一、数据库基本知识"><a href="#一、数据库基本知识" class="headerlink" title="一、数据库基本知识"></a>一、数据库基本知识</h1><p>一个好的哈希表：$O(1)$<br>一个均衡的树：$O(log(n))$<br>一个好的排序算法：$O(n*log(n))$<br>一个差的排序算法：$O(n^2)$</p>
 <h3 id="1、排序"><a href="#1、排序" class="headerlink" title="1、排序"></a>1、排序</h3><p>合并排序：时间复杂度$O(n*log(n))$</p>
 <h3 id="2、存储"><a href="#2、存储" class="headerlink" title="2、存储"></a>2、存储</h3><p>数据库的表使用的是<code>二维阵列</code>存储：必须一下子全部加载到内存中。<br>数据库使用<code>哈希表</code>来存储<code>锁表</code>和<code>缓冲池</code>：可以先加载一半到内存中。</p>
-<h3 id="3、查找"><a href="#3、查找" class="headerlink" title="3、查找"></a>3、查找</h3><p><span style="border-bottom:2px solid red;">查找特定的值：二叉查找树</span><br>    比如说你要查找40，时间复杂度O(log(N))<br>BST-624x321<br><span style="border-bottom:2px solid red;">范围查找：B+树</span><br>    比如你要查找40~100之间的值，只需要找到40，通过后续节点找到100，时间复杂度O(M+log(N))</p>
+<h3 id="3、查找"><a href="#3、查找" class="headerlink" title="3、查找"></a>3、查找</h3><p><span style="border-bottom:2px solid red;">查找特定的值：二叉查找树</span><br>    比如说你要查找40，时间复杂度O(log(N))</p>
+<p>【图片】</p>
+<p><span style="border-bottom:2px solid red;">范围查找：B+树</span><br>    比如你要查找40~100之间的值，只需要找到40，通过后续节点找到100，时间复杂度O(M+log(N))</p>
 <ul>
 <li>只有最底层的叶子才保存行信息</li>
 <li>底层节点是连续的</li>
@@ -135,27 +137,35 @@
 <li>当数据库进行删除插入操作时，需要自动更新B+索引树，所以创建太多索引影响性能</li>
 </ul>
 <h1 id="二、数据库全局概览"><a href="#二、数据库全局概览" class="headerlink" title="二、数据库全局概览"></a>二、数据库全局概览</h1><p><span style="border-bottom:2px solid red;">核心组件</span></p>
-<pre><code>* Process Manager：
-* Network Manager：
-* Memory Manager：
-* Client Manager：
-* File system Manager：
-* Security Manager：对用户的验证和授权
-</code></pre><p><span style="border-bottom:2px solid red;">工具</span></p>
-<pre><code>* Backup Manager：
-* Recovery Manager：崩溃后重启数据库到一致状态
-* Monitor Manager：记录数据库活动信息
-* Administration Manager：管理数据库、模式、表空间
-</code></pre><p><span style="border-bottom:2px solid red;">查询管理器</span></p>
-<pre><code>* Query executor：编译和执行查询
-* Query parser：检查查询是否合法
-* Query rewriter：预优化查询
-* Query optimizer：优化查询
-</code></pre><p><span style="border-bottom:2px solid red;">数据管理器</span></p>
-<pre><code>* Transaction Manager：处理事务
-* Cache Manager：
-* Data access Manager：访问磁盘中的数据
-</code></pre><h1 id="三、查询过程"><a href="#三、查询过程" class="headerlink" title="三、查询过程"></a>三、查询过程</h1><h2 id="1、客户端管理器："><a href="#1、客户端管理器：" class="headerlink" title="1、客户端管理器："></a>1、客户端管理器：</h2><p>当你连接数据库时：</p>
+<ul>
+<li>Process Manager：</li>
+<li>Network Manager：</li>
+<li>Memory Manager：</li>
+<li>Client Manager：</li>
+<li>File system Manager：</li>
+<li>Security Manager：对用户的验证和授权</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">工具</span></p>
+<ul>
+<li>Backup Manager：</li>
+<li>Recovery Manager：崩溃后重启数据库到一致状态</li>
+<li>Monitor Manager：记录数据库活动信息</li>
+<li>Administration Manager：管理数据库、模式、表空间</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">查询管理器</span></p>
+<ul>
+<li>Query executor：编译和执行查询</li>
+<li>Query parser：检查查询是否合法</li>
+<li>Query rewriter：预优化查询</li>
+<li>Query optimizer：优化查询</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">数据管理器</span></p>
+<ul>
+<li>Transaction Manager：处理事务</li>
+<li>Cache Manager：</li>
+<li>Data access Manager：访问磁盘中的数据</li>
+</ul>
+<h1 id="三、查询过程"><a href="#三、查询过程" class="headerlink" title="三、查询过程"></a>三、查询过程</h1><h2 id="1、客户端管理器："><a href="#1、客户端管理器：" class="headerlink" title="1、客户端管理器："></a>1、客户端管理器：</h2><p>当你连接数据库时：</p>
 <ol>
 <li>客户端管理器检查你的<strong>验证信息</strong>，检查你是否具有<strong>访问权限</strong>。</li>
 <li>客户端管理器检查是否有空闲的进程或线程处理你的查询。</li>
@@ -189,18 +199,21 @@
 <li><strong>分区裁剪</strong>:如果你用了分区表,重写器能够找到需要使用的分区</li>
 <li><strong>物化试图重写</strong>:如果有物化试图正好匹配查询谓词的一个子集,那么修改查询使用物化试图而不是原始表.</li>
 <li><strong>自定义规则</strong>:如果你有自定义规则和修改查询,重写器就会执行这些规则</li>
-<li><strong>OLAP转换</strong><br>例如:<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> PERSON.*</span><br><span class="line"><span class="keyword">FROM</span> PERSON</span><br><span class="line"><span class="keyword">WHERE</span> PERSON.person_key <span class="keyword">IN</span></span><br><span class="line">(<span class="keyword">SELECT</span> MAILS.person_key</span><br><span class="line"><span class="keyword">FROM</span> MAILS</span><br><span class="line"><span class="keyword">WHERE</span> MAILS.mail <span class="keyword">LIKE</span> <span class="string">'christophe%'</span>);</span><br></pre></td></tr></table></figure>
-</li>
+<li><strong>OLAP转换</strong></li>
 </ul>
 </li>
 </ol>
-<p>会转换为:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> PERSON.*</span><br><span class="line"><span class="keyword">FROM</span> PERSON, MAILS</span><br><span class="line"><span class="keyword">WHERE</span> PERSON.person_key = MAILS.person_key</span><br><span class="line"><span class="keyword">and</span> MAILS.mail <span class="keyword">LIKE</span> <span class="string">'christophe%'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>例如:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> PERSON.*</span><br><span class="line"><span class="keyword">FROM</span> PERSON</span><br><span class="line"><span class="keyword">WHERE</span> PERSON.person_key <span class="keyword">IN</span></span><br><span class="line">(<span class="keyword">SELECT</span> MAILS.person_key</span><br><span class="line"><span class="keyword">FROM</span> MAILS</span><br><span class="line"><span class="keyword">WHERE</span> MAILS.mail <span class="keyword">LIKE</span> <span class="string">'christophe%'</span>);</span><br></pre></td></tr></table></figure>
+<p>会转换为:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> PERSON.*</span><br><span class="line"><span class="keyword">FROM</span> PERSON, MAILS</span><br><span class="line"><span class="keyword">WHERE</span> PERSON.person_key = MAILS.person_key</span><br><span class="line"><span class="keyword">and</span> MAILS.mail <span class="keyword">LIKE</span> <span class="string">'christophe%'</span>;</span><br></pre></td></tr></table></figure>
 <h3 id="第三步：统计"><a href="#第三步：统计" class="headerlink" title="第三步：统计"></a>第三步：统计</h3><p>当你统计信息时,数据库会计算:</p>
 <ul>
 <li>表中行和列的数量</li>
 <li>表中列的唯一值,数据长度,数据范围</li>
-<li>表的索引<br>统计的信息对于查询优化器做优化特别重要,所以统计必须要及时更新.</li>
+<li>表的索引</li>
 </ul>
+<p>统计的信息对于查询优化器做优化特别重要,所以统计必须要及时更新.</p>
 <h3 id="第四步：查询优化器"><a href="#第四步：查询优化器" class="headerlink" title="第四步：查询优化器"></a>第四步：查询优化器</h3><h4 id="获取数据的方法："><a href="#获取数据的方法：" class="headerlink" title="获取数据的方法："></a>获取数据的方法：</h4><ul>
 <li>全扫描：完整的读取一个表或索引</li>
 <li>范围扫描：使用B+树只是读取索引的一部分</li>
@@ -236,15 +249,18 @@
 <li>计算每一个与（A）的联接，如果（A Join B）成本最低</li>
 <li>计算每一个与（A Join B）的结果成本最低的表</li>
 <li>…</li>
-<li>可以结合多个贪婪选项得出比较满意的答案<h4 id="真实的优化器"><a href="#真实的优化器" class="headerlink" title="真实的优化器"></a>真实的优化器</h4><span style="border-bottom:2px solid red;">SQLite</span></li>
+<li>可以结合多个贪婪选项得出比较满意的答案</li>
+</ul>
+<h4 id="真实的优化器"><a href="#真实的优化器" class="headerlink" title="真实的优化器"></a>真实的优化器</h4><p><span style="border-bottom:2px solid red;">SQLite</span></p>
+<ul>
 <li>在有 CROSS JOIN（两个表的笛卡尔乘积）时从不给表重新排序</li>
 <li>使用嵌套联接</li>
 <li>3.8.0版本使用<code>最近邻居</code>的贪婪算法作为最佳查询计划</li>
-<li>…<h3 id="第五步、查询执行器"><a href="#第五步、查询执行器" class="headerlink" title="第五步、查询执行器"></a>第五步、查询执行器</h3><blockquote>
+<li>…</li>
+</ul>
+<h3 id="第五步、查询执行器"><a href="#第五步、查询执行器" class="headerlink" title="第五步、查询执行器"></a>第五步、查询执行器</h3><blockquote>
 <p>这时我们有了一个优化了的执行代码，编译为可执行代码，如果计算机的硬件符合要求，就会执行。但是查询执行器不会直接从文件系统拿数据，而是向<code>缓存管理器</code>要。</p>
 </blockquote>
-</li>
-</ul>
 <h2 id="4、数据管理器"><a href="#4、数据管理器" class="headerlink" title="4、数据管理器"></a>4、数据管理器</h2><h3 id="缓存管理器：与查询执行器进行数据的交互"><a href="#缓存管理器：与查询执行器进行数据的交互" class="headerlink" title="缓存管理器：与查询执行器进行数据的交互"></a>缓存管理器：与查询执行器进行数据的交互</h3><ul>
 <li>因为磁盘I/O的瓶颈，缓存管理器有一个内存缓冲区（缓冲池）：从内存读取数据提供性能</li>
 <li>缓存管理器需要在查询执行器使用数据之前<code>预读</code>数据</li>
@@ -282,11 +298,11 @@
 <li>串行化（Serializable，SQLite默认模式）：最高级别，两个事务100%隔离</li>
 <li>可重复读（Repeatable read，MySQL默认模式）：每个事务都有自己的世界，只是在<code>新数据方面突破隔离，在旧数据仍然隔离</code>。比如事务A运行（select count(1) from table），事务B这时在table表中添加了一条新的数据，那么事务A再运行一次得到的结果是不一样的——幻读</li>
 <li>读取已提交（Oracle，PostgreSQL，SQL Server默认模式）：如果事务A读取数据D，这时事务B删除或修改数据D并提交，那么事务A再次读数据D时数据的变化是可见的——不可重复读</li>
-<li>读取未提交：最低级别，如果事务A读取数据D，事务B修改或删除数据D（并未提交，事务B还在运行），那么事务A读取数据D时数据的变化是可见的。如果事务B回滚，那么事务A中读取的数据D是无意义的——<code>脏读</code>。<h1 id="四、数据库的并发控制"><a href="#四、数据库的并发控制" class="headerlink" title="四、数据库的并发控制"></a>四、数据库的并发控制</h1><h2 id="1、锁管理器"><a href="#1、锁管理器" class="headerlink" title="1、锁管理器"></a>1、锁管理器</h2><blockquote>
+<li>读取未提交：最低级别，如果事务A读取数据D，事务B修改或删除数据D（并未提交，事务B还在运行），那么事务A读取数据D时数据的变化是可见的。如果事务B回滚，那么事务A中读取的数据D是无意义的——<code>脏读</code>。</li>
+</ul>
+<h1 id="四、数据库的并发控制"><a href="#四、数据库的并发控制" class="headerlink" title="四、数据库的并发控制"></a>四、数据库的并发控制</h1><h2 id="1、锁管理器"><a href="#1、锁管理器" class="headerlink" title="1、锁管理器"></a>1、锁管理器</h2><blockquote>
 <p>锁管理器是添加和释放锁的进程，用一个哈希表来保存锁信息（关键字是被锁的数据）</p>
 </blockquote>
-</li>
-</ul>
 <p><span style="border-bottom:2px solid red;">排他锁原理</span></p>
 <blockquote>
 <p>如果事务A需要一条数据，就把他锁住，如果事务B也需要这个数据，必须等待事务A释放数据。</p>
@@ -335,9 +351,9 @@
 <li>PagelD：被修改的数据在磁盘上页的位置</li>
 <li>PrevLSN：同一个事务产生的上一条日志的链接</li>
 <li>UNDO：取消本次操作的方法，回到原来状态的反向操作</li>
-<li>REDO：重复本次操作<h3 id="日志缓冲区"><a href="#日志缓冲区" class="headerlink" title="日志缓冲区"></a>日志缓冲区</h3></li>
+<li>REDO：重复本次操作</li>
 </ul>
-<p>当查询执行器要求做一次修改：</p>
+<h3 id="日志缓冲区"><a href="#日志缓冲区" class="headerlink" title="日志缓冲区"></a>日志缓冲区</h3><p>当查询执行器要求做一次修改：</p>
 <ol>
 <li>缓存管理器将修改存入自己的缓存</li>
 <li>日志管理器将相关日志存入自己的日志缓冲区</li>
