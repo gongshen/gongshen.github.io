@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="通道," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="向发送通道发送值时，不会因为通道已满而产生阻塞，所以一个更好的办法是，创建一个长度1的接受通道，并时刻准备接收数据for v:=range channel{}">
-<meta name="keywords" content="通道">
+<meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344// select只能用于通道的发送和接收操作// 1.在关键字case右边的发送语句或者接收语句中的表达式会先求值// 2.这里的intChan1和intChan2未初始化，所以传送数据时会阻塞// 3.如果有多个case满足条件，那么运行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="channel">
-<meta property="og:url" content="http://www.llyltq.top/2018/03/28/channel/index.html">
+<meta property="og:title" content="select语句">
+<meta property="og:url" content="http://www.llyltq.top/2018/08/18/select语句/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="向发送通道发送值时，不会因为通道已满而产生阻塞，所以一个更好的办法是，创建一个长度1的接受通道，并时刻准备接收数据for v:=range channel{}">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344// select只能用于通道的发送和接收操作// 1.在关键字case右边的发送语句或者接收语句中的表达式会先求值// 2.这里的intChan1和intChan2未初始化，所以传送数据时会阻塞// 3.如果有多个case满足条件，那么运行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-18T00:54:10.659Z">
+<meta property="og:updated_time" content="2018-08-18T01:14:00.577Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="channel">
-<meta name="twitter:description" content="向发送通道发送值时，不会因为通道已满而产生阻塞，所以一个更好的办法是，创建一个长度1的接受通道，并时刻准备接收数据for v:=range channel{}">
+<meta name="twitter:title" content="select语句">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344// select只能用于通道的发送和接收操作// 1.在关键字case右边的发送语句或者接收语句中的表达式会先求值// 2.这里的intChan1和intChan2未初始化，所以传送数据时会阻塞// 3.如果有多个case满足条件，那么运行">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://www.llyltq.top/2018/03/28/channel/"/>
+  <link rel="canonical" href="http://www.llyltq.top/2018/08/18/select语句/"/>
 
 
 
 
 
-  <title>channel | Hexo</title>
+  <title>select语句 | Hexo</title>
   
 
 
@@ -253,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/28/channel/">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/18/select语句/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="冉某某">
@@ -270,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">channel</h1>
+          <h1 class="post-title" itemprop="name headline">select语句</h1>
         
 
         <div class="post-meta">
@@ -282,8 +281,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T16:21:14+08:00">
-                2018-03-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T09:08:37+08:00">
+                2018-08-18
               </time>
             
 
@@ -307,6 +306,17 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/golang/" itemprop="url" rel="index">
                     <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/channel/" itemprop="url" rel="index">
+                    <span itemprop="name">channel</span>
                   </a>
                 </span>
 
@@ -342,8 +352,7 @@
       
 
       
-        <p>向发送通道发送值时，不会因为通道已满而产生阻塞，所以一个更好的办法是，创建一个长度1的接受通道，并时刻准备接收数据<br>for v:=range channel{<br>}</p>
-
+        <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// select只能用于通道的发送和接收操作</span></span><br><span class="line"><span class="comment">// 1.在关键字case右边的发送语句或者接收语句中的表达式会先求值</span></span><br><span class="line"><span class="comment">// 2.这里的intChan1和intChan2未初始化，所以传送数据时会阻塞</span></span><br><span class="line"><span class="comment">// 3.如果有多个case满足条件，那么运行时系统会随机选择一个</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> intChan1 = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> intChan2 = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">var</span> channels = []<span class="keyword">chan</span> <span class="keyword">int</span>&#123;intChan1, intChan2&#125;</span><br><span class="line"><span class="keyword">var</span> numbers = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">select</span> &#123;</span><br><span class="line">	<span class="keyword">case</span> getChan(<span class="number">0</span>) &lt;- getNumber(<span class="number">2</span>):</span><br><span class="line">		fmt.Println(<span class="string">"1th case is selected"</span>)</span><br><span class="line">	<span class="keyword">case</span> getChan(<span class="number">1</span>) &lt;- getNumber(<span class="number">3</span>):</span><br><span class="line">		fmt.Println(<span class="string">"2st case is selected"</span>)</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		fmt.Println(<span class="string">"Default!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getNumber</span><span class="params">(i <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"numbers[%d]\n"</span>, i)</span><br><span class="line">	<span class="keyword">return</span> numbers[i]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getChan</span><span class="params">(i <span class="keyword">int</span>)</span> <span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"channels[%d]\n"</span>, i)</span><br><span class="line">	<span class="keyword">return</span> channels[i]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*结果：</span></span><br><span class="line"><span class="comment">channels[0]</span></span><br><span class="line"><span class="comment">numbers[0]</span></span><br><span class="line"><span class="comment">channels[1]</span></span><br><span class="line"><span class="comment">numbers[1]</span></span><br><span class="line"><span class="comment">Default!</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -358,12 +367,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/通道/" rel="tag"># 通道</a>
-          
-        </div>
-      
 
       
       
@@ -373,8 +376,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/27/pipe/" rel="next" title="pipe">
-                <i class="fa fa-chevron-left"></i> pipe
+              <a href="/2018/08/18/关系数据库原理/" rel="next" title="关系数据库原理">
+                <i class="fa fa-chevron-left"></i> 关系数据库原理
               </a>
             
           </div>
@@ -383,8 +386,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/29/http-1/" rel="prev" title="http(1)">
-                http(1) <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/18/time包/" rel="prev" title="time包">
+                time包 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -464,21 +467,12 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
             
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
             
 
           </nav>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="package," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -80,16 +80,15 @@
 
 
 <meta name="description" content="Pointerunsafe.Pointer的4个规则：  任何指针都可以转换为unsafe.Pointer类型 unsafe.Pointer类型可以转换为任何指针 uintptr类型可以转换为unsafe.Pointer类型 unsafe.Pointer类型可以转换为uintptr类型  123456func main() &amp;#123;    i:= 10    fi:=(*float64)(un">
-<meta name="keywords" content="package">
 <meta property="og:type" content="article">
-<meta property="og:title" content="unsafe">
+<meta property="og:title" content="unsafe包">
 <meta property="og:url" content="http://www.llyltq.top/2018/07/10/unsafe/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Pointerunsafe.Pointer的4个规则：  任何指针都可以转换为unsafe.Pointer类型 unsafe.Pointer类型可以转换为任何指针 uintptr类型可以转换为unsafe.Pointer类型 unsafe.Pointer类型可以转换为uintptr类型  123456func main() &amp;#123;    i:= 10    fi:=(*float64)(un">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-18T00:40:02.993Z">
+<meta property="og:updated_time" content="2018-08-18T01:18:52.954Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="unsafe">
+<meta name="twitter:title" content="unsafe包">
 <meta name="twitter:description" content="Pointerunsafe.Pointer的4个规则：  任何指针都可以转换为unsafe.Pointer类型 unsafe.Pointer类型可以转换为任何指针 uintptr类型可以转换为unsafe.Pointer类型 unsafe.Pointer类型可以转换为uintptr类型  123456func main() &amp;#123;    i:= 10    fi:=(*float64)(un">
 
 
@@ -126,7 +125,7 @@
 
 
 
-  <title>unsafe | Hexo</title>
+  <title>unsafe包 | Hexo</title>
   
 
 
@@ -270,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">unsafe</h1>
+          <h1 class="post-title" itemprop="name headline">unsafe包</h1>
         
 
         <div class="post-meta">
@@ -307,6 +306,17 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/golang/" itemprop="url" rel="index">
                     <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/package/" itemprop="url" rel="index">
+                    <span itemprop="name">package</span>
                   </a>
                 </span>
 
@@ -355,7 +365,7 @@
 <p><code>pName</code>因为是第一个字段，所以不需要偏移，<code>pAge</code>设置偏移后获取到该字段的内存地址。</p>
 <hr>
 <p>当一个变量被移动，所有的保存改变量旧地址的指针必须同时被更新为变量移动后的新地址。从垃圾收集器的视角来看，一个unsafe.Pointer是一个指向变量的指针，因此当变量被移动是对应的指针也必须被更新；但是uintptr类型的临时变量只是一个普通的数字，所以其值不应该被改变。上面错误的代码因为引入一个非指针的临时变量tmp，导致垃圾收集器无法正确识别这个是一个指向变量x的指针。当第二个语句执行时，变量x可能已经被转移，这时候临时变量tmp也就不再是现在的&amp;x.b地址。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp:=<span class="keyword">uintptr</span>(unsafe.Pointer(u))+unsafe.Offsetof(u.age)</span><br><span class="line">pAge:=(*<span class="keyword">int</span>)(unsafe.Pointer(temp))</span><br><span class="line">*pAge = <span class="number">20</span></span><br></pre></td></tr></table></figure></p>
-
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"unsafe"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> user <span class="keyword">struct</span> &#123;</span><br><span class="line">	name <span class="keyword">string</span></span><br><span class="line">	age <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	u:=<span class="built_in">new</span>(user)</span><br><span class="line">	u.name = <span class="string">"张三"</span></span><br><span class="line">	pAge:=(*<span class="keyword">int</span>)(unsafe.Pointer(<span class="keyword">uintptr</span>(unsafe.Pointer(u))+unsafe.Offsetof(u.age)))</span><br><span class="line">	*pAge = *pAge + <span class="number">20</span></span><br><span class="line">	fmt.Println(*u)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -369,12 +379,6 @@
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/package/" rel="tag"># package</a>
-          
-        </div>
       
 
       
@@ -485,21 +489,12 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
             
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
             
 
           </nav>
@@ -545,7 +540,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pointer"><span class="nav-number">1.</span> <span class="nav-text">Pointer</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pointer"><span class="nav-number">1.</span> <span class="nav-text">Pointer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举例"><span class="nav-number">2.</span> <span class="nav-text">举例</span></a></li></ol></div>
             
 
           </div>
