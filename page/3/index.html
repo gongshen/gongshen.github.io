@@ -345,10 +345,16 @@
       
         
           
-            <p>发现了一个有意思的表达式：x&amp;(x-1)，分享给大家！</p>
-<h3 id="1、计算输入值转化为二进制后有多少个1"><a href="#1、计算输入值转化为二进制后有多少个1" class="headerlink" title="1、计算输入值转化为二进制后有多少个1"></a>1、计算输入值转化为二进制后有多少个1</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">count_one</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> count:=<span class="number">0</span>;;count++&#123;</span><br><span class="line">        <span class="keyword">if</span> x==<span class="number">0</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> count</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            x=x&amp;(x<span class="number">-1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2、判断输入的i是否是2的n次方"><a href="#2、判断输入的i是否是2的n次方" class="headerlink" title="2、判断输入的i是否是2的n次方"></a>2、判断输入的i是否是2的n次方</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">index</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> x&amp;(x<span class="number">-1</span>)==<span class="number">0</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          发现了一个有意思的表达式：x&amp;(x-1)，分享给大家！
+1、计算输入值转化为二进制后有多少个
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/19/与运算/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -488,14 +494,15 @@
       
         
           
-            <h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><h3 id="1-依赖"><a href="#1-依赖" class="headerlink" title="1. 依赖"></a>1. 依赖</h3><p>如果在 Class A 中，有 Class B 的实例，则称 Class A 对 Class B 有一个依赖。例如下面类 Human 中用到一个 Father 对象，我们就说类 Human 对类 Father 有一个依赖。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        father = <span class="keyword">new</span> Father();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>仔细看这段代码我们会发现存在一些问题：<br>(1). 如果现在要改变 father 生成方式，如需要用<code>new Father(String name)</code>初始化 father，需要修改 Human 代码；<br>(2). 如果想测试不同 Father 对象对 Human 的影响很困难，因为 father 的初始化被写死在了 Human 的构造函数中；<br>(3). 如果<code>new Father()</code>过程非常缓慢，单测时我们希望用已经初始化好的 father 对象 Mock 掉这个过程也很困难。  </p>
-<h3 id="2-依赖注入"><a href="#2-依赖注入" class="headerlink" title="2. 依赖注入"></a>2. 依赖注入</h3><p>上面将依赖在构造函数中直接初始化是一种 Hard init 方式，弊端在于两个类不够独立，不方便测试。我们还有另外一种 Init 方式，如下：  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">(Father father)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.father = father;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面代码中，我们将 father 对象作为构造函数的一个参数传入。在调用 Human 的构造方法之前外部就已经初始化好了 Father 对象。<strong>像这种非自己主动初始化依赖，而通过外部来传入依赖的方式，我们就称为依赖注入。</strong><br>现在我们发现上面 1 中存在的两个问题都很好解决了，简单的说依赖注入主要有两个好处：<br>(1). 解耦，将依赖之间解耦。<br>(2). 因为已经解耦，所以方便做单元测试，尤其是 Mock 测试。</p>
-
-          
+          依赖注入1. 依赖如果在 Class A 中，有 Class B 的实例，则称 Class A 对 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/18/dependency-injection/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -596,15 +603,6 @@
               </div>
             
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
             
 
           </nav>
