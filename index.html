@@ -366,16 +366,38 @@
 <li><code>go tool cover -func=c.out</code>：显示函数细节</li>
 </ul>
 <h3 id="外部测试"><a href="#外部测试" class="headerlink" title="外部测试"></a>外部测试</h3><p>我们知道两个package不能存在于同一个文件中，但是有一种特殊的外部测试包。如果文件中的包名<code>b</code>，那么可以创建外部测试包<code>b_test</code>。</p>
+<h5 id="第一步：创建一个内部测试文件（export-test-go）：将需要的内部暴露给外部测试包。"><a href="#第一步：创建一个内部测试文件（export-test-go）：将需要的内部暴露给外部测试包。" class="headerlink" title="第一步：创建一个内部测试文件（export_test.go）：将需要的内部暴露给外部测试包。"></a>第一步：创建一个内部测试文件（export_test.go）：将需要的内部暴露给外部测试包。</h5><h5 id="第二步：测试文件中的函数和变量只能是当前package下的测试文件能访问"><a href="#第二步：测试文件中的函数和变量只能是当前package下的测试文件能访问" class="headerlink" title="第二步：测试文件中的函数和变量只能是当前package下的测试文件能访问"></a>第二步：测试文件中的函数和变量只能是当前package下的测试文件能访问</h5><p>#####<br>仅显示开发代码文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go list -f=&#123;&#123;.GoFiles&#125;&#125; fmt</span><br></pre></td></tr></table></figure></p>
+<p>仅显示包内测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go list -f=&#123;&#123;.TestGoFiles&#125;&#125; fmt</span><br></pre></td></tr></table></figure></p>
+<p>仅显示外部测试代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go list -f=&#123;&#123;.XTestGoFiles&#125;&#125; fmt</span><br></pre></td></tr></table></figure></p>
+<h1 id="Profile"><a href="#Profile" class="headerlink" title="Profile"></a>Profile</h1><p><code>go test</code>会把可执行文件删除在完成测试之后，加上<code>-cpuprofile</code>标志可以保留其可执行文件<br>使用<code>go tool pprof</code>再加上<code>可执行文件</code>就可以解析profile文件</p>
 <ul>
-<li>创建一个内部测试文件（export_test.go）：将需要的内部暴露给外部测试包。</li>
-<li>测试文件中的函数和变量只能是当前package下的测试文件能访问</li>
-<li><figure class="highlight go"><figcaption><span>list -f</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">* <span class="string">``</span><span class="string">`go list -f=&#123;&#123;.TestGoFiles&#125;&#125; fmt`</span><span class="string">``</span>：仅显示包内测试代码</span><br><span class="line">* <span class="string">``</span><span class="string">`go list -f=&#123;&#123;.XTestGoFiles&#125;&#125; fmt`</span><span class="string">``</span>：仅显示外部测试代码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Profile</span><br><span class="line"><span class="string">`go test`</span>会把可执行文件删除在完成测试之后，加上<span class="string">`-cpuprofile`</span>标志可以保留其可执行文件</span><br><span class="line">使用<span class="string">`go tool pprof`</span>再加上<span class="string">`可执行文件`</span>就可以解析profile文件</span><br><span class="line"></span><br><span class="line">* <span class="string">`go test -run=none -bench=ClientServerParallelTLS64 -cpuprofile=cpu.log net/http`</span>：会生成*cpu.log*和*http.test.exe*</span><br><span class="line">* <span class="string">`go tool pprof -text -nodecount=10 ./http.test.exe cpu.log`</span>：使用*pprof*工具分析cpu使用文件</span><br><span class="line">* -cpuprofile：列出使用最多CPU的函数</span><br><span class="line">* -memprofile：列出分配最多内存的语句</span><br><span class="line">* -blockprofile：列出最长阻塞gorouting的运算</span><br></pre></td></tr></table></figure>
-<p>   flat  flat%   sum%        cum   cum%<br>   1.10s 20.07% 59.85%      1.10s 20.07%  unicode.IsLetter<br>   0.75s 13.69% 73.54%      0.75s 13.69%  unicode.ToLower<br>   0.39s  7.12% 80.66%      0.44s  8.03%  runtime.mallocgc</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Go运行时会100Hz对CPU进行抽样，也就是10毫秒一次</span><br><span class="line">1. 第一列表示直接调用该函数总执行了`1.10s`，也就是抽样110次，占总数的20.07%（总数548次）</span><br><span class="line">2. 第三列表示前几列加起来占总时间的百分之几</span><br><span class="line">3. 第四列表示直接调用该函数加上间接调用函数用掉的时间</span><br><span class="line">4. 第五列表示第四列占的百分比</span><br><span class="line"></span><br><span class="line">### graphviz工具的配合使用</span><br><span class="line">1. `go tool pprof ./word.test.exe cpu.log`：进入pprof模式</span><br><span class="line">2. `web`：浏览器查看整个函数调用的过程</span><br><span class="line">3. `web IsPalindrome`：浏览器查看IsPalindrome函数的调用过程</span><br><span class="line">3. `list IsPalindrome`：查看IsPalindrome函数每一行的执行时间</span><br><span class="line"></span><br><span class="line"># Benchmark：测量操作</span><br><span class="line">* 使用`ResetTimer,StopTimer,StartTimer`等重置计时器，排除一些设定代码的时间</span><br><span class="line">* 抵制使用`b.N`作为参数的诱惑，使用多个固定参数进行测试比较</span><br><span class="line">* 性能测试过滤单元测试的输出，所以使用`-run=none`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Examples</span><br><span class="line">在`Example`函数中添加预期的答案：</span><br></pre></td></tr></table></figure>
-</li>
+<li><code>go test -run=none -bench=ClientServerParallelTLS64 -cpuprofile=cpu.log net/http</code>：会生成<em>cpu.log</em>和<em>http.test.exe</em></li>
+<li><code>go tool pprof -text -nodecount=10 ./http.test.exe cpu.log</code>：使用<em>pprof</em>工具分析cpu使用文件</li>
+<li>-cpuprofile：列出使用最多CPU的函数</li>
+<li>-memprofile：列出分配最多内存的语句</li>
+<li>-blockprofile：列出最长阻塞gorouting的运算</li>
 </ul>
-<p>//Output: one<br>//two<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果输出时随机的话：</span><br></pre></td></tr></table></figure></p>
-<p>//Unordered Output:two<br>//one<br><code>`</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flat  flat%   sum%        cum   cum%</span><br><span class="line">1.10s 20.07% 59.85%      1.10s 20.07%  unicode.IsLetter</span><br><span class="line">0.75s 13.69% 73.54%      0.75s 13.69%  unicode.ToLower</span><br><span class="line">0.39s  7.12% 80.66%      0.44s  8.03%  runtime.mallocgc</span><br></pre></td></tr></table></figure>
+<p>Go运行时会100Hz对CPU进行抽样，也就是10毫秒一次</p>
+<ol>
+<li>第一列表示直接调用该函数总执行了<code>1.10s</code>，也就是抽样110次，占总数的20.07%（总数548次）</li>
+<li>第三列表示前几列加起来占总时间的百分之几</li>
+<li>第四列表示直接调用该函数加上间接调用函数用掉的时间</li>
+<li>第五列表示第四列占的百分比</li>
+</ol>
+<h3 id="graphviz工具的配合使用"><a href="#graphviz工具的配合使用" class="headerlink" title="graphviz工具的配合使用"></a>graphviz工具的配合使用</h3><ol>
+<li><code>go tool pprof ./word.test.exe cpu.log</code>：进入pprof模式</li>
+<li><code>web</code>：浏览器查看整个函数调用的过程</li>
+<li><code>web IsPalindrome</code>：浏览器查看IsPalindrome函数的调用过程</li>
+<li><code>list IsPalindrome</code>：查看IsPalindrome函数每一行的执行时间</li>
+</ol>
+<h1 id="Benchmark：测量操作"><a href="#Benchmark：测量操作" class="headerlink" title="Benchmark：测量操作"></a>Benchmark：测量操作</h1><ul>
+<li>使用<code>ResetTimer,StopTimer,StartTimer</code>等重置计时器，排除一些设定代码的时间</li>
+<li>抵制使用<code>b.N</code>作为参数的诱惑，使用多个固定参数进行测试比较</li>
+<li>性能测试过滤单元测试的输出，所以使用<code>-run=none</code></li>
+</ul>
+<h1 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h1><p>在<code>Example</code>函数中添加预期的答案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//Output: one</span><br><span class="line">//two</span><br></pre></td></tr></table></figure></p>
+<p>如果输出时随机的话：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//Unordered Output:two</span><br><span class="line">//one</span><br></pre></td></tr></table></figure></p>
 
           
         
