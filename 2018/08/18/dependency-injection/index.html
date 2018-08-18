@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="依赖注入," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="将函数当作参数，进行二元操作1234567891011121314151617181920212223242526type binaryOperation func(int,int)(int,error)func operate(op1 int,op2 int,op binaryOperation)(result int,err error)&amp;#123;	if op==nil&amp;#123;		err">
+<meta name="description" content="依赖注入1. 依赖如果在 Class A 中，有 Class B 的实例，则称 Class A 对 Class B 有一个依赖。例如下面类 Human 中用到一个 Father 对象，我们就说类 Human 对类 Father 有一个依赖。 12345678public class Human &amp;#123;    ...    Father father;    ...    public Hum">
+<meta name="keywords" content="依赖注入">
 <meta property="og:type" content="article">
-<meta property="og:title" content="function">
-<meta property="og:url" content="http://www.llyltq.top/2018/03/26/function/index.html">
+<meta property="og:title" content="dependency_injection">
+<meta property="og:url" content="http://www.llyltq.top/2018/08/18/dependency-injection/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="将函数当作参数，进行二元操作1234567891011121314151617181920212223242526type binaryOperation func(int,int)(int,error)func operate(op1 int,op2 int,op binaryOperation)(result int,err error)&amp;#123;	if op==nil&amp;#123;		err">
+<meta property="og:description" content="依赖注入1. 依赖如果在 Class A 中，有 Class B 的实例，则称 Class A 对 Class B 有一个依赖。例如下面类 Human 中用到一个 Father 对象，我们就说类 Human 对类 Father 有一个依赖。 12345678public class Human &amp;#123;    ...    Father father;    ...    public Hum">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-26T15:35:22.774Z">
+<meta property="og:updated_time" content="2018-08-18T00:53:41.169Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="function">
-<meta name="twitter:description" content="将函数当作参数，进行二元操作1234567891011121314151617181920212223242526type binaryOperation func(int,int)(int,error)func operate(op1 int,op2 int,op binaryOperation)(result int,err error)&amp;#123;	if op==nil&amp;#123;		err">
+<meta name="twitter:title" content="dependency_injection">
+<meta name="twitter:description" content="依赖注入1. 依赖如果在 Class A 中，有 Class B 的实例，则称 Class A 对 Class B 有一个依赖。例如下面类 Human 中用到一个 Father 对象，我们就说类 Human 对类 Father 有一个依赖。 12345678public class Human &amp;#123;    ...    Father father;    ...    public Hum">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://www.llyltq.top/2018/03/26/function/"/>
+  <link rel="canonical" href="http://www.llyltq.top/2018/08/18/dependency-injection/"/>
 
 
 
 
 
-  <title>function | Hexo</title>
+  <title>dependency_injection | Hexo</title>
   
 
 
@@ -252,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/26/function/">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/18/dependency-injection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="冉某某">
@@ -269,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">function</h1>
+          <h1 class="post-title" itemprop="name headline">dependency_injection</h1>
         
 
         <div class="post-meta">
@@ -281,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T23:34:48+08:00">
-                2018-03-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T06:35:15+08:00">
+                2018-08-18
               </time>
             
 
@@ -341,7 +342,13 @@
       
 
       
-        <h1 id="将函数当作参数，进行二元操作"><a href="#将函数当作参数，进行二元操作" class="headerlink" title="将函数当作参数，进行二元操作"></a>将函数当作参数，进行二元操作</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> binaryOperation <span class="function"><span class="keyword">func</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span><span class="params">(<span class="keyword">int</span>,error)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="title">operate</span><span class="params">(op1 <span class="keyword">int</span>,op2 <span class="keyword">int</span>,op binaryOperation)</span><span class="params">(result <span class="keyword">int</span>,err error)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> op==<span class="literal">nil</span>&#123;</span><br><span class="line">		err=errors.New(<span class="string">"invaild functions!"</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> op(op1,op2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用户可以自己实现除法操作</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">divide</span><span class="params">(op1 <span class="keyword">int</span>,op2 <span class="keyword">int</span>)</span><span class="params">(result <span class="keyword">int</span>,err error)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> op2==<span class="number">0</span>&#123;</span><br><span class="line">		err=errors.New(<span class="string">"divide by zero!"</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	result=op1/op2</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="keyword">var</span> result <span class="keyword">int</span></span><br><span class="line">	<span class="keyword">var</span> err error</span><br><span class="line">	result,err=operate(<span class="number">0</span>,<span class="number">2</span>,divide)</span><br><span class="line">	fmt.Printf(<span class="string">"result：%v，err：%v\n"</span>,result,err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><h3 id="1-依赖"><a href="#1-依赖" class="headerlink" title="1. 依赖"></a>1. 依赖</h3><p>如果在 Class A 中，有 Class B 的实例，则称 Class A 对 Class B 有一个依赖。例如下面类 Human 中用到一个 Father 对象，我们就说类 Human 对类 Father 有一个依赖。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        father = <span class="keyword">new</span> Father();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>仔细看这段代码我们会发现存在一些问题：<br>(1). 如果现在要改变 father 生成方式，如需要用<code>new Father(String name)</code>初始化 father，需要修改 Human 代码；<br>(2). 如果想测试不同 Father 对象对 Human 的影响很困难，因为 father 的初始化被写死在了 Human 的构造函数中；<br>(3). 如果<code>new Father()</code>过程非常缓慢，单测时我们希望用已经初始化好的 father 对象 Mock 掉这个过程也很困难。  </p>
+<h3 id="2-依赖注入"><a href="#2-依赖注入" class="headerlink" title="2. 依赖注入"></a>2. 依赖注入</h3><p>上面将依赖在构造函数中直接初始化是一种 Hard init 方式，弊端在于两个类不够独立，不方便测试。我们还有另外一种 Init 方式，如下：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">(Father father)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.father = father;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，我们将 father 对象作为构造函数的一个参数传入。在调用 Human 的构造方法之前外部就已经初始化好了 Father 对象。<strong>像这种非自己主动初始化依赖，而通过外部来传入依赖的方式，我们就称为依赖注入。</strong><br>现在我们发现上面 1 中存在的两个问题都很好解决了，简单的说依赖注入主要有两个好处：<br>(1). 解耦，将依赖之间解耦。<br>(2). 因为已经解耦，所以方便做单元测试，尤其是 Mock 测试。</p>
+
       
     </div>
     
@@ -356,6 +363,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/依赖注入/" rel="tag"># 依赖注入</a>
+          
+        </div>
+      
 
       
       
@@ -365,8 +378,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/26/gorouting_thread/" rel="next" title="gorouting">
-                <i class="fa fa-chevron-left"></i> gorouting
+              <a href="/2018/08/10/旋转字符串/" rel="next" title="旋转字符串">
+                <i class="fa fa-chevron-left"></i> 旋转字符串
               </a>
             
           </div>
@@ -375,8 +388,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/27/method/" rel="prev" title="method">
-                method <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/18/关系数据库原理/" rel="prev" title="关系数据库原理">
+                关系数据库原理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -454,7 +467,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -465,12 +478,21 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -516,7 +538,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#将函数当作参数，进行二元操作"><span class="nav-number">1.</span> <span class="nav-text">将函数当作参数，进行二元操作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖注入"><span class="nav-number">1.</span> <span class="nav-text">依赖注入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-依赖"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-依赖注入"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 依赖注入</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

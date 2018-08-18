@@ -10,7 +10,7 @@
       
       <categories>
           
-          <category> 数据库 =asas </category>
+          <category> 数据库 </category>
           
       </categories>
       
@@ -18,11 +18,23 @@
     </entry>
     
     <entry>
-      <title>Hello World</title>
-      <link href="/2018/08/18/hello-world/"/>
-      <url>/2018/08/18/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      <title>dependency_injection</title>
+      <link href="/2018/08/18/dependency-injection/"/>
+      <url>/2018/08/18/dependency-injection/</url>
+      <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><h3 id="1-依赖"><a href="#1-依赖" class="headerlink" title="1. 依赖"></a>1. 依赖</h3><p>如果在 Class A 中，有 Class B 的实例，则称 Class A 对 Class B 有一个依赖。例如下面类 Human 中用到一个 Father 对象，我们就说类 Human 对类 Father 有一个依赖。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        father = <span class="keyword">new</span> Father();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>仔细看这段代码我们会发现存在一些问题：<br>(1). 如果现在要改变 father 生成方式，如需要用<code>new Father(String name)</code>初始化 father，需要修改 Human 代码；<br>(2). 如果想测试不同 Father 对象对 Human 的影响很困难，因为 father 的初始化被写死在了 Human 的构造函数中；<br>(3). 如果<code>new Father()</code>过程非常缓慢，单测时我们希望用已经初始化好的 father 对象 Mock 掉这个过程也很困难。  </p><h3 id="2-依赖注入"><a href="#2-依赖注入" class="headerlink" title="2. 依赖注入"></a>2. 依赖注入</h3><p>上面将依赖在构造函数中直接初始化是一种 Hard init 方式，弊端在于两个类不够独立，不方便测试。我们还有另外一种 Init 方式，如下：  </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">(Father father)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.father = father;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>上面代码中，我们将 father 对象作为构造函数的一个参数传入。在调用 Human 的构造方法之前外部就已经初始化好了 Father 对象。<strong>像这种非自己主动初始化依赖，而通过外部来传入依赖的方式，我们就称为依赖注入。</strong><br>现在我们发现上面 1 中存在的两个问题都很好解决了，简单的说依赖注入主要有两个好处：<br>(1). 解耦，将依赖之间解耦。<br>(2). 因为已经解耦，所以方便做单元测试，尤其是 Mock 测试。</p>]]></content>
       
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 依赖注入 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -34,10 +46,16 @@
       
       <categories>
           
-          <category> c++ = 算法 </category>
+          <category> c++ </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 算法与数据结构 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -69,6 +87,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> package </tag>
+            
+        </tags>
+      
     </entry>
     
     <entry>
@@ -84,6 +108,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 算法与数据结构 </tag>
+            
+        </tags>
+      
     </entry>
     
     <entry>
@@ -94,10 +124,16 @@
       
       <categories>
           
-          <category> 动漫 </category>
+          <category> 网站资源 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 动漫 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -109,10 +145,16 @@
       
       <categories>
           
-          <category> 学习 </category>
+          <category> 网站资源 </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> study </tag>
+            
+        </tags>
       
     </entry>
     
@@ -141,6 +183,8 @@
           
           <category> golang </category>
           
+          <category> 网络 </category>
+          
       </categories>
       
       
@@ -155,6 +199,8 @@
       <categories>
           
           <category> golang </category>
+          
+          <category> 网络 </category>
           
       </categories>
       
@@ -174,6 +220,12 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 通道 </tag>
+            
+        </tags>
+      
     </entry>
     
     <entry>
@@ -188,6 +240,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 管道 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -231,16 +289,18 @@
           
           <category> 设计模式 </category>
           
+          <category> golang </category>
+          
       </categories>
       
       
     </entry>
     
     <entry>
-      <title>note</title>
-      <link href="/2018/03/27/note/"/>
-      <url>/2018/03/27/note/</url>
-      <content type="html"><![CDATA[<ol><li>golang中值类型的零值为空或者是0，指针类型的零值为nil。</li><li>switch的类型断言必须遵守类型断言的规则</li><li>switch的类型断言中不能出现<code>fallthrough</code></li><li>当使用<code>for range</code>迭代一个通道值为<code>nil</code>时，会永远阻塞在<code>for</code>语句上</li></ol>]]></content>
+      <title>笔记</title>
+      <link href="/2018/03/27/%E7%AC%94%E8%AE%B0/"/>
+      <url>/2018/03/27/%E7%AC%94%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<h3 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h3><ol><li>golang中值类型的零值为空或者是0，指针类型的零值为nil。</li><li>switch的类型断言必须遵守类型断言的规则</li><li>switch的类型断言中不能出现<code>fallthrough</code></li><li>当使用<code>for range</code>迭代一个通道值为<code>nil</code>时，会永远阻塞在<code>for</code>语句上</li></ol>]]></content>
       
       <categories>
           
@@ -252,7 +312,7 @@
     </entry>
     
     <entry>
-      <title>method</title>
+      <title>方法</title>
       <link href="/2018/03/27/method/"/>
       <url>/2018/03/27/method/</url>
       <content type="html"><![CDATA[<h1 id="可寻址值和不可寻址值调用方法"><a href="#可寻址值和不可寻址值调用方法" class="headerlink" title="可寻址值和不可寻址值调用方法"></a>可寻址值和不可寻址值调用方法</h1><h3 id="示例一："><a href="#示例一：" class="headerlink" title="示例一："></a>示例一：</h3><p>对于一个非指针类型，它关联的方法集中只包含它的值方法。对于一个指针类型，它关联的方法集中既包含值方法和指针方法。</p><h2 id="但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换"><a href="#但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换" class="headerlink" title="但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换"></a>但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> data <span class="keyword">struct</span> &#123;</span><br><span class="line">name <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 指针类型的方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(d *data)</span><span class="title">Print</span><span class="params">()</span></span>  &#123;</span><br><span class="line">fmt.Println(<span class="string">"name:"</span>,d.name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 值类型的方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(d data)</span><span class="title">Print2</span><span class="params">()</span></span>&#123;</span><br><span class="line">fmt.Println(<span class="string">"name2:"</span>,d.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Printer <span class="keyword">interface</span> &#123;</span><br><span class="line">Print()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"><span class="keyword">var</span> p Printer = &amp;data&#123;<span class="string">"one"</span>&#125;</span><br><span class="line">p.Print()</span><br><span class="line"></span><br><span class="line"><span class="comment">// p是一个指针类型</span></span><br><span class="line"></span><br><span class="line">m1 := <span class="keyword">map</span>[<span class="keyword">string</span>]data&#123;<span class="string">"x"</span>:&#123;<span class="string">"two"</span>&#125;&#125;</span><br><span class="line">n:=m1[<span class="string">"x"</span>]</span><br><span class="line">n.Print()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重要！</span></span><br><span class="line"><span class="comment">// n是值类型，但是可以调用指针类型的方法，Go进行了自动转换</span></span><br><span class="line"><span class="comment">// n.Print()  ==  (&amp;n).Print()</span></span><br><span class="line"></span><br><span class="line">m2:=<span class="keyword">map</span>[<span class="keyword">string</span>]*data&#123;<span class="string">"x"</span>:&#123;<span class="string">"three"</span>&#125;&#125;</span><br><span class="line">n2:=m2[<span class="string">"x"</span>]</span><br><span class="line">n2.Print2()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重要！</span></span><br><span class="line"><span class="comment">// n2是指针类型，但是可以调用值类型的方法，Go进行了自动转换</span></span><br><span class="line"><span class="comment">// n2.Print2()  ==  (*n2).Print2()</span></span><br><span class="line"></span><br><span class="line">s:=[]data&#123;</span><br><span class="line">&#123;<span class="string">"four"</span>&#125;,</span><br><span class="line">&#125;</span><br><span class="line">s[<span class="number">0</span>].Print()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对于结构体类型的`slice`是指针类型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="示例二："><a href="#示例二：" class="headerlink" title="示例二："></a>示例二：</h3><h2 id="receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。"><a href="#receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。" class="headerlink" title="receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。"></a>receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> myInt <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 指针类型方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(i *myInt)</span><span class="title">add2</span><span class="params">(another <span class="keyword">int</span>)</span><span class="title">myInt</span></span>&#123;</span><br><span class="line">*i=*i+myInt(another)</span><br><span class="line"><span class="keyword">return</span> *i</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 值类型方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(i myInt)</span><span class="title">add</span><span class="params">(another <span class="keyword">int</span>)</span><span class="title">myInt</span></span>&#123;</span><br><span class="line">i=i+myInt(another)</span><br><span class="line"><span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">i1:=myInt(<span class="number">1</span>)</span><br><span class="line">i2:=i1.add(<span class="number">2</span>)</span><br><span class="line">fmt.Println(i1,i2)</span><br><span class="line"><span class="comment">// 结果是：1,3</span></span><br><span class="line">i2=i1.add2(<span class="number">2</span>)</span><br><span class="line">fmt.Println(i1,i2)</span><br><span class="line"><span class="comment">// 结果是：3,3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
@@ -267,9 +327,9 @@
     </entry>
     
     <entry>
-      <title>function</title>
-      <link href="/2018/03/26/function/"/>
-      <url>/2018/03/26/function/</url>
+      <title>函数</title>
+      <link href="/2018/03/26/%E5%87%BD%E6%95%B0/"/>
+      <url>/2018/03/26/%E5%87%BD%E6%95%B0/</url>
       <content type="html"><![CDATA[<h1 id="将函数当作参数，进行二元操作"><a href="#将函数当作参数，进行二元操作" class="headerlink" title="将函数当作参数，进行二元操作"></a>将函数当作参数，进行二元操作</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> binaryOperation <span class="function"><span class="keyword">func</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span><span class="params">(<span class="keyword">int</span>,error)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="title">operate</span><span class="params">(op1 <span class="keyword">int</span>,op2 <span class="keyword">int</span>,op binaryOperation)</span><span class="params">(result <span class="keyword">int</span>,err error)</span></span>&#123;</span><br><span class="line"><span class="keyword">if</span> op==<span class="literal">nil</span>&#123;</span><br><span class="line">err=errors.New(<span class="string">"invaild functions!"</span>)</span><br><span class="line"><span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> op(op1,op2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用户可以自己实现除法操作</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">divide</span><span class="params">(op1 <span class="keyword">int</span>,op2 <span class="keyword">int</span>)</span><span class="params">(result <span class="keyword">int</span>,err error)</span></span>&#123;</span><br><span class="line"><span class="keyword">if</span> op2==<span class="number">0</span>&#123;</span><br><span class="line">err=errors.New(<span class="string">"divide by zero!"</span>)</span><br><span class="line"><span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line">result=op1/op2</span><br><span class="line"><span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line"><span class="keyword">var</span> result <span class="keyword">int</span></span><br><span class="line"><span class="keyword">var</span> err error</span><br><span class="line">result,err=operate(<span class="number">0</span>,<span class="number">2</span>,divide)</span><br><span class="line">fmt.Printf(<span class="string">"result：%v，err：%v\n"</span>,result,err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
       <categories>
@@ -294,28 +354,19 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> 并发 </tag>
+            
+        </tags>
+      
     </entry>
     
     <entry>
-      <title>与运算</title>
+      <title>与运算的妙用</title>
       <link href="/2018/03/19/%E4%B8%8E%E8%BF%90%E7%AE%97/"/>
       <url>/2018/03/19/%E4%B8%8E%E8%BF%90%E7%AE%97/</url>
       <content type="html"><![CDATA[<p>发现了一个有意思的表达式：x&amp;(x-1)，分享给大家！</p><h3 id="1、计算输入值转化为二进制后有多少个1"><a href="#1、计算输入值转化为二进制后有多少个1" class="headerlink" title="1、计算输入值转化为二进制后有多少个1"></a>1、计算输入值转化为二进制后有多少个1</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">count_one</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> count:=<span class="number">0</span>;;count++&#123;</span><br><span class="line">        <span class="keyword">if</span> x==<span class="number">0</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> count</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            x=x&amp;(x<span class="number">-1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="2、判断输入的i是否是2的n次方"><a href="#2、判断输入的i是否是2的n次方" class="headerlink" title="2、判断输入的i是否是2的n次方"></a>2、判断输入的i是否是2的n次方</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">index</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> x&amp;(x<span class="number">-1</span>)==<span class="number">0</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      <categories>
-          
-          <category> golang </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    <entry>
-      <title>dependency_injection</title>
-      <link href="/2018/03/18/dependency-injection/"/>
-      <url>/2018/03/18/dependency-injection/</url>
-      <content type="html"><![CDATA[<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><h3 id="1-依赖"><a href="#1-依赖" class="headerlink" title="1. 依赖"></a>1. 依赖</h3><p>如果在 Class A 中，有 Class B 的实例，则称 Class A 对 Class B 有一个依赖。例如下面类 Human 中用到一个 Father 对象，我们就说类 Human 对类 Father 有一个依赖。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        father = <span class="keyword">new</span> Father();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>仔细看这段代码我们会发现存在一些问题：<br>(1). 如果现在要改变 father 生成方式，如需要用<code>new Father(String name)</code>初始化 father，需要修改 Human 代码；<br>(2). 如果想测试不同 Father 对象对 Human 的影响很困难，因为 father 的初始化被写死在了 Human 的构造函数中；<br>(3). 如果<code>new Father()</code>过程非常缓慢，单测时我们希望用已经初始化好的 father 对象 Mock 掉这个过程也很困难。  </p><h3 id="2-依赖注入"><a href="#2-依赖注入" class="headerlink" title="2. 依赖注入"></a>2. 依赖注入</h3><p>上面将依赖在构造函数中直接初始化是一种 Hard init 方式，弊端在于两个类不够独立，不方便测试。我们还有另外一种 Init 方式，如下：  </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">(Father father)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.father = father;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>上面代码中，我们将 father 对象作为构造函数的一个参数传入。在调用 Human 的构造方法之前外部就已经初始化好了 Father 对象。<strong>像这种非自己主动初始化依赖，而通过外部来传入依赖的方式，我们就称为依赖注入。</strong><br>现在我们发现上面 1 中存在的两个问题都很好解决了，简单的说依赖注入主要有两个好处：<br>(1). 解耦，将依赖之间解耦。<br>(2). 因为已经解耦，所以方便做单元测试，尤其是 Mock 测试。</p>]]></content>
       
       <categories>
           
