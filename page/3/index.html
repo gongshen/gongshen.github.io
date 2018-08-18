@@ -342,9 +342,9 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
@@ -353,8 +353,8 @@
 <h3 id="3、底层实现路由分发策略"><a href="#3、底层实现路由分发策略" class="headerlink" title="3、底层实现路由分发策略"></a>3、底层实现路由分发策略</h3>
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -499,9 +499,9 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
@@ -540,8 +540,8 @@
 
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -686,9 +686,9 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
@@ -767,8 +767,8 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -913,9 +913,9 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
@@ -930,8 +930,8 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1076,9 +1076,9 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
@@ -1108,8 +1108,8 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1254,9 +1254,9 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
@@ -1273,8 +1273,8 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1408,9 +1408,9 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <h3 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h3><ol>
@@ -1422,8 +1422,8 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1568,9 +1568,9 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
@@ -1580,8 +1580,8 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1726,17 +1726,17 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
 <h1 id="将函数当作参数，进行二元操作"><a href="#将函数当作参数，进行二元操作" class="headerlink" title="将函数当作参数，进行二元操作"></a>将函数当作参数，进行二元操作</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> binaryOperation <span class="function"><span class="keyword">func</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>)</span><span class="params">(<span class="keyword">int</span>,error)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="title">operate</span><span class="params">(op1 <span class="keyword">int</span>,op2 <span class="keyword">int</span>,op binaryOperation)</span><span class="params">(result <span class="keyword">int</span>,err error)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> op==<span class="literal">nil</span>&#123;</span><br><span class="line">		err=errors.New(<span class="string">"invaild functions!"</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> op(op1,op2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用户可以自己实现除法操作</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">divide</span><span class="params">(op1 <span class="keyword">int</span>,op2 <span class="keyword">int</span>)</span><span class="params">(result <span class="keyword">int</span>,err error)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> op2==<span class="number">0</span>&#123;</span><br><span class="line">		err=errors.New(<span class="string">"divide by zero!"</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	result=op1/op2</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="keyword">var</span> result <span class="keyword">int</span></span><br><span class="line">	<span class="keyword">var</span> err error</span><br><span class="line">	result,err=operate(<span class="number">0</span>,<span class="number">2</span>,divide)</span><br><span class="line">	fmt.Printf(<span class="string">"result：%v，err：%v\n"</span>,result,err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1881,9 +1881,9 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
@@ -1970,8 +1970,8 @@ fmt.Printf(&quot;%s\n&quot;,outputBuf2.String())
 
           
         
+		-->
       
-	  -->
     </div>
     
     

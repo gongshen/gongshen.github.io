@@ -342,9 +342,9 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
@@ -402,8 +402,8 @@
 
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -548,17 +548,17 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	sendInterval := time.Second</span><br><span class="line">	receiveInterval := time.Second * <span class="number">2</span></span><br><span class="line">	intChan := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">0</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">var</span> cs0, cs1 <span class="keyword">int64</span></span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">			intChan &lt;- i</span><br><span class="line">			cs1 = time.Now().Unix()</span><br><span class="line">			<span class="keyword">if</span> cs0 == <span class="number">0</span> &#123;</span><br><span class="line">				fmt.Println(<span class="string">"Sent:"</span>, i)</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				fmt.Printf(<span class="string">"Sent:%d [interval:%d s]\n"</span>, i, cs1-cs0)</span><br><span class="line">			&#125;</span><br><span class="line">			cs0 = time.Now().Unix()</span><br><span class="line">			time.Sleep(sendInterval)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">close</span>(intChan)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">var</span> cs0, cs1 <span class="keyword">int64</span></span><br><span class="line">Loop:</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">select</span> &#123;</span><br><span class="line">		<span class="keyword">case</span> v, ok := &lt;-intChan:</span><br><span class="line">			<span class="keyword">if</span> !ok &#123;</span><br><span class="line">				<span class="keyword">break</span> Loop</span><br><span class="line">			&#125;</span><br><span class="line">			cs1 = time.Now().Unix()</span><br><span class="line">			<span class="keyword">if</span> cs0 == <span class="number">0</span> &#123;</span><br><span class="line">				fmt.Println(<span class="string">"Receive:"</span>, v)</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				fmt.Printf(<span class="string">"Receive:%d [interval:%d s]\n"</span>, v, cs0-cs1)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		cs0 = time.Now().Unix()</span><br><span class="line">		time.Sleep(receiveInterval)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">"End!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -703,17 +703,17 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通道类型的转换，利用函数声明将双向通道转化为单向通道是GO的语法糖</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> ch1 = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line">	_, ok := <span class="keyword">interface</span>&#123;&#125;(ch1).(&lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	fmt.Println(<span class="string">"chan int =&gt; &lt;-chan int:"</span>, ok)</span><br><span class="line">	_, ok = <span class="keyword">interface</span>&#123;&#125;(ch1).(<span class="keyword">chan</span>&lt;- <span class="keyword">int</span>)</span><br><span class="line">	fmt.Println(<span class="string">"chan int =&gt; chan&lt;- int:"</span>, ok)</span><br><span class="line">	sch := <span class="built_in">make</span>(<span class="keyword">chan</span>&lt;- <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line">	_, ok = <span class="keyword">interface</span>&#123;&#125;(sch).(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	fmt.Println(<span class="string">"&lt;-chan int =&gt; chan int:"</span>, ok)</span><br><span class="line">	rch := <span class="built_in">make</span>(&lt;-<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line">	_, ok = <span class="keyword">interface</span>&#123;&#125;(rch).(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	fmt.Println(<span class="string">"chan&lt;- int =&gt; chan int:"</span>, ok)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -858,17 +858,17 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> sum <span class="keyword">int</span></span><br><span class="line">	intChan := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line">	ticker1 := time.NewTicker(time.Second)</span><br><span class="line">	ticker2 := time.NewTicker(time.Second)</span><br><span class="line">	<span class="comment">//两种使用断续器用于定时任务的触发器</span></span><br><span class="line">	<span class="comment">//1</span></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> _, ok := &lt;-ticker1.C; ok &#123;</span><br><span class="line">				<span class="keyword">select</span> &#123;</span><br><span class="line">				<span class="keyword">case</span> intChan &lt;- <span class="number">1</span>:</span><br><span class="line">				<span class="keyword">case</span> intChan &lt;- <span class="number">2</span>:</span><br><span class="line">				<span class="keyword">case</span> intChan &lt;- <span class="number">3</span>:</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="comment">//2</span></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> _ = <span class="keyword">range</span> ticker2.C &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> intChan &lt;- <span class="number">4</span>:</span><br><span class="line">			<span class="keyword">case</span> intChan &lt;- <span class="number">5</span>:</span><br><span class="line">			<span class="keyword">case</span> intChan &lt;- <span class="number">6</span>:</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">for</span> e := <span class="keyword">range</span> intChan &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Received:%v\n"</span>, e)</span><br><span class="line">		sum += e</span><br><span class="line">		<span class="keyword">if</span> sum &gt;= <span class="number">30</span> &#123;</span><br><span class="line">			ticker1.Stop()</span><br><span class="line">			ticker2.Stop()</span><br><span class="line">			fmt.Println(<span class="string">"Ticker has stopped!"</span>)</span><br><span class="line">			fmt.Println(sum)</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">"End.[Receiver]"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1013,17 +1013,17 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	intChan := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line">	syncChan := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		time.Sleep(time.Second)</span><br><span class="line">		intChan &lt;- <span class="number">1</span></span><br><span class="line">		<span class="built_in">close</span>(intChan)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">	Loop:</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> e, ok := &lt;-intChan:</span><br><span class="line">				<span class="keyword">if</span> !ok &#123;</span><br><span class="line">					<span class="keyword">break</span> Loop</span><br><span class="line">				&#125;</span><br><span class="line">				fmt.Printf(<span class="string">"Received:%d\n"</span>, e)</span><br><span class="line">				<span class="comment">// 设置一个500ms到期的定时器</span></span><br><span class="line">			<span class="keyword">case</span> &lt;-time.NewTimer(time.Millisecond * <span class="number">500</span>).C:</span><br><span class="line">				fmt.Println(<span class="string">"Timeout!"</span>)</span><br><span class="line">				<span class="keyword">break</span> Loop</span><br><span class="line">				<span class="comment">// 设置一个500ms到期的定时器</span></span><br><span class="line">			<span class="keyword">case</span> &lt;-time.After(time.Millisecond * <span class="number">500</span>):</span><br><span class="line">				fmt.Println(<span class="string">"Timeout!"</span>)</span><br><span class="line">				<span class="keyword">break</span> Loop</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		syncChan &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	&lt;-syncChan</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1168,17 +1168,17 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// +build linux</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> timer *time.Timer</span><br><span class="line">	intChan := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line">	timeout := time.Millisecond * <span class="number">500</span></span><br><span class="line">	syncChan := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">			time.Sleep(time.Second)</span><br><span class="line">			intChan &lt;- i</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">close</span>(intChan)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> timer == <span class="literal">nil</span> &#123;</span><br><span class="line">			timer = time.NewTimer(timeout)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 复用定时器</span></span><br><span class="line">			timer.Reset(timeout)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	Loop:</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> e, ok := &lt;-intChan:</span><br><span class="line">				<span class="keyword">if</span> !ok &#123;</span><br><span class="line">					<span class="keyword">break</span> Loop</span><br><span class="line">				&#125;</span><br><span class="line">				fmt.Printf(<span class="string">"Received:%d\n"</span>, e)</span><br><span class="line">			<span class="keyword">case</span> &lt;-timer.C:</span><br><span class="line">				fmt.Println(<span class="string">"Timeout!"</span>)</span><br><span class="line">				<span class="keyword">break</span> Loop</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		syncChan &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	&lt;-syncChan</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1323,9 +1323,9 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
@@ -1333,8 +1333,8 @@
 
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1479,17 +1479,17 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// break语句可以直接跳出select</span></span><br><span class="line"><span class="comment">// 这里使用了for循环，使用标签跳出循环</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	intChan := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">10</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		intChan &lt;- i</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 记得发送完要关闭通道</span></span><br><span class="line">	<span class="built_in">close</span>(intChan)</span><br><span class="line">	syncChan := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, <span class="number">1</span>)</span><br><span class="line">	<span class="comment">// 一般将select放在另外的gorouting中，即使阻塞也不会死锁</span></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">	Loop:</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> e1, ok := &lt;-intChan:</span><br><span class="line">				<span class="keyword">if</span> !ok &#123;</span><br><span class="line">					fmt.Println(<span class="string">"End!"</span>)</span><br><span class="line">					<span class="keyword">break</span> Loop</span><br><span class="line">				&#125;</span><br><span class="line">				fmt.Printf(<span class="string">"Received:%v\n"</span>, e1)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		syncChan &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	&lt;-syncChan</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1634,17 +1634,17 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	timer := time.NewTimer(<span class="number">2</span> * time.Second)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"Present time:%v.\n"</span>, time.Now())</span><br><span class="line">	<span class="comment">//当定时器到期，会发送时间到通道C</span></span><br><span class="line">	expirationTime := &lt;-timer.C</span><br><span class="line">	fmt.Printf(<span class="string">"Expiration time:%v.\n"</span>, expirationTime)</span><br><span class="line">	<span class="comment">//timer.Stop表示停止定时器，如果定时器过期或者已经停止了，就返回false，否则true</span></span><br><span class="line">	fmt.Printf(<span class="string">"Stop Timer:%v.\n"</span>, timer.Stop())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
+		-->
       
-	  -->
     </div>
     
     
@@ -1789,17 +1789,17 @@
 
       
       
-
-<!--	  
+	  
       
+	  <!--
         
           
             <a id="more"></a>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// select只能用于通道的发送和接收操作</span></span><br><span class="line"><span class="comment">// 1.在关键字case右边的发送语句或者接收语句中的表达式会先求值</span></span><br><span class="line"><span class="comment">// 2.这里的intChan1和intChan2未初始化，所以传送数据时会阻塞</span></span><br><span class="line"><span class="comment">// 3.如果有多个case满足条件，那么运行时系统会随机选择一个</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> intChan1 = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> intChan2 = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">var</span> channels = []<span class="keyword">chan</span> <span class="keyword">int</span>&#123;intChan1, intChan2&#125;</span><br><span class="line"><span class="keyword">var</span> numbers = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">select</span> &#123;</span><br><span class="line">	<span class="keyword">case</span> getChan(<span class="number">0</span>) &lt;- getNumber(<span class="number">2</span>):</span><br><span class="line">		fmt.Println(<span class="string">"1th case is selected"</span>)</span><br><span class="line">	<span class="keyword">case</span> getChan(<span class="number">1</span>) &lt;- getNumber(<span class="number">3</span>):</span><br><span class="line">		fmt.Println(<span class="string">"2st case is selected"</span>)</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		fmt.Println(<span class="string">"Default!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getNumber</span><span class="params">(i <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"numbers[%d]\n"</span>, i)</span><br><span class="line">	<span class="keyword">return</span> numbers[i]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getChan</span><span class="params">(i <span class="keyword">int</span>)</span> <span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"channels[%d]\n"</span>, i)</span><br><span class="line">	<span class="keyword">return</span> channels[i]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*结果：</span></span><br><span class="line"><span class="comment">channels[0]</span></span><br><span class="line"><span class="comment">numbers[0]</span></span><br><span class="line"><span class="comment">channels[1]</span></span><br><span class="line"><span class="comment">numbers[1]</span></span><br><span class="line"><span class="comment">Default!</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
           
         
+		-->
       
-	  -->
     </div>
     
     

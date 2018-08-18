@@ -340,8 +340,7 @@
 
       
       
-
-<!--	  
+	  
       
         <a id="more"></a>
 <h1 id="可寻址值和不可寻址值调用方法"><a href="#可寻址值和不可寻址值调用方法" class="headerlink" title="可寻址值和不可寻址值调用方法"></a>可寻址值和不可寻址值调用方法</h1><h3 id="示例一："><a href="#示例一：" class="headerlink" title="示例一："></a>示例一：</h3><p>对于一个非指针类型，它关联的方法集中只包含它的值方法。对于一个指针类型，它关联的方法集中既包含值方法和指针方法。</p>
@@ -349,7 +348,6 @@
 <h3 id="示例二："><a href="#示例二：" class="headerlink" title="示例二："></a>示例二：</h3><h2 id="receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。"><a href="#receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。" class="headerlink" title="receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。"></a>receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> myInt <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 指针类型方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(i *myInt)</span><span class="title">add2</span><span class="params">(another <span class="keyword">int</span>)</span><span class="title">myInt</span></span>&#123;</span><br><span class="line">	*i=*i+myInt(another)</span><br><span class="line">	<span class="keyword">return</span> *i</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 值类型方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(i myInt)</span><span class="title">add</span><span class="params">(another <span class="keyword">int</span>)</span><span class="title">myInt</span></span>&#123;</span><br><span class="line">	i=i+myInt(another)</span><br><span class="line">	<span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	i1:=myInt(<span class="number">1</span>)</span><br><span class="line">	i2:=i1.add(<span class="number">2</span>)</span><br><span class="line">	fmt.Println(i1,i2)</span><br><span class="line"><span class="comment">// 结果是：1,3</span></span><br><span class="line">	i2=i1.add2(<span class="number">2</span>)</span><br><span class="line">	fmt.Println(i1,i2)</span><br><span class="line"><span class="comment">// 结果是：3,3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
-	  -->
     </div>
     
     
