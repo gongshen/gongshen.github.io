@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="总结：缓冲通道 elem,ok:=&amp;lt;-strCh，没有元素时，当前gorouting进入GWaiting状态，当通道关闭时，elem会赋予相应的零值ok值为false 试图从一个未被初始化的通道值（值为nil的通道）接收元素值，会被永久阻塞 发送操作会使通道复制被发送的元素，如果通道已空且有接收方在等待，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中 如果传递的值是引用类型，那">
+<meta name="description" content="总结：缓冲通道 elem,ok:=&amp;lt;-strCh，没有元素时，当前gorouting进入GWaiting状态，当通道关闭时，elem会赋予相应的零值ok值为false 试图从一个未被初始化的通道值（值为nil的通道）接收元素值，会被永久阻塞 发送操作会使通道复制被发送的元素，如果通道已空且有接收方在等待，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中 如果传递的值是引用类型，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Readme">
 <meta property="og:url" content="http://www.llyltq.top/2018/03/28/channel_readme/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="总结：缓冲通道 elem,ok:=&amp;lt;-strCh，没有元素时，当前gorouting进入GWaiting状态，当通道关闭时，elem会赋予相应的零值ok值为false 试图从一个未被初始化的通道值（值为nil的通道）接收元素值，会被永久阻塞 发送操作会使通道复制被发送的元素，如果通道已空且有接收方在等待，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中 如果传递的值是引用类型，那">
+<meta property="og:description" content="总结：缓冲通道 elem,ok:=&amp;lt;-strCh，没有元素时，当前gorouting进入GWaiting状态，当通道关闭时，elem会赋予相应的零值ok值为false 试图从一个未被初始化的通道值（值为nil的通道）接收元素值，会被永久阻塞 发送操作会使通道复制被发送的元素，如果通道已空且有接收方在等待，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中 如果传递的值是引用类型，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-18T01:02:22.689Z">
+<meta property="og:updated_time" content="2018-08-18T08:08:15.249Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Readme">
-<meta name="twitter:description" content="总结：缓冲通道 elem,ok:=&amp;lt;-strCh，没有元素时，当前gorouting进入GWaiting状态，当通道关闭时，elem会赋予相应的零值ok值为false 试图从一个未被初始化的通道值（值为nil的通道）接收元素值，会被永久阻塞 发送操作会使通道复制被发送的元素，如果通道已空且有接收方在等待，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中 如果传递的值是引用类型，那">
+<meta name="twitter:description" content="总结：缓冲通道 elem,ok:=&amp;lt;-strCh，没有元素时，当前gorouting进入GWaiting状态，当通道关闭时，elem会赋予相应的零值ok值为false 试图从一个未被初始化的通道值（值为nil的通道）接收元素值，会被永久阻塞 发送操作会使通道复制被发送的元素，如果通道已空且有接收方在等待，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中 如果传递的值是引用类型，">
 
 
 
@@ -342,7 +342,8 @@
       
 
       
-        <h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><h3 id="缓冲通道"><a href="#缓冲通道" class="headerlink" title="缓冲通道"></a>缓冲通道</h3><ol>
+        <a id="more"></a>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><h3 id="缓冲通道"><a href="#缓冲通道" class="headerlink" title="缓冲通道"></a>缓冲通道</h3><ol>
 <li><code>elem,ok:=&lt;-strCh</code>，没有元素时，当前gorouting进入<code>GWaiting</code>状态，当通道关闭时，<code>elem</code>会赋予相应的零值<code>ok</code>值为false</li>
 <li>试图从一个未被初始化的通道值（值为<code>nil</code>的通道）接收元素值，会被永久阻塞</li>
 <li>发送操作会使通道<code>复制</code>被发送的元素，如果<code>通道已空</code>且<code>有接收方在等待</code>，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中</li>

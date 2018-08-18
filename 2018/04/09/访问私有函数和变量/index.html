@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="如果一个函数只有函数声明，没有函数定义，那么它的函数定义肯定在其他地方，然后两者通过符号链接实现了，比如：123456789package aimport &quot;fmt&quot;import _&quot;unsafe&quot;//go:linkname hello b.Greetfunc hello()&amp;#123;    fmt.Println(&quot;Hello,World!&quot;)&amp;#125; 12345package bimpo">
+<meta name="description" content="如果一个函数只有函数声明，没有函数定义，那么它的函数定义肯定在其他地方，然后两者通过符号链接实现了，比如：123456789package aimport &quot;fmt&quot;import _&quot;unsafe&quot;//go:linkname hello b.Greetfunc hello()&amp;#123;    fmt.Println(&quot;Hello,World!&quot;)&amp;#125; 12345package bimp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="访问私有函数和变量">
 <meta property="og:url" content="http://www.llyltq.top/2018/04/09/访问私有函数和变量/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="如果一个函数只有函数声明，没有函数定义，那么它的函数定义肯定在其他地方，然后两者通过符号链接实现了，比如：123456789package aimport &quot;fmt&quot;import _&quot;unsafe&quot;//go:linkname hello b.Greetfunc hello()&amp;#123;    fmt.Println(&quot;Hello,World!&quot;)&amp;#125; 12345package bimpo">
+<meta property="og:description" content="如果一个函数只有函数声明，没有函数定义，那么它的函数定义肯定在其他地方，然后两者通过符号链接实现了，比如：123456789package aimport &quot;fmt&quot;import _&quot;unsafe&quot;//go:linkname hello b.Greetfunc hello()&amp;#123;    fmt.Println(&quot;Hello,World!&quot;)&amp;#125; 12345package bimp">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-18T01:06:51.977Z">
+<meta property="og:updated_time" content="2018-08-18T08:07:31.585Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="访问私有函数和变量">
-<meta name="twitter:description" content="如果一个函数只有函数声明，没有函数定义，那么它的函数定义肯定在其他地方，然后两者通过符号链接实现了，比如：123456789package aimport &quot;fmt&quot;import _&quot;unsafe&quot;//go:linkname hello b.Greetfunc hello()&amp;#123;    fmt.Println(&quot;Hello,World!&quot;)&amp;#125; 12345package bimpo">
+<meta name="twitter:description" content="如果一个函数只有函数声明，没有函数定义，那么它的函数定义肯定在其他地方，然后两者通过符号链接实现了，比如：123456789package aimport &quot;fmt&quot;import _&quot;unsafe&quot;//go:linkname hello b.Greetfunc hello()&amp;#123;    fmt.Println(&quot;Hello,World!&quot;)&amp;#125; 12345package bimp">
 
 
 
@@ -342,7 +342,8 @@
       
 
       
-        <p>如果一个函数只有函数声明，没有函数定义，那么它的函数定义肯定在其他地方，然后两者通过符号链接实现了，比如：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> a</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"><span class="keyword">import</span> _<span class="string">"unsafe"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//go:linkname hello b.Greet</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fmt.Println(<span class="string">"Hello,World!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <a id="more"></a>
+<p>如果一个函数只有函数声明，没有函数定义，那么它的函数定义肯定在其他地方，然后两者通过符号链接实现了，比如：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> a</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"><span class="keyword">import</span> _<span class="string">"unsafe"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//go:linkname hello b.Greet</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fmt.Println(<span class="string">"Hello,World!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> b</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> _<span class="string">"a"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Greet</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
 <p>b包中要添加一个空的汇编文件，不然不会通过编译</p>
 
