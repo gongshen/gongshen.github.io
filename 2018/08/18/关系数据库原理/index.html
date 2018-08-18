@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="数据库基本知识一个好的哈希表：$O(1)$一个均衡的树：$O(log(n))$一个好的排序算法：$O(n*log(n))$一个差的排序算法：$O(n^2)$ 1、排序合并排序：时间复杂度$O(n*log(n))$ 2、存储数据库的表使用的是二维阵列存储：必须一下子全部加载到内存中。数据库使用哈希表来存储锁表和缓冲池：可以先加载一半到内存中。 3、查找查找特定的值：二叉查找树    比如说你要查找4">
+<meta name="description" content="一、数据库基本知识一个好的哈希表：$O(1)$一个均衡的树：$O(log(n))$一个好的排序算法：$O(n*log(n))$一个差的排序算法：$O(n^2)$ 1、排序合并排序：时间复杂度$O(n*log(n))$ 2、存储数据库的表使用的是二维阵列存储：必须一下子全部加载到内存中。数据库使用哈希表来存储锁表和缓冲池：可以先加载一半到内存中。 3、查找查找特定的值：二叉查找树    比如说你要查">
 <meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关系数据库原理">
 <meta property="og:url" content="http://www.llyltq.top/2018/08/18/关系数据库原理/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="数据库基本知识一个好的哈希表：$O(1)$一个均衡的树：$O(log(n))$一个好的排序算法：$O(n*log(n))$一个差的排序算法：$O(n^2)$ 1、排序合并排序：时间复杂度$O(n*log(n))$ 2、存储数据库的表使用的是二维阵列存储：必须一下子全部加载到内存中。数据库使用哈希表来存储锁表和缓冲池：可以先加载一半到内存中。 3、查找查找特定的值：二叉查找树    比如说你要查找4">
+<meta property="og:description" content="一、数据库基本知识一个好的哈希表：$O(1)$一个均衡的树：$O(log(n))$一个好的排序算法：$O(n*log(n))$一个差的排序算法：$O(n^2)$ 1、排序合并排序：时间复杂度$O(n*log(n))$ 2、存储数据库的表使用的是二维阵列存储：必须一下子全部加载到内存中。数据库使用哈希表来存储锁表和缓冲池：可以先加载一半到内存中。 3、查找查找特定的值：二叉查找树    比如说你要查">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.llyltq.top/2018/08/18/关系数据库原理/%=%20config.root%20%%3Eimg/binary_search_tree.png">
-<meta property="og:updated_time" content="2018-08-18T00:03:00.339Z">
+<meta property="og:updated_time" content="2018-08-18T00:23:00.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关系数据库原理">
-<meta name="twitter:description" content="数据库基本知识一个好的哈希表：$O(1)$一个均衡的树：$O(log(n))$一个好的排序算法：$O(n*log(n))$一个差的排序算法：$O(n^2)$ 1、排序合并排序：时间复杂度$O(n*log(n))$ 2、存储数据库的表使用的是二维阵列存储：必须一下子全部加载到内存中。数据库使用哈希表来存储锁表和缓冲池：可以先加载一半到内存中。 3、查找查找特定的值：二叉查找树    比如说你要查找4">
+<meta name="twitter:description" content="一、数据库基本知识一个好的哈希表：$O(1)$一个均衡的树：$O(log(n))$一个好的排序算法：$O(n*log(n))$一个差的排序算法：$O(n^2)$ 1、排序合并排序：时间复杂度$O(n*log(n))$ 2、存储数据库的表使用的是二维阵列存储：必须一下子全部加载到内存中。数据库使用哈希表来存储锁表和缓冲池：可以先加载一半到内存中。 3、查找查找特定的值：二叉查找树    比如说你要查">
 <meta name="twitter:image" content="http://www.llyltq.top/2018/08/18/关系数据库原理/%=%20config.root%20%%3Eimg/binary_search_tree.png">
 
 
@@ -193,6 +193,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -275,6 +295,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -302,7 +344,7 @@
       
 
       
-        <h1 id="数据库基本知识"><a href="#数据库基本知识" class="headerlink" title="数据库基本知识"></a>数据库基本知识</h1><p>一个好的哈希表：$O(1)$<br>一个均衡的树：$O(log(n))$<br>一个好的排序算法：$O(n*log(n))$<br>一个差的排序算法：$O(n^2)$</p>
+        <h1 id="一、数据库基本知识"><a href="#一、数据库基本知识" class="headerlink" title="一、数据库基本知识"></a>一、数据库基本知识</h1><p>一个好的哈希表：$O(1)$<br>一个均衡的树：$O(log(n))$<br>一个好的排序算法：$O(n*log(n))$<br>一个差的排序算法：$O(n^2)$</p>
 <h3 id="1、排序"><a href="#1、排序" class="headerlink" title="1、排序"></a>1、排序</h3><p>合并排序：时间复杂度$O(n*log(n))$</p>
 <h3 id="2、存储"><a href="#2、存储" class="headerlink" title="2、存储"></a>2、存储</h3><p>数据库的表使用的是<code>二维阵列</code>存储：必须一下子全部加载到内存中。<br>数据库使用<code>哈希表</code>来存储<code>锁表</code>和<code>缓冲池</code>：可以先加载一半到内存中。</p>
 <h3 id="3、查找"><a href="#3、查找" class="headerlink" title="3、查找"></a>3、查找</h3><p><span style="border-bottom:2px solid red;">查找特定的值：二叉查找树</span><br>    比如说你要查找40，时间复杂度O(log(N))</p>
@@ -708,7 +750,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -739,7 +781,7 @@
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="gongshen1995@gamil.com" target="_blank" title="E-Mail">
+                    <a href="mailto:gongshen1995@gmail.com" target="_blank" title="E-Mail">
                       
                         <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                   </span>
@@ -768,7 +810,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库基本知识"><span class="nav-number">1.</span> <span class="nav-text">数据库基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、排序"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、存储"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、查找"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、查找</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、数据库全局概览"><span class="nav-number">2.</span> <span class="nav-text">二、数据库全局概览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、查询过程"><span class="nav-number">3.</span> <span class="nav-text">三、查询过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、客户端管理器："><span class="nav-number">3.1.</span> <span class="nav-text">1、客户端管理器：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、查询管理器："><span class="nav-number">3.2.</span> <span class="nav-text">2、查询管理器：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：查询解析器"><span class="nav-number">3.2.1.</span> <span class="nav-text">第一步：查询解析器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：查询重写器"><span class="nav-number">3.2.2.</span> <span class="nav-text">第二步：查询重写器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：统计"><span class="nav-number">3.2.3.</span> <span class="nav-text">第三步：统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：查询优化器"><span class="nav-number">3.2.4.</span> <span class="nav-text">第四步：查询优化器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取数据的方法："><span class="nav-number">3.2.4.1.</span> <span class="nav-text">获取数据的方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#联接运算符（获取数据后那么就要连接了）"><span class="nav-number">3.2.4.2.</span> <span class="nav-text">联接运算符（获取数据后那么就要连接了）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行联接的顺序的算法"><span class="nav-number">3.2.4.3.</span> <span class="nav-text">执行联接的顺序的算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#真实的优化器"><span class="nav-number">3.2.4.4.</span> <span class="nav-text">真实的优化器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五步、查询执行器"><span class="nav-number">3.2.5.</span> <span class="nav-text">第五步、查询执行器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、数据管理器"><span class="nav-number">3.3.</span> <span class="nav-text">4、数据管理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存管理器：与查询执行器进行数据的交互"><span class="nav-number">3.3.1.</span> <span class="nav-text">缓存管理器：与查询执行器进行数据的交互</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写缓冲区"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">写缓冲区</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、事务管理器"><span class="nav-number">3.4.</span> <span class="nav-text">5、事务管理器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、数据库的并发控制"><span class="nav-number">4.</span> <span class="nav-text">四、数据库的并发控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、锁管理器"><span class="nav-number">4.1.</span> <span class="nav-text">1、锁管理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁"><span class="nav-number">4.1.1.</span> <span class="nav-text">死锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、版本控制"><span class="nav-number">4.2.</span> <span class="nav-text">2、版本控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、数据库的日志管理"><span class="nav-number">5.</span> <span class="nav-text">五、数据库的日志管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WAL"><span class="nav-number">5.1.</span> <span class="nav-text">WAL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARIES"><span class="nav-number">5.2.</span> <span class="nav-text">ARIES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志"><span class="nav-number">5.3.</span> <span class="nav-text">日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志缓冲区"><span class="nav-number">5.3.1.</span> <span class="nav-text">日志缓冲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STEAL-和-FORCE-策略"><span class="nav-number">5.3.2.</span> <span class="nav-text">STEAL 和 FORCE 策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恢复"><span class="nav-number">5.4.</span> <span class="nav-text">恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、分析阶段"><span class="nav-number">5.4.0.1.</span> <span class="nav-text">1、分析阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、Redo阶段"><span class="nav-number">5.4.0.2.</span> <span class="nav-text">2、Redo阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、Undo阶段"><span class="nav-number">5.4.0.3.</span> <span class="nav-text">3、Undo阶段</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、数据库的数据存储"><span class="nav-number">6.</span> <span class="nav-text">六、数据库的数据存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">6.0.1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录"><span class="nav-number">6.0.2.</span> <span class="nav-text">记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件组织"><span class="nav-number">6.0.3.</span> <span class="nav-text">文件组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库存储的文件"><span class="nav-number">6.0.4.</span> <span class="nav-text">数据库存储的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL的数据字典"><span class="nav-number">6.0.5.</span> <span class="nav-text">MySQL的数据字典</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、数据库基本知识"><span class="nav-number">1.</span> <span class="nav-text">一、数据库基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、排序"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、存储"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、查找"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、查找</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、数据库全局概览"><span class="nav-number">2.</span> <span class="nav-text">二、数据库全局概览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、查询过程"><span class="nav-number">3.</span> <span class="nav-text">三、查询过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、客户端管理器："><span class="nav-number">3.1.</span> <span class="nav-text">1、客户端管理器：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、查询管理器："><span class="nav-number">3.2.</span> <span class="nav-text">2、查询管理器：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：查询解析器"><span class="nav-number">3.2.1.</span> <span class="nav-text">第一步：查询解析器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：查询重写器"><span class="nav-number">3.2.2.</span> <span class="nav-text">第二步：查询重写器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：统计"><span class="nav-number">3.2.3.</span> <span class="nav-text">第三步：统计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：查询优化器"><span class="nav-number">3.2.4.</span> <span class="nav-text">第四步：查询优化器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取数据的方法："><span class="nav-number">3.2.4.1.</span> <span class="nav-text">获取数据的方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#联接运算符（获取数据后那么就要连接了）"><span class="nav-number">3.2.4.2.</span> <span class="nav-text">联接运算符（获取数据后那么就要连接了）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行联接的顺序的算法"><span class="nav-number">3.2.4.3.</span> <span class="nav-text">执行联接的顺序的算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#真实的优化器"><span class="nav-number">3.2.4.4.</span> <span class="nav-text">真实的优化器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五步、查询执行器"><span class="nav-number">3.2.5.</span> <span class="nav-text">第五步、查询执行器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、数据管理器"><span class="nav-number">3.3.</span> <span class="nav-text">4、数据管理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存管理器：与查询执行器进行数据的交互"><span class="nav-number">3.3.1.</span> <span class="nav-text">缓存管理器：与查询执行器进行数据的交互</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写缓冲区"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">写缓冲区</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、事务管理器"><span class="nav-number">3.4.</span> <span class="nav-text">5、事务管理器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、数据库的并发控制"><span class="nav-number">4.</span> <span class="nav-text">四、数据库的并发控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、锁管理器"><span class="nav-number">4.1.</span> <span class="nav-text">1、锁管理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁"><span class="nav-number">4.1.1.</span> <span class="nav-text">死锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、版本控制"><span class="nav-number">4.2.</span> <span class="nav-text">2、版本控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、数据库的日志管理"><span class="nav-number">5.</span> <span class="nav-text">五、数据库的日志管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WAL"><span class="nav-number">5.1.</span> <span class="nav-text">WAL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARIES"><span class="nav-number">5.2.</span> <span class="nav-text">ARIES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志"><span class="nav-number">5.3.</span> <span class="nav-text">日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志缓冲区"><span class="nav-number">5.3.1.</span> <span class="nav-text">日志缓冲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STEAL-和-FORCE-策略"><span class="nav-number">5.3.2.</span> <span class="nav-text">STEAL 和 FORCE 策略</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恢复"><span class="nav-number">5.4.</span> <span class="nav-text">恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、分析阶段"><span class="nav-number">5.4.0.1.</span> <span class="nav-text">1、分析阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、Redo阶段"><span class="nav-number">5.4.0.2.</span> <span class="nav-text">2、Redo阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、Undo阶段"><span class="nav-number">5.4.0.3.</span> <span class="nav-text">3、Undo阶段</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、数据库的数据存储"><span class="nav-number">6.</span> <span class="nav-text">六、数据库的数据存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">6.0.1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录"><span class="nav-number">6.0.2.</span> <span class="nav-text">记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件组织"><span class="nav-number">6.0.3.</span> <span class="nav-text">文件组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库存储的文件"><span class="nav-number">6.0.4.</span> <span class="nav-text">数据库存储的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL的数据字典"><span class="nav-number">6.0.5.</span> <span class="nav-text">MySQL的数据字典</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
