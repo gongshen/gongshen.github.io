@@ -87,7 +87,8 @@
 <meta property="og:description" content="一、数据库基本知识一个好的哈希表：$O(1)$一个均衡的树：$O(log(n))$一个好的排序算法：$O(n*log(n))$一个差的排序算法：$O(n^2)$ 1、排序合并排序：时间复杂度$O(n*log(n))$ 2、存储数据库的表使用的是二维阵列存储：必须一下子全部加载到内存中。数据库使用哈希表来存储锁表和缓冲池：可以先加载一半到内存中。 3、查找查找特定的值：二叉查找树    比如说你要">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.llyltq.top/images/binary_search_tree.png">
-<meta property="og:updated_time" content="2018-08-18T08:41:10.432Z">
+<meta property="og:image" content="http://www.llyltq.top/images/b+_tree.png">
+<meta property="og:updated_time" content="2018-08-18T08:48:46.487Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关系数据库原理">
 <meta name="twitter:description" content="一、数据库基本知识一个好的哈希表：$O(1)$一个均衡的树：$O(log(n))$一个好的排序算法：$O(n*log(n))$一个差的排序算法：$O(n^2)$ 1、排序合并排序：时间复杂度$O(n*log(n))$ 2、存储数据库的表使用的是二维阵列存储：必须一下子全部加载到内存中。数据库使用哈希表来存储锁表和缓冲池：可以先加载一半到内存中。 3、查找查找特定的值：二叉查找树    比如说你要">
@@ -340,6 +341,7 @@
 <h3 id="3、查找"><a href="#3、查找" class="headerlink" title="3、查找"></a>3、查找</h3><p><span style="border-bottom:2px solid red;">查找特定的值：二叉查找树</span><br>    比如说你要查找40，时间复杂度O(log(N))</p>
 <p><img src="\images\binary_search_tree.png" alt="二叉查找树"></p>
 <p><span style="border-bottom:2px solid red;">范围查找：B+树</span><br>    比如你要查找40~100之间的值，只需要找到40，通过后续节点找到100，时间复杂度O(M+log(N))</p>
+<p><img src="\images\b+_tree.png" alt="B+树"></p>
 <ul>
 <li>只有最底层的叶子才保存行信息</li>
 <li>底层节点是连续的</li>
@@ -614,6 +616,9 @@
 <li>information_schema：统计数据</li>
 <li>performance_schema：显示性能信息</li>
 </ul>
+<blockquote>
+<p>本文转载于<a href="http://blog.jobbole.com/100349/" target="_blank" rel="noopener">数据库原理</a></p>
+</blockquote>
 
       
     </div>
