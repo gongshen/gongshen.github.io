@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="总结：缓冲通道 elem,ok:=&amp;lt;-strCh，没有元素时，当前gorouting进入GWaiting状态，当通道关闭时，elem会赋予相应的零值ok值为false 试图从一个未被初始化的通道值（值为nil的通道）接收元素值，会被永久阻塞 发送操作会使通道复制被发送的元素，如果通道已空且有接收方在等待，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中 如果传递的值是引用类型，那">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Readme">
+<meta property="og:url" content="http://www.llyltq.top/2018/03/28/channel_readme/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="总结：缓冲通道 elem,ok:=&amp;lt;-strCh，没有元素时，当前gorouting进入GWaiting状态，当通道关闭时，elem会赋予相应的零值ok值为false 试图从一个未被初始化的通道值（值为nil的通道）接收元素值，会被永久阻塞 发送操作会使通道复制被发送的元素，如果通道已空且有接收方在等待，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中 如果传递的值是引用类型，那">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-18T01:02:22.689Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Readme">
+<meta name="twitter:description" content="总结：缓冲通道 elem,ok:=&amp;lt;-strCh，没有元素时，当前gorouting进入GWaiting状态，当通道关闭时，elem会赋予相应的零值ok值为false 试图从一个未被初始化的通道值（值为nil的通道）接收元素值，会被永久阻塞 发送操作会使通道复制被发送的元素，如果通道已空且有接收方在等待，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中 如果传递的值是引用类型，那">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.llyltq.top/2018/03/28/channel_readme/"/>
+
+
+
+
+
+  <title>Readme | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/28/channel_readme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Readme</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T16:22:14+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/channel/" itemprop="url" rel="index">
+                    <span itemprop="name">channel</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><h3 id="缓冲通道"><a href="#缓冲通道" class="headerlink" title="缓冲通道"></a>缓冲通道</h3><ol>
+<li><code>elem,ok:=&lt;-strCh</code>，没有元素时，当前gorouting进入<code>GWaiting</code>状态，当通道关闭时，<code>elem</code>会赋予相应的零值<code>ok</code>值为false</li>
+<li>试图从一个未被初始化的通道值（值为<code>nil</code>的通道）接收元素值，会被永久阻塞</li>
+<li>发送操作会使通道<code>复制</code>被发送的元素，如果<code>通道已空</code>且<code>有接收方在等待</code>，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中</li>
+<li>如果传递的值是<code>引用类型</code>，那么接收方的操作会影响发送方的<code>源值</code></li>
+<li>可以使用<code>len</code>获取通道中的元素值数量，使用<code>cap</code>获取通道的容量。</li>
+<li><code>Notify(c chan&lt;- os.Signal)</code>：约束的是方法的实现方（适用于接口）；<code>Notify()&lt;-chan os.Signal</code>：约束方法的调用方（适用于函数和结构体方法）</li>
+<li>一般情况下不能转换通道类型，利用函数声明转换是Go的语法糖</li>
+<li>可以使用<code>for</code>语句可以不断地从通道接收元素值，直到通道关闭，但是通道不能是一个<code>发送通道</code></li>
+<li><code>select</code>后面直接加花括号，然后<code>case</code>后面只能是接收或者发送语句，<code>case</code>右边的表达式会先求值，相同条件时会随机选择一个</li>
+<li><code>break</code>语句可以直接跳出<code>select</code>，和<code>for</code>一起用时，使用<code>break + 标签</code>来表示中断紧贴于标签下的语句。</li>
+<li>单向通道可以对实现类型进行约束</li>
+<li>向一个关闭的通道发送数据会阻塞，但是接收端可以在关闭的通道接收数据，所以建议在发送端关闭通道</li>
+<li>建议用于传递<code>信号</code>的通道都以<code>struct{}</code>作为元素类型，因为空结构体类型是不占内存空间的，并且拥有相同的内存地址。<h3 id="非缓冲通道"><a href="#非缓冲通道" class="headerlink" title="非缓冲通道"></a>非缓冲通道</h3></li>
+<li>非缓冲通道只能同步的传递元素值</li>
+<li>向该通道<code>发送</code>元素值的操作会被阻塞，直到至少有一个针对该通道的接收操作，接收操作会先得到元素值的副本，然后唤醒发送方的gorouting，也就是说接收操作比发送操作先完成</li>
+<li>从该通道<code>接收</code>元素值的操作会被阻塞，直到至少有一个针对该通道的发送操作，发送操作会直接把元素值复制给接收方，然后唤醒接收方的gorouting，所以发送操作比接收操作先完成<h3 id="time包"><a href="#time包" class="headerlink" title="time包"></a>time包</h3><strong>定时器</strong></li>
+<li>定时器<code>Timer</code>，我们不能使用复合字面量来初始化它，因为它含有包级私有字段，使用<code>time.NewTimer</code>和<code>time.AfterFunc</code>函数来构建</li>
+<li>定时器<code>Timer</code>中有一个通道<code>C</code>的字段，当定时器到期时发送当前时间到通道<code>C</code></li>
+<li><code>time.After</code>就是<code>time.NewTimer().C</code>的超时设定的一种快捷方式</li>
+<li>每次循环都要新建定时器有先浪费，我们可以使用<code>timer.Reset</code>重置来复用</li>
+<li>如果在<code>定时器</code>到期之前停止了它，再去接收<code>C</code>的元素值会一直阻塞</li>
+<li>如果在<code>定时器</code>到期之后未能及时接收元素值，那么即使重置以后，<code>C</code>字段还是会一直缓存那个元素值，新的通知会被丢弃</li>
+<li><code>time.AfterFunc</code>也会新建定时器，但是到期之后不会发送通知，而是新启用一个<code>gorouting</code>执行传入的函数</li>
+</ol>
+<p><strong>断续器</strong></p>
+<ol>
+<li>断续器会间隔一段时间向通道<code>C</code>发送时间</li>
+<li>使用<code>time.NewTicker</code>初始化断续器</li>
+<li>使用<code>Stop</code>方法停止断续器，如果此时字段<code>C</code>存在元素值，那么会保存在那里，等待接收</li>
+<li>断续器适用于定时任务的触发器</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/27/pipe/" rel="next" title="模拟pipe">
+                <i class="fa fa-chevron-left"></i> 模拟pipe
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/29/http-1/" rel="prev" title="http(1)">
+                http(1) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">冉某某</p>
+              <p class="site-description motion-element" itemprop="description">I'm worm,find the truth,live in shadow.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gongshen" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:gongshen1995@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#总结："><span class="nav-number">1.</span> <span class="nav-text">总结：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓冲通道"><span class="nav-number">1.0.1.</span> <span class="nav-text">缓冲通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非缓冲通道"><span class="nav-number">1.0.2.</span> <span class="nav-text">非缓冲通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#time包"><span class="nav-number">1.0.3.</span> <span class="nav-text">time包</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冉某某</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
