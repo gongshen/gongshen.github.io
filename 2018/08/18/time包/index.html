@@ -341,12 +341,12 @@
       
       
 
-	  <!-- 
+	  
       
         <a id="more"></a>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	timer := time.NewTimer(<span class="number">2</span> * time.Second)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"Present time:%v.\n"</span>, time.Now())</span><br><span class="line">	<span class="comment">//当定时器到期，会发送时间到通道C</span></span><br><span class="line">	expirationTime := &lt;-timer.C</span><br><span class="line">	fmt.Printf(<span class="string">"Expiration time:%v.\n"</span>, expirationTime)</span><br><span class="line">	<span class="comment">//timer.Stop表示停止定时器，如果定时器过期或者已经停止了，就返回false，否则true</span></span><br><span class="line">	fmt.Printf(<span class="string">"Stop Timer:%v.\n"</span>, timer.Stop())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
-	  -->
+	  
     </div>
     
     

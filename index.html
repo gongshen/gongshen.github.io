@@ -343,20 +343,44 @@
       
       
 
-	  <!-- 
+	  
       
         
-          <p>Golang测试的总结归纳文档！<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/18/test_Readme/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <a id="more"></a>
+<h1 id="Test：矫正行为"><a href="#Test：矫正行为" class="headerlink" title="Test：矫正行为"></a>Test：矫正行为</h1><h3 id="包内测试"><a href="#包内测试" class="headerlink" title="包内测试"></a>包内测试</h3><ul>
+<li>文件名以<code>Test</code>开头</li>
+<li>指定运行匹配的测试函数：<code>-run=&quot;A|B&quot;</code></li>
+<li><code>t.Error</code>或者<code>t.Errorf</code>并不会因为测试失败而停止下面的测试</li>
+<li><code>t.Fatal</code>和<code>t.Fatalf</code>会因为测试失败而终止当前gorouting</li>
+</ul>
+<h3 id="运行更comprehensive案列"><a href="#运行更comprehensive案列" class="headerlink" title="运行更comprehensive案列"></a>运行更comprehensive案列</h3><ul>
+<li>table-driven 测试</li>
+<li>randomized 测试</li>
+</ul>
+<h3 id="覆盖率测试"><a href="#覆盖率测试" class="headerlink" title="覆盖率测试"></a>覆盖率测试</h3><ul>
+<li><code>go test -cover</code>：语句覆盖率测试</li>
+<li><code>go test -cover -coverprofile c.out</code>：将结果输出到文件（默认set模式，记录语句是否覆盖）</li>
+<li><code>go test -cover -coverprofile c.out -covermode count</code>：更改为count模式，记录语句覆盖次数</li>
+<li><code>go tool cover -html=c.out</code>：以c.out文件在浏览器显示</li>
+<li><code>go tool cover -func=c.out</code>：显示函数细节</li>
+</ul>
+<h3 id="外部测试"><a href="#外部测试" class="headerlink" title="外部测试"></a>外部测试</h3><p>我们知道两个package不能存在于同一个文件中，但是有一种特殊的外部测试包。如果文件中的包名<code>b</code>，那么可以创建外部测试包<code>b_test</code>。</p>
+<ul>
+<li>创建一个内部测试文件（export_test.go）：将需要的内部暴露给外部测试包。</li>
+<li>测试文件中的函数和变量只能是当前package下的测试文件能访问</li>
+<li><figure class="highlight go"><figcaption><span>list -f</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">* <span class="string">``</span><span class="string">`go list -f=&#123;&#123;.TestGoFiles&#125;&#125; fmt`</span><span class="string">``</span>：仅显示包内测试代码</span><br><span class="line">* <span class="string">``</span><span class="string">`go list -f=&#123;&#123;.XTestGoFiles&#125;&#125; fmt`</span><span class="string">``</span>：仅显示外部测试代码</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Profile</span><br><span class="line"><span class="string">`go test`</span>会把可执行文件删除在完成测试之后，加上<span class="string">`-cpuprofile`</span>标志可以保留其可执行文件</span><br><span class="line">使用<span class="string">`go tool pprof`</span>再加上<span class="string">`可执行文件`</span>就可以解析profile文件</span><br><span class="line"></span><br><span class="line">* <span class="string">`go test -run=none -bench=ClientServerParallelTLS64 -cpuprofile=cpu.log net/http`</span>：会生成*cpu.log*和*http.test.exe*</span><br><span class="line">* <span class="string">`go tool pprof -text -nodecount=10 ./http.test.exe cpu.log`</span>：使用*pprof*工具分析cpu使用文件</span><br><span class="line">* -cpuprofile：列出使用最多CPU的函数</span><br><span class="line">* -memprofile：列出分配最多内存的语句</span><br><span class="line">* -blockprofile：列出最长阻塞gorouting的运算</span><br></pre></td></tr></table></figure>
+<p>   flat  flat%   sum%        cum   cum%<br>   1.10s 20.07% 59.85%      1.10s 20.07%  unicode.IsLetter<br>   0.75s 13.69% 73.54%      0.75s 13.69%  unicode.ToLower<br>   0.39s  7.12% 80.66%      0.44s  8.03%  runtime.mallocgc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Go运行时会100Hz对CPU进行抽样，也就是10毫秒一次</span><br><span class="line">1. 第一列表示直接调用该函数总执行了`1.10s`，也就是抽样110次，占总数的20.07%（总数548次）</span><br><span class="line">2. 第三列表示前几列加起来占总时间的百分之几</span><br><span class="line">3. 第四列表示直接调用该函数加上间接调用函数用掉的时间</span><br><span class="line">4. 第五列表示第四列占的百分比</span><br><span class="line"></span><br><span class="line">### graphviz工具的配合使用</span><br><span class="line">1. `go tool pprof ./word.test.exe cpu.log`：进入pprof模式</span><br><span class="line">2. `web`：浏览器查看整个函数调用的过程</span><br><span class="line">3. `web IsPalindrome`：浏览器查看IsPalindrome函数的调用过程</span><br><span class="line">3. `list IsPalindrome`：查看IsPalindrome函数每一行的执行时间</span><br><span class="line"></span><br><span class="line"># Benchmark：测量操作</span><br><span class="line">* 使用`ResetTimer,StopTimer,StartTimer`等重置计时器，排除一些设定代码的时间</span><br><span class="line">* 抵制使用`b.N`作为参数的诱惑，使用多个固定参数进行测试比较</span><br><span class="line">* 性能测试过滤单元测试的输出，所以使用`-run=none`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Examples</span><br><span class="line">在`Example`函数中添加预期的答案：</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>//Output: one<br>//two<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果输出时随机的话：</span><br></pre></td></tr></table></figure></p>
+<p>//Unordered Output:two<br>//one<br><code>`</code></p>
+
+          
         
       
-	  -->
+	  
     </div>
     
     
@@ -502,7 +526,7 @@
       
       
 
-	  <!-- 
+	  
       
         
           
@@ -511,7 +535,7 @@
           
         
       
-	  -->
+	  
     </div>
     
     
@@ -657,7 +681,7 @@
       
       
 
-	  <!-- 
+	  
       
         
           
@@ -666,7 +690,7 @@
           
         
       
-	  -->
+	  
     </div>
     
     
@@ -812,7 +836,7 @@
       
       
 
-	  <!-- 
+	  
       
         
           
@@ -821,7 +845,7 @@
           
         
       
-	  -->
+	  
     </div>
     
     
@@ -967,7 +991,7 @@
       
       
 
-	  <!-- 
+	  
       
         
           
@@ -976,7 +1000,7 @@
           
         
       
-	  -->
+	  
     </div>
     
     
@@ -1122,7 +1146,7 @@
       
       
 
-	  <!-- 
+	  
       
         
           
@@ -1131,7 +1155,7 @@
           
         
       
-	  -->
+	  
     </div>
     
     
@@ -1277,7 +1301,7 @@
       
       
 
-	  <!-- 
+	  
       
         
           
@@ -1287,7 +1311,7 @@
           
         
       
-	  -->
+	  
     </div>
     
     
@@ -1433,7 +1457,7 @@
       
       
 
-	  <!-- 
+	  
       
         
           
@@ -1442,7 +1466,7 @@
           
         
       
-	  -->
+	  
     </div>
     
     
@@ -1588,7 +1612,7 @@
       
       
 
-	  <!-- 
+	  
       
         
           
@@ -1597,7 +1621,7 @@
           
         
       
-	  -->
+	  
     </div>
     
     
@@ -1743,7 +1767,7 @@
       
       
 
-	  <!-- 
+	  
       
         
           
@@ -1752,7 +1776,7 @@
           
         
       
-	  -->
+	  
     </div>
     
     

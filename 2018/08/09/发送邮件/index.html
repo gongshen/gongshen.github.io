@@ -341,12 +341,12 @@
       
       
 
-	  <!-- 
+	  
       
         <a id="more"></a>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	auth:=smtp.PlainAuth(<span class="string">""</span>,<span class="string">"example1@qq.com"</span>,<span class="string">"密码"</span>,<span class="string">"smtp.qq.com"</span>)</span><br><span class="line">	to:=[]<span class="keyword">string</span>&#123;<span class="string">"example2@qq.com"</span>&#125;</span><br><span class="line">	nickname:=<span class="string">"test"</span></span><br><span class="line">	subject:=<span class="string">"test mail"</span></span><br><span class="line">	content_type:=<span class="string">"Content-type: text/plain;charset=UTF-8"</span></span><br><span class="line">	body:=<span class="string">"This is email body!"</span></span><br><span class="line">	from:=<span class="string">"example1@qq.com"</span></span><br><span class="line">	msg:=[]<span class="keyword">byte</span>(<span class="string">"To:"</span>+strings.Join(to,<span class="string">","</span>)+<span class="string">"\r\nFrom"</span>+nickname+<span class="string">"&lt;"</span>+from+<span class="string">"&gt;\r\nSubject:"</span>+subject+<span class="string">"\r\n"</span>+content_type+<span class="string">"\r\n\r\n"</span>+body)</span><br><span class="line">	err:=smtp.SendMail(<span class="string">"smtp.qq.com:25"</span>,auth,from,to,msg)</span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Printf(<span class="string">"send email error:%v"</span>,err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
-	  -->
+	  
     </div>
     
     
