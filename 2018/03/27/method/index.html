@@ -1,187 +1,701 @@
 <!DOCTYPE html>
-<html lang="en">
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keyword"  content="">
-    <link rel="shortcut icon" href="/img/favicon.ico">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
 
-    <title>
-        
-        method - undefined
-        
-    </title>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/aircloud.css">
-    <link rel="stylesheet" href="/css/gitment.css">
-    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
-    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
-    <!-- ga & ba script hoook -->
-    <script></script>
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="可寻址值和不可寻址值调用方法示例一：对于一个非指针类型，它关联的方法集中只包含它的值方法。对于一个指针类型，它关联的方法集中既包含值方法和指针方法。 但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换123456789101112131415161718192021222324252627282930313233343536373839404142434445type data stru">
+<meta property="og:type" content="article">
+<meta property="og:title" content="method">
+<meta property="og:url" content="http://gongshen.github.io/2018/03/27/method/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="可寻址值和不可寻址值调用方法示例一：对于一个非指针类型，它关联的方法集中只包含它的值方法。对于一个指针类型，它关联的方法集中既包含值方法和指针方法。 但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换123456789101112131415161718192021222324252627282930313233343536373839404142434445type data stru">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-27T06:05:09.605Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="method">
+<meta name="twitter:description" content="可寻址值和不可寻址值调用方法示例一：对于一个非指针类型，它关联的方法集中只包含它的值方法。对于一个指针类型，它关联的方法集中既包含值方法和指针方法。 但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换123456789101112131415161718192021222324252627282930313233343536373839404142434445type data stru">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gongshen.github.io/2018/03/27/method/"/>
+
+
+
+
+
+  <title>method | Hexo</title>
+  
+
+
+
+
+
+
+
+
 </head>
 
-<body>
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
-<div class="site-nav-toggle" id="site-nav-toggle">
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
     <button>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
-        <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
     </button>
+  </div>
 </div>
 
-<div class="index-about">
-    <i>  </i>
-</div>
+<nav class="site-nav">
+  
 
-<div class="index-container">
-    
-    <div class="index-left">
+  
+    <ul id="menu" class="menu">
+      
         
-<div class="nav" id="nav">
-    <div class="avatar-name">
-        <div class="avatar">
-            <img src="/" />
-        </div>
-        <div class="name">
-            <i>John Doe</i>
-        </div>
-    </div>
-    <div class="contents" id="nav-content">
-        <ul>
-            <li >
-                <a href="/">
-                    <i class="iconfont icon-shouye1"></i>
-                    <span>HOME</span>
-                </a>
-            </li>
-            <li >
-                <a href="/tags">
-                    <i class="iconfont icon-biaoqian1"></i>
-                    <span>TAGS</span>
-                </a>
-            </li>
-            <li >
-                <a href="/archives">
-                    <i class="iconfont icon-guidang2"></i>
-                    <span>ARCHIVES</span>
-                </a>
-            </li>
-            <li >
-                <a href="/about/">
-                    <i class="iconfont icon-guanyu2"></i>
-                    <span>ABOUT</span>
-                </a>
-            </li>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
             
-            <li>
-                <a id="search">
-                    <i class="iconfont icon-sousuo1"></i>
-                    <span>SEARCH</span>
-                </a>
-            </li>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-        </ul>
-    </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#可寻址值和不可寻址值调用方法"><span class="toc-text">可寻址值和不可寻址值调用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#示例一："><span class="toc-text">示例一：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换"><span class="toc-text">但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#示例二："><span class="toc-text">示例二：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。"><span class="toc-text">receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。</span></a></li></ol></li></ol>
-</div>
-    
-</div>
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
 
 
-<div class="search-field" id="search-field">
-    <div class="search-container">
-        <div class="search-input">
-            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
-            <input id="search-input"/>
-            <span id="begin-search">search</span>
-        </div>
-        <div class="search-result-container" id="search-result-container">
 
-        </div>
-    </div>
-</div>
-        <div class="index-about-mobile">
-            <i>  </i>
-        </div>
-    </div>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
     
-    <div class="index-middle">
-        <!-- Main Content -->
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://gongshen.github.io/2018/03/27/method/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">method</h1>
         
 
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-27T00:08:59+08:00">
+                2018-03-27
+              </time>
+            
 
-<div class="post-container">
-    <div class="post-title">
-        method
-    </div>
+            
 
-    <div class="post-meta">
-        <span class="attr">Post：<span>2018-03-27 00:08:59</span></span>
-        
-        </span>
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         <h1 id="可寻址值和不可寻址值调用方法"><a href="#可寻址值和不可寻址值调用方法" class="headerlink" title="可寻址值和不可寻址值调用方法"></a>可寻址值和不可寻址值调用方法</h1><h3 id="示例一："><a href="#示例一：" class="headerlink" title="示例一："></a>示例一：</h3><p>对于一个非指针类型，它关联的方法集中只包含它的值方法。对于一个指针类型，它关联的方法集中既包含值方法和指针方法。</p>
 <h2 id="但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换"><a href="#但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换" class="headerlink" title="但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换"></a>但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> data <span class="keyword">struct</span> &#123;</span><br><span class="line">	name <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 指针类型的方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(d *data)</span><span class="title">Print</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	fmt.Println(<span class="string">"name:"</span>,d.name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 值类型的方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(d data)</span><span class="title">Print2</span><span class="params">()</span></span>&#123;</span><br><span class="line">	fmt.Println(<span class="string">"name2:"</span>,d.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Printer <span class="keyword">interface</span> &#123;</span><br><span class="line">	Print()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> p Printer = &amp;data&#123;<span class="string">"one"</span>&#125;</span><br><span class="line">	p.Print()</span><br><span class="line"></span><br><span class="line"><span class="comment">// p是一个指针类型</span></span><br><span class="line"></span><br><span class="line">	m1 := <span class="keyword">map</span>[<span class="keyword">string</span>]data&#123;<span class="string">"x"</span>:&#123;<span class="string">"two"</span>&#125;&#125;</span><br><span class="line">	n:=m1[<span class="string">"x"</span>]</span><br><span class="line">	n.Print()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重要！</span></span><br><span class="line"><span class="comment">// n是值类型，但是可以调用指针类型的方法，Go进行了自动转换</span></span><br><span class="line"><span class="comment">// n.Print()  ==  (&amp;n).Print()</span></span><br><span class="line"></span><br><span class="line">	m2:=<span class="keyword">map</span>[<span class="keyword">string</span>]*data&#123;<span class="string">"x"</span>:&#123;<span class="string">"three"</span>&#125;&#125;</span><br><span class="line">	n2:=m2[<span class="string">"x"</span>]</span><br><span class="line">	n2.Print2()</span><br><span class="line">	</span><br><span class="line"><span class="comment">// 重要！</span></span><br><span class="line"><span class="comment">// n2是指针类型，但是可以调用值类型的方法，Go进行了自动转换</span></span><br><span class="line"><span class="comment">// n2.Print2()  ==  (*n2).Print2()</span></span><br><span class="line"></span><br><span class="line">	s:=[]data&#123;</span><br><span class="line">		&#123;<span class="string">"four"</span>&#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	s[<span class="number">0</span>].Print()</span><br><span class="line">	</span><br><span class="line"><span class="comment">// 对于结构体类型的`slice`是指针类型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="示例二："><a href="#示例二：" class="headerlink" title="示例二："></a>示例二：</h3><h2 id="receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。"><a href="#receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。" class="headerlink" title="receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。"></a>receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> myInt <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 指针类型方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(i *myInt)</span><span class="title">add2</span><span class="params">(another <span class="keyword">int</span>)</span><span class="title">myInt</span></span>&#123;</span><br><span class="line">	*i=*i+myInt(another)</span><br><span class="line">	<span class="keyword">return</span> *i</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 值类型方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(i myInt)</span><span class="title">add</span><span class="params">(another <span class="keyword">int</span>)</span><span class="title">myInt</span></span>&#123;</span><br><span class="line">	i=i+myInt(another)</span><br><span class="line">	<span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	i1:=myInt(<span class="number">1</span>)</span><br><span class="line">	i2:=i1.add(<span class="number">2</span>)</span><br><span class="line">	fmt.Println(i1,i2)</span><br><span class="line"><span class="comment">// 结果是：1,3</span></span><br><span class="line">	i2=i1.add2(<span class="number">2</span>)</span><br><span class="line">	fmt.Println(i1,i2)</span><br><span class="line"><span class="comment">// 结果是：3,3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        
-        <div id="comment-container">
-        </div>
+      
     </div>
-</div>
-    </div>
-</div>
-
-
-<footer class="footer">
-    <ul class="list-inline text-center">
-        
-        
-
-        
-
-        
-
-        
-
-        
-
-    </ul>
     
-    <p>
-        <span id="busuanzi_container_site_pv">
-            <span id="busuanzi_value_site_pv"></span>PV
-        </span>
-        <span id="busuanzi_container_site_uv">
-            <span id="busuanzi_value_site_uv"></span>UV
-        </span>
-        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
-</footer>
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/26/function/" rel="next" title="function">
+                <i class="fa fa-chevron-left"></i> function
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/27/note/" rel="prev" title="note">
+                note <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
 
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#可寻址值和不可寻址值调用方法"><span class="nav-number">1.</span> <span class="nav-text">可寻址值和不可寻址值调用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例一："><span class="nav-number">1.0.1.</span> <span class="nav-text">示例一：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换"><span class="nav-number">1.1.</span> <span class="nav-text">但是非指针类型也是可以调到指针方法的，因为Go进行了自动转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例二："><span class="nav-number">1.1.1.</span> <span class="nav-text">示例二：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。"><span class="nav-number">1.2.</span> <span class="nav-text">receiver变量其实就是源值的一个复制品。如果receiver是值类型，那么自然没有办法修改源值；如果receiver是指针类型，那么指针值指向的就是源值的地址，就能够修改源值。</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
 
 </body>
-
-<script>
-    // We expose some of the variables needed by the front end
-    window.hexo_search_path = "search.json"
-    window.hexo_root = "/"
-    window.isPost = true
-</script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
 </html>
