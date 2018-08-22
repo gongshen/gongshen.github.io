@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="Go的线程模型Go不推荐使用共享内存的方式传递数据，而推荐使用channel（或称“通道”）在多个goroutine之间传递数据，同时保证整个过程的并发安全性。不过，作为可选方法，Go依然提供了一些传统的同步方法（比如互斥量、条件变量等）。 在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。我们可以将goroutine看作是Go特有的应用程序线程。但是，goroutine背后的支撑">
+<meta name="description" content="go并发思维导图 Go的线程模型Go不推荐使用共享内存的方式传递数据，而推荐使用channel（或称“通道”）在多个goroutine之间传递数据，同时保证整个过程的并发安全性。不过，作为可选方法，Go依然提供了一些传统的同步方法（比如互斥量、条件变量等）。 在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。我们可以将goroutine看作是Go特有的应用程序线程。但是，gorout">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Readme">
 <meta property="og:url" content="http://www.llyltq.top/2018/03/26/gorouting_thread/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Go的线程模型Go不推荐使用共享内存的方式传递数据，而推荐使用channel（或称“通道”）在多个goroutine之间传递数据，同时保证整个过程的并发安全性。不过，作为可选方法，Go依然提供了一些传统的同步方法（比如互斥量、条件变量等）。 在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。我们可以将goroutine看作是Go特有的应用程序线程。但是，goroutine背后的支撑">
+<meta property="og:description" content="go并发思维导图 Go的线程模型Go不推荐使用共享内存的方式传递数据，而推荐使用channel（或称“通道”）在多个goroutine之间传递数据，同时保证整个过程的并发安全性。不过，作为可选方法，Go依然提供了一些传统的同步方法（比如互斥量、条件变量等）。 在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。我们可以将goroutine看作是Go特有的应用程序线程。但是，gorout">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.llyltq.top/images/2-1.png">
 <meta property="og:image" content="http://www.llyltq.top/images/2-2.png">
 <meta property="og:image" content="http://www.llyltq.top/images/2-3.png">
 <meta property="og:image" content="http://www.llyltq.top/images/2-4.png">
 <meta property="og:image" content="http://www.llyltq.top/images/2-5.png">
-<meta property="og:updated_time" content="2018-08-18T08:08:32.536Z">
+<meta property="og:updated_time" content="2018-08-22T10:05:23.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Readme">
-<meta name="twitter:description" content="Go的线程模型Go不推荐使用共享内存的方式传递数据，而推荐使用channel（或称“通道”）在多个goroutine之间传递数据，同时保证整个过程的并发安全性。不过，作为可选方法，Go依然提供了一些传统的同步方法（比如互斥量、条件变量等）。 在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。我们可以将goroutine看作是Go特有的应用程序线程。但是，goroutine背后的支撑">
+<meta name="twitter:description" content="go并发思维导图 Go的线程模型Go不推荐使用共享内存的方式传递数据，而推荐使用channel（或称“通道”）在多个goroutine之间传递数据，同时保证整个过程的并发安全性。不过，作为可选方法，Go依然提供了一些传统的同步方法（比如互斥量、条件变量等）。 在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。我们可以将goroutine看作是Go特有的应用程序线程。但是，gorout">
 <meta name="twitter:image" content="http://www.llyltq.top/images/2-1.png">
 
 
@@ -348,7 +348,7 @@
       
 	  
       
-        <a id="more"></a>
+        <p><a href="https://www.processon.com/mindmap/5aa9071ee4b0262b8b37e102" target="_blank" rel="noopener">go并发思维导图</a></p>
 <h1 id="Go的线程模型"><a href="#Go的线程模型" class="headerlink" title="Go的线程模型"></a>Go的线程模型</h1><p>Go不推荐使用共享内存的方式传递数据，而推荐使用channel（或称“通道”）在多个goroutine之间传递数据，同时保证整个过程的并发安全性。不过，作为可选方法，Go依然提供了一些传统的同步方法（比如互斥量、条件变量等）。</p>
 <p>在操作系统提供的内核线程之上，Go搭建了一个特有的两级线程模型。我们可以将goroutine看作是Go特有的应用程序线程。但是，goroutine背后的支撑体系远没有这么简单。</p>
 <p>说起Go的线程实现模型，有三个必知的核心元素，它们支撑起了这个模型的主框架。</p>
