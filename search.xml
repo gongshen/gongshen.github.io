@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>读取文件的方式</title>
+      <link href="/2018/08/23/%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E5%BC%8F/"/>
+      <url>/2018/08/23/%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">"bufio"</span></span><br><span class="line"><span class="string">"flag"</span></span><br><span class="line"><span class="string">"fmt"</span></span><br><span class="line"><span class="string">"io"</span></span><br><span class="line"><span class="string">"io/ioutil"</span></span><br><span class="line"><span class="string">"os"</span></span><br><span class="line"><span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">read1</span><span class="params">(path <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">fi, err := os.Open(path)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="built_in">panic</span>(err)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">defer</span> fi.Close()</span><br><span class="line"></span><br><span class="line">chunks := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">1024</span>, <span class="number">1024</span>)</span><br><span class="line">buf := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">1024</span>)</span><br><span class="line"><span class="keyword">for</span> &#123;</span><br><span class="line">n, err := fi.Read(buf)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &amp;&amp; err != io.EOF &#123;</span><br><span class="line"><span class="built_in">panic</span>(err)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> <span class="number">0</span> == n &#123;</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">&#125;</span><br><span class="line">chunks = <span class="built_in">append</span>(chunks, buf[:n]...)</span><br><span class="line"><span class="comment">// fmt.Println(string(buf[:n]))</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">string</span>(chunks)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">read2</span><span class="params">(path <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">fi, err := os.Open(path)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="built_in">panic</span>(err)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">defer</span> fi.Close()</span><br><span class="line">r := bufio.NewReader(fi)</span><br><span class="line"></span><br><span class="line">chunks := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">1024</span>, <span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">buf := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">1024</span>)</span><br><span class="line"><span class="keyword">for</span> &#123;</span><br><span class="line">n, err := r.Read(buf)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &amp;&amp; err != io.EOF &#123;</span><br><span class="line"><span class="built_in">panic</span>(err)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> <span class="number">0</span> == n &#123;</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">&#125;</span><br><span class="line">chunks = <span class="built_in">append</span>(chunks, buf[:n]...)</span><br><span class="line"><span class="comment">// fmt.Println(string(buf[:n]))</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">string</span>(chunks)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">read3</span><span class="params">(path <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">fi, err := os.Open(path)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="built_in">panic</span>(err)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">defer</span> fi.Close()</span><br><span class="line">fd, err := ioutil.ReadAll(fi)</span><br><span class="line"><span class="comment">// fmt.Println(string(fd))</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">string</span>(fd)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">flag.Parse()</span><br><span class="line">file := flag.Arg(<span class="number">0</span>)</span><br><span class="line">f, err := ioutil.ReadFile(file)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">fmt.Printf(<span class="string">"%s\n"</span>, err)</span><br><span class="line"><span class="built_in">panic</span>(err)</span><br><span class="line">&#125;</span><br><span class="line">fmt.Println(<span class="keyword">string</span>(f))</span><br><span class="line">start := time.Now()</span><br><span class="line">read1(file)</span><br><span class="line">t1 := time.Now()</span><br><span class="line">fmt.Printf(<span class="string">"Cost time %v\n"</span>, t1.Sub(start))</span><br><span class="line">read2(file)</span><br><span class="line">t2 := time.Now()</span><br><span class="line">fmt.Printf(<span class="string">"Cost time %v\n"</span>, t2.Sub(t1))</span><br><span class="line">read3(file)</span><br><span class="line">t3 := time.Now()</span><br><span class="line">fmt.Printf(<span class="string">"Cost time %v\n"</span>, t3.Sub(t2))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> golang </category>
+          
+          <category> 基础知识 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
       <title>流水线操作</title>
       <link href="/2018/08/23/%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%93%8D%E4%BD%9C/"/>
       <url>/2018/08/23/%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%93%8D%E4%BD%9C/</url>
@@ -214,12 +231,16 @@
       
       <categories>
           
-          <category> golang </category>
-          
-          <category> channel </category>
+          <category> Go </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> channel </tag>
+            
+        </tags>
       
     </entry>
     
@@ -535,12 +556,16 @@
       
       <categories>
           
-          <category> golang </category>
-          
-          <category> 设计模式 </category>
+          <category> Go </category>
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 设计模式 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -618,9 +643,7 @@
       
       <categories>
           
-          <category> golang </category>
-          
-          <category> 应用 </category>
+          <category> Go </category>
           
       </categories>
       
