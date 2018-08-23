@@ -253,6 +253,316 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/10/旋转字符串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/旋转字符串/" itemprop="url">旋转字符串</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T16:31:00+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法与数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">算法与数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法与数据结构/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <a id="more"></a>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//给出字符串abcdefg，旋转2，变成cdefgab </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//法一：暴力移位法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">leftShiftOne</span><span class="params">(<span class="built_in">string</span> &amp;str)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = str.length();</span><br><span class="line">	<span class="keyword">if</span>(n&lt;<span class="number">2</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">char</span> t = str[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">		str[i<span class="number">-1</span>]=str[i];</span><br><span class="line">	&#125;</span><br><span class="line">	str[n<span class="number">-1</span>]=t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate_1</span><span class="params">(<span class="built_in">string</span> &amp;str,<span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(m--)&#123;</span><br><span class="line">		leftShiftOne(str);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//法二：三步转换法 </span></span><br><span class="line"><span class="comment">//ab-&gt;ba</span></span><br><span class="line"><span class="comment">//cdefg-&gt;gfedc</span></span><br><span class="line"><span class="comment">//bagfedc-&gt;cdefgab </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reserveString</span><span class="params">(<span class="built_in">string</span> &amp;str,<span class="keyword">int</span> from,<span class="keyword">int</span> to)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(from &lt; to)&#123;</span><br><span class="line">		<span class="keyword">char</span> t = str[from];</span><br><span class="line">		str[from]=str[to];</span><br><span class="line">		str[to]=t;</span><br><span class="line">		from++;</span><br><span class="line">		to--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate_2</span><span class="params">(<span class="built_in">string</span> &amp;str,<span class="keyword">int</span> m,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	m %= n;</span><br><span class="line">	reserveString(str,<span class="number">0</span>,m<span class="number">-1</span>);</span><br><span class="line">	reserveString(str,m,n<span class="number">-1</span>);</span><br><span class="line">	reserveString(str,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s =<span class="string">"abcdefg"</span>;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">7</span>;</span><br><span class="line">	rotate_2(s,num,s.size());</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/09/发送邮件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/09/发送邮件/" itemprop="url">发送邮件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-09T22:29:56+08:00">
+                2018-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/应用/" itemprop="url" rel="index">
+                    <span itemprop="name">应用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <a id="more"></a>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	auth:=smtp.PlainAuth(<span class="string">""</span>,<span class="string">"example1@qq.com"</span>,<span class="string">"密码"</span>,<span class="string">"smtp.qq.com"</span>)</span><br><span class="line">	to:=[]<span class="keyword">string</span>&#123;<span class="string">"example2@qq.com"</span>&#125;</span><br><span class="line">	nickname:=<span class="string">"test"</span></span><br><span class="line">	subject:=<span class="string">"test mail"</span></span><br><span class="line">	content_type:=<span class="string">"Content-type: text/plain;charset=UTF-8"</span></span><br><span class="line">	body:=<span class="string">"This is email body!"</span></span><br><span class="line">	from:=<span class="string">"example1@qq.com"</span></span><br><span class="line">	msg:=[]<span class="keyword">byte</span>(<span class="string">"To:"</span>+strings.Join(to,<span class="string">","</span>)+<span class="string">"\r\nFrom"</span>+nickname+<span class="string">"&lt;"</span>+from+<span class="string">"&gt;\r\nSubject:"</span>+subject+<span class="string">"\r\n"</span>+content_type+<span class="string">"\r\n\r\n"</span>+body)</span><br><span class="line">	err:=smtp.SendMail(<span class="string">"smtp.qq.com:25"</span>,auth,from,to,msg)</span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Printf(<span class="string">"send email error:%v"</span>,err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/07/10/unsafe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1548,349 +1858,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/28/channel_readme/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/28/channel_readme/" itemprop="url">Readme</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T16:22:14+08:00">
-                2018-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/channel/" itemprop="url" rel="index">
-                    <span itemprop="name">channel</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <a id="more"></a>
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><h3 id="缓冲通道"><a href="#缓冲通道" class="headerlink" title="缓冲通道"></a>缓冲通道</h3><ol>
-<li><code>elem,ok:=&lt;-strCh</code>，没有元素时，当前gorouting进入<code>GWaiting</code>状态，当通道关闭时，<code>elem</code>会赋予相应的零值<code>ok</code>值为false</li>
-<li>试图从一个未被初始化的通道值（值为<code>nil</code>的通道）接收元素值，会被永久阻塞</li>
-<li>发送操作会使通道<code>复制</code>被发送的元素，如果<code>通道已空</code>且<code>有接收方在等待</code>，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中</li>
-<li>如果传递的值是<code>引用类型</code>，那么接收方的操作会影响发送方的<code>源值</code></li>
-<li>可以使用<code>len</code>获取通道中的元素值数量，使用<code>cap</code>获取通道的容量。</li>
-<li><code>Notify(c chan&lt;- os.Signal)</code>：约束的是方法的实现方（适用于接口）；<code>Notify()&lt;-chan os.Signal</code>：约束方法的调用方（适用于函数和结构体方法）</li>
-<li>一般情况下不能转换通道类型，利用函数声明转换是Go的语法糖</li>
-<li>可以使用<code>for</code>语句可以不断地从通道接收元素值，直到通道关闭，但是通道不能是一个<code>发送通道</code></li>
-<li><code>select</code>后面直接加花括号，然后<code>case</code>后面只能是接收或者发送语句，<code>case</code>右边的表达式会先求值，相同条件时会随机选择一个</li>
-<li><code>break</code>语句可以直接跳出<code>select</code>，和<code>for</code>一起用时，使用<code>break + 标签</code>来表示中断紧贴于标签下的语句。</li>
-<li>单向通道可以对实现类型进行约束</li>
-<li>向一个关闭的通道发送数据会阻塞，但是接收端可以在关闭的通道接收数据，所以建议在发送端关闭通道</li>
-<li>建议用于传递<code>信号</code>的通道都以<code>struct{}</code>作为元素类型，因为空结构体类型是不占内存空间的，并且拥有相同的内存地址。<h3 id="非缓冲通道"><a href="#非缓冲通道" class="headerlink" title="非缓冲通道"></a>非缓冲通道</h3></li>
-<li>非缓冲通道只能同步的传递元素值</li>
-<li>向该通道<code>发送</code>元素值的操作会被阻塞，直到至少有一个针对该通道的接收操作，接收操作会先得到元素值的副本，然后唤醒发送方的gorouting，也就是说接收操作比发送操作先完成</li>
-<li>从该通道<code>接收</code>元素值的操作会被阻塞，直到至少有一个针对该通道的发送操作，发送操作会直接把元素值复制给接收方，然后唤醒接收方的gorouting，所以发送操作比接收操作先完成<h3 id="time包"><a href="#time包" class="headerlink" title="time包"></a>time包</h3><strong>定时器</strong></li>
-<li>定时器<code>Timer</code>，我们不能使用复合字面量来初始化它，因为它含有包级私有字段，使用<code>time.NewTimer</code>和<code>time.AfterFunc</code>函数来构建</li>
-<li>定时器<code>Timer</code>中有一个通道<code>C</code>的字段，当定时器到期时发送当前时间到通道<code>C</code></li>
-<li><code>time.After</code>就是<code>time.NewTimer().C</code>的超时设定的一种快捷方式</li>
-<li>每次循环都要新建定时器有先浪费，我们可以使用<code>timer.Reset</code>重置来复用</li>
-<li>如果在<code>定时器</code>到期之前停止了它，再去接收<code>C</code>的元素值会一直阻塞</li>
-<li>如果在<code>定时器</code>到期之后未能及时接收元素值，那么即使重置以后，<code>C</code>字段还是会一直缓存那个元素值，新的通知会被丢弃</li>
-<li><code>time.AfterFunc</code>也会新建定时器，但是到期之后不会发送通知，而是新启用一个<code>gorouting</code>执行传入的函数</li>
-</ol>
-<p><strong>断续器</strong></p>
-<ol>
-<li>断续器会间隔一段时间向通道<code>C</code>发送时间</li>
-<li>使用<code>time.NewTicker</code>初始化断续器</li>
-<li>使用<code>Stop</code>方法停止断续器，如果此时字段<code>C</code>存在元素值，那么会保存在那里，等待接收</li>
-<li>断续器适用于定时任务的触发器</li>
-</ol>
-
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/27/pipe/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/27/pipe/" itemprop="url">模拟pipe</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T23:41:34+08:00">
-                2018-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/管道/" itemprop="url" rel="index">
-                    <span itemprop="name">管道</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <a id="more"></a>
-<h3 id="1、匿名管道"><a href="#1、匿名管道" class="headerlink" title="1、匿名管道"></a>1、匿名管道</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"os/exec"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"bufio"</span></span><br><span class="line">	<span class="string">"bytes"</span></span><br><span class="line">	<span class="string">"io"</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">runCmd</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> useBufIO=<span class="literal">false</span></span><br><span class="line">	cmd0 := exec.Command(<span class="string">"echo"</span>, <span class="string">"-n"</span>, <span class="string">"My first command comes from golang."</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 设置一个输出通道</span></span><br><span class="line">	stdout0, err := cmd0.StdoutPipe()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Error:Counld't obtain the stdout pipe from command NO.0:%s\n"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Start</span></span><br><span class="line">	<span class="keyword">if</span> err := cmd0.Start(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Error:The command NO.0 can not be startup:%s\n"</span>, err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 调用read方法获取命令</span></span><br><span class="line">	<span class="keyword">var</span> output0 = <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">30</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> !useBufIO &#123;</span><br><span class="line">		<span class="keyword">var</span> outputBuf0 bytes.Buffer</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			tempOutput0 := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">5</span>)</span><br><span class="line">			n, err := stdout0.Read(tempOutput0)</span><br><span class="line">			<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">				<span class="keyword">if</span> err == io.EOF &#123;</span><br><span class="line">					<span class="keyword">break</span></span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					fmt.Printf(<span class="string">"Error:Couldn't read data from the pipe:%s\n"</span>, err)</span><br><span class="line">					os.Exit(<span class="number">1</span>)</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> n &gt; <span class="number">0</span> &#123;</span><br><span class="line">				outputBuf0.Write(tempOutput0[:n])</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Printf(<span class="string">"%s\n"</span>, outputBuf0.String())</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// 缓存读取器</span></span><br><span class="line">		<span class="keyword">var</span> isPrefix <span class="keyword">bool</span></span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			outputBuf0 := bufio.NewReaderSize(stdout0, <span class="number">5</span>)</span><br><span class="line">			output0, isPrefix, err = outputBuf0.ReadLine()</span><br><span class="line">			<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">				fmt.Printf(<span class="string">"Error:Couldn't read data from the pipe:%s\n"</span>, err)</span><br><span class="line">				os.Exit(<span class="number">1</span>)</span><br><span class="line">			&#125;</span><br><span class="line">			fmt.Printf(<span class="string">"%s"</span>, <span class="keyword">string</span>(output0))</span><br><span class="line">			<span class="keyword">if</span> isPrefix == <span class="literal">false</span> &#123;</span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过管道将输出值作为另一个命令的输入</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">runCmdPipe</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> outputBuf1 bytes.Buffer</span><br><span class="line">	<span class="keyword">var</span> outputBuf2 bytes.Buffer</span><br><span class="line">	cmd1:=exec.Command(<span class="string">"ps"</span>,<span class="string">"aux"</span>)</span><br><span class="line">	cmd2:=exec.Command(<span class="string">"grep"</span>,<span class="string">"apipe"</span>)</span><br><span class="line">	<span class="comment">//将所有的输出内容都记录到这里</span></span><br><span class="line">	cmd1.Stdout=&amp;outputBuf1</span><br><span class="line">	<span class="keyword">if</span> err:=cmd1.Start();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Error:The frist command can not be startup:%s\n"</span>,err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//cmd1结束运行之前，wait()调用会一直阻塞</span></span><br><span class="line">	<span class="keyword">if</span> err:=cmd1.Wait();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Error:Can't wait for the first command:%s\n"</span>,err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	cmd2.Stdin=&amp;outputBuf1</span><br><span class="line">	cmd2.Stdout=&amp;outputBuf2</span><br><span class="line">	<span class="keyword">if</span> err:=cmd2.Start();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Error:The second command can not be startup:%s\n"</span>,err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> err:=cmd2.Wait();err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Error:Cant't wait for the second command:%s\n"</span>,err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"%s\n"</span>,outputBuf2.String())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	runCmd()</span><br><span class="line">	fmt.Println()</span><br><span class="line">	runCmdPipe()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2、命名管道（文件管道）和内存管道"><a href="#2、命名管道（文件管道）和内存管道" class="headerlink" title="2、命名管道（文件管道）和内存管道"></a>2、命名管道（文件管道）和内存管道</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">	<span class="string">"io"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基于文件的管道，其中一端未绪前阻塞另一端的进程</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fileBasePipe</span><span class="params">()</span></span> &#123;</span><br><span class="line">	reader,writer,err:=os.Pipe()</span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Error:Create named pipe failed:%s\n"</span>,err)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		outPut:=<span class="built_in">make</span>([]<span class="keyword">byte</span>,<span class="number">100</span>)</span><br><span class="line">		n,err:=reader.Read(outPut)</span><br><span class="line">		<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">			fmt.Printf(<span class="string">"Error:Could't read data from the named pipe: %s\n"</span>,err)</span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Printf(<span class="string">"Readed %d byte(s)[based pipe]\n"</span>,n)</span><br><span class="line">		fmt.Println(<span class="keyword">string</span>(outPut))</span><br><span class="line">	&#125;()</span><br><span class="line">	inPut:=<span class="built_in">make</span>([]<span class="keyword">byte</span>,<span class="number">26</span>)</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">65</span>;i&lt;<span class="number">90</span>;i++&#123;</span><br><span class="line">		inPut[i<span class="number">-65</span>]=<span class="keyword">byte</span>(i)</span><br><span class="line">	&#125;</span><br><span class="line">	n,err:=writer.Write(inPut)</span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Error: Couldn't write data to the named pipe: %s\n"</span>,err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"Written %d byte(s).[based pipe]\n"</span>,n)</span><br><span class="line">	time.Sleep(<span class="number">200</span>*time.Millisecond)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基于内存的有原子性操作的管道</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">memoryBasePipe</span><span class="params">()</span></span> &#123;</span><br><span class="line">	reader, writer := io.Pipe()</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		outPut := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">100</span>)</span><br><span class="line">		n,err := reader.Read(outPut)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Printf(<span class="string">"Error:Read fatal: %s\n"</span>, err)</span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Printf(<span class="string">"Readed %d byte(s)[based pipe]\n"</span>, n)</span><br><span class="line">		fmt.Println(<span class="keyword">string</span>(outPut))</span><br><span class="line">	&#125;()</span><br><span class="line">	inPut:=<span class="built_in">make</span>([]<span class="keyword">byte</span>,<span class="number">26</span>)</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">65</span>;i&lt;<span class="number">90</span>;i++&#123;</span><br><span class="line">		inPut[i<span class="number">-65</span>]=<span class="keyword">byte</span>(i)</span><br><span class="line">	&#125;</span><br><span class="line">	n, err := writer.Write(inPut)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"Error:Write fatal: %s\n"</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"Written %d byte(s).[based pipe]\n"</span>, n)</span><br><span class="line">	time.Sleep(<span class="number">200</span>*time.Millisecond)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fileBasePipe()</span><br><span class="line">	fmt.Println()</span><br><span class="line">	memoryBasePipe()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1941,7 +1908,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1952,12 +1919,21 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
