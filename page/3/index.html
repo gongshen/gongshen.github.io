@@ -159,18 +159,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-	<script>
-		(function() {
-			var cx = '004634438224023994959:rb_4hy_d500';
-			var gcse = document.createElement('script');
-			gcse.type = 'text/javascript';
-			gcse.async = true;
-			gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-			var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(gcse, s);
-			})();
-		</script>
-		<gcse:searchbox-only></gcse:searchbox-only>
+	
       
         <p class="site-subtitle"></p>
       
@@ -1065,178 +1054,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/28/context/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/28/context/" itemprop="url">Context</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T16:22:14+08:00">
-                2018-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/package/" itemprop="url" rel="index">
-                    <span itemprop="name">package</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><p>Context变量保存着每个Gorouting的执行状态。在网络编程下，当接收到一个Request请求并处理时，可能会在多个Gorouting中处理，那么这些Gorouting需要共享Request的一些信息；当Request被取消或者超时时，一并将Gorouting也清除。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Context <span class="keyword">interface</span> &#123;</span><br><span class="line">    Deadline() (deadline time.Time, ok <span class="keyword">bool</span>)</span><br><span class="line">    Done() &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line">    Err() error</span><br><span class="line">    Value(key <span class="keyword">interface</span>&#123;&#125;) <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>Deadline：会返回一个超时时间，用来确定是否有时间足够开始工作</li>
-<li>Done：返回一个channel，当Context被取消或者超时时，通道会关闭</li>
-<li>Err：Done通道被关闭后，Err方法表明Context被撤销的原因</li>
-<li>Value：可以让Goruting之间共享数据，参数是key，返回相应的value</li>
-</ul>
-<p>Gorouting和Context都是层层调用的，所以上层的Gorouting有办法关闭下层的Gorouting。<br>context.Background函数能返回Context的根节点——这个Context由接收请求的第一个Gorouting创建。</p>
-<h1 id="Context的衍生"><a href="#Context的衍生" class="headerlink" title="Context的衍生"></a>Context的衍生</h1><p>下面这些函数都是接收父节点，并且设置一些状态值，生成子节点并传给下层Gorouting。</p>
-<ul>
-<li>WithCancel：还返回一个Cancel函数，用来控制该节点</li>
-<li>WithDeadline：还返回一个带过期时间的Cancel函数，但是过期时间由<code>parent</code>和<code>deadline</code>决定</li>
-<li>WithTimeout：还返回以一个带超时时间的Cancel函数，表示从现在开始剩余多少时间</li>
-<li>WithValue：返回一个带有数据的子节点，使用<code>Value</code>方法可以返回其值</li>
-</ul>
-<h3 id="WithCancel"><a href="#WithCancel" class="headerlink" title="WithCancel"></a>WithCancel</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">gen := <span class="function"><span class="keyword">func</span><span class="params">(ctx context.Context)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	dst := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	n := <span class="number">0</span></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> dst &lt;- n:</span><br><span class="line">				n++</span><br><span class="line">			<span class="keyword">case</span> &lt;-ctx.Done():	<span class="comment">//判断该节点的Context是否结束</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> dst</span><br><span class="line">&#125;</span><br><span class="line">ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line"><span class="keyword">defer</span> cancel()<span class="comment">//关闭该节点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> n := <span class="keyword">range</span> gen(ctx) &#123;</span><br><span class="line">	fmt.Println(n)</span><br><span class="line">	<span class="keyword">if</span> n == <span class="number">5</span> &#123;</span><br><span class="line">		<span class="keyword">break</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="WithDeadline"><a href="#WithDeadline" class="headerlink" title="WithDeadline"></a>WithDeadline</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(<span class="number">50</span>*time.Millisecond))</span><br><span class="line"><span class="comment">//尽管context会过期，但是还是要调用cancel方法，为了避免父context存在太长的时间</span></span><br><span class="line"><span class="keyword">defer</span> cancel()</span><br><span class="line"><span class="keyword">select</span> &#123;</span><br><span class="line"><span class="keyword">case</span> &lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">	fmt.Println(<span class="string">"sleptout!"</span>)</span><br><span class="line"><span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">	fmt.Println(ctx.Err())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="WithValue"><a href="#WithValue" class="headerlink" title="WithValue"></a>WithValue</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> favContextKey <span class="keyword">string</span></span><br><span class="line">	f := <span class="function"><span class="keyword">func</span><span class="params">(ctx context.Context, k favContextKey)</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> v := ctx.Value(k); v != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">"Found value:"</span>, v)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Println(<span class="string">"Key not found:"</span>, k)</span><br><span class="line">	&#125;</span><br><span class="line">	k := favContextKey(<span class="string">"language"</span>)</span><br><span class="line">	ctx := context.WithValue(context.Background(), k, <span class="string">"Go"</span>)</span><br><span class="line">	f(ctx, k)</span><br><span class="line">	f(ctx, favContextKey(<span class="string">"color"</span>))</span><br></pre></td></tr></table></figure>
-<h1 id="Go的流水线操作"><a href="#Go的流水线操作" class="headerlink" title="Go的流水线操作"></a>Go的流水线操作</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于显示的释放上游通道</span></span><br><span class="line"><span class="keyword">var</span> done = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">gen</span><span class="params">(nums ...<span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="comment">//设置上游通道的缓存，保证下游通到失败时，上游通道也能返回</span></span><br><span class="line">	out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="built_in">len</span>(nums))</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> _, n := <span class="keyword">range</span> nums &#123;</span><br><span class="line">			out &lt;- n</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">close</span>(out)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sq</span><span class="params">(in &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">defer</span> <span class="built_in">close</span>(out)</span><br><span class="line">		<span class="keyword">for</span> n := <span class="keyword">range</span> in &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> out &lt;- n * n:</span><br><span class="line">			<span class="keyword">case</span> &lt;-done:</span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">merge</span><span class="params">(in ...&lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	wg := sync.WaitGroup&#123;&#125;</span><br><span class="line">	wg.Add(<span class="built_in">len</span>(in))</span><br><span class="line">	<span class="comment">// 存储未读的数据</span></span><br><span class="line">	out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">3</span>)</span><br><span class="line">	output := <span class="function"><span class="keyword">func</span><span class="params">(c &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> n := <span class="keyword">range</span> c &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> out &lt;- n:</span><br><span class="line">			<span class="keyword">case</span> &lt;-done:</span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		wg.Done()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, c := <span class="keyword">range</span> in &#123;</span><br><span class="line">		<span class="comment">// 每个channel分配一个gorouting</span></span><br><span class="line">		<span class="keyword">go</span> output(c)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		wg.Wait()</span><br><span class="line">		<span class="built_in">close</span>(out)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	in := gen(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">	c1 := sq(in)</span><br><span class="line">	c2 := sq(in)</span><br><span class="line">	c3 := sq(in)</span><br><span class="line">	<span class="comment">//当main的操作完成时，关闭通道</span></span><br><span class="line">	<span class="keyword">defer</span> <span class="built_in">close</span>(done)</span><br><span class="line">	out := merge(c1, c2, c3)</span><br><span class="line">	fmt.Println(&lt;-out)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/28/channel_readme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1376,6 +1193,178 @@
 <li>断续器适用于定时任务的触发器</li>
 </ol>
 
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/28/context/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/28/context/" itemprop="url">Context</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T16:22:14+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/package/" itemprop="url" rel="index">
+                    <span itemprop="name">package</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><p>Context变量保存着每个Gorouting的执行状态。在网络编程下，当接收到一个Request请求并处理时，可能会在多个Gorouting中处理，那么这些Gorouting需要共享Request的一些信息；当Request被取消或者超时时，一并将Gorouting也清除。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Context <span class="keyword">interface</span> &#123;</span><br><span class="line">    Deadline() (deadline time.Time, ok <span class="keyword">bool</span>)</span><br><span class="line">    Done() &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line">    Err() error</span><br><span class="line">    Value(key <span class="keyword">interface</span>&#123;&#125;) <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Deadline：会返回一个超时时间，用来确定是否有时间足够开始工作</li>
+<li>Done：返回一个channel，当Context被取消或者超时时，通道会关闭</li>
+<li>Err：Done通道被关闭后，Err方法表明Context被撤销的原因</li>
+<li>Value：可以让Goruting之间共享数据，参数是key，返回相应的value</li>
+</ul>
+<p>Gorouting和Context都是层层调用的，所以上层的Gorouting有办法关闭下层的Gorouting。<br>context.Background函数能返回Context的根节点——这个Context由接收请求的第一个Gorouting创建。</p>
+<h1 id="Context的衍生"><a href="#Context的衍生" class="headerlink" title="Context的衍生"></a>Context的衍生</h1><p>下面这些函数都是接收父节点，并且设置一些状态值，生成子节点并传给下层Gorouting。</p>
+<ul>
+<li>WithCancel：还返回一个Cancel函数，用来控制该节点</li>
+<li>WithDeadline：还返回一个带过期时间的Cancel函数，但是过期时间由<code>parent</code>和<code>deadline</code>决定</li>
+<li>WithTimeout：还返回以一个带超时时间的Cancel函数，表示从现在开始剩余多少时间</li>
+<li>WithValue：返回一个带有数据的子节点，使用<code>Value</code>方法可以返回其值</li>
+</ul>
+<h3 id="WithCancel"><a href="#WithCancel" class="headerlink" title="WithCancel"></a>WithCancel</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">gen := <span class="function"><span class="keyword">func</span><span class="params">(ctx context.Context)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	dst := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	n := <span class="number">0</span></span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> dst &lt;- n:</span><br><span class="line">				n++</span><br><span class="line">			<span class="keyword">case</span> &lt;-ctx.Done():	<span class="comment">//判断该节点的Context是否结束</span></span><br><span class="line">				<span class="keyword">break</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> dst</span><br><span class="line">&#125;</span><br><span class="line">ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line"><span class="keyword">defer</span> cancel()<span class="comment">//关闭该节点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> n := <span class="keyword">range</span> gen(ctx) &#123;</span><br><span class="line">	fmt.Println(n)</span><br><span class="line">	<span class="keyword">if</span> n == <span class="number">5</span> &#123;</span><br><span class="line">		<span class="keyword">break</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="WithDeadline"><a href="#WithDeadline" class="headerlink" title="WithDeadline"></a>WithDeadline</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(<span class="number">50</span>*time.Millisecond))</span><br><span class="line"><span class="comment">//尽管context会过期，但是还是要调用cancel方法，为了避免父context存在太长的时间</span></span><br><span class="line"><span class="keyword">defer</span> cancel()</span><br><span class="line"><span class="keyword">select</span> &#123;</span><br><span class="line"><span class="keyword">case</span> &lt;-time.After(<span class="number">1</span> * time.Second):</span><br><span class="line">	fmt.Println(<span class="string">"sleptout!"</span>)</span><br><span class="line"><span class="keyword">case</span> &lt;-ctx.Done():</span><br><span class="line">	fmt.Println(ctx.Err())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="WithValue"><a href="#WithValue" class="headerlink" title="WithValue"></a>WithValue</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> favContextKey <span class="keyword">string</span></span><br><span class="line">	f := <span class="function"><span class="keyword">func</span><span class="params">(ctx context.Context, k favContextKey)</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> v := ctx.Value(k); v != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">"Found value:"</span>, v)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Println(<span class="string">"Key not found:"</span>, k)</span><br><span class="line">	&#125;</span><br><span class="line">	k := favContextKey(<span class="string">"language"</span>)</span><br><span class="line">	ctx := context.WithValue(context.Background(), k, <span class="string">"Go"</span>)</span><br><span class="line">	f(ctx, k)</span><br><span class="line">	f(ctx, favContextKey(<span class="string">"color"</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="Go的流水线操作"><a href="#Go的流水线操作" class="headerlink" title="Go的流水线操作"></a>Go的流水线操作</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于显示的释放上游通道</span></span><br><span class="line"><span class="keyword">var</span> done = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">gen</span><span class="params">(nums ...<span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="comment">//设置上游通道的缓存，保证下游通到失败时，上游通道也能返回</span></span><br><span class="line">	out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="built_in">len</span>(nums))</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> _, n := <span class="keyword">range</span> nums &#123;</span><br><span class="line">			out &lt;- n</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">close</span>(out)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sq</span><span class="params">(in &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">defer</span> <span class="built_in">close</span>(out)</span><br><span class="line">		<span class="keyword">for</span> n := <span class="keyword">range</span> in &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> out &lt;- n * n:</span><br><span class="line">			<span class="keyword">case</span> &lt;-done:</span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">merge</span><span class="params">(in ...&lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	wg := sync.WaitGroup&#123;&#125;</span><br><span class="line">	wg.Add(<span class="built_in">len</span>(in))</span><br><span class="line">	<span class="comment">// 存储未读的数据</span></span><br><span class="line">	out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">3</span>)</span><br><span class="line">	output := <span class="function"><span class="keyword">func</span><span class="params">(c &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> n := <span class="keyword">range</span> c &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> out &lt;- n:</span><br><span class="line">			<span class="keyword">case</span> &lt;-done:</span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		wg.Done()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, c := <span class="keyword">range</span> in &#123;</span><br><span class="line">		<span class="comment">// 每个channel分配一个gorouting</span></span><br><span class="line">		<span class="keyword">go</span> output(c)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		wg.Wait()</span><br><span class="line">		<span class="built_in">close</span>(out)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	in := gen(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">	c1 := sq(in)</span><br><span class="line">	c2 := sq(in)</span><br><span class="line">	c3 := sq(in)</span><br><span class="line">	<span class="comment">//当main的操作完成时，关闭通道</span></span><br><span class="line">	<span class="keyword">defer</span> <span class="built_in">close</span>(done)</span><br><span class="line">	out := merge(c1, c2, c3)</span><br><span class="line">	fmt.Println(&lt;-out)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
 		-->
