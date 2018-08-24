@@ -91,11 +91,11 @@
 <meta property="og:image" content="http://www.llyltq.top/images/git指令操作1.png">
 <meta property="og:image" content="http://www.llyltq.top/images/git指令操作2.png">
 <meta property="og:image" content="http://www.llyltq.top/images/分支新建.png">
-<meta property="og:image" content="http://www.llyltq.top/images/分支提交.png">
-<meta property="og:image" content="http://www.llyltq.top/images/分支合并.png">
+<meta property="og:image" content="http://www.llyltq.top/images/分支提交.jpg">
+<meta property="og:image" content="http://www.llyltq.top/images/分支合并.jpg">
 <meta property="og:image" content="http://www.llyltq.top/images/分支合并2.jpg">
 <meta property="og:image" content="http://www.llyltq.top/images/分支管理策略.png">
-<meta property="og:updated_time" content="2018-08-24T05:11:38.458Z">
+<meta property="og:updated_time" content="2018-08-24T05:40:42.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git">
 <meta name="twitter:description" content="1、原理Git工作流当新建一个仓库后，当前目录就是工作区，隐藏文件.git就是版本库版本库有一个stage的暂存区，自动创建的master分支和指向当前分支的指针HEAD   git add files：将文件添加到暂存区 git commit：将暂存区的修改提交到当前分支 git reset -- files：用当前分支的修改覆盖暂存区，用来撤销最后一次git add git checkout">
@@ -365,7 +365,7 @@
 <li><code>git commit -a</code>：直接将所有修改添加到暂存区并提交到当前分支</li>
 <li><code>git checkout HEAD -- files</code>：取出最后一次修改，来覆盖工作目录，进行回滚操作</li>
 </ul>
-<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p><img src="\images\分支新建.png" alt="分支新建"><br>分支的新建很快，就是新建一个<code>dev</code>指针，将<code>HEAD</code>指针指向它，就是当前指针了。<br><img src="\images\分支提交.png" alt="分支提交"><br>分支的每次提交是当前分支向前移动。<br><img src="\images\分支合并.png" alt="分支合并"><br>分支的合并就是修改指针。<br><img src="\images\分支合并2.jpg" alt=""><br>“快进式合并”(fast-forward merge)会直接将master分支指向合并的分支，会丢失分支信息，所以禁用<code>Fast forward</code>模式，加上<code>-m</code>让合并时产生一次提交。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git merge --no-ff -m &quot;merge with no-ff&quot; dev</span><br></pre></td></tr></table></figure></p>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p><img src="\images\分支新建.png" alt="分支新建"><br>分支的新建很快，就是新建一个<code>dev</code>指针，将<code>HEAD</code>指针指向它，就是当前指针了。<br><img src="\images\分支提交.jpg" alt="分支提交"><br>分支的每次提交是当前分支向前移动。<br><img src="\images\分支合并.jpg" alt="分支合并"><br>分支的合并就是修改指针。<br><img src="\images\分支合并2.jpg" alt=""><br>“快进式合并”(fast-forward merge)会直接将master分支指向合并的分支，会丢失分支信息，所以禁用<code>Fast forward</code>模式，加上<code>-m</code>让合并时产生一次提交。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git merge --no-ff -m &quot;merge with no-ff&quot; dev</span><br></pre></td></tr></table></figure></p>
 <h3 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h3><p>如果两个分支对同一行进行了修改，分支合并时就会冲突。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">Creating a new branch is quick &amp; simple.</span><br><span class="line">=======</span><br><span class="line">Creating a new branch is quick AND simple.</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature1</span><br></pre></td></tr></table></figure></p>
 <p>解决方法：</p>
 <ol>
