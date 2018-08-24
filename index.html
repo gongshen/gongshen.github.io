@@ -253,6 +253,216 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/24/正则表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/24/正则表达式/" itemprop="url">正则表达式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T23:32:04+08:00">
+                2018-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <p><img src="\images\正则图.png" alt="正则图"></p>
+<h1 id="基本正则表达式"><a href="#基本正则表达式" class="headerlink" title="基本正则表达式"></a>基本正则表达式</h1><ul>
+<li>^：行首</li>
+<li>$：行尾</li>
+<li>^$：空行</li>
+<li>\&lt;：词首</li>
+<li>>：词尾</li>
+<li>\B：非单词边界</li>
+<li>(hello)：表示hello这整个单词</li>
+<li>m{n}：m连续出现n次</li>
+<li>n*：n连续出现（包括0次）</li>
+<li>.：单个字符</li>
+<li>.*：任意字符</li>
+<li>n\?：n出现0次或1次</li>
+<li>n\ +：n至少出现1次</li>
+<li>[abc]：abc中任意的单个字符</li>
+<li>[^abc]：除了abc外的任意的单个字符</li>
+<li>[[:alpha:]]：任意英文字母中的任意的单个字符</li>
+<li>\1：表示整个正则中第1个分组的匹配结果，<code>分组的顺序取决于分组符号左侧部分的顺序</code></li>
+<li>(?=)：表示后面匹配的字符串要符合这里的匹配</li>
+</ul>
+<hr>
+<p>a连续出现2次，但是a连续出现2次以上也会被匹配到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;a\&#123;2\&#125;&quot; regex</span><br></pre></td></tr></table></figure></p>
+<p>使用这种写法，精确匹配2次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;\&lt;a\&#123;2\&#125;\&gt;&quot; regex</span><br></pre></td></tr></table></figure></p>
+<p>a连续出现2到3次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;\&lt;a\&#123;2,3\&#125;\&gt;&quot; regex</span><br></pre></td></tr></table></figure></p>
+<p>a连续出现至多2次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;\&lt;a\&#123;,2\&#125;\&gt;&quot; regex</span><br></pre></td></tr></table></figure></p>
+<p><code>*</code>跟通配符不同，表示*之前的字符连续出现（包括0次）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;e*f&quot; regex</span><br></pre></td></tr></table></figure></p>
+<h3 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h3><p>符号    意义</p>
+<ul>
+<li>[:alnum:]    ：任何英文字母和数字</li>
+<li>[:upper:]    ：大写字母</li>
+<li>[:alpha:]    ：字母</li>
+<li>[:lower:]    ：小写字母</li>
+<li>[:cntrl:]    ：键盘上的控制按键</li>
+<li>[:digit:]    ：0-9数字</li>
+<li>[:graph:]    ：除了空白键和Tab外其他所有控制按键</li>
+<li>[:blank:]    ：空白键或Tab</li>
+<li>[:print:]    ：任何可以被打印出来的字符</li>
+<li>[:punct:]    ：标点符号</li>
+<li>[:space:]    ：任何产生空白的键</li>
+<li>[:xdigit:]：代表16进制的数字类型</li>
+</ul>
+<p>简短格式：</p>
+<ul>
+<li>\d：0-9的数字</li>
+<li>\D：非数字字符</li>
+<li>\t：字表符，相当于tab</li>
+<li>\s：空白字符（空格，tab）</li>
+<li>\S：非空白字符</li>
+<li>\w：单词字符（A-Za-z0-9）</li>
+<li>\W：非单词字符</li>
+</ul>
+<hr>
+<p>a后面跟连续的3个小写字母<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;a[[:lower:]]\&#123;3\&#125;&quot; regex</span><br></pre></td></tr></table></figure></p>
+<h3 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a>反向引用</h3><p>在world前后要相同<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//匹配 hello world hello</span><br><span class="line">grep -n &quot;\(hello\) world \1&quot; regex</span><br></pre></td></tr></table></figure></p>
+<h1 id="扩展正则表达式"><a href="#扩展正则表达式" class="headerlink" title="扩展正则表达式"></a>扩展正则表达式</h1><ul>
+<li>(ab)：表示ab是一个整体</li>
+<li>n{2,3}：表示匹配2到3个连续的n</li>
+<li>a|b：匹配a或者b</li>
+<li>n?：n出现0次或者1次</li>
+<li>n+：n至少出现1次</li>
+<li>其他规则和基本正则一样</li>
+</ul>
+<hr>
+<p>举例：匹配合法邮箱地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E &quot;[a-z0-9]&#123;4,16&#125;@[a-z0-9]&#123;2,12&#125;\.(\&lt;(com|net|org|edu))$&quot;</span><br></pre></td></tr></table></figure></p>
+<h1 id="匹配密码"><a href="#匹配密码" class="headerlink" title="匹配密码"></a>匹配密码</h1><p>至少8位，至少出现一个小写字母，一个大写字母，一个数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[\S\s]&#123;8,&#125;$</span><br></pre></td></tr></table></figure></p>
+<p>\s\S：表示空字符和非空字符</p>
+
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/24/Git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2008,172 +2218,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/18/dependency-injection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/18/dependency-injection/" itemprop="url">dependency_injection</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T06:35:15+08:00">
-                2018-08-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/依赖注入/" itemprop="url" rel="index">
-                    <span itemprop="name">依赖注入</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <a id="more"></a>
-<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><h3 id="1-依赖"><a href="#1-依赖" class="headerlink" title="1. 依赖"></a>1. 依赖</h3><p>如果在 Class A 中，有 Class B 的实例，则称 Class A 对 Class B 有一个依赖。例如下面类 Human 中用到一个 Father 对象，我们就说类 Human 对类 Father 有一个依赖。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        father = <span class="keyword">new</span> Father();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>仔细看这段代码我们会发现存在一些问题：<br>(1). 如果现在要改变 father 生成方式，如需要用<code>new Father(String name)</code>初始化 father，需要修改 Human 代码；<br>(2). 如果想测试不同 Father 对象对 Human 的影响很困难，因为 father 的初始化被写死在了 Human 的构造函数中；<br>(3). 如果<code>new Father()</code>过程非常缓慢，单测时我们希望用已经初始化好的 father 对象 Mock 掉这个过程也很困难。  </p>
-<h3 id="2-依赖注入"><a href="#2-依赖注入" class="headerlink" title="2. 依赖注入"></a>2. 依赖注入</h3><p>上面将依赖在构造函数中直接初始化是一种 Hard init 方式，弊端在于两个类不够独立，不方便测试。我们还有另外一种 Init 方式，如下：  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">(Father father)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.father = father;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面代码中，我们将 father 对象作为构造函数的一个参数传入。在调用 Human 的构造方法之前外部就已经初始化好了 Father 对象。<strong>像这种非自己主动初始化依赖，而通过外部来传入依赖的方式，我们就称为依赖注入。</strong><br>现在我们发现上面 1 中存在的两个问题都很好解决了，简单的说依赖注入主要有两个好处：<br>(1). 解耦，将依赖之间解耦。<br>(2). 因为已经解耦，所以方便做单元测试，尤其是 Mock 测试。</p>
-
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2219,7 +2268,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2230,7 +2279,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2241,7 +2290,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

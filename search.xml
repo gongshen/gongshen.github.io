@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>正则表达式</title>
+      <link href="/2018/08/24/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+      <url>/2018/08/24/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<p><img src="\images\正则图.png" alt="正则图"></p><h1 id="基本正则表达式"><a href="#基本正则表达式" class="headerlink" title="基本正则表达式"></a>基本正则表达式</h1><ul><li>^：行首</li><li>$：行尾</li><li>^$：空行</li><li>\&lt;：词首</li><li>>：词尾</li><li>\B：非单词边界</li><li>(hello)：表示hello这整个单词</li><li>m{n}：m连续出现n次</li><li>n*：n连续出现（包括0次）</li><li>.：单个字符</li><li>.*：任意字符</li><li>n\?：n出现0次或1次</li><li>n\ +：n至少出现1次</li><li>[abc]：abc中任意的单个字符</li><li>[^abc]：除了abc外的任意的单个字符</li><li>[[:alpha:]]：任意英文字母中的任意的单个字符</li><li>\1：表示整个正则中第1个分组的匹配结果，<code>分组的顺序取决于分组符号左侧部分的顺序</code></li><li>(?=)：表示后面匹配的字符串要符合这里的匹配</li></ul><hr><p>a连续出现2次，但是a连续出现2次以上也会被匹配到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;a\&#123;2\&#125;&quot; regex</span><br></pre></td></tr></table></figure></p><p>使用这种写法，精确匹配2次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;\&lt;a\&#123;2\&#125;\&gt;&quot; regex</span><br></pre></td></tr></table></figure></p><p>a连续出现2到3次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;\&lt;a\&#123;2,3\&#125;\&gt;&quot; regex</span><br></pre></td></tr></table></figure></p><p>a连续出现至多2次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;\&lt;a\&#123;,2\&#125;\&gt;&quot; regex</span><br></pre></td></tr></table></figure></p><p><code>*</code>跟通配符不同，表示*之前的字符连续出现（包括0次）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;e*f&quot; regex</span><br></pre></td></tr></table></figure></p><h3 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h3><p>符号    意义</p><ul><li>[:alnum:]    ：任何英文字母和数字</li><li>[:upper:]    ：大写字母</li><li>[:alpha:]    ：字母</li><li>[:lower:]    ：小写字母</li><li>[:cntrl:]    ：键盘上的控制按键</li><li>[:digit:]    ：0-9数字</li><li>[:graph:]    ：除了空白键和Tab外其他所有控制按键</li><li>[:blank:]    ：空白键或Tab</li><li>[:print:]    ：任何可以被打印出来的字符</li><li>[:punct:]    ：标点符号</li><li>[:space:]    ：任何产生空白的键</li><li>[:xdigit:]：代表16进制的数字类型</li></ul><p>简短格式：</p><ul><li>\d：0-9的数字</li><li>\D：非数字字符</li><li>\t：字表符，相当于tab</li><li>\s：空白字符（空格，tab）</li><li>\S：非空白字符</li><li>\w：单词字符（A-Za-z0-9）</li><li>\W：非单词字符</li></ul><hr><p>a后面跟连续的3个小写字母<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;a[[:lower:]]\&#123;3\&#125;&quot; regex</span><br></pre></td></tr></table></figure></p><h3 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a>反向引用</h3><p>在world前后要相同<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//匹配 hello world hello</span><br><span class="line">grep -n &quot;\(hello\) world \1&quot; regex</span><br></pre></td></tr></table></figure></p><h1 id="扩展正则表达式"><a href="#扩展正则表达式" class="headerlink" title="扩展正则表达式"></a>扩展正则表达式</h1><ul><li>(ab)：表示ab是一个整体</li><li>n{2,3}：表示匹配2到3个连续的n</li><li>a|b：匹配a或者b</li><li>n?：n出现0次或者1次</li><li>n+：n至少出现1次</li><li>其他规则和基本正则一样</li></ul><hr><p>举例：匹配合法邮箱地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E &quot;[a-z0-9]&#123;4,16&#125;@[a-z0-9]&#123;2,12&#125;\.(\&lt;(com|net|org|edu))$&quot;</span><br></pre></td></tr></table></figure></p><h1 id="匹配密码"><a href="#匹配密码" class="headerlink" title="匹配密码"></a>匹配密码</h1><p>至少8位，至少出现一个小写字母，一个大写字母，一个数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[\S\s]&#123;8,&#125;$</span><br></pre></td></tr></table></figure></p><p>\s\S：表示空字符和非空字符</p>]]></content>
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 正则表达式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Git</title>
       <link href="/2018/08/24/Git/"/>
       <url>/2018/08/24/Git/</url>
