@@ -253,6 +253,805 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/18/test_Readme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/test_Readme/" itemprop="url">test_Readme</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T15:42:51+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/test/" itemprop="url" rel="index">
+                    <span itemprop="name">test</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <a id="more"></a>
+<h1 id="Test：矫正行为"><a href="#Test：矫正行为" class="headerlink" title="Test：矫正行为"></a>Test：矫正行为</h1><h3 id="包内测试"><a href="#包内测试" class="headerlink" title="包内测试"></a>包内测试</h3><ul>
+<li>文件名以<code>Test</code>开头</li>
+<li>指定运行匹配的测试函数：<code>-run=&quot;A|B&quot;</code></li>
+<li><code>t.Error</code>或者<code>t.Errorf</code>并不会因为测试失败而停止下面的测试</li>
+<li><code>t.Fatal</code>和<code>t.Fatalf</code>会因为测试失败而终止当前gorouting</li>
+</ul>
+<h3 id="运行更comprehensive案列"><a href="#运行更comprehensive案列" class="headerlink" title="运行更comprehensive案列"></a>运行更comprehensive案列</h3><ul>
+<li>table-driven 测试</li>
+<li>randomized 测试</li>
+</ul>
+<h3 id="覆盖率测试"><a href="#覆盖率测试" class="headerlink" title="覆盖率测试"></a>覆盖率测试</h3><ul>
+<li><code>go test -cover</code>：语句覆盖率测试</li>
+<li><code>go test -cover -coverprofile c.out</code>：将结果输出到文件（默认set模式，记录语句是否覆盖）</li>
+<li><code>go test -cover -coverprofile c.out -covermode count</code>：更改为count模式，记录语句覆盖次数</li>
+<li><code>go tool cover -html=c.out</code>：以c.out文件在浏览器显示</li>
+<li><code>go tool cover -func=c.out</code>：显示函数细节</li>
+</ul>
+<h3 id="外部测试"><a href="#外部测试" class="headerlink" title="外部测试"></a>外部测试</h3><p>我们知道两个package不能存在于同一个文件中，但是有一种特殊的外部测试包。如果文件中的包名<code>b</code>，那么可以创建外部测试包<code>b_test</code>。</p>
+<p><span style="border-bottom:2px solid red;">创建一个内部测试文件（export_test.go）</span>：将需要的内部暴露给外部测试包;测试文件中的函数和变量只能是当前package下的测试文件能访问</p>
+<p><span style="border-bottom:2px solid red;">仅显示开发代码文件</span>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go list -f=&#123;&#123;.GoFiles&#125;&#125; fmt</span><br></pre></td></tr></table></figure></p>
+<p><span style="border-bottom:2px solid red;">仅显示包内测试代码</span>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go list -f=&#123;&#123;.TestGoFiles&#125;&#125; fmt</span><br></pre></td></tr></table></figure></p>
+<p><span style="border-bottom:2px solid red;">仅显示外部测试代码</span>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go list -f=&#123;&#123;.XTestGoFiles&#125;&#125; fmt</span><br></pre></td></tr></table></figure></p>
+<h1 id="Profile"><a href="#Profile" class="headerlink" title="Profile"></a>Profile</h1><p><code>go test</code>会把可执行文件删除在完成测试之后，加上<code>-cpuprofile</code>标志可以保留其可执行文件<br>使用<code>go tool pprof</code>再加上<code>可执行文件</code>就可以解析profile文件</p>
+<ul>
+<li><code>go test -run=none -bench=ClientServerParallelTLS64 -cpuprofile=cpu.log net/http</code>：会生成<em>cpu.log</em>和<em>http.test.exe</em></li>
+<li><code>go tool pprof -text -nodecount=10 ./http.test.exe cpu.log</code>：使用<em>pprof</em>工具分析cpu使用文件</li>
+<li>-cpuprofile：列出使用最多CPU的函数</li>
+<li>-memprofile：列出分配最多内存的语句</li>
+<li>-blockprofile：列出最长阻塞gorouting的运算</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flat  flat%   sum%        cum   cum%</span><br><span class="line">1.10s 20.07% 59.85%      1.10s 20.07%  unicode.IsLetter</span><br><span class="line">0.75s 13.69% 73.54%      0.75s 13.69%  unicode.ToLower</span><br><span class="line">0.39s  7.12% 80.66%      0.44s  8.03%  runtime.mallocgc</span><br></pre></td></tr></table></figure>
+<p>Go运行时会100Hz对CPU进行抽样，也就是10毫秒一次</p>
+<ol>
+<li>第一列表示直接调用该函数总执行了<code>1.10s</code>，也就是抽样110次，占总数的20.07%（总数548次）</li>
+<li>第三列表示前几列加起来占总时间的百分之几</li>
+<li>第四列表示直接调用该函数加上间接调用函数用掉的时间</li>
+<li>第五列表示第四列占的百分比</li>
+</ol>
+<h3 id="graphviz工具的配合使用"><a href="#graphviz工具的配合使用" class="headerlink" title="graphviz工具的配合使用"></a>graphviz工具的配合使用</h3><ol>
+<li><code>go tool pprof ./word.test.exe cpu.log</code>：进入pprof模式</li>
+<li><code>web</code>：浏览器查看整个函数调用的过程</li>
+<li><code>web IsPalindrome</code>：浏览器查看IsPalindrome函数的调用过程</li>
+<li><code>list IsPalindrome</code>：查看IsPalindrome函数每一行的执行时间</li>
+</ol>
+<h1 id="Benchmark：测量操作"><a href="#Benchmark：测量操作" class="headerlink" title="Benchmark：测量操作"></a>Benchmark：测量操作</h1><ul>
+<li>使用<code>ResetTimer,StopTimer,StartTimer</code>等重置计时器，排除一些设定代码的时间</li>
+<li>抵制使用<code>b.N</code>作为参数的诱惑，使用多个固定参数进行测试比较</li>
+<li>性能测试过滤单元测试的输出，所以使用<code>-run=none</code></li>
+</ul>
+<h1 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h1><p>在<code>Example</code>函数中添加预期的答案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//Output: one</span><br><span class="line">//two</span><br></pre></td></tr></table></figure></p>
+<p>如果输出时随机的话：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//Unordered Output:two</span><br><span class="line">//one</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/18/关系数据库原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/关系数据库原理/" itemprop="url">关系数据库原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T06:57:40+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <a id="more"></a>
+<h1 id="一、数据库基本知识"><a href="#一、数据库基本知识" class="headerlink" title="一、数据库基本知识"></a>一、数据库基本知识</h1><p>一个好的哈希表：$O(1)$<br>一个均衡的树：$O(log(n))$<br>一个好的排序算法：$O(n*log(n))$<br>一个差的排序算法：$O(n^2)$</p>
+<h3 id="1、排序"><a href="#1、排序" class="headerlink" title="1、排序"></a>1、排序</h3><p>合并排序：时间复杂度$O(n*log(n))$</p>
+<h3 id="2、存储"><a href="#2、存储" class="headerlink" title="2、存储"></a>2、存储</h3><p>数据库的表使用的是<code>二维阵列</code>存储：必须一下子全部加载到内存中。<br>数据库使用<code>哈希表</code>来存储<code>锁表</code>和<code>缓冲池</code>：可以先加载一半到内存中。</p>
+<h3 id="3、查找"><a href="#3、查找" class="headerlink" title="3、查找"></a>3、查找</h3><p><span style="border-bottom:2px solid red;">查找特定的值：二叉查找树</span><br>    比如说你要查找40，时间复杂度O(log(N))</p>
+<p><img src="\images\binary_search_tree.png" alt="二叉查找树"></p>
+<p><span style="border-bottom:2px solid red;">范围查找：B+树</span><br>    比如你要查找40~100之间的值，只需要找到40，通过后续节点找到100，时间复杂度O(M+log(N))</p>
+<p><img src="\images\b+_tree.png" alt="B+树"></p>
+<ul>
+<li>只有最底层的叶子才保存行信息</li>
+<li>底层节点是连续的</li>
+<li>尽量降低B+树的层数（表的索引），不然时间复杂度会变成$O(n)$</li>
+<li>当数据库进行删除插入操作时，需要自动更新B+索引树，所以创建太多索引影响性能</li>
+</ul>
+<h1 id="二、数据库全局概览"><a href="#二、数据库全局概览" class="headerlink" title="二、数据库全局概览"></a>二、数据库全局概览</h1><p><img src="\images\数据库全局概览.png" alt="数据库全局概览"><br><span style="border-bottom:2px solid red;">核心组件</span></p>
+<ul>
+<li>Process Manager：</li>
+<li>Network Manager：</li>
+<li>Memory Manager：</li>
+<li>Client Manager：</li>
+<li>File system Manager：</li>
+<li>Security Manager：对用户的验证和授权</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">工具</span></p>
+<ul>
+<li>Backup Manager：</li>
+<li>Recovery Manager：崩溃后重启数据库到一致状态</li>
+<li>Monitor Manager：记录数据库活动信息</li>
+<li>Administration Manager：管理数据库、模式、表空间</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">查询管理器</span></p>
+<ul>
+<li>Query executor：编译和执行查询</li>
+<li>Query parser：检查查询是否合法</li>
+<li>Query rewriter：预优化查询</li>
+<li>Query optimizer：优化查询</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">数据管理器</span></p>
+<ul>
+<li>Transaction Manager：处理事务</li>
+<li>Cache Manager：</li>
+<li>Data access Manager：访问磁盘中的数据</li>
+</ul>
+<h1 id="三、查询过程"><a href="#三、查询过程" class="headerlink" title="三、查询过程"></a>三、查询过程</h1><p><img src="\images\数据库查询过程.png" alt="查询过程"></p>
+<h2 id="1、客户端管理器："><a href="#1、客户端管理器：" class="headerlink" title="1、客户端管理器："></a>1、客户端管理器：</h2><p>当你连接数据库时：</p>
+<ol>
+<li>客户端管理器检查你的<strong>验证信息</strong>，检查你是否具有<strong>访问权限</strong>。</li>
+<li>客户端管理器检查是否有空闲的进程或线程处理你的查询。</li>
+<li>客户端管理器检查数据库是否负载很重。</li>
+<li>如果客户端管理器等待超时还获取不到资源，会关闭连接。</li>
+<li>客户端管理器会把查询给查询管理器处理。</li>
+<li>查询处理进程从查询管理器获取数据后，会将部分结果保存至缓存并且给你发送</li>
+</ol>
+<h2 id="2、查询管理器："><a href="#2、查询管理器：" class="headerlink" title="2、查询管理器："></a>2、查询管理器：</h2><ol>
+<li>查询被解析并判断是否合法</li>
+<li>重写——去除无用的操作加入预优化部分</li>
+<li>优化提升性能，转换为可执行代码和数据查询计划</li>
+<li>计划被编译</li>
+<li>执行</li>
+</ol>
+<h3 id="第一步：查询解析器"><a href="#第一步：查询解析器" class="headerlink" title="第一步：查询解析器"></a>第一步：查询解析器</h3><ol>
+<li>语法是否有误</li>
+<li>关键字使用的顺序</li>
+<li>根据数据库的元数据检查<strong>表是否存在</strong>,表的<strong>字段是否存在</strong></li>
+<li>对类型的使用是否可行</li>
+<li>是否具有<strong>权限</strong>来读写表</li>
+</ol>
+<h3 id="第二步：查询重写器"><a href="#第二步：查询重写器" class="headerlink" title="第二步：查询重写器"></a>第二步：查询重写器</h3><ol>
+<li>预优化查询,避免不必要的运算</li>
+<li>根据一些规则寻找优化解决方案   <ul>
+<li><strong>视图合并</strong>:把查询中的试图转换为SQL代码</li>
+<li><strong>子查询扁平化</strong>:尝试移除子查询(因为子查询难以优化)</li>
+<li><strong>去除不必要的运算符</strong>:比如你用了<code>DISTINCT</code>和<code>UNIQUE</code>,那么<code>DISTINCT</code>就会被去掉.</li>
+<li>消除冗余的连接</li>
+<li><strong>常数计算赋值</strong>:比如 WHERE age &gt; 10 + 2 ,会转换为 WHERE age &lt; 12</li>
+<li><strong>分区裁剪</strong>:如果你用了分区表,重写器能够找到需要使用的分区</li>
+<li><strong>物化试图重写</strong>:如果有物化试图正好匹配查询谓词的一个子集,那么修改查询使用物化试图而不是原始表.</li>
+<li><strong>自定义规则</strong>:如果你有自定义规则和修改查询,重写器就会执行这些规则</li>
+<li><strong>OLAP转换</strong></li>
+</ul>
+</li>
+</ol>
+<p>例如:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> PERSON.*</span><br><span class="line"><span class="keyword">FROM</span> PERSON</span><br><span class="line"><span class="keyword">WHERE</span> PERSON.person_key <span class="keyword">IN</span></span><br><span class="line">(<span class="keyword">SELECT</span> MAILS.person_key</span><br><span class="line"><span class="keyword">FROM</span> MAILS</span><br><span class="line"><span class="keyword">WHERE</span> MAILS.mail <span class="keyword">LIKE</span> <span class="string">'christophe%'</span>);</span><br></pre></td></tr></table></figure>
+<p>会转换为:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> PERSON.*</span><br><span class="line"><span class="keyword">FROM</span> PERSON, MAILS</span><br><span class="line"><span class="keyword">WHERE</span> PERSON.person_key = MAILS.person_key</span><br><span class="line"><span class="keyword">and</span> MAILS.mail <span class="keyword">LIKE</span> <span class="string">'christophe%'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="第三步：统计"><a href="#第三步：统计" class="headerlink" title="第三步：统计"></a>第三步：统计</h3><p>当你统计信息时,数据库会计算:</p>
+<ul>
+<li>表中行和列的数量</li>
+<li>表中列的唯一值,数据长度,数据范围</li>
+<li>表的索引</li>
+</ul>
+<p>统计的信息对于查询优化器做优化特别重要,所以统计必须要及时更新.</p>
+<h3 id="第四步：查询优化器"><a href="#第四步：查询优化器" class="headerlink" title="第四步：查询优化器"></a>第四步：查询优化器</h3><h4 id="获取数据的方法："><a href="#获取数据的方法：" class="headerlink" title="获取数据的方法："></a>获取数据的方法：</h4><ul>
+<li>全扫描：完整的读取一个表或索引</li>
+<li>范围扫描：使用B+树只是读取索引的一部分</li>
+<li>唯一扫描：二叉查找树就是查找唯一值的</li>
+</ul>
+<h4 id="联接运算符（获取数据后那么就要连接了）"><a href="#联接运算符（获取数据后那么就要连接了）" class="headerlink" title="联接运算符（获取数据后那么就要连接了）"></a>联接运算符（获取数据后那么就要连接了）</h4><p>大多数情况下，“A Join B” 和 “B Join A”的成本是不同的</p>
+<hr>
+<p><span style="border-bottom:2px solid red;">合并联接</span>：（a、b中挑选相同的元素）<br><img src="\images\数据库合并联接.png" alt="合并联接"><br>如果两个关系都已经排序，时间复杂度：$O(N+M)$<br>如果两个关系都未排序，时间复杂度：$O(N<em>log(N)+M</em>log(M))$</p>
+<hr>
+<p><span style="border-bottom:2px solid red;">哈希联接</span>：<br><img src="\images\数据库哈希联接.png" alt="哈希联接"><br>如果是个好的哈希函数，时间复杂度：$O(N+M)$</p>
+<hr>
+<p><span style="border-bottom:2px solid red;">嵌套循环联接</span>：<br><img src="\images\数据库循环嵌套联接.png" alt="循环嵌套"></p>
+<ul>
+<li>针对外关系的每一行，查看内关系里所有的行来寻找匹配的行。时间复杂度为$O(N^2)$。</li>
+<li>将两个关系<code>成簇的读取</code>对磁盘I/O有利，但时间复杂度没变。</li>
+<li>如果内关系足够小，那么时间复杂度最好能到：$O(N)$</li>
+</ul>
+<hr>
+<h4 id="执行联接的顺序的算法"><a href="#执行联接的顺序的算法" class="headerlink" title="执行联接的顺序的算法"></a>执行联接的顺序的算法</h4><p><img src="\images\数据库联接顺序.png" alt="执行联接顺序"><br><span style="border-bottom:2px solid red;">动态规划</span>：</p>
+<ul>
+<li>省掉一些相似的做法，比如（A Join B）是重复的。</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">启发式</span>：</p>
+<ul>
+<li>如果一个表有针对指定谓词的索引，那么就不要对表进行合并联接，对索引</li>
+<li>增加一些规则，比如<code>联接运算要先于其他关系运算</code></li>
+</ul>
+<p><span style="border-bottom:2px solid red;">贪婪法</span>：</p>
+<ul>
+<li>先从要联接的表中选出一张表（A）</li>
+<li>计算每一个与（A）的联接，如果（A Join B）成本最低</li>
+<li>计算每一个与（A Join B）的结果成本最低的表</li>
+<li>…</li>
+<li>可以结合多个贪婪选项得出比较满意的答案</li>
+</ul>
+<h4 id="真实的优化器"><a href="#真实的优化器" class="headerlink" title="真实的优化器"></a>真实的优化器</h4><p><span style="border-bottom:2px solid red;">SQLite</span></p>
+<ul>
+<li>在有 CROSS JOIN（两个表的笛卡尔乘积）时从不给表重新排序</li>
+<li>使用嵌套联接</li>
+<li>3.8.0版本使用<code>最近邻居</code>的贪婪算法作为最佳查询计划</li>
+<li>…</li>
+</ul>
+<h3 id="第五步、查询执行器"><a href="#第五步、查询执行器" class="headerlink" title="第五步、查询执行器"></a>第五步、查询执行器</h3><blockquote>
+<p>这时我们有了一个优化了的执行代码，编译为可执行代码，如果计算机的硬件符合要求，就会执行。但是查询执行器不会直接从文件系统拿数据，而是向<code>缓存管理器</code>要。</p>
+</blockquote>
+<h2 id="4、数据管理器"><a href="#4、数据管理器" class="headerlink" title="4、数据管理器"></a>4、数据管理器</h2><h3 id="缓存管理器：与查询执行器进行数据的交互"><a href="#缓存管理器：与查询执行器进行数据的交互" class="headerlink" title="缓存管理器：与查询执行器进行数据的交互"></a>缓存管理器：与查询执行器进行数据的交互</h3><p><img src="\images\数据库缓存管理器.png" alt="缓存管理器"></p>
+<ul>
+<li>因为磁盘I/O的瓶颈，缓存管理器有一个内存缓冲区（缓冲池）：从内存读取数据提供性能</li>
+<li>缓存管理器需要在查询执行器使用数据之前<code>预读</code>数据</li>
+<li>使用<code>缓冲区命中率</code>来度量预读的效率</li>
+<li>缓冲容量有限，必须频繁加载移除，用<code>缓冲区置换策略</code>来解决</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">预读</span></p>
+<blockquote>
+<p>当查询执行器处理它的第一批数据时，会告诉缓存管理器预先装载第二批数据，当开始处理第二批数据时，告诉缓存管理器预先装载第三批数据，并且告诉缓存管理器第一批可以从缓存里清掉。</p>
+</blockquote>
+<ul>
+<li>推测预读法：查询执行器想要（1，3，5）数据，推测其也许需要（7，9，11）</li>
+<li>顺序预读法：只是简单的加载下一批连续的数据</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">缓冲/缓存命中率</span></p>
+<blockquote>
+<p>显示请求的数据在缓存中找到而不是从磁盘读取的频率</p>
+</blockquote>
+<p><span style="border-bottom:2px solid red;">缓冲区置换策略</span></p>
+<blockquote>
+<p>因为内存大小有限，必须移除旧的数据，一般使用LRU（最近最少使用）算法</p>
+</blockquote>
+<p><img src="\images\数据库缓存置换策略_LRU.png" alt="LRU算法"></p>
+<h4 id="写缓冲区"><a href="#写缓冲区" class="headerlink" title="写缓冲区"></a>写缓冲区</h4><blockquote>
+<p>预先加载数据、成批刷入磁盘都可以提升写缓冲区的速度。缓冲区最小的数据单位是<code>页</code>，不是行。如果缓冲区的页修改了但是没有写入磁盘，就是<code>脏页</code>。</p>
+</blockquote>
+<h2 id="5、事务管理器"><a href="#5、事务管理器" class="headerlink" title="5、事务管理器"></a>5、事务管理器</h2><p><span style="border-bottom:2px solid red;">一个事务就是一个工作单元</span></p>
+<ul>
+<li>原子性（Atomicity）：要么全完成，要么全部取消。</li>
+<li>隔离性（Isolation）：如果A，B事务同时运行，最终结果都是相同的，不管谁先结束。</li>
+<li>持久性（Durability）：一旦事务提交（成功运行），不管发生什么，数据要保存在数据库中。</li>
+<li>一致性（Consistency）：只有合法的数据才能写入数据库。</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">4个隔离级别</span></p>
+<ul>
+<li>串行化（Serializable，SQLite默认模式）：最高级别，两个事务100%隔离</li>
+<li>可重复读（Repeatable read，MySQL默认模式）：每个事务都有自己的世界，只是在<code>新数据方面突破隔离，在旧数据仍然隔离</code>。比如事务A运行（select count(1) from table），事务B这时在table表中添加了一条新的数据，那么事务A再运行一次得到的结果是不一样的——幻读</li>
+<li>读取已提交（Oracle，PostgreSQL，SQL Server默认模式）：如果事务A读取数据D，这时事务B删除或修改数据D并提交，那么事务A再次读数据D时数据的变化是可见的——不可重复读</li>
+<li>读取未提交：最低级别，如果事务A读取数据D，事务B修改或删除数据D（并未提交，事务B还在运行），那么事务A读取数据D时数据的变化是可见的。如果事务B回滚，那么事务A中读取的数据D是无意义的——<code>脏读</code>。</li>
+</ul>
+<h1 id="四、数据库的并发控制"><a href="#四、数据库的并发控制" class="headerlink" title="四、数据库的并发控制"></a>四、数据库的并发控制</h1><h2 id="1、锁管理器"><a href="#1、锁管理器" class="headerlink" title="1、锁管理器"></a>1、锁管理器</h2><p><img src="\images\数据库锁管理器.png" alt="锁管理器"></p>
+<blockquote>
+<p>锁管理器是添加和释放锁的进程，用一个哈希表来保存锁信息（关键字是被锁的数据）</p>
+</blockquote>
+<p><span style="border-bottom:2px solid red;">排他锁原理</span></p>
+<blockquote>
+<p>如果事务A需要一条数据，就把他锁住，如果事务B也需要这个数据，必须等待事务A释放数据。</p>
+</blockquote>
+<p><span style="border-bottom:2px solid red;">共享锁原理</span></p>
+<ol>
+<li>事务A需要【读取】数据 X，它会给数据 X 加上【共享锁】并读取</li>
+<li>事务B也需要【读取】数据 X，它会给数据 X 加上【共享锁】并读取</li>
+<li>事务C要【修改】数据 X，它会给数据 X 加上【排他锁】，但是必须等待事务A，B释放【共享锁】</li>
+</ol>
+<p><span style="border-bottom:2px solid red;">两段锁原理</span></p>
+<ul>
+<li>将事务分为两个阶段：</li>
+<li>成长阶段：事务可以获得锁，但不能释放锁</li>
+<li>收缩阶段：事务可以释放锁（对于已经处理完而且不会再次处理的数据），但不能获得新锁</li>
+</ul>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><ul>
+<li><code>超时设定</code>，如果一个锁再该时间内没有加上，那么就判断事务产生死锁——简单</li>
+<li>检查哈希表中是否有循环——代价很昂贵</li>
+<li>在加锁之前检查该锁是否会死锁——代价也很昂贵</li>
+</ul>
+<h2 id="2、版本控制"><a href="#2、版本控制" class="headerlink" title="2、版本控制"></a>2、版本控制</h2><ul>
+<li>每个事务可以同时修改【相同的】数据</li>
+<li>每个事务有自己的数据拷贝（版本）</li>
+<li>如果两个事务同时修改相同的数据，只接受一个修改，另一个将回滚或者重新运行</li>
+<li>读写事务不会相互阻塞</li>
+<li>没有锁管理器带来额外开销</li>
+<li>但是磁盘空间的消耗会很大</li>
+</ul>
+<h1 id="五、数据库的日志管理"><a href="#五、数据库的日志管理" class="headerlink" title="五、数据库的日志管理"></a>五、数据库的日志管理</h1><p><img src="\images\数据库日志管理器.png" alt="日志管理器"></p>
+<p>为了保证事务的持久性和原子性，有两个解决方法：</p>
+<ol>
+<li>副本：事务创建自己的副本，基于副本工作，如果失败，就删除副本；如果成功，就提交副本</li>
+<li>事务日志：在每次写入磁盘之前，在事务日志中写入信息，这样崩溃了也能知道该怎么办</li>
+</ol>
+<h2 id="WAL"><a href="#WAL" class="headerlink" title="WAL"></a>WAL</h2><p>大多数数据库使用<code>预写日志协议</code>（Write-Ahead Logging protocol，WAL）来处理事务日志。</p>
+<ol>
+<li>每个对数据库的修改都产生一条<code>日志记录</code>，在数据写入磁盘前都必须把<code>日志记录</code>写入事务日志。</li>
+<li>日志记录必须按顺序写入</li>
+<li>事务提交成功之前，必须把事务的提交顺序写入事务日志</li>
+</ol>
+<h2 id="ARIES"><a href="#ARIES" class="headerlink" title="ARIES"></a>ARIES</h2><p>比WAL在写日志时能保持良好的性能，快速可靠的数据恢复。</p>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>日志的组成：磁盘上保存数据的每个页都记录着最后修改该数据的LSN</p>
+<ul>
+<li>LSN：日志序列号（Log Sequence Num），这是按时间顺序分配的</li>
+<li>TransID：产生操作事务的ID</li>
+<li>PagelD：被修改的数据在磁盘上页的位置</li>
+<li>PrevLSN：同一个事务产生的上一条日志的链接</li>
+<li>UNDO：取消本次操作的方法，回到原来状态的反向操作</li>
+<li>REDO：重复本次操作</li>
+</ul>
+<h3 id="日志缓冲区"><a href="#日志缓冲区" class="headerlink" title="日志缓冲区"></a>日志缓冲区</h3><p><img src="\images\数据库日志缓冲区.png" alt="日志缓冲区"></p>
+<p>当查询执行器要求做一次修改：</p>
+<ol>
+<li>缓存管理器将修改存入自己的缓存</li>
+<li>日志管理器将相关日志存入自己的日志缓冲区</li>
+<li>查询执行器认为操作已经完成</li>
+<li>日志管理器将日志写入事务日志</li>
+<li>缓存管理器将修改写入磁盘</li>
+</ol>
+<h3 id="STEAL-和-FORCE-策略"><a href="#STEAL-和-FORCE-策略" class="headerlink" title="STEAL 和 FORCE 策略"></a>STEAL 和 FORCE 策略</h3><ul>
+<li>NO-FORCE策略——如果第5步在事务提交之后完成，一旦发生崩溃，可以使用<code>REDO</code>恢复事务</li>
+<li>FORCE策略——第5步在事务提交之前必须完成。</li>
+<li>STEAL策略——数据是一步步的写入磁盘</li>
+<li>NO-STEAL策略——缓冲区管理器等待提交命令然后一次性写入磁盘</li>
+</ul>
+<p><span style="border-bottom:2px solid red;">大部分的数据库都选择<strong>No-Force/Steal</strong>策略，性能最好。</span></p>
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><p>如果事务被【手动】取消，或者被所管理器取消（取消死锁），或者因为网路故障取消，那么就不需要进行分析阶段，因为哪些需要Redo，哪些需要Undo的信息保存在2个内存表中：</p>
+<ul>
+<li>事务表：保存当前所有事务状态</li>
+<li>脏页表：保存哪些数据需要写入磁盘</li>
+</ul>
+<h4 id="1、分析阶段"><a href="#1、分析阶段" class="headerlink" title="1、分析阶段"></a>1、分析阶段</h4><blockquote>
+<p>恢复进程读取全部的事务日志，来重建崩溃中发生的时间线（生成2张表），决定哪些事务回滚（未提交的事务都需回滚）、崩溃时哪些数据需要写盘。</p>
+</blockquote>
+<p><span style="border-bottom:2px solid red;">检查点</span>：</p>
+<blockquote>
+<p>为了加快分析阶段，使用检查点技术，不时的把2张表的内容和最后一条LSN写入磁盘，那么在分析阶段中，只要分析这个LSN之后的日志就可以了。</p>
+</blockquote>
+<h4 id="2、Redo阶段"><a href="#2、Redo阶段" class="headerlink" title="2、Redo阶段"></a>2、Redo阶段</h4><ul>
+<li>Redo按日志的时间顺序（LSN）进行处理</li>
+<li>如果LSN（磁盘页）&gt;= LSN（日志记录），说明数据在崩溃前写入磁盘，所以不需要做什么</li>
+<li>如果LSN（磁盘页）&lt; LSN（日志记录），磁盘上的页将要被更新</li>
+</ul>
+<h4 id="3、Undo阶段"><a href="#3、Undo阶段" class="headerlink" title="3、Undo阶段"></a>3、Undo阶段</h4><p>从每个事务的最后一条日志开始回滚所有崩溃时未完成的事务。</p>
+<h1 id="六、数据库的数据存储"><a href="#六、数据库的数据存储" class="headerlink" title="六、数据库的数据存储"></a>六、数据库的数据存储</h1><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>数据类型分为：定长<code>char(20)</code>和变长<code>varchar(20)</code>，除非最长和最短相差太多，否则还是使用定长比较好。</p>
+<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><blockquote>
+<p>一个数据块中能存储的记录（行）分为：变长记录和定长记录。每个记录中都包含各自的<code>RID</code>。</p>
+<blockquote>
+<p>无序记录的文件被称为<code>堆文件</code>，有序的文件通常需要结合<code>聚簇索引</code>（将数据直接存储在数据库块的索引上）来排序。</p>
+</blockquote>
+</blockquote>
+<h3 id="文件组织"><a href="#文件组织" class="headerlink" title="文件组织"></a>文件组织</h3><p>顺序文件组织：能根据索引来检索文件<br>散列文件组织：hash索引</p>
+<h3 id="数据库存储的文件"><a href="#数据库存储的文件" class="headerlink" title="数据库存储的文件"></a>数据库存储的文件</h3><ul>
+<li>数据文件</li>
+<li>索引文件</li>
+<li>日志文件</li>
+</ul>
+<h3 id="MySQL的数据字典"><a href="#MySQL的数据字典" class="headerlink" title="MySQL的数据字典"></a>MySQL的数据字典</h3><ul>
+<li>mysql：保存数据库的元数据的</li>
+<li>information_schema：统计数据</li>
+<li>performance_schema：显示性能信息</li>
+</ul>
+<blockquote>
+<p>本文转载于<a href="http://blog.jobbole.com/100349/" target="_blank" rel="noopener">数据库原理</a></p>
+</blockquote>
+
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/18/dependency-injection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/dependency-injection/" itemprop="url">dependency_injection</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T06:35:15+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/依赖注入/" itemprop="url" rel="index">
+                    <span itemprop="name">依赖注入</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <a id="more"></a>
+<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><h3 id="1-依赖"><a href="#1-依赖" class="headerlink" title="1. 依赖"></a>1. 依赖</h3><p>如果在 Class A 中，有 Class B 的实例，则称 Class A 对 Class B 有一个依赖。例如下面类 Human 中用到一个 Father 对象，我们就说类 Human 对类 Father 有一个依赖。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        father = <span class="keyword">new</span> Father();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>仔细看这段代码我们会发现存在一些问题：<br>(1). 如果现在要改变 father 生成方式，如需要用<code>new Father(String name)</code>初始化 father，需要修改 Human 代码；<br>(2). 如果想测试不同 Father 对象对 Human 的影响很困难，因为 father 的初始化被写死在了 Human 的构造函数中；<br>(3). 如果<code>new Father()</code>过程非常缓慢，单测时我们希望用已经初始化好的 father 对象 Mock 掉这个过程也很困难。  </p>
+<h3 id="2-依赖注入"><a href="#2-依赖注入" class="headerlink" title="2. 依赖注入"></a>2. 依赖注入</h3><p>上面将依赖在构造函数中直接初始化是一种 Hard init 方式，弊端在于两个类不够独立，不方便测试。我们还有另外一种 Init 方式，如下：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Human</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    Father father;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Human</span><span class="params">(Father father)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.father = father;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，我们将 father 对象作为构造函数的一个参数传入。在调用 Human 的构造方法之前外部就已经初始化好了 Father 对象。<strong>像这种非自己主动初始化依赖，而通过外部来传入依赖的方式，我们就称为依赖注入。</strong><br>现在我们发现上面 1 中存在的两个问题都很好解决了，简单的说依赖注入主要有两个好处：<br>(1). 解耦，将依赖之间解耦。<br>(2). 因为已经解耦，所以方便做单元测试，尤其是 Mock 测试。</p>
+
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/10/旋转字符串/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1372,522 +2171,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/30/http路由分发/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/30/http路由分发/" itemprop="url">http路由分发</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-30T20:13:30+08:00">
-                2018-03-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <a id="more"></a>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据func(f HandlerFunc)ServeHTTP(w http.ResponseWriter,r *http.Request)&#123;f(w,r)&#125;</span></span><br><span class="line"><span class="comment">//HandlerFunc类型可以实现路由转发功能，申明mux类型</span></span><br><span class="line"><span class="keyword">var</span> mux <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="function"><span class="keyword">func</span><span class="params">(http.ResponseWriter, *http.Request)</span></span></span><br><span class="line"><span class="function">// 定义自己的<span class="title">Handler</span></span></span><br><span class="line"><span class="function"><span class="title">type</span> <span class="title">myHandler</span> <span class="title">struct</span></span> &#123;&#125;</span><br><span class="line"><span class="comment">//实现了ServeHTTP这个方法，实现了Handler接口</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(*myHandler)</span><span class="title">ServeHTTP</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>&#123;</span><br><span class="line">	fmt.Fprintf(w,<span class="string">"This is ServeHTTP!"</span>)</span><br><span class="line">	<span class="keyword">if</span> f,ok:=mux[r.URL.String()];ok&#123;</span><br><span class="line">		f(w,r)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sayBye2</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>  &#123;</span><br><span class="line">	io.WriteString(w,<span class="string">"Bye!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sayHello2</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>&#123;</span><br><span class="line">	io.WriteString(w,<span class="string">"Hello!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	mux=<span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="function"><span class="keyword">func</span><span class="params">(http.ResponseWriter,*http.Request)</span>)</span></span><br><span class="line"><span class="function">	<span class="title">mux</span>["/<span class="title">hello</span>"]=<span class="title">sayHello2</span></span></span><br><span class="line"><span class="function">	<span class="title">mux</span>["/<span class="title">bye</span>"]=<span class="title">sayBye2</span></span></span><br><span class="line"><span class="function">//自己定义<span class="title">Server</span>结构体</span></span><br><span class="line"><span class="function">	<span class="title">server</span>:=&amp;<span class="title">http</span>.<span class="title">Server</span></span>&#123;</span><br><span class="line">	<span class="comment">//监听端口</span></span><br><span class="line">		Addr:<span class="string">":1995"</span>,</span><br><span class="line">	<span class="comment">//Handler函数</span></span><br><span class="line">		Handler:&amp;myHandler&#123;&#125;,</span><br><span class="line">		ReadTimeout:<span class="number">5</span>*time.Second,</span><br><span class="line">	&#125;</span><br><span class="line">	err:=server.ListenAndServe()</span><br><span class="line">	<span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/29/http-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/29/http-1/" itemprop="url">http(1)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T20:26:58+08:00">
-                2018-03-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/网络/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <a id="more"></a>
-<h3 id="1、设置静态目录"><a href="#1、设置静态目录" class="headerlink" title="1、设置静态目录"></a>1、设置静态目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">	http.ListenAndServe(&quot;:1995&quot;,http.FileServer(http.Dir(&quot;.&quot;)))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2、搭建简单HTTP服务器"><a href="#2、搭建简单HTTP服务器" class="headerlink" title="2、搭建简单HTTP服务器"></a>2、搭建简单HTTP服务器</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>&#123;</span><br><span class="line">	r.ParseForm()</span><br><span class="line">	<span class="comment">// 向服务器端输出请求的url信息</span></span><br><span class="line">	fmt.Println(r.Form)</span><br><span class="line">	fmt.Println(<span class="string">"path:"</span>,r.URL.Path)</span><br><span class="line">	fmt.Println(<span class="string">"scheme:"</span>,r.URL.Scheme)</span><br><span class="line">	fmt.Println(r.Form[<span class="string">"url_long"</span>])</span><br><span class="line">	<span class="keyword">for</span> k,v:=<span class="keyword">range</span> r.Form&#123;</span><br><span class="line">		fmt.Println(<span class="string">"key:"</span>,k)</span><br><span class="line">		fmt.Println(<span class="string">"val:"</span>,strings.Join(v,<span class="string">" "</span>))</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Fprintf(w,<span class="string">"Hello gongshen!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	http.HandleFunc(<span class="string">"/"</span>,sayHello)</span><br><span class="line">	http.ListenAndServe(<span class="string">":1995"</span>,<span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3、底层实现路由分发策略"><a href="#3、底层实现路由分发策略" class="headerlink" title="3、底层实现路由分发策略"></a>3、底层实现路由分发策略</h3>
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/03/28/channel_readme/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/28/channel_readme/" itemprop="url">Readme</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T16:22:14+08:00">
-                2018-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/channel/" itemprop="url" rel="index">
-                    <span itemprop="name">channel</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <h1 id="1、总结："><a href="#1、总结：" class="headerlink" title="1、总结："></a>1、总结：</h1><h3 id="缓冲通道"><a href="#缓冲通道" class="headerlink" title="缓冲通道"></a>缓冲通道</h3><ol>
-<li><code>elem,ok:=&lt;-strCh</code>，没有元素时，当前gorouting进入<code>GWaiting</code>状态，当通道关闭时，<code>elem</code>会赋予相应的零值<code>ok</code>值为false</li>
-<li>试图从一个未被初始化的通道值（值为<code>nil</code>的通道）接收元素值，会被永久阻塞</li>
-<li>发送操作会使通道<code>复制</code>被发送的元素，如果<code>通道已空</code>且<code>有接收方在等待</code>，则直接把元素复制到最早等待的接收方中，否则复制到通道的缓存中</li>
-<li>如果传递的值是<code>引用类型</code>，那么接收方的操作会影响发送方的<code>源值</code></li>
-<li>可以使用<code>len</code>获取通道中的元素值数量，使用<code>cap</code>获取通道的容量。</li>
-<li><code>Notify(c chan&lt;- os.Signal)</code>：约束的是方法的实现方（适用于接口）；<code>Notify()&lt;-chan os.Signal</code>：约束方法的调用方（适用于函数和结构体方法）</li>
-<li>一般情况下不能转换通道类型，利用函数声明转换是Go的语法糖</li>
-<li>可以使用<code>for</code>语句可以不断地从通道接收元素值，直到通道关闭，但是通道不能是一个<code>发送通道</code></li>
-<li><code>select</code>后面直接加花括号，然后<code>case</code>后面只能是接收或者发送语句，<code>case</code>右边的表达式会先求值，相同条件时会随机选择一个</li>
-<li><code>break</code>语句可以直接跳出<code>select</code>，和<code>for</code>一起用时，使用<code>break + 标签</code>来表示中断紧贴于标签下的语句。</li>
-<li>单向通道可以对实现类型进行约束</li>
-<li>向一个关闭的通道发送数据会阻塞，但是接收端可以在关闭的通道接收数据，所以建议在发送端关闭通道</li>
-<li>建议用于传递<code>信号</code>的通道都以<code>struct{}</code>作为元素类型，因为空结构体类型是不占内存空间的，并且拥有相同的内存地址。<h3 id="非缓冲通道"><a href="#非缓冲通道" class="headerlink" title="非缓冲通道"></a>非缓冲通道</h3></li>
-<li>非缓冲通道只能同步的传递元素值</li>
-<li>向该通道<code>发送</code>元素值的操作会被阻塞，直到至少有一个针对该通道的接收操作，接收操作会先得到元素值的副本，然后唤醒发送方的gorouting，也就是说接收操作比发送操作先完成</li>
-<li>从该通道<code>接收</code>元素值的操作会被阻塞，直到至少有一个针对该通道的发送操作，发送操作会直接把元素值复制给接收方，然后唤醒接收方的gorouting，所以发送操作比接收操作先完成<h3 id="time包"><a href="#time包" class="headerlink" title="time包"></a>time包</h3><span style="border-bottom:2px solid red">定时器</span>：</li>
-<li>定时器<code>Timer</code>，我们不能使用复合字面量来初始化它，因为它含有包级私有字段，使用<code>time.NewTimer</code>和<code>time.AfterFunc</code>函数来构建</li>
-<li>定时器<code>Timer</code>中有一个通道<code>C</code>的字段，当定时器到期时发送当前时间到通道<code>C</code></li>
-<li><code>time.After</code>就是<code>time.NewTimer().C</code>的超时设定的一种快捷方式</li>
-<li>每次循环都要新建定时器有先浪费，我们可以使用<code>timer.Reset</code>重置来复用</li>
-<li>如果在<code>定时器</code>到期之前停止了它，再去接收<code>C</code>的元素值会一直阻塞</li>
-<li>如果在<code>定时器</code>到期之后未能及时接收元素值，那么即使重置以后，<code>C</code>字段还是会一直缓存那个元素值，新的通知会被丢弃</li>
-<li><code>time.AfterFunc</code>也会新建定时器，但是到期之后不会发送通知，而是新启用一个<code>gorouting</code>执行传入的函数</li>
-</ol>
-<p><span style="border-bottom:2px solid red">断续器</span>：</p>
-<ol>
-<li>断续器会间隔一段时间向通道<code>C</code>发送时间</li>
-<li>使用<code>time.NewTicker</code>初始化断续器</li>
-<li>使用<code>Stop</code>方法停止断续器，如果此时字段<code>C</code>存在元素值，那么会保存在那里，等待接收</li>
-<li>断续器适用于定时任务的触发器</li>
-</ol>
-<h1 id="2、代码"><a href="#2、代码" class="headerlink" title="2、代码"></a>2、代码</h1><h3 id="单向通道与for语句连用"><a href="#单向通道与for语句连用" class="headerlink" title="单向通道与for语句连用"></a>单向通道与for语句连用</h3><p>单向通道的合理应用，对实现类型进行约束<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">receive</span><span class="params">(strChan &lt;-<span class="keyword">chan</span> <span class="keyword">string</span>, syncChan1 &lt;-<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;, syncChan2 <span class="keyword">chan</span>&lt;- <span class="keyword">struct</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">	&lt;-syncChan1</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> elem, ok := &lt;-strChan; ok &#123; <span class="comment">//循环判断通道是否关闭，通道关闭后，ok是false的</span></span><br><span class="line">			fmt.Println(elem)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/*遍历通道是第二种方法</span></span><br><span class="line"><span class="comment">	for elem := range strChan &#123;</span></span><br><span class="line"><span class="comment">		fmt.Println(elem)</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	syncChan2 &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="select语句"><a href="#select语句" class="headerlink" title="select语句"></a>select语句</h3><p>select只能用于通道的发送和接收操作</p>
-<ol>
-<li>在关键字case右边的发送语句或者接收语句中的表达式会先求值</li>
-<li>这里的intChan1和intChan2未初始化，所以传送数据时会阻塞</li>
-<li>如果有多个case满足条件，那么运行时系统会随机选择一个<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> intChan1 = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> intChan2 = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">var</span> channels = []<span class="keyword">chan</span> <span class="keyword">int</span>&#123;intChan1, intChan2&#125;</span><br><span class="line"><span class="keyword">var</span> numbers = []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">select</span> &#123;</span><br><span class="line">	<span class="keyword">case</span> getChan(<span class="number">0</span>) &lt;- getNumber(<span class="number">2</span>):</span><br><span class="line">		fmt.Println(<span class="string">"1th case is selected"</span>)</span><br><span class="line">	<span class="keyword">case</span> getChan(<span class="number">1</span>) &lt;- getNumber(<span class="number">3</span>):</span><br><span class="line">		fmt.Println(<span class="string">"2st case is selected"</span>)</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		fmt.Println(<span class="string">"Default!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getNumber</span><span class="params">(i <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"numbers[%d]\n"</span>, i)</span><br><span class="line">	<span class="keyword">return</span> numbers[i]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getChan</span><span class="params">(i <span class="keyword">int</span>)</span> <span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"channels[%d]\n"</span>, i)</span><br><span class="line">	<span class="keyword">return</span> channels[i]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*结果：</span></span><br><span class="line"><span class="comment">channels[0]</span></span><br><span class="line"><span class="comment">numbers[0]</span></span><br><span class="line"><span class="comment">channels[1]</span></span><br><span class="line"><span class="comment">numbers[1]</span></span><br><span class="line"><span class="comment">Default!</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="对接收操作的超时限定"><a href="#对接收操作的超时限定" class="headerlink" title="对接收操作的超时限定"></a>对接收操作的超时限定</h3><p>这里使用了<code>Loop</code>标签，因为break语句只能跳出select语句。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">	Loop:</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> e, ok := &lt;-intChan:</span><br><span class="line">				<span class="keyword">if</span> !ok &#123;</span><br><span class="line">					<span class="keyword">break</span> Loop</span><br><span class="line">				&#125;</span><br><span class="line">				fmt.Printf(<span class="string">"Received:%d\n"</span>, e)</span><br><span class="line">				<span class="comment">// 设置一个500ms到期的定时器</span></span><br><span class="line">			<span class="keyword">case</span> &lt;-time.NewTimer(time.Millisecond * <span class="number">500</span>).C:</span><br><span class="line">				fmt.Println(<span class="string">"Timeout!"</span>)</span><br><span class="line">				<span class="keyword">break</span> Loop</span><br><span class="line">				<span class="comment">// 设置一个500ms到期的定时器，</span></span><br><span class="line">			<span class="keyword">case</span> &lt;-time.After(time.Millisecond * <span class="number">500</span>):</span><br><span class="line">				fmt.Println(<span class="string">"Timeout!"</span>)</span><br><span class="line">				<span class="keyword">break</span> Loop</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		syncChan &lt;- <span class="keyword">struct</span>&#123;&#125;&#123;&#125;</span><br><span class="line">	&#125;()</span><br></pre></td></tr></table></figure></p>
-<h3 id="对定时器的复用"><a href="#对定时器的复用" class="headerlink" title="对定时器的复用"></a>对定时器的复用</h3><p>每次执行都要新建一个timer，浪费资源，我们可以复用定时器。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">if</span> timer == <span class="literal">nil</span> &#123;</span><br><span class="line">			timer = time.NewTimer(timeout)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 复用定时器</span></span><br><span class="line">			timer.Reset(timeout)</span><br><span class="line">		&#125;</span><br><span class="line">		...</span><br><span class="line">		</span><br><span class="line">		&#125;()</span><br></pre></td></tr></table></figure></p>
-<h3 id="断续器"><a href="#断续器" class="headerlink" title="断续器"></a>断续器</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ticker := time.NewTicker(time.Second)</span><br><span class="line"><span class="comment">//两种使用断续器用于定时任务的触发器</span></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> _, ok := &lt;-ticker.C; ok &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> intChan &lt;- <span class="number">1</span>:</span><br><span class="line">			<span class="keyword">case</span> intChan &lt;- <span class="number">2</span>:</span><br><span class="line">			<span class="keyword">case</span> intChan &lt;- <span class="number">3</span>:</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
-<h3 id="通道类型的转换"><a href="#通道类型的转换" class="headerlink" title="通道类型的转换"></a>通道类型的转换</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Golang利用函数声明将双向通道转化为单向通道是GO的语法糖</span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> ch1 = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line">	_, ok := <span class="keyword">interface</span>&#123;&#125;(ch1).(&lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	fmt.Println(<span class="string">"chan int =&gt; &lt;-chan int:"</span>, ok)			<span class="comment">//false</span></span><br><span class="line">	_, ok = <span class="keyword">interface</span>&#123;&#125;(ch1).(<span class="keyword">chan</span>&lt;- <span class="keyword">int</span>)</span><br><span class="line">	fmt.Println(<span class="string">"chan int =&gt; chan&lt;- int:"</span>, ok)			<span class="comment">//false</span></span><br><span class="line">	sch := <span class="built_in">make</span>(<span class="keyword">chan</span>&lt;- <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line">	_, ok = <span class="keyword">interface</span>&#123;&#125;(sch).(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	fmt.Println(<span class="string">"&lt;-chan int =&gt; chan int:"</span>, ok)			<span class="comment">//false</span></span><br><span class="line">	rch := <span class="built_in">make</span>(&lt;-<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">1</span>)</span><br><span class="line">	_, ok = <span class="keyword">interface</span>&#123;&#125;(rch).(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	fmt.Println(<span class="string">"chan&lt;- int =&gt; chan int:"</span>, ok)			<span class="comment">//false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="流水线操作"><a href="#流水线操作" class="headerlink" title="流水线操作"></a>流水线操作</h3><p>Go的流水线操作<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于显示的释放上游通道</span></span><br><span class="line"><span class="keyword">var</span> done = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">struct</span>&#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">gen</span><span class="params">(nums ...<span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="comment">//设置上游通道的缓存，保证下游通到失败时，上游通道也能返回</span></span><br><span class="line">	out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="built_in">len</span>(nums))</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> _, n := <span class="keyword">range</span> nums &#123;</span><br><span class="line">			out &lt;- n</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">close</span>(out)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sq</span><span class="params">(in &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">defer</span> <span class="built_in">close</span>(out)</span><br><span class="line">		<span class="keyword">for</span> n := <span class="keyword">range</span> in &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> out &lt;- n * n:</span><br><span class="line">			<span class="keyword">case</span> &lt;-done:</span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">merge</span><span class="params">(in ...&lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	wg := sync.WaitGroup&#123;&#125;</span><br><span class="line">	wg.Add(<span class="built_in">len</span>(in))</span><br><span class="line">	<span class="comment">// 存储未读的数据</span></span><br><span class="line">	out := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">3</span>)</span><br><span class="line">	output := <span class="function"><span class="keyword">func</span><span class="params">(c &lt;-<span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> n := <span class="keyword">range</span> c &#123;</span><br><span class="line">			<span class="keyword">select</span> &#123;</span><br><span class="line">			<span class="keyword">case</span> out &lt;- n:</span><br><span class="line">			<span class="keyword">case</span> &lt;-done:</span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		wg.Done()</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, c := <span class="keyword">range</span> in &#123;</span><br><span class="line">		<span class="comment">// 每个channel分配一个gorouting</span></span><br><span class="line">		<span class="keyword">go</span> output(c)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		wg.Wait()</span><br><span class="line">		<span class="built_in">close</span>(out)</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	in := gen(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">	c1 := sq(in)</span><br><span class="line">	c2 := sq(in)</span><br><span class="line">	c3 := sq(in)</span><br><span class="line">	<span class="comment">//当main的操作完成时，关闭通道</span></span><br><span class="line">	<span class="keyword">defer</span> <span class="built_in">close</span>(done)</span><br><span class="line">	out := merge(c1, c2, c3)</span><br><span class="line">	fmt.Println(&lt;-out)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1933,7 +2221,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1955,7 +2243,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
