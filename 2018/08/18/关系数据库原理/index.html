@@ -90,16 +90,16 @@
 <meta property="og:image" content="http://www.llyltq.top/images/b+_tree.png">
 <meta property="og:image" content="http://www.llyltq.top/images/数据库全局概览.png">
 <meta property="og:image" content="http://www.llyltq.top/images/数据库查询过程.png">
-<meta property="og:image" content="http://www.llyltq.top/images/数据库合并联接">
+<meta property="og:image" content="http://www.llyltq.top/images/数据库合并联接.png">
 <meta property="og:image" content="http://www.llyltq.top/images/数据库哈希联接.png">
 <meta property="og:image" content="http://www.llyltq.top/images/数据库循环嵌套联接.png">
 <meta property="og:image" content="http://www.llyltq.top/images/数据库联接顺序.png">
 <meta property="og:image" content="http://www.llyltq.top/images/数据库缓存管理器.png">
 <meta property="og:image" content="http://www.llyltq.top/images/数据库缓存置换策略_LRU.png">
-<meta property="og:image" content="http://www.llyltq.top/images/数据库锁管理器">
+<meta property="og:image" content="http://www.llyltq.top/images/数据库锁管理器.png">
 <meta property="og:image" content="http://www.llyltq.top/images/数据库日志管理器.png">
 <meta property="og:image" content="http://www.llyltq.top/images/数据库日志缓冲区.png">
-<meta property="og:updated_time" content="2018-08-25T05:29:12.044Z">
+<meta property="og:updated_time" content="2018-08-25T05:37:38.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关系数据库原理">
 <meta name="twitter:description" content="一、数据库基本知识一个好的哈希表：$O(1)$一个均衡的树：$O(log(n))$一个好的排序算法：$O(n*log(n))$一个差的排序算法：$O(n^2)$ 1、排序合并排序：时间复杂度$O(n*log(n))$ 2、存储数据库的表使用的是二维阵列存储：必须一下子全部加载到内存中。数据库使用哈希表来存储锁表和缓冲池：可以先加载一半到内存中。 3、查找查找特定的值：二叉查找树    比如说你要">
@@ -456,7 +456,7 @@
 </ul>
 <h4 id="联接运算符（获取数据后那么就要连接了）"><a href="#联接运算符（获取数据后那么就要连接了）" class="headerlink" title="联接运算符（获取数据后那么就要连接了）"></a>联接运算符（获取数据后那么就要连接了）</h4><p>大多数情况下，“A Join B” 和 “B Join A”的成本是不同的</p>
 <hr>
-<p><span style="border-bottom:2px solid red;">合并联接</span>：（a、b中挑选相同的元素）<br><img src="\images\数据库合并联接" alt="合并联接"><br>如果两个关系都已经排序，时间复杂度：$O(N+M)$<br>如果两个关系都未排序，时间复杂度：$O(N<em>log(N)+M</em>log(M))$</p>
+<p><span style="border-bottom:2px solid red;">合并联接</span>：（a、b中挑选相同的元素）<br><img src="\images\数据库合并联接.png" alt="合并联接"><br>如果两个关系都已经排序，时间复杂度：$O(N+M)$<br>如果两个关系都未排序，时间复杂度：$O(N<em>log(N)+M</em>log(M))$</p>
 <hr>
 <p><span style="border-bottom:2px solid red;">哈希联接</span>：<br><img src="\images\数据库哈希联接.png" alt="哈希联接"><br>如果是个好的哈希函数，时间复杂度：$O(N+M)$</p>
 <hr>
@@ -535,7 +535,7 @@
 <li>读取已提交（Oracle，PostgreSQL，SQL Server默认模式）：如果事务A读取数据D，这时事务B删除或修改数据D并提交，那么事务A再次读数据D时数据的变化是可见的——不可重复读</li>
 <li>读取未提交：最低级别，如果事务A读取数据D，事务B修改或删除数据D（并未提交，事务B还在运行），那么事务A读取数据D时数据的变化是可见的。如果事务B回滚，那么事务A中读取的数据D是无意义的——<code>脏读</code>。</li>
 </ul>
-<h1 id="四、数据库的并发控制"><a href="#四、数据库的并发控制" class="headerlink" title="四、数据库的并发控制"></a>四、数据库的并发控制</h1><h2 id="1、锁管理器"><a href="#1、锁管理器" class="headerlink" title="1、锁管理器"></a>1、锁管理器</h2><p><img src="\images\数据库锁管理器" alt="锁管理器"></p>
+<h1 id="四、数据库的并发控制"><a href="#四、数据库的并发控制" class="headerlink" title="四、数据库的并发控制"></a>四、数据库的并发控制</h1><h2 id="1、锁管理器"><a href="#1、锁管理器" class="headerlink" title="1、锁管理器"></a>1、锁管理器</h2><p><img src="\images\数据库锁管理器.png" alt="锁管理器"></p>
 <blockquote>
 <p>锁管理器是添加和释放锁的进程，用一个哈希表来保存锁信息（关键字是被锁的数据）</p>
 </blockquote>
