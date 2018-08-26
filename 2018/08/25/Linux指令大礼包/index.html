@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="账号与群组创建账户1$ useradd -u UID -g 初始群组 -G 次要群组 -d 主文件夹 -s Shell 账号名 查询用户的群组和查看有效群组（输出的第一个群组）1创建密码 $ echo “密码” | passwd –stdin 账号名1显示密码相关参数 $ chage -l 账号名1修改账号参数 $ usermod -u UID -aG 次要群组12$ groupsgroup1 g">
+<meta name="description" content="账号与群组创建账户1$ useradd -u UID -g 初始群组 -G 次要群组 -d 主文件夹 -s Shell 账号名 查询用户的群组和查看有效群组（输出的第一个群组）12$ groupsgroup1 group2 group3 创建密码1$ echo &amp;quot;密码&amp;quot; | passwd --stdin 账号名 显示密码相关参数1$ chage -l 账号名 修改账号参数1$">
 <meta name="keywords" content="指令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux指令大礼包">
 <meta property="og:url" content="http://www.llyltq.top/2018/08/25/Linux指令大礼包/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="账号与群组创建账户1$ useradd -u UID -g 初始群组 -G 次要群组 -d 主文件夹 -s Shell 账号名 查询用户的群组和查看有效群组（输出的第一个群组）1创建密码 $ echo “密码” | passwd –stdin 账号名1显示密码相关参数 $ chage -l 账号名1修改账号参数 $ usermod -u UID -aG 次要群组12$ groupsgroup1 g">
+<meta property="og:description" content="账号与群组创建账户1$ useradd -u UID -g 初始群组 -G 次要群组 -d 主文件夹 -s Shell 账号名 查询用户的群组和查看有效群组（输出的第一个群组）12$ groupsgroup1 group2 group3 创建密码1$ echo &amp;quot;密码&amp;quot; | passwd --stdin 账号名 显示密码相关参数1$ chage -l 账号名 修改账号参数1$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-25T15:58:25.743Z">
+<meta property="og:updated_time" content="2018-08-26T04:35:37.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux指令大礼包">
-<meta name="twitter:description" content="账号与群组创建账户1$ useradd -u UID -g 初始群组 -G 次要群组 -d 主文件夹 -s Shell 账号名 查询用户的群组和查看有效群组（输出的第一个群组）1创建密码 $ echo “密码” | passwd –stdin 账号名1显示密码相关参数 $ chage -l 账号名1修改账号参数 $ usermod -u UID -aG 次要群组12$ groupsgroup1 g">
+<meta name="twitter:description" content="账号与群组创建账户1$ useradd -u UID -g 初始群组 -G 次要群组 -d 主文件夹 -s Shell 账号名 查询用户的群组和查看有效群组（输出的第一个群组）12$ groupsgroup1 group2 group3 创建密码1$ echo &amp;quot;密码&amp;quot; | passwd --stdin 账号名 显示密码相关参数1$ chage -l 账号名 修改账号参数1$">
 
 
 
@@ -344,13 +344,16 @@
 	  
       
         <h3 id="账号与群组"><a href="#账号与群组" class="headerlink" title="账号与群组"></a>账号与群组</h3><p>创建账户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ useradd -u UID -g 初始群组 -G 次要群组 -d 主文件夹 -s Shell 账号名</span><br></pre></td></tr></table></figure></p>
-<p>查询用户的群组和查看有效群组（输出的第一个群组）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">创建密码</span><br></pre></td></tr></table></figure></p>
-<p>$ echo “密码” | passwd –stdin 账号名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">显示密码相关参数</span><br></pre></td></tr></table></figure></p>
-<p>$ chage -l 账号名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改账号参数</span><br></pre></td></tr></table></figure></p>
-<p>$ usermod -u UID -aG 次要群组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ groups</span><br><span class="line">group1 group2 group3</span><br></pre></td></tr></table></figure></p>
+<p>查询用户的群组和查看有效群组（输出的第一个群组）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ groups</span><br><span class="line">group1 group2 group3</span><br></pre></td></tr></table></figure></p>
+<p>创建密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ echo &quot;密码&quot; | passwd --stdin 账号名</span><br></pre></td></tr></table></figure></p>
+<p>显示密码相关参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chage -l 账号名</span><br></pre></td></tr></table></figure></p>
+<p>修改账号参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ usermod -u UID -aG 次要群组</span><br></pre></td></tr></table></figure></p>
 <p>切换有效群组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ newgrp</span><br><span class="line">$ exit</span><br></pre></td></tr></table></figure></p>
 <p>改变文件的使用者和群组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chown -R 账号名:群组名 目录</span><br></pre></td></tr></table></figure></p>
 <p>查询<code>/etc/shadow</code>中密码是用什么加密的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ authconfig --test | grep hashing</span><br></pre></td></tr></table></figure></p>
+<p>设置文件或目录的ACL权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m u:使用者:权限 文件或目录名</span><br></pre></td></tr></table></figure></p>
+<p>切换身份运行指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u ssh touch 文件</span><br><span class="line">$ sudo -u ssh sh -c &quot;mkdir ~gongshen/www;cd ~gongshen/www;\</span><br><span class="line">&gt; echo &apos;This is index file!&apos; &gt; index.html&quot;</span><br></pre></td></tr></table></figure></p>
+<p>设置<code>/etc/sudoers</code>文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%群组名						 ALL= (ALL)			   ALL</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
