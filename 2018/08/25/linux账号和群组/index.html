@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.llyltq.top/images/newgrp.png">
 <meta property="og:image" content="http://www.llyltq.top/images/pam.png">
-<meta property="og:updated_time" content="2018-08-26T13:50:24.343Z">
+<meta property="og:updated_time" content="2018-08-27T04:20:01.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux账号管理与ACL设置">
 <meta name="twitter:description" content="账号与群组在Linux中，每个使用者至少会有两个ID：（1）使用者ID，（2）群组ID要显示文件属性时，会从/etc/passwd和/etc/group中找到记录的UID和GID对应的账号名和群组名。 用户从tty1~tty6的终端机提供的login接口登陆系统：  查看/etc/passwd中是否存在你输入的账号 读出/etc/passwd中账号对应的UID和GID，和主文件夹记录的UID比较">
@@ -377,7 +377,7 @@
 <p>设置文件拥有着权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m u::rwx 文件名或目录名</span><br></pre></td></tr></table></figure></p>
 <p>删除ACL权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -x u:user1 file1		&lt;=删除特定的权限</span><br><span class="line">$ setfacl -b file1		&lt;=删除全部ACL设置</span><br></pre></td></tr></table></figure></p>
 <p>查看文件权限信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ getfacl 文件名或目录名</span><br></pre></td></tr></table></figure></p>
-<h1 id="使用者身份切换"><a href="#使用者身份切换" class="headerlink" title="使用者身份切换"></a>使用者身份切换</h1><p>因为<code>sshd</code>的shell是<code>/sbin/nologin</code>，所以我们无法登陆。<br>使用<code>sudo</code>以其他使用者身份执行一串指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u ssh touch 文件</span><br><span class="line">$ sudo -u ssh sh -c &quot;mkdir ~gongshen/www;cd ~gongshen/www;\</span><br><span class="line">&gt; echo &apos;This is index file!&apos; &gt; index.html&quot;</span><br></pre></td></tr></table></figure></p>
+<h1 id="使用者身份切换"><a href="#使用者身份切换" class="headerlink" title="使用者身份切换"></a>使用者身份切换</h1><p>因为<code>sshd</code>的shell是<code>/sbin/nologin</code>，所以我们无法登陆。<br>使用<code>sudo</code>以其他使用者身份执行一串指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u ssh touch 文件</span><br><span class="line">$ sudo -u ssh sh -c &quot;mkdir ~gongshen/www;cd ~gongshen/www;\</span><br><span class="line">&gt; echo &apos;This is index file&apos; &gt; index.html&quot;</span><br></pre></td></tr></table></figure></p>
 <h3 id="配置-etc-sudoers"><a href="#配置-etc-sudoers" class="headerlink" title="配置/etc/sudoers"></a>配置<code>/etc/sudoers</code></h3><blockquote>
 <p>使用者必须具有<code>sudo</code>使用权限，在<code>/etc/sudoers</code>文件中配置。</p>
 </blockquote>
