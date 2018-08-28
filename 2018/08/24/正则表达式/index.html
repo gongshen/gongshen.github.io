@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="基本正则表达式 ^：行首 $：行尾 ^$：空行 \&amp;lt;：词首 &amp;gt;：词尾 \B：非单词边界 (hello)：表示hello这整个单词 m{n}：m连续出现n次 n*：n连续出现（包括0次） .：单个字符 .*：任意字符 n\?：n出现0次或1次 n\ +：n至少出现1次 [abc]：abc中任意的单个字符 [^abc]：除了abc外的任意的单个字符 [[:alpha:]]：任意英文字母中的任意">
+<meta name="description" content="grep指令中使用基本正则表达式 ^：行首 $：行尾 ^$：空行 \&amp;lt;：词首 &amp;gt;：词尾 \B：非单词边界 (hello)：表示hello这整个单词 m{n}：m连续出现n次 n*：n连续出现（包括0次） .：单个字符 .*：任意字符 n\?：n出现0次或1次 n\ +：n至少出现1次 [abc]：abc中任意的单个字符 [^abc]：除了abc外的任意的单个字符 [[:alpha:]]：任意">
 <meta name="keywords" content="linux,正则表达式,grep">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式">
 <meta property="og:url" content="http://www.llyltq.top/2018/08/24/正则表达式/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="基本正则表达式 ^：行首 $：行尾 ^$：空行 \&amp;lt;：词首 &amp;gt;：词尾 \B：非单词边界 (hello)：表示hello这整个单词 m{n}：m连续出现n次 n*：n连续出现（包括0次） .：单个字符 .*：任意字符 n\?：n出现0次或1次 n\ +：n至少出现1次 [abc]：abc中任意的单个字符 [^abc]：除了abc外的任意的单个字符 [[:alpha:]]：任意英文字母中的任意">
+<meta property="og:description" content="grep指令中使用基本正则表达式 ^：行首 $：行尾 ^$：空行 \&amp;lt;：词首 &amp;gt;：词尾 \B：非单词边界 (hello)：表示hello这整个单词 m{n}：m连续出现n次 n*：n连续出现（包括0次） .：单个字符 .*：任意字符 n\?：n出现0次或1次 n\ +：n至少出现1次 [abc]：abc中任意的单个字符 [^abc]：除了abc外的任意的单个字符 [[:alpha:]]：任意">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.llyltq.top/images/正则图.png">
-<meta property="og:updated_time" content="2018-08-27T16:26:47.889Z">
+<meta property="og:updated_time" content="2018-08-28T05:06:30.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式">
-<meta name="twitter:description" content="基本正则表达式 ^：行首 $：行尾 ^$：空行 \&amp;lt;：词首 &amp;gt;：词尾 \B：非单词边界 (hello)：表示hello这整个单词 m{n}：m连续出现n次 n*：n连续出现（包括0次） .：单个字符 .*：任意字符 n\?：n出现0次或1次 n\ +：n至少出现1次 [abc]：abc中任意的单个字符 [^abc]：除了abc外的任意的单个字符 [[:alpha:]]：任意英文字母中的任意">
+<meta name="twitter:description" content="grep指令中使用基本正则表达式 ^：行首 $：行尾 ^$：空行 \&amp;lt;：词首 &amp;gt;：词尾 \B：非单词边界 (hello)：表示hello这整个单词 m{n}：m连续出现n次 n*：n连续出现（包括0次） .：单个字符 .*：任意字符 n\?：n出现0次或1次 n\ +：n至少出现1次 [abc]：abc中任意的单个字符 [^abc]：除了abc外的任意的单个字符 [[:alpha:]]：任意">
 <meta name="twitter:image" content="http://www.llyltq.top/images/正则图.png">
 
 
@@ -345,8 +345,7 @@
       
 	  
       
-        <p><img src="\images\正则图.png" alt="正则图"></p>
-<h1 id="基本正则表达式"><a href="#基本正则表达式" class="headerlink" title="基本正则表达式"></a>基本正则表达式</h1><ul>
+        <h1 id="grep指令中使用基本正则表达式"><a href="#grep指令中使用基本正则表达式" class="headerlink" title="grep指令中使用基本正则表达式"></a>grep指令中使用基本正则表达式</h1><ul>
 <li>^：行首</li>
 <li>$：行尾</li>
 <li>^$：空行</li>
@@ -400,7 +399,7 @@
 <hr>
 <p>a后面跟连续的3个小写字母<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -n &quot;a[[:lower:]]\&#123;3\&#125;&quot; regex</span><br></pre></td></tr></table></figure></p>
 <h3 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a>反向引用</h3><p>在world前后要相同<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//匹配 hello world hello</span><br><span class="line">grep -n &quot;\(hello\) world \1&quot; regex</span><br></pre></td></tr></table></figure></p>
-<h1 id="扩展正则表达式"><a href="#扩展正则表达式" class="headerlink" title="扩展正则表达式"></a>扩展正则表达式</h1><ul>
+<h1 id="grep指令中的扩展正则表达式"><a href="#grep指令中的扩展正则表达式" class="headerlink" title="grep指令中的扩展正则表达式"></a>grep指令中的扩展正则表达式</h1><ul>
 <li>(ab)：表示ab是一个整体</li>
 <li>n{2,3}：表示匹配2到3个连续的n</li>
 <li>a|b：匹配a或者b</li>
@@ -409,9 +408,43 @@
 <li>其他规则和基本正则一样</li>
 </ul>
 <hr>
-<p>举例：匹配合法邮箱地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E &quot;[a-z0-9]&#123;4,16&#125;@[a-z0-9]&#123;2,12&#125;\.(\&lt;(com|net|org|edu))$&quot;</span><br></pre></td></tr></table></figure></p>
-<h1 id="匹配密码"><a href="#匹配密码" class="headerlink" title="匹配密码"></a>匹配密码</h1><p>至少8位，至少出现一个小写字母，一个大写字母，一个数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[\S\s]&#123;8,&#125;$</span><br></pre></td></tr></table></figure></p>
+<p>举例：<br>匹配合法邮箱地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E &quot;[a-z0-9]&#123;4,16&#125;@[a-z0-9]&#123;2,12&#125;\.(\&lt;(com|net|org|edu))$&quot;</span><br></pre></td></tr></table></figure></p>
+<h1 id="正则表达式例子"><a href="#正则表达式例子" class="headerlink" title="正则表达式例子"></a>正则表达式例子</h1><p>匹配密码<br>至少8位，至少出现一个小写字母，一个大写字母，一个数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])[\S\s]&#123;8,&#125;$</span><br></pre></td></tr></table></figure></p>
 <p>\s\S：表示空字符和非空字符</p>
+<p><img src="\images\正则图.png" alt="正则图"></p>
+<h1 id="sed：对流中的文字进行撷取、替换等操作"><a href="#sed：对流中的文字进行撷取、替换等操作" class="headerlink" title="sed：对流中的文字进行撷取、替换等操作"></a>sed：对流中的文字进行撷取、替换等操作</h1><p>删除2到5行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat -n /etc/passwd | sed -e &apos;2,5d&apos;</span><br></pre></td></tr></table></figure></p>
+<p>在第二行后新增数据drink tea，在第二行前新增数据就是<code>2i</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat -n /etc/passwd | sed &apos;2d drink tea&apos;</span><br></pre></td></tr></table></figure></p>
+<p>在第二行后新增2行数据，需要使用<code>\</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat -n /etc/passwd | sed &apos;2d drink tea \</span><br><span class="line">&gt; the second line&apos;</span><br></pre></td></tr></table></figure></p>
+<p>将2-5行内容取代为“the 2-5 data”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat -n /etc/passwd | sed &apos;2,5c the 2-5 data&apos;</span><br></pre></td></tr></table></figure></p>
+<p>仅列出2-5行，需要与<code>n</code>一起用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat -n /etc/passwd | sed -n &apos;2,5p&apos;</span><br></pre></td></tr></table></figure></p>
+<p><span style="border-bottom:2px solid blue">—搜索部分数据并取代—</span><br>格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;s/被取代的字串/新的字串/g&apos;</span><br></pre></td></tr></table></figure></p>
+<p>仅显示 1.2.3.4 这个ip地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ifconfig eth0 | grep &apos;inet&apos;</span><br><span class="line">        inet 1.2.3.4  netmask 255.255.192.0  broadcast 10.214.63.255</span><br><span class="line">$ ifconfig eth0 | grep &apos;inet&apos; | sed &apos;s/^ *inet //g&apos; | sed &apos;s/ *netmask.*$&apos; </span><br><span class="line">1.2.3.4</span><br></pre></td></tr></table></figure></p>
+<p>将所有注释行删除，注意！使用<code>//d</code>代表对每行的操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/man_db.conf | sed &apos;/#.*$/d&apos;</span><br></pre></td></tr></table></figure></p>
+<p>将文件末尾如果是 “.” 就改为 “!”，<code>-i</code>表示直接修改文件内容，不是屏幕输出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sed -i &apos;s/\.$/\!/g&apos; 文件名</span><br></pre></td></tr></table></figure></p>
+<p>当存在多个动作时，需要使用<code>-e</code>选项<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i -e &apos;3d&apos; -e &apos;s/\!$/\./g&apos; regular.txt</span><br></pre></td></tr></table></figure></p>
+<p><span style="border-bottom:2px solid red"><code>a</code>和<code>//a</code>的区别</span><br><code>$a</code>表示对整个文件的末尾进行新增操作<br><code>/$/a</code>表示对每一行的末尾进行新增操作</p>
+<h1 id="printf"><a href="#printf" class="headerlink" title="printf"></a>printf</h1><p><code>%10s</code>输出长度为10的字符型，<code>%5i</code>输出长度为5的整数型，<code>%8.2f</code>输出8个字符，小数点为2位的浮点型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ cat mark.txt</span><br><span class="line">Name     Chinese   English   Math    Average</span><br><span class="line">DmTsai        80        60     92      77.33</span><br><span class="line">GS         	  75        55     80      70.00</span><br><span class="line">Ken           60        90     70      73.33</span><br><span class="line"></span><br><span class="line">$ printf &apos;%10s %5i %5i %5i %8.2f \n&apos; $(cat mark.txt | grep -v &apos;Name&apos;)</span><br></pre></td></tr></table></figure></p>
+<h1 id="awk：数据处理工具"><a href="#awk：数据处理工具" class="headerlink" title="awk：数据处理工具"></a>awk：数据处理工具</h1><h3 id="awk内置变量"><a href="#awk内置变量" class="headerlink" title="awk内置变量"></a>awk内置变量</h3><ul>
+<li>$0：第一行的数据</li>
+<li>$1：第一栏的数据（默认以空格或tab分割）</li>
+<li>NR：目前处理的是第几行</li>
+<li>NF：改行的字段数</li>
+<li>FS：当前的分割符（默认以空格或tab）</li>
+</ul>
+<h3 id="awk使用"><a href="#awk使用" class="headerlink" title="awk使用"></a>awk使用</h3><p>取出登陆者和ip地址，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ last -n 5 | awk &apos;&#123;print $1 &quot;\t lines:&quot; NR &quot;\t numbers:&quot; NF &quot;\t IP:&quot; $3&#125;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>预先设定以<code>:</code>分割数据，显示<code>UID&lt;10</code>的账户和UID<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/passwd | awk &apos;BEGIN &#123;FS=&quot;:&quot;&#125; $3&lt;10 &#123;print &quot;user:&quot; $1 &quot;\t UID:&quot; $3&#125;&apos;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>计算总额并且格式化输出，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cat mark.txt</span><br><span class="line">Name    1st     2nd     3th</span><br><span class="line">GS      23000   24000   25000</span><br><span class="line">DMTsai  21000   20000   23000</span><br><span class="line">Bird2   43000   42000   41000</span><br><span class="line"></span><br><span class="line">$ cat mark.txt |\</span><br><span class="line">&gt; awk &apos;NR==1&#123;printf &quot;%10s %10s %10s %10s %10s\n&quot;,$1,$2,$3,$4,&quot;Total&quot;&#125;</span><br><span class="line">&gt; NR&gt;=2&#123;total=$2+$3+$4</span><br><span class="line">&gt; printf &quot;%10s %10d %10d %10d %10.2f\n&quot;,$1,$2,$3,$4,total&#125;&apos;</span><br></pre></td></tr></table></figure></p>
+<p>上面的指令也可以变成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cat mark.txt | \</span><br><span class="line">&gt; awk &apos;&#123;if (NR==1) printf &quot;%10s %10s %10s %10s %10s\n&quot;,$1,$2,$3,$4,&quot;Total&quot;&#125; </span><br><span class="line">&gt; NR&gt;=2&#123;total=$2+$3+$4;printf &quot;%10s %10d %10d %10d %10.2f\n&quot;,$1,$2,$3,$4,total&#125;&apos;</span><br></pre></td></tr></table></figure></p>
+<h1 id="文件比对工具"><a href="#文件比对工具" class="headerlink" title="文件比对工具"></a>文件比对工具</h1><h3 id="diff：比对文件差异"><a href="#diff：比对文件差异" class="headerlink" title="diff：比对文件差异"></a>diff：比对文件差异</h3><ul>
+<li>-b：忽略一行中，仅有多个空白的差异（a b和a    b的差异）</li>
+<li>-B：忽略空白行的差异</li>
+<li>-i：忽略大小写的不同</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ diff file.old file.new</span><br></pre></td></tr></table></figure>
+<h3 id="patch：打补丁"><a href="#patch：打补丁" class="headerlink" title="patch：打补丁"></a>patch：打补丁</h3><p>使用<code>diff</code>比较并生成补丁文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ diff -Nuar passwd.old passwd.new &gt; passwd.patch</span><br></pre></td></tr></table></figure></p>
+<p>使用补丁文件更新旧的数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ patch -p0 &lt; passwd.patch</span><br></pre></td></tr></table></figure></p>
+<p>使用补丁文件还原旧的数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ patch -R -p0 &lt; passwd.patch</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -557,7 +590,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -606,7 +639,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本正则表达式"><span class="nav-number">1.</span> <span class="nav-text">基本正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊符号"><span class="nav-number">1.0.1.</span> <span class="nav-text">特殊符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反向引用"><span class="nav-number">1.0.2.</span> <span class="nav-text">反向引用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展正则表达式"><span class="nav-number">2.</span> <span class="nav-text">扩展正则表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#匹配密码"><span class="nav-number">3.</span> <span class="nav-text">匹配密码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#grep指令中使用基本正则表达式"><span class="nav-number">1.</span> <span class="nav-text">grep指令中使用基本正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊符号"><span class="nav-number">1.0.1.</span> <span class="nav-text">特殊符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反向引用"><span class="nav-number">1.0.2.</span> <span class="nav-text">反向引用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#grep指令中的扩展正则表达式"><span class="nav-number">2.</span> <span class="nav-text">grep指令中的扩展正则表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式例子"><span class="nav-number">3.</span> <span class="nav-text">正则表达式例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sed：对流中的文字进行撷取、替换等操作"><span class="nav-number">4.</span> <span class="nav-text">sed：对流中的文字进行撷取、替换等操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#printf"><span class="nav-number">5.</span> <span class="nav-text">printf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#awk：数据处理工具"><span class="nav-number">6.</span> <span class="nav-text">awk：数据处理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#awk内置变量"><span class="nav-number">6.0.1.</span> <span class="nav-text">awk内置变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#awk使用"><span class="nav-number">6.0.2.</span> <span class="nav-text">awk使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件比对工具"><span class="nav-number">7.</span> <span class="nav-text">文件比对工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#diff：比对文件差异"><span class="nav-number">7.0.1.</span> <span class="nav-text">diff：比对文件差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#patch：打补丁"><span class="nav-number">7.0.2.</span> <span class="nav-text">patch：打补丁</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
