@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="账号,群组,ACL," />
+  <meta name="keywords" content="linux,账号,群组,ACL," />
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="账号与群组在Linux中，每个使用者至少会有两个ID：（1）使用者ID，（2）群组ID要显示文件属性时，会从/etc/passwd和/etc/group中找到记录的UID和GID对应的账号名和群组名。 用户从tty1~tty6的终端机提供的login接口登陆系统：  查看/etc/passwd中是否存在你输入的账号 读出/etc/passwd中账号对应的UID和GID，和主文件夹记录的UID比较">
-<meta name="keywords" content="账号,群组,ACL">
+<meta name="keywords" content="linux,账号,群组,ACL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux账号管理与ACL设置">
 <meta property="og:url" content="http://www.llyltq.top/2018/08/25/linux账号和群组/index.html">
@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.llyltq.top/images/newgrp.png">
 <meta property="og:image" content="http://www.llyltq.top/images/pam.png">
-<meta property="og:updated_time" content="2018-08-27T04:20:01.895Z">
+<meta property="og:updated_time" content="2018-08-28T05:35:23.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux账号管理与ACL设置">
 <meta name="twitter:description" content="账号与群组在Linux中，每个使用者至少会有两个ID：（1）使用者ID，（2）群组ID要显示文件属性时，会从/etc/passwd和/etc/group中找到记录的UID和GID对应的账号名和群组名。 用户从tty1~tty6的终端机提供的login接口登陆系统：  查看/etc/passwd中是否存在你输入的账号 读出/etc/passwd中账号对应的UID和GID，和主文件夹记录的UID比较">
@@ -401,7 +401,7 @@
 <h3 id="同步的发送讯息"><a href="#同步的发送讯息" class="headerlink" title="同步的发送讯息"></a>同步的发送讯息</h3><p>user1可以给user2使用的终端pts/2发送讯息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ write user2 pts/2</span><br></pre></td></tr></table></figure></p>
 <p>root可以不接收任何同步讯息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mesg n</span><br></pre></td></tr></table></figure></p>
 <p>广播发送讯息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wall &quot;I will shutdown the server...&quot;</span><br></pre></td></tr></table></figure></p>
-<h3 id="异步的发送讯息"><a href="#异步的发送讯息" class="headerlink" title="异步的发送讯息"></a>异步的发送讯息</h3>
+<h3 id="异步的发送讯息"><a href="#异步的发送讯息" class="headerlink" title="异步的发送讯息"></a>异步的发送讯息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mail -s &quot;this is title&quot; user1</span><br><span class="line">This is the body of mail!</span><br><span class="line">EOT</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -417,6 +417,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
             <a href="/tags/账号/" rel="tag"># 账号</a>
           
@@ -445,8 +447,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/25/Linux指令大礼包/" rel="prev" title="Linux指令">
-                Linux指令 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/26/linux文件与目录/" rel="prev" title="linux文件与目录">
+                linux文件与目录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -524,7 +526,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -546,7 +548,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
