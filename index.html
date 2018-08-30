@@ -350,9 +350,10 @@
             <h3 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h3><ul>
 <li>一致性（consistency）</li>
 <li>可用性（availablity）</li>
-<li>分区容错性（partition）<h1 id="哈希函数三个特性"><a href="#哈希函数三个特性" class="headerlink" title="哈希函数三个特性"></a>哈希函数三个特性</h1><h3 id="碰撞阻力"><a href="#碰撞阻力" class="headerlink" title="碰撞阻力"></a>碰撞阻力</h3>对于两个不同的值，不会产生了相同的哈希</li>
+<li>分区容错性（partition）</li>
 </ul>
-<h3 id="隐蔽性"><a href="#隐蔽性" class="headerlink" title="隐蔽性"></a>隐蔽性</h3><ol>
+<h1 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h1><h2 id="哈希函数三个特性"><a href="#哈希函数三个特性" class="headerlink" title="哈希函数三个特性"></a>哈希函数三个特性</h2><h4 id="碰撞阻力"><a href="#碰撞阻力" class="headerlink" title="碰撞阻力"></a>碰撞阻力</h4><p>对于两个不同的值，不会产生了相同的哈希</p>
+<h4 id="隐蔽性"><a href="#隐蔽性" class="headerlink" title="隐蔽性"></a>隐蔽性</h4><ol>
 <li>比如<code>H</code>一个哈希函数，<code>msg</code>是信息，如果这时我要生成一个承诺</li>
 <li>从高阶最小熵（随机变量的离散程度）选取一个<code>nonce</code></li>
 <li>根据实施方案<code>承诺=H(msg || nonce)</code>生成一个承诺</li>
@@ -360,8 +361,229 @@
 <li>最后如果我想公布这个<code>msg</code>，那么同时我们也公布随机数<code>nonce</code></li>
 <li>所有人都可以将<code>msg</code>和<code>nonce</code>进行哈希验证，判断<code>msg</code>的值是否为我之前承诺的<code>msg</code></li>
 </ol>
-<h3 id="谜题友好"><a href="#谜题友好" class="headerlink" title="谜题友好"></a>谜题友好</h3><p>对于<code>H(nonce || x) ∈ Y</code>，如果我们以合适的随机方式产生<code>nonce</code>，那么想要求解那个公式是没有捷径的。</p>
-<h1 id="共识算法"><a href="#共识算法" class="headerlink" title="共识算法"></a>共识算法</h1><p>Paxos：系统中存在故障节点，但不存在恶意节点</p>
+<h4 id="谜题友好"><a href="#谜题友好" class="headerlink" title="谜题友好"></a>谜题友好</h4><p>对于<code>H(nonce || x) ∈ Y</code>，如果我们以合适的随机方式产生<code>nonce</code>，那么想要求解那个公式是没有捷径的。</p>
+<h4 id="安全哈希算法"><a href="#安全哈希算法" class="headerlink" title="安全哈希算法"></a>安全哈希算法</h4><p>我们将一个用于固定输入长度、具备碰撞阻力的哈希函数称为<code>压缩函数</code>，将一个固定长度输入的哈希函数转换成任意长度输入称为<code>MD变换</code>。</p>
+<p><img src="\images\MD变换.jpg" alt="MD变换"><br>比如压缩函数的固定输入长度为768，产生256位输出，那么将输入分为<code>m-n</code>大小的区块，每</p>
+<h2 id="哈希指针"><a href="#哈希指针" class="headerlink" title="哈希指针"></a>哈希指针</h2><p>####个区块和前一个区块的输出一起代入压缩函数<br> 区块链<br>我们使用<code>哈希指针</code>来构建区块链数据结构，<code>哈希指针</code>不仅指向上个区块的值的位置，还记录着上个区块的哈希值。所以能被防止篡改<br><img src="\images\区块链.jpg" alt="区块链"></p>
+<h4 id="梅克尔树"><a href="#梅克尔树" class="headerlink" title="梅克尔树"></a>梅克尔树</h4><p>只要我们记住根节点，任何数据的篡改都会被检测到<br><img src="\images\梅克尔树.jpg" alt="梅克尔树"></p>
+<p><span style="border-bottom:2px solid red">隶属证明</span><br>证明一个数据区块隶属于一个梅克尔树，验证花费·O(log(n))·<br><img src="\images\隶属证明.jpg" alt="隶属证明"></p>
+<h2 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h2><p>数字证书由3个算法构成：</p>
+<ol>
+<li>(privateKey,publicKey):=generateKey(nonce)</li>
+<li>sig:=signature(privateKey,message)</li>
+<li>isValid:=verify(publicKey,message,sig)</li>
+</ol>
+<p>对哈希后的信息进行签名，比如对区块链的链尾指针进行签名，那么等于签署了整条区块链。</p>
+<h2 id="身份去中心化"><a href="#身份去中心化" class="headerlink" title="身份去中心化"></a>身份去中心化</h2><p>公钥就是我们的身份，有时公钥太长，那么我们可以以256位的公钥哈希作为身份。</p>
+<h4 id="椭圆曲线数字签名算法"><a href="#椭圆曲线数字签名算法" class="headerlink" title="椭圆曲线数字签名算法"></a>椭圆曲线数字签名算法</h4><p>ECDSA是比特币使用的算法，注意不良随机可能导致密钥泄露。</p>
+<h2 id="两种简单的加密货币"><a href="#两种简单的加密货币" class="headerlink" title="两种简单的加密货币"></a>两种简单的加密货币</h2><h4 id="高飞币"><a href="#高飞币" class="headerlink" title="高飞币"></a>高飞币</h4><ol>
+<li>高飞生成唯一的随机ID，并建立字符串，然后使用私钥签名该字符串</li>
+<li>高飞创建一个支付声明，并对其进行签名，这样爱丽丝就拥有这个币</li>
+<li>爱丽丝创建一个支付声明，并对其进行签名，这样鲍勃就拥有这个币<br><img src="\images\高飞币.jpg" alt=""></li>
+</ol>
+<p>`该币存在双重支付的问题和中心化的问题</p>
+<h4 id="财奴币"><a href="#财奴币" class="headerlink" title="财奴币"></a>财奴币</h4><p>财奴币使用区块链结构，实现了仅增的功能，解决双重支付的问题。在链表的末尾财奴对哈希指针进行签名，保证区块链不被篡改。<br><img src="\images\财奴币.jpg" alt="财奴币"></p>
+<p>财奴币中有两种交易：</p>
+<ol>
+<li>造币：跟高飞币一样，不过财奴币可以造多个币</li>
+<li>付币：创建该交易的人会消耗币，并生成相同总值的新币，新币可能属于不同的人。付币交易必须进行签名，否则无效<br><code>该币还是存在中心化问题</code> </li>
+</ol>
+<h1 id="base58"><a href="#base58" class="headerlink" title="base58"></a>base58</h1><ul>
+<li>base64是一种编码技术，不是加密技术。</li>
+<li>将3个8位字节转换为4个6位的字节</li>
+<li>如果剩下的字符不足3的倍数，用0填充，全0用字符“=”替换</li>
+<li>可以使用base64对可执行文件进行编码，就不会有乱码了</li>
+</ul>
+<h3 id="base64编码表"><a href="#base64编码表" class="headerlink" title="base64编码表"></a>base64编码表</h3><table>
+<thead>
+<tr>
+<th>数值</th>
+<th>字符</th>
+<th>数值</th>
+<th>字符</th>
+<th>数值</th>
+<th>字符</th>
+<th>数值</th>
+<th>字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>A</td>
+<td>16</td>
+<td>Q</td>
+<td>32</td>
+<td>g</td>
+<td>48</td>
+<td>w</td>
+</tr>
+<tr>
+<td>1</td>
+<td>B</td>
+<td>17</td>
+<td>R</td>
+<td>33</td>
+<td>h</td>
+<td>49</td>
+<td>x</td>
+</tr>
+<tr>
+<td>2</td>
+<td>C</td>
+<td>18</td>
+<td>S</td>
+<td>34</td>
+<td>i</td>
+<td>50</td>
+<td>y</td>
+</tr>
+<tr>
+<td>3</td>
+<td>D</td>
+<td>19</td>
+<td>T</td>
+<td>35</td>
+<td>j</td>
+<td>51</td>
+<td>z</td>
+</tr>
+<tr>
+<td>4</td>
+<td>E</td>
+<td>20</td>
+<td>U</td>
+<td>36</td>
+<td>k</td>
+<td>52</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>F</td>
+<td>21</td>
+<td>V</td>
+<td>37</td>
+<td>l</td>
+<td>53</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>G</td>
+<td>22</td>
+<td>W</td>
+<td>38</td>
+<td>m</td>
+<td>54</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>H</td>
+<td>23</td>
+<td>X</td>
+<td>39</td>
+<td>n</td>
+<td>55</td>
+<td>3</td>
+</tr>
+<tr>
+<td>8</td>
+<td>I</td>
+<td>24</td>
+<td>Y</td>
+<td>40</td>
+<td>o</td>
+<td>56</td>
+<td>4</td>
+</tr>
+<tr>
+<td>9</td>
+<td>J</td>
+<td>25</td>
+<td>Z</td>
+<td>41</td>
+<td>p</td>
+<td>57</td>
+<td>5</td>
+</tr>
+<tr>
+<td>10</td>
+<td>K</td>
+<td>26</td>
+<td>a</td>
+<td>42</td>
+<td>q</td>
+<td>58</td>
+<td>6</td>
+</tr>
+<tr>
+<td>11</td>
+<td>L</td>
+<td>27</td>
+<td>b</td>
+<td>43</td>
+<td>r</td>
+<td>59</td>
+<td>7</td>
+</tr>
+<tr>
+<td>12</td>
+<td>M</td>
+<td>28</td>
+<td>c</td>
+<td>44</td>
+<td>s</td>
+<td>60</td>
+<td>8</td>
+</tr>
+<tr>
+<td>13</td>
+<td>N</td>
+<td>29</td>
+<td>d</td>
+<td>45</td>
+<td>t</td>
+<td>61</td>
+<td>9</td>
+</tr>
+<tr>
+<td>14</td>
+<td>O</td>
+<td>30</td>
+<td>e</td>
+<td>46</td>
+<td>u</td>
+<td>62</td>
+<td>+</td>
+</tr>
+<tr>
+<td>15</td>
+<td>P</td>
+<td>31</td>
+<td>f</td>
+<td>47</td>
+<td>v</td>
+<td>63</td>
+<td>/</td>
+</tr>
+</tbody>
+</table>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p><code>M</code>的ASCII码是：77，二进制是：01001101<br>那么取6位<code>010011</code>得到编码<code>T</code>，因为不足3个字节，所以进行补位，最终得到base64编码<code>T==</code></p>
+<h3 id="比特币的地址使用base58编码，去掉了0-O-l-L"><a href="#比特币的地址使用base58编码，去掉了0-O-l-L" class="headerlink" title="比特币的地址使用base58编码，去掉了0,O,l,L"></a>比特币的地址使用base58编码，去掉了<code>0,O,l,L</code></h3><h1 id="比特币结构"><a href="#比特币结构" class="headerlink" title="比特币结构"></a>比特币结构</h1><p><img src="\images\区块结构.png" alt="区块结构"></p>
+<ul>
+<li><p>区块结构<br>|字节|字段|说明|<br>|-|-|-|<br>|4|区块大小||<br>|80|区块头||<br>|1-9|交易计数器|包含交易数量和币基交易|<br>|不定|交易||</p>
+</li>
+<li><p>区块头<br>|字节|字段|说明|<br>|-|-|<br>|4|版本号||<br>|32|前区块的哈希值||<br>|32|梅克尔树根||<br>|4|时间戳||<br>|4|难度目标|该区块pow难度|<br>|4|nonce|用于pow|</p>
+</li>
+<li><p>区块体</p>
+<ul>
+<li>币基交易：造币给矿工的奖励</li>
+<li>普通交易</li>
+</ul>
+</li>
+</ul>
 
           
         
