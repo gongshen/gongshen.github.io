@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>大小端</title>
+      <link href="/2018/08/31/%E5%A4%A7%E5%B0%8F%E7%AB%AF/"/>
+      <url>/2018/08/31/%E5%A4%A7%E5%B0%8F%E7%AB%AF/</url>
+      <content type="html"><![CDATA[<h3 id="内存分布结构"><a href="#内存分布结构" class="headerlink" title="内存分布结构"></a>内存分布结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">| 栈底</span><br><span class="line"> .</span><br><span class="line"> .              栈</span><br><span class="line"> .</span><br><span class="line">| 栈顶</span><br><span class="line">-----------------------</span><br><span class="line"> |</span><br><span class="line"> |</span><br><span class="line">\|/</span><br><span class="line">NULL (空洞)</span><br><span class="line">/|\</span><br><span class="line"> |</span><br><span class="line"> |</span><br><span class="line">-----------------------</span><br><span class="line">                堆</span><br><span class="line">-----------------------</span><br><span class="line">未初始化的数据</span><br><span class="line">----------------(统称数据段)</span><br><span class="line">初始化的数据</span><br><span class="line">-----------------------</span><br><span class="line">正文段(代码段)</span><br><span class="line">----------------------- 最低内存地址 0x00000000</span><br></pre></td></tr></table></figure><h3 id="大小端"><a href="#大小端" class="headerlink" title="大小端"></a>大小端</h3><ul><li>Litter-Endian：在内存的低地址中存放高位数据</li><li>Big-Endian：在内存的低地址中存放低位数据</li><li>数据<code>0x0806</code>的高位字节是08，低位字节是06</li></ul><blockquote><p>参考<a href="https://www.jianshu.com/p/5539033a23d3" target="_blank" rel="noopener">字节大小端</a></p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> 计算机基础 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 内存 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>区块链</title>
       <link href="/2018/08/29/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
       <url>/2018/08/29/%E5%8C%BA%E5%9D%97%E9%93%BE/</url>
