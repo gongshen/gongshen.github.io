@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://www.llyltq.top/images/高飞币.jpg">
 <meta property="og:image" content="http://www.llyltq.top/images/财奴币.jpg">
 <meta property="og:image" content="http://www.llyltq.top/images/区块结构.png">
-<meta property="og:updated_time" content="2018-08-31T04:20:41.703Z">
+<meta property="og:updated_time" content="2018-08-31T08:57:43.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="区块链">
 <meta name="twitter:description" content="CAP 一致性（consistency） 可用性（availablity） 分区容错性（partition）  密码学哈希函数三个特性碰撞阻力对于两个不同的值，不会产生了相同的哈希 隐蔽性 比如H一个哈希函数，msg是信息，如果这时我要生成一个承诺 从高阶最小熵（随机变量的离散程度）选取一个nonce 根据实施方案承诺=H(msg || nonce)生成一个承诺 没有人能根据最后的哈希值算出msg">
@@ -370,7 +370,8 @@
 <p><img src="\images\MD变换.jpg" alt="MD变换"><br>比如压缩函数的固定输入长度为768，产生256位输出，那么将输入分为<code>m-n</code>大小的区块，每</p>
 <h2 id="哈希指针"><a href="#哈希指针" class="headerlink" title="哈希指针"></a>哈希指针</h2><p>####个区块和前一个区块的输出一起代入压缩函数<br> 区块链<br>我们使用<code>哈希指针</code>来构建区块链数据结构，<code>哈希指针</code>不仅指向上个区块的值的位置，还记录着上个区块的哈希值。所以能被防止篡改<br><img src="\images\区块链.jpg" alt="区块链"></p>
 <h4 id="梅克尔树"><a href="#梅克尔树" class="headerlink" title="梅克尔树"></a>梅克尔树</h4><p>只要我们记住根节点，任何数据的篡改都会被检测到<br><img src="\images\梅克尔树.jpg" alt="梅克尔树"></p>
-<p><span style="border-bottom:2px solid red">隶属证明</span><br>证明一个数据区块隶属于一个梅克尔树，验证花费·O(log(n))·<br><img src="\images\隶属证明.jpg" alt="隶属证明"></p>
+<h4 id="隶属证明"><a href="#隶属证明" class="headerlink" title="隶属证明"></a>隶属证明</h4><p><img src="\images\隶属证明.jpg" alt="隶属证明"></p>
+<p>证明一个数据区块隶属于一个梅克尔树，验证花费·O(log(n))·</p>
 <h2 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h2><p>数字证书由3个算法构成：</p>
 <ol>
 <li>(privateKey,publicKey):=generateKey(nonce)</li>
@@ -380,12 +381,13 @@
 <p>对哈希后的信息进行签名，比如对区块链的链尾指针进行签名，那么等于签署了整条区块链。</p>
 <h2 id="身份去中心化"><a href="#身份去中心化" class="headerlink" title="身份去中心化"></a>身份去中心化</h2><p>公钥就是我们的身份，有时公钥太长，那么我们可以以256位的公钥哈希作为身份。</p>
 <h4 id="椭圆曲线数字签名算法"><a href="#椭圆曲线数字签名算法" class="headerlink" title="椭圆曲线数字签名算法"></a>椭圆曲线数字签名算法</h4><p>ECDSA是比特币使用的算法，注意不良随机可能导致密钥泄露。</p>
-<h2 id="两种简单的加密货币"><a href="#两种简单的加密货币" class="headerlink" title="两种简单的加密货币"></a>两种简单的加密货币</h2><h4 id="高飞币"><a href="#高飞币" class="headerlink" title="高飞币"></a>高飞币</h4><ol>
+<h2 id="两种简单的加密货币"><a href="#两种简单的加密货币" class="headerlink" title="两种简单的加密货币"></a>两种简单的加密货币</h2><h4 id="高飞币"><a href="#高飞币" class="headerlink" title="高飞币"></a>高飞币</h4><p><img src="\images\高飞币.jpg" alt=""></p>
+<ol>
 <li>高飞生成唯一的随机ID，并建立字符串，然后使用私钥签名该字符串</li>
 <li>高飞创建一个支付声明，并对其进行签名，这样爱丽丝就拥有这个币</li>
-<li>爱丽丝创建一个支付声明，并对其进行签名，这样鲍勃就拥有这个币<br><img src="\images\高飞币.jpg" alt=""></li>
+<li>爱丽丝创建一个支付声明，并对其进行签名，这样鲍勃就拥有这个币</li>
 </ol>
-<p>`该币存在双重支付的问题和中心化的问题</p>
+<p><code>该币存在双重支付的问题和中心化的问题</code></p>
 <h4 id="财奴币"><a href="#财奴币" class="headerlink" title="财奴币"></a>财奴币</h4><p>财奴币使用区块链结构，实现了仅增的功能，解决双重支付的问题。在链表的末尾财奴对哈希指针进行签名，保证区块链不被篡改。<br><img src="\images\财奴币.jpg" alt="财奴币"></p>
 <p>财奴币中有两种交易：</p>
 <ol>
@@ -576,10 +578,7 @@
 </table>
 <h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p><code>M</code>的ASCII码是：77，二进制是：01001101<br>那么取6位<code>010011</code>得到编码<code>T</code>，因为不足3个字节，所以进行补位，最终得到base64编码<code>T==</code></p>
 <h3 id="比特币的地址使用base58编码，去掉了0-O-l-L"><a href="#比特币的地址使用base58编码，去掉了0-O-l-L" class="headerlink" title="比特币的地址使用base58编码，去掉了0,O,l,L"></a>比特币的地址使用base58编码，去掉了<code>0,O,l,L</code></h3><h1 id="比特币结构"><a href="#比特币结构" class="headerlink" title="比特币结构"></a>比特币结构</h1><p><img src="\images\区块结构.png" alt="区块结构"></p>
-<ul>
-<li>区块结构</li>
-</ul>
-<table>
+<h4 id="区块结构"><a href="#区块结构" class="headerlink" title="区块结构"></a>区块结构</h4><table>
 <thead>
 <tr>
 <th>字节</th>
@@ -609,10 +608,7 @@
 </tr>
 </tbody>
 </table>
-<ul>
-<li>区块头</li>
-</ul>
-<table>
+<h4 id="区块头"><a href="#区块头" class="headerlink" title="区块头"></a>区块头</h4><table>
 <thead>
 <tr>
 <th>字节</th>
@@ -653,14 +649,9 @@
 </tr>
 </tbody>
 </table>
-<ul>
-<li>区块体<ul>
-<li>币基交易：造币给矿工的奖励</li>
-<li>普通交易</li>
-</ul>
-</li>
-</ul>
-
+<h4 id="区块体"><a href="#区块体" class="headerlink" title="区块体"></a>区块体</h4><pre><code>+ 币基交易：造币给矿工的奖励
++ 普通交易
+</code></pre>
       
     </div>
     
@@ -848,7 +839,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CAP"><span class="nav-number">1.</span> <span class="nav-text">CAP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#密码学"><span class="nav-number"></span> <span class="nav-text">密码学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希函数三个特性"><span class="nav-number"></span> <span class="nav-text">哈希函数三个特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#碰撞阻力"><span class="nav-number">0.1.</span> <span class="nav-text">碰撞阻力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隐蔽性"><span class="nav-number">0.2.</span> <span class="nav-text">隐蔽性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#谜题友好"><span class="nav-number">0.3.</span> <span class="nav-text">谜题友好</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全哈希算法"><span class="nav-number">0.4.</span> <span class="nav-text">安全哈希算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希指针"><span class="nav-number"></span> <span class="nav-text">哈希指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#梅克尔树"><span class="nav-number">0.1.</span> <span class="nav-text">梅克尔树</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字证书"><span class="nav-number"></span> <span class="nav-text">数字证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#身份去中心化"><span class="nav-number"></span> <span class="nav-text">身份去中心化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#椭圆曲线数字签名算法"><span class="nav-number">0.1.</span> <span class="nav-text">椭圆曲线数字签名算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种简单的加密货币"><span class="nav-number"></span> <span class="nav-text">两种简单的加密货币</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#高飞币"><span class="nav-number">0.1.</span> <span class="nav-text">高飞币</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#财奴币"><span class="nav-number">0.2.</span> <span class="nav-text">财奴币</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#base58"><span class="nav-number"></span> <span class="nav-text">base58</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#base64编码表"><span class="nav-number">1.</span> <span class="nav-text">base64编码表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比特币的地址使用base58编码，去掉了0-O-l-L"><span class="nav-number">3.</span> <span class="nav-text">比特币的地址使用base58编码，去掉了0,O,l,L</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比特币结构"><span class="nav-number"></span> <span class="nav-text">比特币结构</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CAP"><span class="nav-number">1.</span> <span class="nav-text">CAP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#密码学"><span class="nav-number"></span> <span class="nav-text">密码学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希函数三个特性"><span class="nav-number"></span> <span class="nav-text">哈希函数三个特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#碰撞阻力"><span class="nav-number">0.1.</span> <span class="nav-text">碰撞阻力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隐蔽性"><span class="nav-number">0.2.</span> <span class="nav-text">隐蔽性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#谜题友好"><span class="nav-number">0.3.</span> <span class="nav-text">谜题友好</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全哈希算法"><span class="nav-number">0.4.</span> <span class="nav-text">安全哈希算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希指针"><span class="nav-number"></span> <span class="nav-text">哈希指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#梅克尔树"><span class="nav-number">0.1.</span> <span class="nav-text">梅克尔树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隶属证明"><span class="nav-number">0.2.</span> <span class="nav-text">隶属证明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字证书"><span class="nav-number"></span> <span class="nav-text">数字证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#身份去中心化"><span class="nav-number"></span> <span class="nav-text">身份去中心化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#椭圆曲线数字签名算法"><span class="nav-number">0.1.</span> <span class="nav-text">椭圆曲线数字签名算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种简单的加密货币"><span class="nav-number"></span> <span class="nav-text">两种简单的加密货币</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#高飞币"><span class="nav-number">0.1.</span> <span class="nav-text">高飞币</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#财奴币"><span class="nav-number">0.2.</span> <span class="nav-text">财奴币</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#base58"><span class="nav-number"></span> <span class="nav-text">base58</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#base64编码表"><span class="nav-number">1.</span> <span class="nav-text">base64编码表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比特币的地址使用base58编码，去掉了0-O-l-L"><span class="nav-number">3.</span> <span class="nav-text">比特币的地址使用base58编码，去掉了0,O,l,L</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比特币结构"><span class="nav-number"></span> <span class="nav-text">比特币结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区块结构"><span class="nav-number">0.1.</span> <span class="nav-text">区块结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块头"><span class="nav-number">0.2.</span> <span class="nav-text">区块头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块体"><span class="nav-number">0.3.</span> <span class="nav-text">区块体</span></a></li></ol></li></ol></div>
             
 
           </div>
