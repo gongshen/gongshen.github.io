@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title>Golang变量作用域的坑</title>
+      <link href="/2018/09/02/Golang%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E5%9D%91/"/>
+      <url>/2018/09/02/Golang%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E5%9D%91/</url>
+      <content type="html"><![CDATA[<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p *<span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">foo</span><span class="params">()</span> <span class="params">(*<span class="keyword">int</span>, error)</span></span> &#123;</span><br><span class="line">        <span class="keyword">var</span> i <span class="keyword">int</span> = <span class="number">5</span></span><br><span class="line">        <span class="keyword">return</span> &amp;i, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">bar</span><span class="params">()</span></span> &#123;</span><br><span class="line">        fmt.Println(*p)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">        p, err := foo()</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">fmt.Println(err)</span><br><span class="line"><span class="keyword">return</span> </span><br><span class="line">&#125;</span><br><span class="line">        bar()</span><br><span class="line">        fmt.Println(*p)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//结果出现panic</span></span><br><span class="line"><span class="built_in">panic</span>: runtime error: invalid memory address or <span class="literal">nil</span> pointer dereference</span><br></pre></td></tr></table></figure><p>当使用<code>:=</code>赋值变量时，如果新变量与同名的变量不在一个作用域的话，那么就不会使用那个全局变量，而是定义新变量，所以<code>p</code>全局变量为nil，那么指向nil的指针会panic！</p>]]></content>
+      
+      <categories>
+          
+          <category> golang </category>
+          
+          <category> unknown </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+            <tag> 坑 </tag>
+            
+            <tag> 变量 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>大小端</title>
       <link href="/2018/08/31/%E5%A4%A7%E5%B0%8F%E7%AB%AF/"/>
       <url>/2018/08/31/%E5%A4%A7%E5%B0%8F%E7%AB%AF/</url>
@@ -136,9 +163,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> 变量 </tag>
+            
+            <tag> linux </tag>
             
             <tag> bash </tag>
             
@@ -188,6 +215,8 @@
       
         <tags>
             
+            <tag> 变量 </tag>
+            
             <tag> linux </tag>
             
             <tag> 指令 </tag>
@@ -197,8 +226,6 @@
             <tag> 群组 </tag>
             
             <tag> 数据处理 </tag>
-            
-            <tag> 变量 </tag>
             
             <tag> 文件 </tag>
             
