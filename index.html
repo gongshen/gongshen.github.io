@@ -253,6 +253,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/09/06/Go积累/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/06/Go积累/" itemprop="url">Go积累</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T00:09:52+08:00">
+                2018-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法与数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">算法与数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法与数据结构/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p><img src="\images\快速排序.png" alt="快速排序"></p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p><img src="\images\堆的建立.png" alt="堆排序"></p>
+<h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><h3 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//有序数组合并</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mergeArray</span><span class="params">(a []<span class="keyword">int</span>, b []<span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a_i, b_i <span class="keyword">int</span> = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">	<span class="keyword">var</span> c []<span class="keyword">int</span></span><br><span class="line">	<span class="keyword">for</span> a_i &lt; <span class="built_in">len</span>(a) &amp;&amp; b_i &lt; <span class="built_in">len</span>(b) &#123;</span><br><span class="line">		<span class="keyword">if</span> a[a_i] &lt; b[b_i] &#123;</span><br><span class="line">			c = <span class="built_in">append</span>(c, a[a_i])</span><br><span class="line">			a_i++</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> a[a_i] &gt; b[b_i] &#123;</span><br><span class="line">			c = <span class="built_in">append</span>(c, b[b_i])</span><br><span class="line">			b_i++</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			c = <span class="built_in">append</span>(c, a[a_i], b[b_i])</span><br><span class="line">			a_i++</span><br><span class="line">			b_i++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> a_i &lt; <span class="built_in">len</span>(a) &#123;</span><br><span class="line">		c = <span class="built_in">append</span>(c, a[a_i:]...)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> b_i &lt; <span class="built_in">len</span>(b) &#123;</span><br><span class="line">		c = <span class="built_in">append</span>(c, b[b_i:]...)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//选择排序</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">insertSort</span><span class="params">(a []<span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="built_in">len</span>(a); i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> j := i; j &gt; <span class="number">0</span>; j-- &#123;</span><br><span class="line">			<span class="keyword">if</span> a[j] &lt; a[j<span class="number">-1</span>] &#123;</span><br><span class="line">				a[j], a[j<span class="number">-1</span>] = a[j<span class="number">-1</span>], a[j]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//冒泡排序</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">bubbleSort</span><span class="params">(a []<span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> tmp <span class="keyword">int</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(a)<span class="number">-1</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> j := i; j &lt; <span class="built_in">len</span>(a)<span class="number">-1</span>-i; j++ &#123;</span><br><span class="line">			<span class="keyword">if</span> a[i] &gt; a[j] &#123;</span><br><span class="line">				tmp = a[i]</span><br><span class="line">				a[i] = a[j]</span><br><span class="line">				a[j] = tmp</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//二分排序</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">halfSort</span><span class="params">(a []<span class="keyword">int</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(a) &lt;= <span class="number">1</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> a</span><br><span class="line">	&#125;</span><br><span class="line">	halfSort(a[<span class="number">0</span> : <span class="built_in">len</span>(a)/<span class="number">2</span>])</span><br><span class="line">	halfSort(a[<span class="built_in">len</span>(a)/<span class="number">2</span>:])</span><br><span class="line">	<span class="built_in">copy</span>(a, mergeArray(a[<span class="number">0</span>:<span class="built_in">len</span>(a)/<span class="number">2</span>], a[<span class="built_in">len</span>(a)/<span class="number">2</span>:]))</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//快速排序</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">quickSort</span><span class="params">(a []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(a) &lt; <span class="number">2</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	p := partition(a)</span><br><span class="line">	quickSort(a[<span class="number">0</span>:p])</span><br><span class="line">	quickSort(a[p+<span class="number">1</span>:])</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">partition</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	mid := nums[<span class="number">0</span>]</span><br><span class="line">	s, e := <span class="number">0</span>, <span class="built_in">len</span>(nums)<span class="number">-1</span></span><br><span class="line">	<span class="keyword">for</span> s &lt; e &#123;</span><br><span class="line">		<span class="keyword">for</span> s &lt; e &amp;&amp; nums[e] &gt; mid &#123;</span><br><span class="line">			e -= <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> s &lt; e &#123;</span><br><span class="line">			nums[s] = nums[e]</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> s &lt; e &amp;&amp; nums[s] &lt;= mid &#123;</span><br><span class="line">			s += <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> s &lt; e &#123;</span><br><span class="line">			nums[e] = nums[s]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	nums[s] = mid</span><br><span class="line">	<span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//堆排序</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">heapSort</span><span class="params">(a []<span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := (<span class="built_in">len</span>(a) - <span class="number">2</span>) / <span class="number">2</span>; i &gt;= <span class="number">0</span>; i-- &#123;</span><br><span class="line">		heapDown(a, i, <span class="built_in">len</span>(a)<span class="number">-1</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="built_in">len</span>(a)<span class="number">-1</span>;i&gt;<span class="number">0</span>;i-- &#123;</span><br><span class="line">		a[i],a[<span class="number">0</span>]=a[<span class="number">0</span>],a[i]</span><br><span class="line">		heapDown(a, <span class="number">0</span>, i<span class="number">-1</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">heapDown</span><span class="params">(a []<span class="keyword">int</span>, start <span class="keyword">int</span>, end <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	p := start</span><br><span class="line">	l := left(start)</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> l &gt; end &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> l &lt; end &amp;&amp; a[l] &lt; a[l+<span class="number">1</span>] &#123;</span><br><span class="line">			l++</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> a[p] &gt;= a[l] &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			a[p], a[l] = a[l], a[p]</span><br><span class="line">			p = l</span><br><span class="line">			l = left(p)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">parents</span><span class="params">(a <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> (a - <span class="number">1</span>) / <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">left</span><span class="params">(a <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">2</span>*a + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">right</span><span class="params">(a <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">2</span>*a + <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/09/02/Golang变量作用域的坑/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2141,204 +2297,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/25/linux账号和群组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/25/linux账号和群组/" itemprop="url">linux账号管理与ACL设置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-25T20:41:10+08:00">
-                2018-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <h1 id="账号与群组"><a href="#账号与群组" class="headerlink" title="账号与群组"></a>账号与群组</h1><p>在Linux中，每个使用者至少会有两个ID：（1）使用者ID，（2）群组ID<br>要显示文件属性时，会从<code>/etc/passwd</code>和<code>/etc/group</code>中找到记录的UID和GID对应的账号名和群组名。</p>
-<p>用户从tty1~tty6的终端机提供的login接口登陆系统：</p>
-<ol>
-<li>查看<code>/etc/passwd</code>中是否存在你输入的账号</li>
-<li>读出<code>/etc/passwd</code>中账号对应的UID和GID，和主文件夹记录的UID比较</li>
-<li>查看你输入的密码与<code>/etc/shadow</code>中对应的是否相符</li>
-<li>进入Shell控管</li>
-</ol>
-<h3 id="etc-shadow文件"><a href="#etc-shadow文件" class="headerlink" title="/etc/shadow文件"></a>/etc/shadow文件</h3><p>第二个字段是经过加密的密码，在字段前加上<code>!</code>或者<code>*</code>，可以让密码暂时失效。<br>第三个字段是密码最近被更动的日期，日期从<code>1970年1月1日</code>算起。<br>第四个字段是密码不可被更动日期，就是更改密码后几天之内不能再次更改。<br>第五个字段是密码需要重新变更的天数，就是说密码有个期限，显示99999表示没有期限。<br>第六个字段是密码需要变更到期前的警告天数，就是密码到期前几天警告用户改密码。<br>第七个字段是密码过期后宽限日，就是密码到期后，还能用多少天，然后再不改密码，就失效了，再也不能用这个密码登陆了。<br>第八个字段是密码失效日，就是在这个时间后，密码不能再使用。</p>
-<hr>
-<p>查询<code>/etc/shadow</code>中密码是用什么加密的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ authconfig --test | grep hashing</span><br></pre></td></tr></table></figure></p>
-<h3 id="etc-group文件"><a href="#etc-group文件" class="headerlink" title="/etc/group文件"></a>/etc/group文件</h3><p>第二个字段是群组的密码，密码也被放到了<code>/etc/gshadow</code>中密码<br>第四个字段是加入群组的账号名称，<code>root:x:0:account1,account2</code></p>
-<h3 id="etc-gshadow文件"><a href="#etc-gshadow文件" class="headerlink" title="/etc/gshadow文件"></a>/etc/gshadow文件</h3><p>第二个字段是加密过的群组密码，如果为<code>空</code>或者<code>!</code>，说明该群组没有设置群组管理员。群组管理员可以代替root让用户加入自己的群组。</p>
-<h3 id="初始群组："><a href="#初始群组：" class="headerlink" title="初始群组："></a>初始群组：</h3><p>就是<code>passwd</code>中的第四个字段，用户一登陆就拥有群组相关权限</p>
-<h3 id="次要群组："><a href="#次要群组：" class="headerlink" title="次要群组："></a>次要群组：</h3><p>比如使用<code>usermod -aG users gongshen</code>或者修改<code>group</code>中users群组的第四个字段。那么用户的次要群组就有：<strong>users</strong>和<strong>gongshen</strong></p>
-<h3 id="有效群组："><a href="#有效群组：" class="headerlink" title="有效群组："></a>有效群组：</h3><p>当你去创建一个新的文件或者目录时，新文件的群组是有效群组。<br>使用<code>groups</code>命令输出群组，并且第一个是<code>有效群组</code>。</p>
-<h3 id="newgrp：切换有效群组"><a href="#newgrp：切换有效群组" class="headerlink" title="newgrp：切换有效群组"></a>newgrp：切换有效群组</h3><p><code>newgrp</code>指令是让使用者以另一个shell登陆的，最后不需要时，使用<code>exit</code>退出。<br><img src="\images\newgrp.png" alt="newgrp"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ newgrp users</span><br><span class="line">$ exit</span><br></pre></td></tr></table></figure></p>
-<h3 id="gpasswd：群组管理员功能"><a href="#gpasswd：群组管理员功能" class="headerlink" title="gpasswd：群组管理员功能"></a>gpasswd：群组管理员功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># gpassword 群组名	   &lt;=root设置群组密码</span><br><span class="line"># gpassword -A 账号名 群组名	&lt;=root设置该群组的群组管理员</span><br><span class="line">$ gpassword -a 账号名 群组名 	&lt;=群组管理员将账户加入该群组</span><br></pre></td></tr></table></figure>
-<h3 id="groupadd、groupmod、groupdel"><a href="#groupadd、groupmod、groupdel" class="headerlink" title="groupadd、groupmod、groupdel"></a>groupadd、groupmod、groupdel</h3><h3 id="useradd：添加用户"><a href="#useradd：添加用户" class="headerlink" title="useradd：添加用户"></a>useradd：添加用户</h3><p>使用<code>useradd</code>时，默认配置是参考<code>/etc/default/useradd</code>和<code>/etc/login.defs</code>文件的。<br>创建系统账号时默认不创建主文件夹，而且UID和GID都在1000之下。</p>
-<h3 id="chage：直观的密码参数显示指令"><a href="#chage：直观的密码参数显示指令" class="headerlink" title="chage：直观的密码参数显示指令"></a>chage：直观的密码参数显示指令</h3><p><code>chage</code>指令会以日期显示出<code>shadow</code>文件中那些字段。</p>
-<h1 id="ACL：访问控制列表"><a href="#ACL：访问控制列表" class="headerlink" title="ACL：访问控制列表"></a>ACL：访问控制列表</h1><blockquote>
-<p>ACL可以针对单一的使用者，单一的文件和单一的目录进行权限设置。</p>
-</blockquote>
-<p>针对使用者user1，对文件具有rx权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m u:user1:rx 文件名或目录名</span><br></pre></td></tr></table></figure></p>
-<p>针对群组group1，对文件具有rx权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m g:group1:rx 文件名或目录名</span><br></pre></td></tr></table></figure></p>
-<p>对文件设置mask权限（有效权限）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m m:rx 文件名或目录名</span><br></pre></td></tr></table></figure></p>
-<p>设置目录未来文件的ACL继承权限（默认权限）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m d:u:user1:rx 目录名</span><br></pre></td></tr></table></figure></p>
-<p>设置使用者权限为空<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m u:user1:- 文件名或目录名</span><br></pre></td></tr></table></figure></p>
-<p>设置文件拥有着权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m u::rwx 文件名或目录名</span><br></pre></td></tr></table></figure></p>
-<p>删除ACL权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -x u:user1 file1		&lt;=删除特定的权限</span><br><span class="line">$ setfacl -b file1		&lt;=删除全部ACL设置</span><br></pre></td></tr></table></figure></p>
-<p>查看文件权限信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ getfacl 文件名或目录名</span><br></pre></td></tr></table></figure></p>
-<h1 id="使用者身份切换"><a href="#使用者身份切换" class="headerlink" title="使用者身份切换"></a>使用者身份切换</h1><p>因为<code>sshd</code>的shell是<code>/sbin/nologin</code>，所以我们无法登陆。<br>使用<code>sudo</code>以其他使用者身份执行一串指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u ssh touch 文件</span><br><span class="line">$ sudo -u ssh sh -c &quot;mkdir ~gongshen/www;cd ~gongshen/www;\</span><br><span class="line">&gt; echo &apos;This is index file&apos; &gt; index.html&quot;</span><br></pre></td></tr></table></figure></p>
-<h3 id="配置-etc-sudoers"><a href="#配置-etc-sudoers" class="headerlink" title="配置/etc/sudoers"></a>配置<code>/etc/sudoers</code></h3><blockquote>
-<p>使用者必须具有<code>sudo</code>使用权限，在<code>/etc/sudoers</code>文件中配置。</p>
-</blockquote>
-<p>单一使用者：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用者帐号  登陆者的来源主机名称=（可切换的身份）  可下达的指令</span><br><span class="line">root                         ALL=（ALL）           ALL</span><br></pre></td></tr></table></figure></p>
-<p>群组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%群组名						 ALL= (ALL)			   ALL</span><br></pre></td></tr></table></figure></p>
-<p>使用者使用sudo时免密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%群组名						 ALL= (ALL)			  NOPASSWD: ALL</span><br></pre></td></tr></table></figure></p>
-<p>限制用户只能以root身份修改其他用户密码，不能修改root密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudovi</span><br><span class="line">用户名	ALL=(root) 	!/user/bin/passwd,/usr/bin/passwd [a-zA-Z]*,!/usr/bin/passwd root</span><br></pre></td></tr></table></figure></p>
-<p>别名设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User_Alias ADMUSER = gongshen</span><br><span class="line">Cmnd_Alias ADMUSERCMD = ALL </span><br><span class="line">ADMUSER   ALL=(ALL)	  ADMUSERCMD</span><br></pre></td></tr></table></figure></p>
-<h1 id="nologin"><a href="#nologin" class="headerlink" title="nologin"></a>nologin</h1><p>对于有些账号我们是不能登陆取得互动式的shell，可以修改<code>/etc/nologin.txt</code>来显示登陆失败的信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/nologin.txt</span><br><span class="line">这个账号是系统账号，请不要使用这个账号登陆系统！</span><br></pre></td></tr></table></figure></p>
-<h1 id="PAM（嵌入式认证模块）"><a href="#PAM（嵌入式认证模块）" class="headerlink" title="PAM（嵌入式认证模块）"></a>PAM（嵌入式认证模块）</h1><p>PAM就是一个API，程序可以调用它，将验证需求告诉它，它返回验证结果。<br><img src="\images\pam.png" alt="pam"></p>
-<h3 id="PAM模块设置"><a href="#PAM模块设置" class="headerlink" title="PAM模块设置"></a>PAM模块设置</h3><p>程序的PAM配置文件都在<code>/etc/pam.d/</code>中。</p>
-<hr>
-<p>如果存在<code>/etc/nologin</code>文件，那么一般使用者是无法登陆的。因为在<code>/etc/pam.d/login</code>登陆PAM配置文件中有一条：account  required  pam_nologin.so<br>对应的模块<code>pam_nologin.so</code>用法可以查阅<code>/usr/share/doc/pam-*/README.pam_nologin</code></p>
-<hr>
-<p>telnet为什么不能以root登陆系统呢？telnet会引用<code>login</code>这个PAM配置文件，其中有<code>pam_securetty.so</code>模块验证，只有写在<code>/etc/securetty</code>中的终端才能以root身份登陆。telnet使用的是远端连线pts/n。<br>ssh为什么能root登陆呢？因为ssh登陆的时候引用的是<code>/etc/pam.d/sshd</code>这个PAM配置文件，这个文件没有加入<code>securetty</code>验证。</p>
-<h1 id="limits-conf：对用户和群组做其他限制"><a href="#limits-conf：对用户和群组做其他限制" class="headerlink" title="limits.conf：对用户和群组做其他限制"></a>limits.conf：对用户和群组做其他限制</h1><p>限制用户gongshen，创建的文件大小最大为100000K<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/security/limits.conf</span><br><span class="line">gongshen  hard  fsize  100000</span><br></pre></td></tr></table></figure></p>
-<p>限制群组的最大连接数为1（只对初始群组有效）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/security/limits.conf</span><br><span class="line">@group1   hrad   maxlogins   1</span><br></pre></td></tr></table></figure></p>
-<p>显示当前用户的限制情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ulimit -a</span><br></pre></td></tr></table></figure></p>
-<h1 id="主机使用者传递讯息"><a href="#主机使用者传递讯息" class="headerlink" title="主机使用者传递讯息"></a>主机使用者传递讯息</h1><h3 id="查询使用者"><a href="#查询使用者" class="headerlink" title="查询使用者"></a>查询使用者</h3><p>查询当前使用者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ w</span><br></pre></td></tr></table></figure></p>
-<p>查看用户的最后登陆时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lastlog</span><br></pre></td></tr></table></figure></p>
-<h3 id="同步的发送讯息"><a href="#同步的发送讯息" class="headerlink" title="同步的发送讯息"></a>同步的发送讯息</h3><p>user1可以给user2使用的终端pts/2发送讯息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ write user2 pts/2</span><br></pre></td></tr></table></figure></p>
-<p>root可以不接收任何同步讯息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mesg n</span><br></pre></td></tr></table></figure></p>
-<p>广播发送讯息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wall &quot;I will shutdown the server...&quot;</span><br></pre></td></tr></table></figure></p>
-<h3 id="异步的发送讯息"><a href="#异步的发送讯息" class="headerlink" title="异步的发送讯息"></a>异步的发送讯息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mail -s &quot;this is title&quot; user1</span><br><span class="line">This is the body of mail!</span><br><span class="line">EOT</span><br></pre></td></tr></table></figure>
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2389,7 +2347,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2411,7 +2369,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
