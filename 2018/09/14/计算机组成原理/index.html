@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="#  指针的理解如果声明了地址变量，那么首先就要给地址变量赋值，不然不知道往哪里读写两者都是*p，但是因为p的值不同，*p代表的内存地址也就不同123*p = 3;p = p + 3;i = *p; 12MOV  ECX,i                        //在cpu中执行MOV  BYTE [ECX],(i &amp;amp; 0x0f)        //在内存芯片中执行 *(p+i)">
+<meta name="description" content="指针的理解如果声明了地址变量，那么首先就要给地址变量赋值，不然不知道往哪里读写两者都是*p，但是因为p的值不同，*p代表的内存地址也就不同123*p = 3;p = p + 3;i = *p; 12MOV  ECX,i                        //在cpu中执行MOV  BYTE [ECX],(i &amp;amp; 0x0f)        //在内存芯片中执行 *(p+i)等价于">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机组成原理">
 <meta property="og:url" content="http://www.llyltq.top/2018/09/14/计算机组成原理/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="#  指针的理解如果声明了地址变量，那么首先就要给地址变量赋值，不然不知道往哪里读写两者都是*p，但是因为p的值不同，*p代表的内存地址也就不同123*p = 3;p = p + 3;i = *p; 12MOV  ECX,i                        //在cpu中执行MOV  BYTE [ECX],(i &amp;amp; 0x0f)        //在内存芯片中执行 *(p+i)">
+<meta property="og:description" content="指针的理解如果声明了地址变量，那么首先就要给地址变量赋值，不然不知道往哪里读写两者都是*p，但是因为p的值不同，*p代表的内存地址也就不同123*p = 3;p = p + 3;i = *p; 12MOV  ECX,i                        //在cpu中执行MOV  BYTE [ECX],(i &amp;amp; 0x0f)        //在内存芯片中执行 *(p+i)等价于">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-14T12:26:58.853Z">
+<meta property="og:updated_time" content="2018-09-14T15:52:23.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机组成原理">
-<meta name="twitter:description" content="#  指针的理解如果声明了地址变量，那么首先就要给地址变量赋值，不然不知道往哪里读写两者都是*p，但是因为p的值不同，*p代表的内存地址也就不同123*p = 3;p = p + 3;i = *p; 12MOV  ECX,i                        //在cpu中执行MOV  BYTE [ECX],(i &amp;amp; 0x0f)        //在内存芯片中执行 *(p+i)">
+<meta name="twitter:description" content="指针的理解如果声明了地址变量，那么首先就要给地址变量赋值，不然不知道往哪里读写两者都是*p，但是因为p的值不同，*p代表的内存地址也就不同123*p = 3;p = p + 3;i = *p; 12MOV  ECX,i                        //在cpu中执行MOV  BYTE [ECX],(i &amp;amp; 0x0f)        //在内存芯片中执行 *(p+i)等价于">
 
 
 
@@ -342,8 +342,7 @@
       
 	  
       
-        <p># </p>
-<h1 id="指针的理解"><a href="#指针的理解" class="headerlink" title="指针的理解"></a>指针的理解</h1><p>如果声明了地址变量，那么首先就要给地址变量赋值，不然不知道往哪里读写<br>两者都是<code>*p</code>，但是因为p的值不同，<code>*p</code>代表的内存地址也就不同<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*p = <span class="number">3</span>;</span><br><span class="line">p = p + <span class="number">3</span>;</span><br><span class="line">i = *p;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="指针的理解"><a href="#指针的理解" class="headerlink" title="指针的理解"></a>指针的理解</h1><p>如果声明了地址变量，那么首先就要给地址变量赋值，不然不知道往哪里读写<br>两者都是<code>*p</code>，但是因为p的值不同，<code>*p</code>代表的内存地址也就不同<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*p = <span class="number">3</span>;</span><br><span class="line">p = p + <span class="number">3</span>;</span><br><span class="line">i = *p;</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOV  ECX,i                        //在cpu中执行</span><br><span class="line">MOV  BYTE [ECX],(i &amp; 0x0f)        //在内存芯片中执行</span><br></pre></td></tr></table></figure>
 <p><code>*(p+i)</code>等价于<code>p[i]</code>，也等价于<code>i[p]</code>，所以<code>*p</code>，也就是<code>p[0]</code></p>
 <h1 id="反码、补码、原码"><a href="#反码、补码、原码" class="headerlink" title="反码、补码、原码"></a>反码、补码、原码</h1><h3 id="理解："><a href="#理解：" class="headerlink" title="理解："></a>理解：</h3><ul>
@@ -356,7 +355,8 @@
 <p>一这样算术逻辑单元（LRU）做整数运算时，就不要区分符号位了，直接进行与运算。个负整数可以由它的绝对值-1，求补码得到</p>
 </blockquote>
 <h3 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h3><p>如果给定一个数：<code>10000100=132</code><br>因为符号位是1，所以这个数是用补码表示的，取它的补码来显示原码：<code>01111100=124</code></p>
-<h1 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h1><h4 id="或：只有有一个1，该位就是1（特定位变1）"><a href="#或：只有有一个1，该位就是1（特定位变1）" class="headerlink" title="或：只有有一个1，该位就是1（特定位变1）"></a>或：只有有一个1，该位就是1（特定位变1）</h4><p>比如：1010 或 0010 等于 1010<br>那么对于1010来说，第三位就一定会变成1</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//-1在golang中的表示形式</span></span><br><span class="line">^<span class="keyword">uint32</span>(-NN<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h1><h4 id="或：只有有一个1，该位就是1（特定位变1）"><a href="#或：只有有一个1，该位就是1（特定位变1）" class="headerlink" title="或：只有有一个1，该位就是1（特定位变1）"></a>或：只有有一个1，该位就是1（特定位变1）</h4><p>比如：1010 &amp; 0010 等于 1010<br>那么对于1010来说，第三位就一定会变成1</p>
 <h4 id="与：都是1时，该位就是1（特定位变0）"><a href="#与：都是1时，该位就是1（特定位变0）" class="headerlink" title="与：都是1时，该位就是1（特定位变0）"></a>与：都是1时，该位就是1（特定位变0）</h4><p>比如：1010 与 1101 等于 1000<br>那么对于1010来说，第三位就一定会变成0</p>
 <h4 id="异或：值不相同，该位就是1（特定位反转）"><a href="#异或：值不相同，该位就是1（特定位反转）" class="headerlink" title="异或：值不相同，该位就是1（特定位反转）"></a>异或：值不相同，该位就是1（特定位反转）</h4><p>比如：0100 异或 0010 等于 0110<br>那么对于0100来说，第三位就一定反转</p>
 
