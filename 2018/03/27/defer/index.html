@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="闭包,defer," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="只有当defer语句执行完，外围函数才会返回 外围函数如果引发了panic，defer语句也会执行完panic才会扩散 在defer执行的时候，针对defer语句的表达式会被压栈，等到外围函数结束时，才依次从栈中取出 defer是在函数退出前执行，并且是值传递  1、闭包的概念1.传值：因为闭包其实就一个自治的生态系统，如果你将m的值先传进去，那么闭包外的改变不和闭包有关。123456789f">
+<meta name="description" content="只有当defer语句执行完，外围函数才会返回 外围函数如果引发了panic，defer语句也会执行完panic才会扩散 在defer执行的时候，针对defer语句的表达式会被压栈，等到外围函数结束时，才依次从栈中取出  1、闭包的概念1.传值：因为闭包其实就一个自治的生态系统，如果你将m的值先传进去，那么闭包外的改变不和闭包有关。123456789func main()  &amp;#123;	var">
+<meta name="keywords" content="闭包,defer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="defer和闭包">
 <meta property="og:url" content="http://www.llyltq.top/2018/03/27/defer/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="只有当defer语句执行完，外围函数才会返回 外围函数如果引发了panic，defer语句也会执行完panic才会扩散 在defer执行的时候，针对defer语句的表达式会被压栈，等到外围函数结束时，才依次从栈中取出 defer是在函数退出前执行，并且是值传递  1、闭包的概念1.传值：因为闭包其实就一个自治的生态系统，如果你将m的值先传进去，那么闭包外的改变不和闭包有关。123456789f">
+<meta property="og:description" content="只有当defer语句执行完，外围函数才会返回 外围函数如果引发了panic，defer语句也会执行完panic才会扩散 在defer执行的时候，针对defer语句的表达式会被压栈，等到外围函数结束时，才依次从栈中取出  1、闭包的概念1.传值：因为闭包其实就一个自治的生态系统，如果你将m的值先传进去，那么闭包外的改变不和闭包有关。123456789func main()  &amp;#123;	var">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-14T08:02:27.092Z">
+<meta property="og:updated_time" content="2018-09-14T11:52:37.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="defer和闭包">
-<meta name="twitter:description" content="只有当defer语句执行完，外围函数才会返回 外围函数如果引发了panic，defer语句也会执行完panic才会扩散 在defer执行的时候，针对defer语句的表达式会被压栈，等到外围函数结束时，才依次从栈中取出 defer是在函数退出前执行，并且是值传递  1、闭包的概念1.传值：因为闭包其实就一个自治的生态系统，如果你将m的值先传进去，那么闭包外的改变不和闭包有关。123456789f">
+<meta name="twitter:description" content="只有当defer语句执行完，外围函数才会返回 外围函数如果引发了panic，defer语句也会执行完panic才会扩散 在defer执行的时候，针对defer语句的表达式会被压栈，等到外围函数结束时，才依次从栈中取出  1、闭包的概念1.传值：因为闭包其实就一个自治的生态系统，如果你将m的值先传进去，那么闭包外的改变不和闭包有关。123456789func main()  &amp;#123;	var">
 
 
 
@@ -353,12 +354,10 @@
       
 	  
       
-        <a id="more"></a>
-<ul>
+        <ul>
 <li>只有当defer语句执行完，外围函数才会返回</li>
 <li>外围函数如果引发了<code>panic</code>，<code>defer</code>语句也会执行完panic才会扩散</li>
 <li>在defer执行的时候，针对defer语句的表达式会被压栈，等到外围函数结束时，才依次从栈中取出</li>
-<li>defer是在函数退出前执行，并且是<code>值传递</code></li>
 </ul>
 <h1 id="1、闭包的概念"><a href="#1、闭包的概念" class="headerlink" title="1、闭包的概念"></a>1、闭包的概念</h1><h3 id="1-传值："><a href="#1-传值：" class="headerlink" title="1.传值："></a>1.传值：</h3><p>因为闭包其实就一个自治的生态系统，如果你将m的值先传进去，那么闭包外的改变不和闭包有关。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	<span class="keyword">var</span> m <span class="keyword">int</span></span><br><span class="line">	m=<span class="number">10</span></span><br><span class="line">	fmt.Println(m)</span><br><span class="line">	<span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">		fmt.Println(i)</span><br><span class="line">	&#125;(m)</span><br><span class="line">	m=<span class="number">20</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>结果是：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure></p>
@@ -391,6 +390,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/闭包/" rel="tag"># 闭包</a>
+          
+            <a href="/tags/defer/" rel="tag"># defer</a>
+          
+        </div>
       
 
       
@@ -490,7 +497,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -512,7 +519,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
