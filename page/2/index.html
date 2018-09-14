@@ -253,6 +253,195 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/28/test指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/28/test指令/" itemprop="url">test指令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-28T14:22:28+08:00">
+                2018-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <h3 id="文件类型判断"><a href="#文件类型判断" class="headerlink" title="文件类型判断"></a>文件类型判断</h3><ul>
+<li><code>-e</code>：该“文件名”是否存在？（常用）</li>
+<li><code>-f</code>：该“文件名”是否存在且为文件（file）？（常用）</li>
+<li><code>-d</code>：该“文件名”是否存在且为目录（directory）？（常用）</li>
+<li><code>-b</code>：该“文件名”是否存在且为一个 block device 设备？</li>
+<li><code>-c</code>：该“文件名”是否存在且为一个 character device 设备？</li>
+<li><code>-S</code>：该“文件名”是否存在且为一个 Socket 文件？</li>
+<li><code>-p</code>：该“文件名”是否存在且为一个 FIFO （pipe） 文件？</li>
+<li><code>-L</code>：该“文件名”是否存在且为一个链接文件？</li>
+</ul>
+<h3 id="关于文件权限侦测"><a href="#关于文件权限侦测" class="headerlink" title="关于文件权限侦测"></a>关于文件权限侦测</h3><ul>
+<li><code>-r</code>：侦测该文件名是否存在且具有“可读”的权限？</li>
+<li><code>-w</code>：侦测该文件名是否存在且具有“可写”的权限？</li>
+<li><code>-x</code>：侦测该文件名是否存在且具有“可执行”的权限？</li>
+<li><code>-u</code>：侦测该文件名是否存在且具有“SUID”的属性？</li>
+<li><code>-g</code>：侦测该文件名是否存在且具有“SGID”的属性？</li>
+<li><code>-k</code>：侦测该文件名是否存在且具有“Sticky bit”的属性？</li>
+<li><code>-s</code>：侦测该文件名是否存在且为“非空白文件”？</li>
+</ul>
+<h3 id="两个文件的比较"><a href="#两个文件的比较" class="headerlink" title="两个文件的比较"></a>两个文件的比较</h3><ul>
+<li><code>-nt</code>：（newer than）判断 file1 是否比 file2 新</li>
+<li><code>-ot</code>：（older than）判断 file1 是否比 file2 旧</li>
+<li><code>-ef</code>：判断 file1 与 file2 是否为同一文件，可用在判断 hard link 的判定上。 主要意义在判定，两个文件是否均指向同一个 inode </li>
+</ul>
+<h3 id="比较两个整数：test-n1-eq-n2"><a href="#比较两个整数：test-n1-eq-n2" class="headerlink" title="比较两个整数：test n1 -eq n2"></a>比较两个整数：test n1 -eq n2</h3><ul>
+<li><code>-eq</code>：两数值相等 （equal）</li>
+<li><code>-ne</code>：两数值不等 （not equal）</li>
+<li><code>-gt</code>：n1 大于 n2 （greater than）</li>
+<li><code>-lt</code>：n1 小于 n2 （less than）</li>
+<li><code>-ge</code>：n1 大于等于 n2 （greater than or equal）</li>
+<li><code>-le</code>：n1 小于等于 n2 （less than or equal）</li>
+</ul>
+<h3 id="判定字符串"><a href="#判定字符串" class="headerlink" title="判定字符串"></a>判定字符串</h3><ul>
+<li><code>test -z string</code>：判定字串是否为 0 ？若 string 为空字串，则为 true（常用）</li>
+<li><code>test -n string</code>：判定字串是否不为 0 ？若 string 为空字串，则为 false</li>
+<li><code>test str1 == str2</code>：判定 str1 是否等于 str2 ，若相等，则回传 true（常用）</li>
+<li><code>test str1 != str2</code>：判定 str1 是否不等于 str2 ，若相等，则回传 false</li>
+</ul>
+<h3 id="多重条件判定"><a href="#多重条件判定" class="headerlink" title="多重条件判定"></a>多重条件判定</h3><ul>
+<li><p><code>-a</code>：（and）两状况同时成立！<br>例如 test -r file -a -x file，则 file 同时具有 r 与 x 权限时，才回传 true。</p>
+</li>
+<li><p><code>-o</code>：（or）两状况任何一个成立！<br>例如 test -r file -o -x file，则 file 具有 r 或 x 权限时，就可回传 true。</p>
+</li>
+<li><p><code>!</code>：反相状态，<br>例如 test ! -x file ，当 file 不具有 x 时，回传 true</p>
+</li>
+</ul>
+
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/28/bc计算指令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1978,160 +2167,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/23/读取文件的方式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/23/读取文件的方式/" itemprop="url">读取文件的方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-23T17:32:29+08:00">
-                2018-08-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/基础知识/" itemprop="url" rel="index">
-                    <span itemprop="name">基础知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"bufio"</span></span><br><span class="line">	<span class="string">"flag"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"io"</span></span><br><span class="line">	<span class="string">"io/ioutil"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">read1</span><span class="params">(path <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	fi, err := os.Open(path)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> fi.Close()</span><br><span class="line"></span><br><span class="line">	chunks := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">1024</span>, <span class="number">1024</span>)</span><br><span class="line">	buf := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">1024</span>)</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		n, err := fi.Read(buf)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &amp;&amp; err != io.EOF &#123;</span><br><span class="line">			<span class="built_in">panic</span>(err)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> <span class="number">0</span> == n &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		chunks = <span class="built_in">append</span>(chunks, buf[:n]...)</span><br><span class="line">		<span class="comment">// fmt.Println(string(buf[:n]))</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">string</span>(chunks)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">read2</span><span class="params">(path <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	fi, err := os.Open(path)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> fi.Close()</span><br><span class="line">	r := bufio.NewReader(fi)</span><br><span class="line"></span><br><span class="line">	chunks := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">1024</span>, <span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">	buf := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="number">1024</span>)</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		n, err := r.Read(buf)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &amp;&amp; err != io.EOF &#123;</span><br><span class="line">			<span class="built_in">panic</span>(err)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> <span class="number">0</span> == n &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		chunks = <span class="built_in">append</span>(chunks, buf[:n]...)</span><br><span class="line">		<span class="comment">// fmt.Println(string(buf[:n]))</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">string</span>(chunks)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">read3</span><span class="params">(path <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	fi, err := os.Open(path)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> fi.Close()</span><br><span class="line">	fd, err := ioutil.ReadAll(fi)</span><br><span class="line">	<span class="comment">// fmt.Println(string(fd))</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">string</span>(fd)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	flag.Parse()</span><br><span class="line">	file := flag.Arg(<span class="number">0</span>)</span><br><span class="line">	f, err := ioutil.ReadFile(file)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Printf(<span class="string">"%s\n"</span>, err)</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="keyword">string</span>(f))</span><br><span class="line">	start := time.Now()</span><br><span class="line">	read1(file)</span><br><span class="line">	t1 := time.Now()</span><br><span class="line">	fmt.Printf(<span class="string">"Cost time %v\n"</span>, t1.Sub(start))</span><br><span class="line">	read2(file)</span><br><span class="line">	t2 := time.Now()</span><br><span class="line">	fmt.Printf(<span class="string">"Cost time %v\n"</span>, t2.Sub(t1))</span><br><span class="line">	read3(file)</span><br><span class="line">	t3 := time.Now()</span><br><span class="line">	fmt.Printf(<span class="string">"Cost time %v\n"</span>, t3.Sub(t2))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2182,7 +2217,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2204,7 +2239,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
