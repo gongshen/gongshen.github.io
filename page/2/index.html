@@ -253,149 +253,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/28/shell-script/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/28/shell-script/" itemprop="url">shell script</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-28T21:28:24+08:00">
-                2018-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> function: 随机选择复习什么</span><br><span class="line"><span class="meta">#</span> version: </span><br><span class="line"><span class="meta">#</span> author: </span><br><span class="line"><span class="meta">#</span> history: 2018/8/28 21:30</span><br><span class="line">PATH=/bin:/sbin:/usr/bin:/usr/sbin:</span><br><span class="line">export PATH</span><br><span class="line"></span><br><span class="line">course[1]="Golang"</span><br><span class="line">course[2]="Linux"</span><br><span class="line">course[3]="MySQL"</span><br><span class="line">course[4]="计算机网络"</span><br><span class="line">course[5]="Docker"</span><br><span class="line">course[6]="分布式"</span><br><span class="line">course[7]="区块链"</span><br><span class="line">course[8]="Redis"</span><br><span class="line">course[9]="算法"</span><br><span class="line">courseNum=9</span><br><span class="line">courseChosed=0</span><br><span class="line">while [ "$&#123;courseChosed&#125;" -lt 3 ]</span><br><span class="line">do</span><br><span class="line">        mycheck=0</span><br><span class="line">        index=$(($&#123;RANDOM&#125; * $&#123;courseNum&#125; / 32768 + 1))</span><br><span class="line">        if [ "$&#123;courseChosed&#125;" -ge 1 ]; then</span><br><span class="line"><span class="meta">#</span>               for i in $(seq 1 $&#123;courseChosed&#125;)</span><br><span class="line">                for ((i=1;i&lt;=$&#123;courseChosed&#125;;i=i+1))</span><br><span class="line">                do</span><br><span class="line">                        if [ $&#123;courseArry[$i]&#125; == $&#123;index&#125; ]; then</span><br><span class="line">                                mycheck=1</span><br><span class="line">                        fi</span><br><span class="line">                done</span><br><span class="line">        fi</span><br><span class="line">        if [ $&#123;mycheck&#125; == 0 ];then</span><br><span class="line">                echo "I will review:$&#123;course[$&#123;index&#125;]&#125;"</span><br><span class="line">                courseChosed=$(($&#123;courseChosed&#125;+1))</span><br><span class="line">                courseArry[$&#123;courseChosed&#125;]=$&#123;index&#125;</span><br><span class="line">        fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/28/test指令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2143,6 +2000,173 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/23/内存泄露以及分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/23/内存泄露以及分析/" itemprop="url">内存泄露以及分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-23T23:15:04+08:00">
+                2018-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/unknown/" itemprop="url" rel="index">
+                    <span itemprop="name">unknown</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <h1 id="内存分析"><a href="#内存分析" class="headerlink" title="内存分析"></a>内存分析</h1><h3 id="Web程序"><a href="#Web程序" class="headerlink" title="Web程序"></a>Web程序</h3><p>如果本身是Web程序，那么本来就开启了端口，那么只要导入该工具就行了。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	_ <span class="string">"net/http/pprof</span></span><br><span class="line"><span class="string">	...</span></span><br><span class="line"><span class="string">)</span></span><br></pre></td></tr></table></figure></p>
+<p>然后通过<code>http://localhost:port/debug/pprof</code>访问</p>
+<h3 id="服务进程"><a href="#服务进程" class="headerlink" title="服务进程"></a>服务进程</h3><p>如果是一个服务进程，那么我们还需要监听端口。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//goroutine处于发送和接受阻塞状态，但垃圾回收不会收集此资源。</span></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">	_ <span class="string">"net/http/pprof"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">()</span></span> &#123;</span><br><span class="line">	c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">			&lt;-c</span><br><span class="line">		&#125;()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		log.Println(http.ListenAndServe(<span class="string">"localhost:6060"</span>, <span class="literal">nil</span>))</span><br><span class="line">	&#125;()</span><br><span class="line">	test()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		time.Sleep(time.Second)</span><br><span class="line">		<span class="comment">//runtime.GC()					//强制垃圾回收</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//go build -o test</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="应用程序"><a href="#应用程序" class="headerlink" title="应用程序"></a>应用程序</h3><p>这个时候需要用到<code>runtime/pprof</code>包，来生成<strong>pprof</strong>文件<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"runtime/pprof"</span></span><br><span class="line">	<span class="string">"flag"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> cpuprofile = flag.String(<span class="string">"cpuprofile"</span>,<span class="string">""</span>,<span class="string">"write cpu profile to file"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	flag.Parse()</span><br><span class="line">	<span class="keyword">if</span> *cpuprofile != <span class="string">""</span> &#123;</span><br><span class="line">        f, err := os.Create(*cpuprofile)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            log.Fatal(err)</span><br><span class="line">        &#125;</span><br><span class="line">        pprof.StartCPUProfile(f)</span><br><span class="line">        <span class="keyword">defer</span> pprof.StopCPUProfile()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h3><p>当消费者意外退出时，生产者阻塞在<code>ch&lt;-T{}</code>上，内存就会泄露。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> T)</span><br><span class="line"><span class="keyword">go</span> produce(ch) &#123;</span><br><span class="line">  <span class="comment">// 生产者往ch里写数据</span></span><br><span class="line">  ch &lt;- T&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">go</span> consume(ch) &#123;</span><br><span class="line">  <span class="comment">// 消费者从ch里读出数据</span></span><br><span class="line">  &lt;-ch</span><br><span class="line">  err := doSomeThing()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>解决方法：</p>
+<ol>
+<li>在发送端发送完关闭通道</li>
+<li>使用一个关闭的channel来广播取消动作</li>
+</ol>
+<blockquote>
+<p>转载于<a href="https://my.oschina.net/solate/blog/755094" target="_blank" rel="noopener">go pprof</a></p>
+</blockquote>
+
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2193,7 +2217,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
