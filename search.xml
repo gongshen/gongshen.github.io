@@ -3,6 +3,52 @@
   
     
     <entry>
+      <title>跳转语句</title>
+      <link href="/2018/09/21/%E6%B5%81%E7%A8%8B%E8%B7%B3%E8%BD%AC/"/>
+      <url>/2018/09/21/%E6%B5%81%E7%A8%8B%E8%B7%B3%E8%BD%AC/</url>
+      <content type="html"><![CDATA[<h3 id="Continue"><a href="#Continue" class="headerlink" title="Continue"></a>Continue</h3><p>跳出LABEL1当前的循环，进入下一次循环<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LABEL1:</span><br><span class="line"><span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line"><span class="keyword">for</span> &#123;</span><br><span class="line"><span class="keyword">continue</span> LABEL1</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="goto"><a href="#goto" class="headerlink" title="goto"></a>goto</h3><p>直接跳转到标志位<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> &#123;</span><br><span class="line"><span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line"><span class="keyword">if</span> i &gt; <span class="number">3</span> &#123;</span><br><span class="line"><span class="keyword">goto</span> LABEL1</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">LABEL1:</span><br></pre></td></tr></table></figure></p><h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>在不使用标签时，只是跳出第一层for循环；使用标签时，跳出标签的循环。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> a:=<span class="number">0</span>;a&lt;<span class="number">5</span>;a++&#123;</span><br><span class="line">       <span class="keyword">break</span> Loop</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+            <tag> 跳转语句 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>闭包的使用</title>
+      <link href="/2018/09/21/%E9%97%AD%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+      <url>/2018/09/21/%E9%97%AD%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      <content type="html"><![CDATA[<p>Golang是一门函数式编程的语言。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Any <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Car <span class="keyword">struct</span> &#123;</span><br><span class="line">Model        <span class="keyword">string</span></span><br><span class="line">Manufacturer <span class="keyword">string</span></span><br><span class="line">BuildYear    <span class="keyword">int</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Cars []*Car</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"><span class="comment">// make some cars:</span></span><br><span class="line">ford := &amp;Car&#123;<span class="string">"Fiesta"</span>, <span class="string">"Ford"</span>, <span class="number">2008</span>&#125;</span><br><span class="line">bmw := &amp;Car&#123;<span class="string">"XL 450"</span>, <span class="string">"BMW"</span>, <span class="number">2011</span>&#125;</span><br><span class="line">merc := &amp;Car&#123;<span class="string">"D600"</span>, <span class="string">"Mercedes"</span>, <span class="number">2009</span>&#125;</span><br><span class="line">bmw2 := &amp;Car&#123;<span class="string">"X 800"</span>, <span class="string">"BMW"</span>, <span class="number">2008</span>&#125;</span><br><span class="line"><span class="comment">// query:</span></span><br><span class="line">allCars := Cars([]*Car&#123;ford, bmw, merc, bmw2&#125;)</span><br><span class="line">allNewBMWs := allCars.FindAll(<span class="function"><span class="keyword">func</span><span class="params">(car *Car)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line"><span class="keyword">return</span> (car.Manufacturer == <span class="string">"BMW"</span>) &amp;&amp; (car.BuildYear &gt; <span class="number">2010</span>)</span><br><span class="line">&#125;)</span><br><span class="line">fmt.Println(<span class="string">"AllCars: "</span>, allCars)</span><br><span class="line">fmt.Println(<span class="string">"New BMWs: "</span>, allNewBMWs)</span><br><span class="line"></span><br><span class="line">manufacturers := []<span class="keyword">string</span>&#123;<span class="string">"Ford"</span>, <span class="string">"Aston Martin"</span>, <span class="string">"Land Rover"</span>, <span class="string">"BMW"</span>, <span class="string">"Jaguar"</span>&#125;</span><br><span class="line">sortedAppender, sortedCars := MakeSortedAppender(manufacturers)</span><br><span class="line">allCars.Process(sortedAppender)</span><br><span class="line">fmt.Println(<span class="string">"Map sortedCars: "</span>, sortedCars)</span><br><span class="line">BMWCount := <span class="built_in">len</span>(sortedCars[<span class="string">"BMW"</span>])</span><br><span class="line">fmt.Println(<span class="string">"We have "</span>, BMWCount, <span class="string">" BMWs"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Process all cars with the given function f:</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cs Cars)</span> <span class="title">Process</span><span class="params">(f <span class="keyword">func</span>(*Car)</span>)</span> &#123;</span><br><span class="line"><span class="keyword">for</span> _, c := <span class="keyword">range</span> cs &#123;</span><br><span class="line">f(c)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Find all cars matching a given criteria.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cs Cars)</span> <span class="title">FindAll</span><span class="params">(f <span class="keyword">func</span>(car *Car)</span> <span class="title">bool</span>) <span class="title">Cars</span></span> &#123;</span><br><span class="line">cars := <span class="built_in">make</span>([]*Car, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">cs.Process(<span class="function"><span class="keyword">func</span><span class="params">(c *Car)</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> f(c) &#123;</span><br><span class="line">cars = <span class="built_in">append</span>(cars, c)</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> cars</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Process cars and create new data.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(cs Cars)</span> <span class="title">Map</span><span class="params">(f <span class="keyword">func</span>(car *Car)</span> <span class="title">Any</span>) []<span class="title">Any</span></span> &#123;</span><br><span class="line">result := <span class="built_in">make</span>([]Any, <span class="built_in">len</span>(cs))</span><br><span class="line">ix := <span class="number">0</span></span><br><span class="line">cs.Process(<span class="function"><span class="keyword">func</span><span class="params">(c *Car)</span></span> &#123;</span><br><span class="line">result[ix] = f(c)</span><br><span class="line">ix++</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MakeSortedAppender</span><span class="params">(manufacturers []<span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">func</span>(car *Car)</span>, <span class="title">map</span>[<span class="title">string</span>]<span class="title">Cars</span>)</span> &#123;</span><br><span class="line"><span class="comment">// Prepare maps of sorted cars.</span></span><br><span class="line">sortedCars := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]Cars)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _, m := <span class="keyword">range</span> manufacturers &#123;</span><br><span class="line">sortedCars[m] = <span class="built_in">make</span>([]*Car, <span class="number">0</span>)</span><br><span class="line">&#125;</span><br><span class="line">sortedCars[<span class="string">"Default"</span>] = <span class="built_in">make</span>([]*Car, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Prepare appender function:</span></span><br><span class="line">appender := <span class="function"><span class="keyword">func</span><span class="params">(c *Car)</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> _, ok := sortedCars[c.Manufacturer]; ok &#123;</span><br><span class="line">sortedCars[c.Manufacturer] = <span class="built_in">append</span>(sortedCars[c.Manufacturer], c)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">sortedCars[<span class="string">"Default"</span>] = <span class="built_in">append</span>(sortedCars[<span class="string">"Default"</span>], c)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> appender, sortedCars</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+            <tag> 闭包 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>代理</title>
       <link href="/2018/09/17/%E4%BB%A3%E7%90%86/"/>
       <url>/2018/09/17/%E4%BB%A3%E7%90%86/</url>
@@ -137,11 +183,11 @@
       
         <tags>
             
-            <tag> 变量 </tag>
-            
             <tag> golang </tag>
             
             <tag> 坑 </tag>
+            
+            <tag> 变量 </tag>
             
         </tags>
       
@@ -281,9 +327,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> 变量 </tag>
+            
+            <tag> linux </tag>
             
             <tag> bash </tag>
             
@@ -333,6 +379,8 @@
       
         <tags>
             
+            <tag> 变量 </tag>
+            
             <tag> linux </tag>
             
             <tag> 指令 </tag>
@@ -342,8 +390,6 @@
             <tag> 群组 </tag>
             
             <tag> 数据处理 </tag>
-            
-            <tag> 变量 </tag>
             
             <tag> 文件 </tag>
             

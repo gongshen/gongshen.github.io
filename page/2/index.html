@@ -253,6 +253,592 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/29/区块链/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/29/区块链/" itemprop="url">区块链</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T12:27:23+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <h3 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h3><ul>
+<li>一致性（consistency）</li>
+<li>可用性（availablity）</li>
+<li>分区容错性（partition）</li>
+</ul>
+<h1 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h1><h2 id="哈希函数三个特性"><a href="#哈希函数三个特性" class="headerlink" title="哈希函数三个特性"></a>哈希函数三个特性</h2><h4 id="碰撞阻力"><a href="#碰撞阻力" class="headerlink" title="碰撞阻力"></a>碰撞阻力</h4><p>对于两个不同的值，不会产生了相同的哈希</p>
+<h4 id="隐蔽性"><a href="#隐蔽性" class="headerlink" title="隐蔽性"></a>隐蔽性</h4><ol>
+<li>比如<code>H</code>一个哈希函数，<code>msg</code>是信息，如果这时我要生成一个承诺</li>
+<li>从高阶最小熵（随机变量的离散程度）选取一个<code>nonce</code></li>
+<li>根据实施方案<code>承诺=H(msg || nonce)</code>生成一个承诺</li>
+<li>没有人能根据最后的哈希值算出<code>msg</code>的值（隐蔽性）</li>
+<li>最后如果我想公布这个<code>msg</code>，那么同时我们也公布随机数<code>nonce</code></li>
+<li>所有人都可以将<code>msg</code>和<code>nonce</code>进行哈希验证，判断<code>msg</code>的值是否为我之前承诺的<code>msg</code></li>
+</ol>
+<h4 id="谜题友好"><a href="#谜题友好" class="headerlink" title="谜题友好"></a>谜题友好</h4><p>对于<code>H(nonce || x) ∈ Y</code>，如果我们以合适的随机方式产生<code>nonce</code>，那么想要求解那个公式是没有捷径的。</p>
+<h4 id="安全哈希算法"><a href="#安全哈希算法" class="headerlink" title="安全哈希算法"></a>安全哈希算法</h4><p>我们将一个用于固定输入长度、具备碰撞阻力的哈希函数称为<code>压缩函数</code>，将一个固定长度输入的哈希函数转换成任意长度输入称为<code>MD变换</code>。</p>
+<p><img src="\images\MD变换.jpg" alt="MD变换"><br>比如压缩函数的固定输入长度为768，产生256位输出，那么将输入分为<code>m-n</code>大小的区块，每</p>
+<h2 id="哈希指针"><a href="#哈希指针" class="headerlink" title="哈希指针"></a>哈希指针</h2><p>####个区块和前一个区块的输出一起代入压缩函数<br> 区块链<br>我们使用<code>哈希指针</code>来构建区块链数据结构，<code>哈希指针</code>不仅指向上个区块的值的位置，还记录着上个区块的哈希值。所以能被防止篡改<br><img src="\images\区块链.jpg" alt="区块链"></p>
+<h4 id="梅克尔树"><a href="#梅克尔树" class="headerlink" title="梅克尔树"></a>梅克尔树</h4><p>只要我们记住根节点，任何数据的篡改都会被检测到<br><img src="\images\梅克尔树.jpg" alt="梅克尔树"></p>
+<h4 id="隶属证明"><a href="#隶属证明" class="headerlink" title="隶属证明"></a>隶属证明</h4><p><img src="\images\隶属证明.jpg" alt="隶属证明"></p>
+<p>证明一个数据区块隶属于一个梅克尔树，验证花费·O(log(n))·</p>
+<h2 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h2><p>数字证书由3个算法构成：</p>
+<ol>
+<li>(privateKey,publicKey):=generateKey(nonce)</li>
+<li>sig:=signature(privateKey,message)</li>
+<li>isValid:=verify(publicKey,message,sig)</li>
+</ol>
+<p>对哈希后的信息进行签名，比如对区块链的链尾指针进行签名，那么等于签署了整条区块链。</p>
+<h2 id="身份去中心化"><a href="#身份去中心化" class="headerlink" title="身份去中心化"></a>身份去中心化</h2><p>公钥就是我们的身份，有时公钥太长，那么我们可以以256位的公钥哈希作为身份。</p>
+<h4 id="椭圆曲线数字签名算法"><a href="#椭圆曲线数字签名算法" class="headerlink" title="椭圆曲线数字签名算法"></a>椭圆曲线数字签名算法</h4><p>ECDSA是比特币使用的算法，注意不良随机可能导致密钥泄露。</p>
+<h2 id="两种简单的加密货币"><a href="#两种简单的加密货币" class="headerlink" title="两种简单的加密货币"></a>两种简单的加密货币</h2><h4 id="高飞币"><a href="#高飞币" class="headerlink" title="高飞币"></a>高飞币</h4><p><img src="\images\高飞币.jpg" alt=""></p>
+<ol>
+<li>高飞生成唯一的随机ID，并建立字符串，然后使用私钥签名该字符串</li>
+<li>高飞创建一个支付声明，并对其进行签名，这样爱丽丝就拥有这个币</li>
+<li>爱丽丝创建一个支付声明，并对其进行签名，这样鲍勃就拥有这个币</li>
+</ol>
+<p><code>该币存在双重支付的问题和中心化的问题</code></p>
+<h4 id="财奴币"><a href="#财奴币" class="headerlink" title="财奴币"></a>财奴币</h4><p>财奴币使用区块链结构，实现了仅增的功能，解决双重支付的问题。在链表的末尾财奴对哈希指针进行签名，保证区块链不被篡改。<br><img src="\images\财奴币.jpg" alt="财奴币"></p>
+<p>财奴币中有两种交易：</p>
+<ol>
+<li>造币：跟高飞币一样，不过财奴币可以造多个币</li>
+<li>付币：创建该交易的人会消耗币，并生成相同总值的新币，新币可能属于不同的人。付币交易必须进行签名，否则无效<br><code>该币还是存在中心化问题</code> </li>
+</ol>
+<h1 id="base58"><a href="#base58" class="headerlink" title="base58"></a>base58</h1><ul>
+<li>base64是一种编码技术，不是加密技术。</li>
+<li>将3个8位字节转换为4个6位的字节</li>
+<li>如果剩下的字符不足3的倍数，用0填充，全0用字符“=”替换</li>
+<li>可以使用base64对可执行文件进行编码，就不会有乱码了</li>
+</ul>
+<h3 id="base64编码表"><a href="#base64编码表" class="headerlink" title="base64编码表"></a>base64编码表</h3><table>
+<thead>
+<tr>
+<th>数值</th>
+<th>字符</th>
+<th>数值</th>
+<th>字符</th>
+<th>数值</th>
+<th>字符</th>
+<th>数值</th>
+<th>字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>A</td>
+<td>16</td>
+<td>Q</td>
+<td>32</td>
+<td>g</td>
+<td>48</td>
+<td>w</td>
+</tr>
+<tr>
+<td>1</td>
+<td>B</td>
+<td>17</td>
+<td>R</td>
+<td>33</td>
+<td>h</td>
+<td>49</td>
+<td>x</td>
+</tr>
+<tr>
+<td>2</td>
+<td>C</td>
+<td>18</td>
+<td>S</td>
+<td>34</td>
+<td>i</td>
+<td>50</td>
+<td>y</td>
+</tr>
+<tr>
+<td>3</td>
+<td>D</td>
+<td>19</td>
+<td>T</td>
+<td>35</td>
+<td>j</td>
+<td>51</td>
+<td>z</td>
+</tr>
+<tr>
+<td>4</td>
+<td>E</td>
+<td>20</td>
+<td>U</td>
+<td>36</td>
+<td>k</td>
+<td>52</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>F</td>
+<td>21</td>
+<td>V</td>
+<td>37</td>
+<td>l</td>
+<td>53</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>G</td>
+<td>22</td>
+<td>W</td>
+<td>38</td>
+<td>m</td>
+<td>54</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>H</td>
+<td>23</td>
+<td>X</td>
+<td>39</td>
+<td>n</td>
+<td>55</td>
+<td>3</td>
+</tr>
+<tr>
+<td>8</td>
+<td>I</td>
+<td>24</td>
+<td>Y</td>
+<td>40</td>
+<td>o</td>
+<td>56</td>
+<td>4</td>
+</tr>
+<tr>
+<td>9</td>
+<td>J</td>
+<td>25</td>
+<td>Z</td>
+<td>41</td>
+<td>p</td>
+<td>57</td>
+<td>5</td>
+</tr>
+<tr>
+<td>10</td>
+<td>K</td>
+<td>26</td>
+<td>a</td>
+<td>42</td>
+<td>q</td>
+<td>58</td>
+<td>6</td>
+</tr>
+<tr>
+<td>11</td>
+<td>L</td>
+<td>27</td>
+<td>b</td>
+<td>43</td>
+<td>r</td>
+<td>59</td>
+<td>7</td>
+</tr>
+<tr>
+<td>12</td>
+<td>M</td>
+<td>28</td>
+<td>c</td>
+<td>44</td>
+<td>s</td>
+<td>60</td>
+<td>8</td>
+</tr>
+<tr>
+<td>13</td>
+<td>N</td>
+<td>29</td>
+<td>d</td>
+<td>45</td>
+<td>t</td>
+<td>61</td>
+<td>9</td>
+</tr>
+<tr>
+<td>14</td>
+<td>O</td>
+<td>30</td>
+<td>e</td>
+<td>46</td>
+<td>u</td>
+<td>62</td>
+<td>+</td>
+</tr>
+<tr>
+<td>15</td>
+<td>P</td>
+<td>31</td>
+<td>f</td>
+<td>47</td>
+<td>v</td>
+<td>63</td>
+<td>/</td>
+</tr>
+</tbody>
+</table>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p><code>M</code>的ASCII码是：77，二进制是：01001101<br>那么取6位<code>010011</code>得到编码<code>T</code>，因为不足3个字节，所以进行补位，最终得到base64编码<code>T==</code></p>
+<h3 id="比特币的地址使用base58编码，去掉了0-O-l-L"><a href="#比特币的地址使用base58编码，去掉了0-O-l-L" class="headerlink" title="比特币的地址使用base58编码，去掉了0,O,l,L"></a>比特币的地址使用base58编码，去掉了<code>0,O,l,L</code></h3><h1 id="比特币结构"><a href="#比特币结构" class="headerlink" title="比特币结构"></a>比特币结构</h1><p><img src="\images\区块结构.png" alt="区块结构"></p>
+<h4 id="区块结构"><a href="#区块结构" class="headerlink" title="区块结构"></a>区块结构</h4><table>
+<thead>
+<tr>
+<th>字节</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>区块大小</td>
+<td></td>
+</tr>
+<tr>
+<td>80</td>
+<td>区块头</td>
+<td></td>
+</tr>
+<tr>
+<td>1-9</td>
+<td>交易计数器</td>
+<td>包含交易数量和币基交易</td>
+</tr>
+<tr>
+<td>不定</td>
+<td>交易</td>
+</tr>
+</tbody>
+</table>
+<h4 id="区块头"><a href="#区块头" class="headerlink" title="区块头"></a>区块头</h4><table>
+<thead>
+<tr>
+<th>字节</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>版本号</td>
+<td></td>
+</tr>
+<tr>
+<td>32</td>
+<td>前区块的哈希值</td>
+<td></td>
+</tr>
+<tr>
+<td>32</td>
+<td>梅克尔树根</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>时间戳</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>难度目标</td>
+<td>该区块pow难度</td>
+</tr>
+<tr>
+<td>4</td>
+<td>nonce</td>
+<td>用于pow</td>
+</tr>
+</tbody>
+</table>
+<h4 id="区块体"><a href="#区块体" class="headerlink" title="区块体"></a>区块体</h4><pre><code>+ 币基交易：造币给矿工的奖励
++ 普通交易
+</code></pre>
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/28/shell-script/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/28/shell-script/" itemprop="url">shell script</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-28T21:28:24+08:00">
+                2018-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span> function: 随机选择复习什么</span><br><span class="line"><span class="meta">#</span> version: </span><br><span class="line"><span class="meta">#</span> author: </span><br><span class="line"><span class="meta">#</span> history: 2018/8/28 21:30</span><br><span class="line">PATH=/bin:/sbin:/usr/bin:/usr/sbin:</span><br><span class="line">export PATH</span><br><span class="line"></span><br><span class="line">course[1]="Golang"</span><br><span class="line">course[2]="Linux"</span><br><span class="line">course[3]="MySQL"</span><br><span class="line">course[4]="计算机网络"</span><br><span class="line">course[5]="Docker"</span><br><span class="line">course[6]="分布式"</span><br><span class="line">course[7]="区块链"</span><br><span class="line">course[8]="Redis"</span><br><span class="line">course[9]="算法"</span><br><span class="line">courseNum=9</span><br><span class="line">courseChosed=0</span><br><span class="line">while [ "$&#123;courseChosed&#125;" -lt 3 ]</span><br><span class="line">do</span><br><span class="line">        mycheck=0</span><br><span class="line">        index=$(($&#123;RANDOM&#125; * $&#123;courseNum&#125; / 32768 + 1))</span><br><span class="line">        if [ "$&#123;courseChosed&#125;" -ge 1 ]; then</span><br><span class="line"><span class="meta">#</span>               for i in $(seq 1 $&#123;courseChosed&#125;)</span><br><span class="line">                for ((i=1;i&lt;=$&#123;courseChosed&#125;;i=i+1))</span><br><span class="line">                do</span><br><span class="line">                        if [ $&#123;courseArry[$i]&#125; == $&#123;index&#125; ]; then</span><br><span class="line">                                mycheck=1</span><br><span class="line">                        fi</span><br><span class="line">                done</span><br><span class="line">        fi</span><br><span class="line">        if [ $&#123;mycheck&#125; == 0 ];then</span><br><span class="line">                echo "I will review:$&#123;course[$&#123;index&#125;]&#125;"</span><br><span class="line">                courseChosed=$(($&#123;courseChosed&#125;+1))</span><br><span class="line">                courseArry[$&#123;courseChosed&#125;]=$&#123;index&#125;</span><br><span class="line">        fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/28/test指令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1831,342 +2417,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/24/Git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/24/Git/" itemprop="url">Git</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T11:58:17+08:00">
-                2018-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发工具/" itemprop="url" rel="index">
-                    <span itemprop="name">开发工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <h1 id="1、原理"><a href="#1、原理" class="headerlink" title="1、原理"></a>1、原理</h1><h3 id="Git工作流"><a href="#Git工作流" class="headerlink" title="Git工作流"></a>Git工作流</h3><p><img src="\images\git工作流.png" alt="git工作流"><br>当新建一个仓库后，当前目录就是<code>工作区</code>，隐藏文件<code>.git</code>就是版本库<br>版本库有一个<code>stage</code>的暂存区，自动创建的<code>master分支</code>和指向当前分支的指针<code>HEAD</code></p>
-<p><img src="\images\git指令操作1.png" alt="git指令"></p>
-<ul>
-<li><code>git add files</code>：将文件添加到暂存区</li>
-<li><code>git commit</code>：将暂存区的修改提交到当前分支</li>
-<li><code>git reset -- files</code>：用当前分支的修改覆盖暂存区，用来撤销最后一次<strong>git add</strong></li>
-<li><code>git checkout -- files</code>：用暂存区的修改覆盖工作目录，来撤销本地修改</li>
-</ul>
-<p><img src="\images\git指令操作2.png" alt="git指令2"></p>
-<ul>
-<li><code>git commit -a</code>：直接将所有修改添加到暂存区并提交到当前分支</li>
-<li><code>git checkout HEAD -- files</code>：取出最后一次修改，来覆盖工作目录，进行回滚操作</li>
-</ul>
-<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p><img src="\images\分支新建.png" alt="分支新建"><br>分支的新建很快，就是新建一个<code>dev</code>指针，将<code>HEAD</code>指针指向它，就是当前指针了。<br><img src="\images\分支提交.jpg" alt="分支提交"><br>分支的每次提交是当前分支向前移动。<br><img src="\images\分支合并.jpg" alt="分支合并"><br>分支的合并就是修改指针。<br><img src="\images\分支合并2.jpg" alt=""><br>“快进式合并”(fast-forward merge)会直接将master分支指向合并的分支，会丢失分支信息，所以禁用<code>Fast forward</code>模式，加上<code>-m</code>让合并时产生一次提交。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git merge --no-ff -m &quot;merge with no-ff&quot; dev</span><br></pre></td></tr></table></figure></p>
-<h3 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h3><p>如果两个分支对同一行进行了修改，分支合并时就会冲突。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">Creating a new branch is quick &amp; simple.</span><br><span class="line">=======</span><br><span class="line">Creating a new branch is quick AND simple.</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature1</span><br></pre></td></tr></table></figure></p>
-<p>解决方法：</p>
-<ol>
-<li>将冲突部分修改的一样</li>
-<li></li>
-</ol>
-<h3 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h3><p><img src="\images\分支管理策略.png" alt=""><br><code>master</code>：用来发布新版本<br><code>dev</code>：用来日常开发</p>
-<h3 id="储藏（stashing）"><a href="#储藏（stashing）" class="headerlink" title="储藏（stashing）"></a>储藏（stashing）</h3><p>在一个分支上操作后，如果还没有将修改提交，那么切换分支后，另一支分支也能看到该修改。所以使用<code>git stash</code>将当前分支修改储藏在栈上，那么就不会显示任何修改，能安全切换分支。<br>该功能可以用于<strong>bug</strong>分支的实现。如果当前正在<strong>dev</strong> 分支上进行开发，但是此时<strong>master</strong>上有个bug需要修复，但是 <strong>dev</strong>分支上的开发还未完成，不想立即提交。在新建<strong>bug</strong>分支并切换到<strong>bug</strong>分支之前就需要将<strong>dev</strong>分支的未提交修改储藏起来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git stash				//存储当前dev工作现场</span><br><span class="line">$ git checkout master	//回到master分支</span><br><span class="line">$ git checkout -b issue-101		//创建issue-101分支</span><br><span class="line">$ git commit -m &quot;resolve the bug&quot;	//修复bug</span><br><span class="line">$ git checkout master		//回到master分支</span><br><span class="line">$ git branch -d issue-101		//删除issue-101分支</span><br><span class="line">$ git checkout dev		//回到dev分支</span><br><span class="line">$ git stash apply		//从栈中恢复dev分支的修改</span><br></pre></td></tr></table></figure></p>
-<h1 id="2、常用指令"><a href="#2、常用指令" class="headerlink" title="2、常用指令"></a>2、常用指令</h1><p><span style="border-bottom:2px solid red">1. 查看分支历史信息</span><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --graph --pretty=oneline --abbrev=commit</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>参考<a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Git.md" target="_blank" rel="noopener">Git</a></p>
-</blockquote>
-
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/23/内存泄露以及分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/23/内存泄露以及分析/" itemprop="url">内存泄露以及分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-23T23:15:04+08:00">
-                2018-08-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/unknown/" itemprop="url" rel="index">
-                    <span itemprop="name">unknown</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <h1 id="内存分析"><a href="#内存分析" class="headerlink" title="内存分析"></a>内存分析</h1><h3 id="Web程序"><a href="#Web程序" class="headerlink" title="Web程序"></a>Web程序</h3><p>如果本身是Web程序，那么本来就开启了端口，那么只要导入该工具就行了。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	_ <span class="string">"net/http/pprof</span></span><br><span class="line"><span class="string">	...</span></span><br><span class="line"><span class="string">)</span></span><br></pre></td></tr></table></figure></p>
-<p>然后通过<code>http://localhost:port/debug/pprof</code>访问</p>
-<h3 id="服务进程"><a href="#服务进程" class="headerlink" title="服务进程"></a>服务进程</h3><p>如果是一个服务进程，那么我们还需要监听端口。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//goroutine处于发送和接受阻塞状态，但垃圾回收不会收集此资源。</span></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">	_ <span class="string">"net/http/pprof"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">()</span></span> &#123;</span><br><span class="line">	c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">			&lt;-c</span><br><span class="line">		&#125;()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		log.Println(http.ListenAndServe(<span class="string">"localhost:6060"</span>, <span class="literal">nil</span>))</span><br><span class="line">	&#125;()</span><br><span class="line">	test()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		time.Sleep(time.Second)</span><br><span class="line">		<span class="comment">//runtime.GC()					//强制垃圾回收</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//go build -o test</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="应用程序"><a href="#应用程序" class="headerlink" title="应用程序"></a>应用程序</h3><p>这个时候需要用到<code>runtime/pprof</code>包，来生成<strong>pprof</strong>文件<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"runtime/pprof"</span></span><br><span class="line">	<span class="string">"flag"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> cpuprofile = flag.String(<span class="string">"cpuprofile"</span>,<span class="string">""</span>,<span class="string">"write cpu profile to file"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	flag.Parse()</span><br><span class="line">	<span class="keyword">if</span> *cpuprofile != <span class="string">""</span> &#123;</span><br><span class="line">        f, err := os.Create(*cpuprofile)</span><br><span class="line">        <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">            log.Fatal(err)</span><br><span class="line">        &#125;</span><br><span class="line">        pprof.StartCPUProfile(f)</span><br><span class="line">        <span class="keyword">defer</span> pprof.StopCPUProfile()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h3><p>当消费者意外退出时，生产者阻塞在<code>ch&lt;-T{}</code>上，内存就会泄露。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> T)</span><br><span class="line"><span class="keyword">go</span> produce(ch) &#123;</span><br><span class="line">  <span class="comment">// 生产者往ch里写数据</span></span><br><span class="line">  ch &lt;- T&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">go</span> consume(ch) &#123;</span><br><span class="line">  <span class="comment">// 消费者从ch里读出数据</span></span><br><span class="line">  &lt;-ch</span><br><span class="line">  err := doSomeThing()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>解决方法：</p>
-<ol>
-<li>在发送端发送完关闭通道</li>
-<li>使用一个关闭的channel来广播取消动作</li>
-</ol>
-<blockquote>
-<p>转载于<a href="https://my.oschina.net/solate/blog/755094" target="_blank" rel="noopener">go pprof</a></p>
-</blockquote>
-
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2217,7 +2467,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2239,7 +2489,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
