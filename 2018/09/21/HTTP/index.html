@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="HTTP包中的适配器创建自己的handler123456789type myHandler struct&amp;#123;&amp;#125;func (my *myHandler)ServeHTTP(w http.RsponseWriter,r *http.Request)&amp;#123;	w.Write([]byte(&quot;Hello!&quot;))&amp;#125;func main()&amp;#123;	http.Handle(&quot;">
+<meta name="description" content="自定义Mutexhttp.Handle和http.HandleFunc都是默认调用http.DafaultServeMux1mux:=http.NewServeMux HTTP包中的适配器创建自己的handler123456789type myHandler struct&amp;#123;&amp;#125;func (my *myHandler)ServeHTTP(w http.RsponseWriter,r">
 <meta name="keywords" content="golang,http">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP">
 <meta property="og:url" content="http://www.llyltq.top/2018/09/21/HTTP/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="HTTP包中的适配器创建自己的handler123456789type myHandler struct&amp;#123;&amp;#125;func (my *myHandler)ServeHTTP(w http.RsponseWriter,r *http.Request)&amp;#123;	w.Write([]byte(&quot;Hello!&quot;))&amp;#125;func main()&amp;#123;	http.Handle(&quot;">
+<meta property="og:description" content="自定义Mutexhttp.Handle和http.HandleFunc都是默认调用http.DafaultServeMux1mux:=http.NewServeMux HTTP包中的适配器创建自己的handler123456789type myHandler struct&amp;#123;&amp;#125;func (my *myHandler)ServeHTTP(w http.RsponseWriter,r">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-21T16:07:48.623Z">
+<meta property="og:updated_time" content="2018-09-22T02:08:14.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP">
-<meta name="twitter:description" content="HTTP包中的适配器创建自己的handler123456789type myHandler struct&amp;#123;&amp;#125;func (my *myHandler)ServeHTTP(w http.RsponseWriter,r *http.Request)&amp;#123;	w.Write([]byte(&quot;Hello!&quot;))&amp;#125;func main()&amp;#123;	http.Handle(&quot;">
+<meta name="twitter:description" content="自定义Mutexhttp.Handle和http.HandleFunc都是默认调用http.DafaultServeMux1mux:=http.NewServeMux HTTP包中的适配器创建自己的handler123456789type myHandler struct&amp;#123;&amp;#125;func (my *myHandler)ServeHTTP(w http.RsponseWriter,r">
 
 
 
@@ -354,7 +354,8 @@
       
 	  
       
-        <h3 id="HTTP包中的适配器"><a href="#HTTP包中的适配器" class="headerlink" title="HTTP包中的适配器"></a>HTTP包中的适配器</h3><p>创建自己的handler<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> myHandler <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(my *myHandler)</span><span class="title">ServeHTTP</span><span class="params">(w http.RsponseWriter,r *http.Request)</span></span>&#123;</span><br><span class="line">	w.Write([]<span class="keyword">byte</span>(<span class="string">"Hello!"</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	http.Handle(<span class="string">"/"</span>,&amp;myHandler&#123;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="自定义Mutex"><a href="#自定义Mutex" class="headerlink" title="自定义Mutex"></a>自定义Mutex</h3><p><code>http.Handle</code>和<code>http.HandleFunc</code>都是默认调用<code>http.DafaultServeMux</code><br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mux:=http.NewServeMux</span><br></pre></td></tr></table></figure></p>
+<h3 id="HTTP包中的适配器"><a href="#HTTP包中的适配器" class="headerlink" title="HTTP包中的适配器"></a>HTTP包中的适配器</h3><p>创建自己的handler<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> myHandler <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(my *myHandler)</span><span class="title">ServeHTTP</span><span class="params">(w http.RsponseWriter,r *http.Request)</span></span>&#123;</span><br><span class="line">	w.Write([]<span class="keyword">byte</span>(<span class="string">"Hello!"</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	http.Handle(<span class="string">"/"</span>,&amp;myHandler&#123;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>因为<code>Handler</code>这个接口只有一个<code>ServeHTTP</code>方法，只要实现这个方法的类型就实现了<code>Handler</code>这个接口。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Handler <span class="keyword">interface</span> &#123;</span><br><span class="line">	ServeHTTP(ResponseWriter, *Request)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>我们使用适配器来避免每次实现<code>Handler</code>都要创建一个对象和<code>ServeHTTP</code>方法。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myHandler</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>&#123;</span><br><span class="line">	w.Write([]<span class="keyword">byte</span>(<span class="string">"Hello!"</span>))</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	http.HandleFunc(<span class="string">"/"</span>,myHandler)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><code>HandlerFunc</code>实现了<code>Handler</code>这个接口，然后将<code>w和r</code>作为参数传给<code>f(w,r)</code>，也就是普通函数本身。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> HandlerFunc <span class="function"><span class="keyword">func</span><span class="params">(http.ResponseWriter,*http.Request)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="params">(f HandleFunc)</span><span class="title">ServeHTTP</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>&#123;</span><br><span class="line">	f(w,r)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -400,6 +401,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/29/流处理/" rel="prev" title="流处理">
+                流处理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -476,7 +481,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -498,7 +503,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -547,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP包中的适配器"><span class="nav-number">1.</span> <span class="nav-text">HTTP包中的适配器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义Mutex"><span class="nav-number">1.</span> <span class="nav-text">自定义Mutex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP包中的适配器"><span class="nav-number">2.</span> <span class="nav-text">HTTP包中的适配器</span></a></li></ol></div>
             
 
           </div>

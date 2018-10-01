@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="golang,流处理,package," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="strings包和bytes包不处理数据流时使用 rune的概念rune是int32的别名，字符串是用byte类型来存储的，byte类型是uint8的别名，而中文占3个字节，所以不通过转换是读不出中文字符的。当我们使用for-range遍历字符串得到的value其实就是rune类型的。1234567891011//str占9个字节str:=&quot;abc一二&quot;for i,v:=range str&amp;#12">
+<meta name="keywords" content="golang,流处理,package">
+<meta property="og:type" content="article">
+<meta property="og:title" content="流处理">
+<meta property="og:url" content="http://www.llyltq.top/2018/09/29/流处理/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="strings包和bytes包不处理数据流时使用 rune的概念rune是int32的别名，字符串是用byte类型来存储的，byte类型是uint8的别名，而中文占3个字节，所以不通过转换是读不出中文字符的。当我们使用for-range遍历字符串得到的value其实就是rune类型的。1234567891011//str占9个字节str:=&quot;abc一二&quot;for i,v:=range str&amp;#12">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-01T06:17:55.884Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="流处理">
+<meta name="twitter:description" content="strings包和bytes包不处理数据流时使用 rune的概念rune是int32的别名，字符串是用byte类型来存储的，byte类型是uint8的别名，而中文占3个字节，所以不通过转换是读不出中文字符的。当我们使用for-range遍历字符串得到的value其实就是rune类型的。1234567891011//str占9个字节str:=&quot;abc一二&quot;for i,v:=range str&amp;#12">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.llyltq.top/2018/09/29/流处理/"/>
+
+
+
+
+
+  <title>流处理 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+	
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/09/29/流处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">流处理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T16:13:47+08:00">
+                2018-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">基础知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+        <h1 id="strings包和bytes包"><a href="#strings包和bytes包" class="headerlink" title="strings包和bytes包"></a>strings包和bytes包</h1><p>不处理数据流时使用</p>
+<h3 id="rune的概念"><a href="#rune的概念" class="headerlink" title="rune的概念"></a>rune的概念</h3><p><code>rune</code>是<code>int32</code>的别名，字符串是用<code>byte</code>类型来存储的，<code>byte</code>类型是<code>uint8</code>的别名，而中文占3个字节，所以不通过转换是读不出中文字符的。<br>当我们使用<code>for-range</code>遍历字符串得到的value其实就是<code>rune</code>类型的。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//str占9个字节</span></span><br><span class="line">str:=<span class="string">"abc一二"</span></span><br><span class="line"><span class="keyword">for</span> i,v:=<span class="keyword">range</span> str&#123;</span><br><span class="line">	fmt.Println(<span class="keyword">string</span>(v))			<span class="comment">//abc一二</span></span><br><span class="line">	fmt.Println(str[i])				<span class="comment">//97 98 99 228 228</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//str占5个字节</span></span><br><span class="line">r:=[]<span class="keyword">rune</span>(str)</span><br><span class="line"><span class="keyword">for</span> i,_:=<span class="keyword">range</span> r&#123;</span><br><span class="line">	fmt.Println(<span class="keyword">string</span>(str[i]))		<span class="comment">//abc一二</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="字符串是否包含：Contains"><a href="#字符串是否包含：Contains" class="headerlink" title="字符串是否包含：Contains"></a>字符串是否包含：Contains</h3><h3 id="子串中任何字符有包含在字符串中：ContainsAny"><a href="#子串中任何字符有包含在字符串中：ContainsAny" class="headerlink" title="子串中任何字符有包含在字符串中：ContainsAny"></a>子串中任何字符有包含在字符串中：ContainsAny</h3><h3 id="子串中是否有rune类型的包含在字符串中：ContainsRune"><a href="#子串中是否有rune类型的包含在字符串中：ContainsRune" class="headerlink" title="子串中是否有rune类型的包含在字符串中：ContainsRune"></a>子串中是否有rune类型的包含在字符串中：ContainsRune</h3><h3 id="最后一个匹配的子串的位置：LastIndex"><a href="#最后一个匹配的子串的位置：LastIndex" class="headerlink" title="最后一个匹配的子串的位置：LastIndex"></a>最后一个匹配的子串的位置：LastIndex</h3><h3 id="大小写转换：ToLower"><a href="#大小写转换：ToLower" class="headerlink" title="大小写转换：ToLower"></a>大小写转换：ToLower</h3><h3 id="返回字符串出现的次数：Count"><a href="#返回字符串出现的次数：Count" class="headerlink" title="返回字符串出现的次数：Count"></a>返回字符串出现的次数：Count</h3><h3 id="将字符串按分隔符切割：Split"><a href="#将字符串按分隔符切割：Split" class="headerlink" title="将字符串按分隔符切割：Split"></a>将字符串按分隔符切割：Split</h3><p>不会自动处理字符串末尾的换行符</p>
+<h3 id="将字符串按空格分割成切片：Fields"><a href="#将字符串按空格分割成切片：Fields" class="headerlink" title="将字符串按空格分割成切片：Fields"></a>将字符串按空格分割成切片：Fields</h3><p>会自动将字符串末尾的换行符去掉<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//也可以自定义切割方式：'#'</span></span><br><span class="line">canSplit:= <span class="function"><span class="keyword">func</span><span class="params">(r <span class="keyword">rune</span>)</span><span class="title">bool</span></span> &#123;<span class="keyword">return</span> r==<span class="string">'#'</span>&#125;</span><br><span class="line">fmt.Println(strings.FieldsFunc(str,canSplit))</span><br></pre></td></tr></table></figure></p>
+<h3 id="查找字串是否在字符串开头：HasPrefix"><a href="#查找字串是否在字符串开头：HasPrefix" class="headerlink" title="查找字串是否在字符串开头：HasPrefix"></a>查找字串是否在字符串开头：HasPrefix</h3><h3 id="按字典顺序比较字符串-Compare"><a href="#按字典顺序比较字符串-Compare" class="headerlink" title="按字典顺序比较字符串:Compare"></a>按字典顺序比较字符串:Compare</h3><h3 id="比较字符串是否相等，忽略大小写：EqualFold"><a href="#比较字符串是否相等，忽略大小写：EqualFold" class="headerlink" title="比较字符串是否相等，忽略大小写：EqualFold"></a>比较字符串是否相等，忽略大小写：EqualFold</h3><h3 id="判断字符串前缀：HasPrefix"><a href="#判断字符串前缀：HasPrefix" class="headerlink" title="判断字符串前缀：HasPrefix"></a>判断字符串前缀：HasPrefix</h3><h3 id="将切片中的字符串按特定符号连接起来：Join"><a href="#将切片中的字符串按特定符号连接起来：Join" class="headerlink" title="将切片中的字符串按特定符号连接起来：Join"></a>将切片中的字符串按特定符号连接起来：Join</h3><h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>对字符串进行Mapping函数修改，如果Mapping函数返回负值，那么就删除字符串而不是替代<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rot13=<span class="function"><span class="keyword">func</span><span class="params">(r <span class="keyword">rune</span>)</span><span class="title">rune</span></span>&#123;</span><br><span class="line">	<span class="keyword">switch</span> &#123;</span><br><span class="line">	<span class="keyword">case</span> r&gt;=<span class="string">'A'</span> &amp;&amp; r &lt;= <span class="string">'Z'</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'A'</span>+(r-<span class="string">'A'</span>+<span class="number">13</span>)%<span class="number">26</span></span><br><span class="line">	<span class="keyword">case</span> r &gt;=<span class="string">'a'</span> &amp;&amp; r &lt;=<span class="string">'z'</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">'a'</span>+(r-<span class="string">'a'</span>+<span class="number">13</span>)%<span class="number">26</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> r</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(strings.Map(rot13,<span class="string">"Twas brilling and the slithy gopher..."</span>))</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Gjnf oevyyvat naq gur fyvgul tbcure...</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="进行字符串重复输出：Repeat"><a href="#进行字符串重复输出：Repeat" class="headerlink" title="进行字符串重复输出：Repeat"></a>进行字符串重复输出：Repeat</h3><h3 id="进行字符串的替代：Replace"><a href="#进行字符串的替代：Replace" class="headerlink" title="进行字符串的替代：Replace"></a>进行字符串的替代：Replace</h3><p>第4个参数小于0，表示所有的都替换。</p>
+<h3 id="对字符串的前后进行修剪：Trim"><a href="#对字符串的前后进行修剪：Trim" class="headerlink" title="对字符串的前后进行修剪：Trim"></a>对字符串的<code>前后</code>进行修剪：Trim</h3><h3 id="去掉字符串前后空格：TrimSpace"><a href="#去掉字符串前后空格：TrimSpace" class="headerlink" title="去掉字符串前后空格：TrimSpace"></a>去掉字符串<code>前后</code>空格：TrimSpace</h3><h3 id="将字符串包装成一个Reader：NewReader"><a href="#将字符串包装成一个Reader：NewReader" class="headerlink" title="将字符串包装成一个Reader：NewReader"></a>将字符串包装成一个Reader：NewReader</h3><h1 id="bufio包"><a href="#bufio包" class="headerlink" title="bufio包"></a>bufio包</h1><p>处理数据流时使用</p>
+<h3 id="读字符串直到分隔符：ReadString"><a href="#读字符串直到分隔符：ReadString" class="headerlink" title="读字符串直到分隔符：ReadString"></a>读字符串直到分隔符：ReadString</h3><h1 id="Scanner的使用"><a href="#Scanner的使用" class="headerlink" title="Scanner的使用"></a>Scanner的使用</h1><ul>
+<li>默认读到空格时为一个Token，可以自定义</li>
+<li>new一个scanner：NewScanner</li>
+<li>设置scanner的splitFunc：scanner.Split</li>
+<li>开始扫描，当缓冲区不为空或者读到EOF时，调用切割函数：Scan</li>
+<li>以字符串的形式显示：Text</li>
+</ul>
+<h3 id="1、需要更多的值"><a href="#1、需要更多的值" class="headerlink" title="1、需要更多的值"></a>1、需要更多的值</h3><p>当split函数的返回值为<code>0,nil,nil</code>时，表示传递的数据不足以获得<code>token</code>。<br>那么当缓冲区满时，它会翻倍。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">input:=<span class="string">"abcdefghijkl"</span></span><br><span class="line">scanner:=bufio.NewScanner(strings.NewReader(input))</span><br><span class="line">split:=<span class="function"><span class="keyword">func</span><span class="params">(data []<span class="keyword">byte</span>,atEOF <span class="keyword">bool</span>)</span><span class="params">(advance <span class="keyword">int</span>,token []<span class="keyword">byte</span>,err error)</span></span>&#123;</span><br><span class="line">	fmt.Printf(<span class="string">"%t\t%d\t%s\n"</span>,atEOF,<span class="built_in">len</span>(data),data)</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>,<span class="literal">nil</span>,<span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line">scanner.Split(split)</span><br><span class="line">buf:=<span class="built_in">make</span>([]<span class="keyword">byte</span>,<span class="number">2</span>)		<span class="comment">//将缓冲区设置为2</span></span><br><span class="line">scanner.Buffer(buf,bufio.MaxScanTokenSize)</span><br><span class="line"><span class="keyword">for</span> scanner.Scan()&#123;</span><br><span class="line">	fmt.Printf(<span class="string">"%s\n"</span>,scanner.Text())</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="literal">false</span>	<span class="number">2</span>	ab</span><br><span class="line"><span class="literal">false</span>	<span class="number">4</span>	abcd</span><br><span class="line"><span class="literal">false</span>	<span class="number">8</span>	abcdefgh</span><br><span class="line"><span class="literal">false</span>	<span class="number">12</span>	abcdefghijkl</span><br><span class="line"><span class="literal">true</span>	<span class="number">12</span>	abcdefghijkl</span><br></pre></td></tr></table></figure></p>
+<p><code>split</code>函数返回的错误信息会保存在<code>scanner.err</code>中</p>
+<h3 id="2、找到了Token"><a href="#2、找到了Token" class="headerlink" title="2、找到了Token"></a>2、找到了Token</h3><p><code>split</code>函数返回在缓冲区中向前移动的字节数和Token本身。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">input:=<span class="string">"foofoofoo"</span></span><br><span class="line">scanner:=bufio.NewScanner(strings.NewReader(input))</span><br><span class="line">split:=<span class="function"><span class="keyword">func</span><span class="params">(data []<span class="keyword">byte</span>,atEOF <span class="keyword">bool</span>)</span><span class="params">(advance <span class="keyword">int</span>,token []<span class="keyword">byte</span>,err error)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> bytes.Equal(data[:<span class="number">3</span>],[]<span class="keyword">byte</span>&#123;<span class="string">'f'</span>,<span class="string">'o'</span>,<span class="string">'o'</span>&#125;)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">3</span>,[]<span class="keyword">byte</span>&#123;<span class="string">'F'</span>&#125;,<span class="literal">nil</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> atEOF&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>,<span class="literal">nil</span>,errors.New(<span class="string">"bad luck!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>,<span class="literal">nil</span>,<span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line">scanner.Split(split)</span><br><span class="line"><span class="keyword">for</span> scanner.Scan&#123;</span><br><span class="line">	fmt.Println(scanner.Text())</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line">F</span><br><span class="line">F</span><br><span class="line">F</span><br></pre></td></tr></table></figure></p>
+<h3 id="3、返回错误"><a href="#3、返回错误" class="headerlink" title="3、返回错误"></a>3、返回错误</h3><p>如果<code>split</code>方法返回错误，那么<code>scanner</code>立即停止。<br>但是如果返回的是最后的Token，会返回True然后再停止。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> err == ErrFinalToken &#123;</span><br><span class="line">	s.token = token</span><br><span class="line">	s.done = <span class="literal">true</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果字符串超过了默认缓冲区的最大长度（MaxScanTokenSize），会报错。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">input := strings.Repeat(<span class="string">"x"</span>, bufio.MaxScanTokenSize)</span><br><span class="line">    scanner := bufio.NewScanner(strings.NewReader(input))</span><br><span class="line">    <span class="keyword">for</span> scanner.Scan() &#123;</span><br><span class="line">        fmt.Println(scanner.Text())</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> scanner.Err() != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Println(scanner.Err())</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line">bufio.Scanner: token too long</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/golang/" rel="tag"># golang</a>
+          
+            <a href="/tags/流处理/" rel="tag"># 流处理</a>
+          
+            <a href="/tags/package/" rel="tag"># package</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/21/HTTP/" rel="next" title="HTTP">
+                <i class="fa fa-chevron-left"></i> HTTP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">冉某某</p>
+              <p class="site-description motion-element" itemprop="description">I'm worm,find the truth,live in shadow.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gongshen" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:gongshen1995@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#strings包和bytes包"><span class="nav-number">1.</span> <span class="nav-text">strings包和bytes包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rune的概念"><span class="nav-number">1.0.1.</span> <span class="nav-text">rune的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串是否包含：Contains"><span class="nav-number">1.0.2.</span> <span class="nav-text">字符串是否包含：Contains</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子串中任何字符有包含在字符串中：ContainsAny"><span class="nav-number">1.0.3.</span> <span class="nav-text">子串中任何字符有包含在字符串中：ContainsAny</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子串中是否有rune类型的包含在字符串中：ContainsRune"><span class="nav-number">1.0.4.</span> <span class="nav-text">子串中是否有rune类型的包含在字符串中：ContainsRune</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后一个匹配的子串的位置：LastIndex"><span class="nav-number">1.0.5.</span> <span class="nav-text">最后一个匹配的子串的位置：LastIndex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大小写转换：ToLower"><span class="nav-number">1.0.6.</span> <span class="nav-text">大小写转换：ToLower</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回字符串出现的次数：Count"><span class="nav-number">1.0.7.</span> <span class="nav-text">返回字符串出现的次数：Count</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将字符串按分隔符切割：Split"><span class="nav-number">1.0.8.</span> <span class="nav-text">将字符串按分隔符切割：Split</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将字符串按空格分割成切片：Fields"><span class="nav-number">1.0.9.</span> <span class="nav-text">将字符串按空格分割成切片：Fields</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找字串是否在字符串开头：HasPrefix"><span class="nav-number">1.0.10.</span> <span class="nav-text">查找字串是否在字符串开头：HasPrefix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按字典顺序比较字符串-Compare"><span class="nav-number">1.0.11.</span> <span class="nav-text">按字典顺序比较字符串:Compare</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较字符串是否相等，忽略大小写：EqualFold"><span class="nav-number">1.0.12.</span> <span class="nav-text">比较字符串是否相等，忽略大小写：EqualFold</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断字符串前缀：HasPrefix"><span class="nav-number">1.0.13.</span> <span class="nav-text">判断字符串前缀：HasPrefix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将切片中的字符串按特定符号连接起来：Join"><span class="nav-number">1.0.14.</span> <span class="nav-text">将切片中的字符串按特定符号连接起来：Join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">1.0.15.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进行字符串重复输出：Repeat"><span class="nav-number">1.0.16.</span> <span class="nav-text">进行字符串重复输出：Repeat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进行字符串的替代：Replace"><span class="nav-number">1.0.17.</span> <span class="nav-text">进行字符串的替代：Replace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对字符串的前后进行修剪：Trim"><span class="nav-number">1.0.18.</span> <span class="nav-text">对字符串的前后进行修剪：Trim</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去掉字符串前后空格：TrimSpace"><span class="nav-number">1.0.19.</span> <span class="nav-text">去掉字符串前后空格：TrimSpace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将字符串包装成一个Reader：NewReader"><span class="nav-number">1.0.20.</span> <span class="nav-text">将字符串包装成一个Reader：NewReader</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bufio包"><span class="nav-number">2.</span> <span class="nav-text">bufio包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读字符串直到分隔符：ReadString"><span class="nav-number">2.0.1.</span> <span class="nav-text">读字符串直到分隔符：ReadString</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Scanner的使用"><span class="nav-number">3.</span> <span class="nav-text">Scanner的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、需要更多的值"><span class="nav-number">3.0.1.</span> <span class="nav-text">1、需要更多的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、找到了Token"><span class="nav-number">3.0.2.</span> <span class="nav-text">2、找到了Token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、返回错误"><span class="nav-number">3.0.3.</span> <span class="nav-text">3、返回错误</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冉某某</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

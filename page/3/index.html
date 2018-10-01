@@ -253,6 +253,204 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/25/linux账号和群组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/linux账号和群组/" itemprop="url">linux账号管理与ACL设置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-25T20:41:10+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <h1 id="账号与群组"><a href="#账号与群组" class="headerlink" title="账号与群组"></a>账号与群组</h1><p>在Linux中，每个使用者至少会有两个ID：（1）使用者ID，（2）群组ID<br>要显示文件属性时，会从<code>/etc/passwd</code>和<code>/etc/group</code>中找到记录的UID和GID对应的账号名和群组名。</p>
+<p>用户从tty1~tty6的终端机提供的login接口登陆系统：</p>
+<ol>
+<li>查看<code>/etc/passwd</code>中是否存在你输入的账号</li>
+<li>读出<code>/etc/passwd</code>中账号对应的UID和GID，和主文件夹记录的UID比较</li>
+<li>查看你输入的密码与<code>/etc/shadow</code>中对应的是否相符</li>
+<li>进入Shell控管</li>
+</ol>
+<h3 id="etc-shadow文件"><a href="#etc-shadow文件" class="headerlink" title="/etc/shadow文件"></a>/etc/shadow文件</h3><p>第二个字段是经过加密的密码，在字段前加上<code>!</code>或者<code>*</code>，可以让密码暂时失效。<br>第三个字段是密码最近被更动的日期，日期从<code>1970年1月1日</code>算起。<br>第四个字段是密码不可被更动日期，就是更改密码后几天之内不能再次更改。<br>第五个字段是密码需要重新变更的天数，就是说密码有个期限，显示99999表示没有期限。<br>第六个字段是密码需要变更到期前的警告天数，就是密码到期前几天警告用户改密码。<br>第七个字段是密码过期后宽限日，就是密码到期后，还能用多少天，然后再不改密码，就失效了，再也不能用这个密码登陆了。<br>第八个字段是密码失效日，就是在这个时间后，密码不能再使用。</p>
+<hr>
+<p>查询<code>/etc/shadow</code>中密码是用什么加密的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ authconfig --test | grep hashing</span><br></pre></td></tr></table></figure></p>
+<h3 id="etc-group文件"><a href="#etc-group文件" class="headerlink" title="/etc/group文件"></a>/etc/group文件</h3><p>第二个字段是群组的密码，密码也被放到了<code>/etc/gshadow</code>中密码<br>第四个字段是加入群组的账号名称，<code>root:x:0:account1,account2</code></p>
+<h3 id="etc-gshadow文件"><a href="#etc-gshadow文件" class="headerlink" title="/etc/gshadow文件"></a>/etc/gshadow文件</h3><p>第二个字段是加密过的群组密码，如果为<code>空</code>或者<code>!</code>，说明该群组没有设置群组管理员。群组管理员可以代替root让用户加入自己的群组。</p>
+<h3 id="初始群组："><a href="#初始群组：" class="headerlink" title="初始群组："></a>初始群组：</h3><p>就是<code>passwd</code>中的第四个字段，用户一登陆就拥有群组相关权限</p>
+<h3 id="次要群组："><a href="#次要群组：" class="headerlink" title="次要群组："></a>次要群组：</h3><p>比如使用<code>usermod -aG users gongshen</code>或者修改<code>group</code>中users群组的第四个字段。那么用户的次要群组就有：<strong>users</strong>和<strong>gongshen</strong></p>
+<h3 id="有效群组："><a href="#有效群组：" class="headerlink" title="有效群组："></a>有效群组：</h3><p>当你去创建一个新的文件或者目录时，新文件的群组是有效群组。<br>使用<code>groups</code>命令输出群组，并且第一个是<code>有效群组</code>。</p>
+<h3 id="newgrp：切换有效群组"><a href="#newgrp：切换有效群组" class="headerlink" title="newgrp：切换有效群组"></a>newgrp：切换有效群组</h3><p><code>newgrp</code>指令是让使用者以另一个shell登陆的，最后不需要时，使用<code>exit</code>退出。<br><img src="\images\newgrp.png" alt="newgrp"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ newgrp users</span><br><span class="line">$ exit</span><br></pre></td></tr></table></figure></p>
+<h3 id="gpasswd：群组管理员功能"><a href="#gpasswd：群组管理员功能" class="headerlink" title="gpasswd：群组管理员功能"></a>gpasswd：群组管理员功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># gpassword 群组名	   &lt;=root设置群组密码</span><br><span class="line"># gpassword -A 账号名 群组名	&lt;=root设置该群组的群组管理员</span><br><span class="line">$ gpassword -a 账号名 群组名 	&lt;=群组管理员将账户加入该群组</span><br></pre></td></tr></table></figure>
+<h3 id="groupadd、groupmod、groupdel"><a href="#groupadd、groupmod、groupdel" class="headerlink" title="groupadd、groupmod、groupdel"></a>groupadd、groupmod、groupdel</h3><h3 id="useradd：添加用户"><a href="#useradd：添加用户" class="headerlink" title="useradd：添加用户"></a>useradd：添加用户</h3><p>使用<code>useradd</code>时，默认配置是参考<code>/etc/default/useradd</code>和<code>/etc/login.defs</code>文件的。<br>创建系统账号时默认不创建主文件夹，而且UID和GID都在1000之下。</p>
+<h3 id="chage：直观的密码参数显示指令"><a href="#chage：直观的密码参数显示指令" class="headerlink" title="chage：直观的密码参数显示指令"></a>chage：直观的密码参数显示指令</h3><p><code>chage</code>指令会以日期显示出<code>shadow</code>文件中那些字段。</p>
+<h1 id="ACL：访问控制列表"><a href="#ACL：访问控制列表" class="headerlink" title="ACL：访问控制列表"></a>ACL：访问控制列表</h1><blockquote>
+<p>ACL可以针对单一的使用者，单一的文件和单一的目录进行权限设置。</p>
+</blockquote>
+<p>针对使用者user1，对文件具有rx权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m u:user1:rx 文件名或目录名</span><br></pre></td></tr></table></figure></p>
+<p>针对群组group1，对文件具有rx权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m g:group1:rx 文件名或目录名</span><br></pre></td></tr></table></figure></p>
+<p>对文件设置mask权限（有效权限）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m m:rx 文件名或目录名</span><br></pre></td></tr></table></figure></p>
+<p>设置目录未来文件的ACL继承权限（默认权限）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m d:u:user1:rx 目录名</span><br></pre></td></tr></table></figure></p>
+<p>设置使用者权限为空<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m u:user1:- 文件名或目录名</span><br></pre></td></tr></table></figure></p>
+<p>设置文件拥有着权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m u::rwx 文件名或目录名</span><br></pre></td></tr></table></figure></p>
+<p>删除ACL权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -x u:user1 file1		&lt;=删除特定的权限</span><br><span class="line">$ setfacl -b file1		&lt;=删除全部ACL设置</span><br></pre></td></tr></table></figure></p>
+<p>查看文件权限信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ getfacl 文件名或目录名</span><br></pre></td></tr></table></figure></p>
+<h1 id="使用者身份切换"><a href="#使用者身份切换" class="headerlink" title="使用者身份切换"></a>使用者身份切换</h1><p>因为<code>sshd</code>的shell是<code>/sbin/nologin</code>，所以我们无法登陆。<br>使用<code>sudo</code>以其他使用者身份执行一串指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u ssh touch 文件</span><br><span class="line">$ sudo -u ssh sh -c &quot;mkdir ~gongshen/www;cd ~gongshen/www;\</span><br><span class="line">&gt; echo &apos;This is index file&apos; &gt; index.html&quot;</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置-etc-sudoers"><a href="#配置-etc-sudoers" class="headerlink" title="配置/etc/sudoers"></a>配置<code>/etc/sudoers</code></h3><blockquote>
+<p>使用者必须具有<code>sudo</code>使用权限，在<code>/etc/sudoers</code>文件中配置。</p>
+</blockquote>
+<p>单一使用者：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用者帐号  登陆者的来源主机名称=（可切换的身份）  可下达的指令</span><br><span class="line">root                         ALL=（ALL）           ALL</span><br></pre></td></tr></table></figure></p>
+<p>群组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%群组名						 ALL= (ALL)			   ALL</span><br></pre></td></tr></table></figure></p>
+<p>使用者使用sudo时免密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%群组名						 ALL= (ALL)			  NOPASSWD: ALL</span><br></pre></td></tr></table></figure></p>
+<p>限制用户只能以root身份修改其他用户密码，不能修改root密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudovi</span><br><span class="line">用户名	ALL=(root) 	!/user/bin/passwd,/usr/bin/passwd [a-zA-Z]*,!/usr/bin/passwd root</span><br></pre></td></tr></table></figure></p>
+<p>别名设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User_Alias ADMUSER = gongshen</span><br><span class="line">Cmnd_Alias ADMUSERCMD = ALL </span><br><span class="line">ADMUSER   ALL=(ALL)	  ADMUSERCMD</span><br></pre></td></tr></table></figure></p>
+<h1 id="nologin"><a href="#nologin" class="headerlink" title="nologin"></a>nologin</h1><p>对于有些账号我们是不能登陆取得互动式的shell，可以修改<code>/etc/nologin.txt</code>来显示登陆失败的信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/nologin.txt</span><br><span class="line">这个账号是系统账号，请不要使用这个账号登陆系统！</span><br></pre></td></tr></table></figure></p>
+<h1 id="PAM（嵌入式认证模块）"><a href="#PAM（嵌入式认证模块）" class="headerlink" title="PAM（嵌入式认证模块）"></a>PAM（嵌入式认证模块）</h1><p>PAM就是一个API，程序可以调用它，将验证需求告诉它，它返回验证结果。<br><img src="\images\pam.png" alt="pam"></p>
+<h3 id="PAM模块设置"><a href="#PAM模块设置" class="headerlink" title="PAM模块设置"></a>PAM模块设置</h3><p>程序的PAM配置文件都在<code>/etc/pam.d/</code>中。</p>
+<hr>
+<p>如果存在<code>/etc/nologin</code>文件，那么一般使用者是无法登陆的。因为在<code>/etc/pam.d/login</code>登陆PAM配置文件中有一条：account  required  pam_nologin.so<br>对应的模块<code>pam_nologin.so</code>用法可以查阅<code>/usr/share/doc/pam-*/README.pam_nologin</code></p>
+<hr>
+<p>telnet为什么不能以root登陆系统呢？telnet会引用<code>login</code>这个PAM配置文件，其中有<code>pam_securetty.so</code>模块验证，只有写在<code>/etc/securetty</code>中的终端才能以root身份登陆。telnet使用的是远端连线pts/n。<br>ssh为什么能root登陆呢？因为ssh登陆的时候引用的是<code>/etc/pam.d/sshd</code>这个PAM配置文件，这个文件没有加入<code>securetty</code>验证。</p>
+<h1 id="limits-conf：对用户和群组做其他限制"><a href="#limits-conf：对用户和群组做其他限制" class="headerlink" title="limits.conf：对用户和群组做其他限制"></a>limits.conf：对用户和群组做其他限制</h1><p>限制用户gongshen，创建的文件大小最大为100000K<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/security/limits.conf</span><br><span class="line">gongshen  hard  fsize  100000</span><br></pre></td></tr></table></figure></p>
+<p>限制群组的最大连接数为1（只对初始群组有效）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/security/limits.conf</span><br><span class="line">@group1   hrad   maxlogins   1</span><br></pre></td></tr></table></figure></p>
+<p>显示当前用户的限制情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ulimit -a</span><br></pre></td></tr></table></figure></p>
+<h1 id="主机使用者传递讯息"><a href="#主机使用者传递讯息" class="headerlink" title="主机使用者传递讯息"></a>主机使用者传递讯息</h1><h3 id="查询使用者"><a href="#查询使用者" class="headerlink" title="查询使用者"></a>查询使用者</h3><p>查询当前使用者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ w</span><br></pre></td></tr></table></figure></p>
+<p>查看用户的最后登陆时间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lastlog</span><br></pre></td></tr></table></figure></p>
+<h3 id="同步的发送讯息"><a href="#同步的发送讯息" class="headerlink" title="同步的发送讯息"></a>同步的发送讯息</h3><p>user1可以给user2使用的终端pts/2发送讯息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ write user2 pts/2</span><br></pre></td></tr></table></figure></p>
+<p>root可以不接收任何同步讯息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mesg n</span><br></pre></td></tr></table></figure></p>
+<p>广播发送讯息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wall &quot;I will shutdown the server...&quot;</span><br></pre></td></tr></table></figure></p>
+<h3 id="异步的发送讯息"><a href="#异步的发送讯息" class="headerlink" title="异步的发送讯息"></a>异步的发送讯息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mail -s &quot;this is title&quot; user1</span><br><span class="line">This is the body of mail!</span><br><span class="line">EOT</span><br></pre></td></tr></table></figure>
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/25/docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1800,444 +1998,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/18/关系数据库原理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/18/关系数据库原理/" itemprop="url">关系数据库原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T06:57:40+08:00">
-                2018-08-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <a id="more"></a>
-<h1 id="一、数据库基本知识"><a href="#一、数据库基本知识" class="headerlink" title="一、数据库基本知识"></a>一、数据库基本知识</h1><p>一个好的哈希表：$O(1)$<br>一个均衡的树：$O(log(n))$<br>一个好的排序算法：$O(n*log(n))$<br>一个差的排序算法：$O(n^2)$</p>
-<h3 id="1、排序"><a href="#1、排序" class="headerlink" title="1、排序"></a>1、排序</h3><p>合并排序：时间复杂度$O(n*log(n))$</p>
-<h3 id="2、存储"><a href="#2、存储" class="headerlink" title="2、存储"></a>2、存储</h3><p>数据库的表使用的是<code>二维阵列</code>存储：必须一下子全部加载到内存中。<br>数据库使用<code>哈希表</code>来存储<code>锁表</code>和<code>缓冲池</code>：可以先加载一半到内存中。</p>
-<h3 id="3、查找"><a href="#3、查找" class="headerlink" title="3、查找"></a>3、查找</h3><p>一张表设置了主键，就等于建立了树状索引，就是<code>聚集索引</code>。</p>
-<h4 id="查找特定的值：二叉查找树"><a href="#查找特定的值：二叉查找树" class="headerlink" title="查找特定的值：二叉查找树"></a>查找特定的值：二叉查找树</h4><p>比如说你要查找40，时间复杂度O(log(N))</p>
-<p><img src="\images\binary_search_tree.png" alt="二叉查找树"></p>
-<h4 id="范围查找：B-树"><a href="#范围查找：B-树" class="headerlink" title="范围查找：B+树"></a>范围查找：B+树</h4><p>比如你要查找40~100之间的值，只需要找到40，通过后续节点找到100，时间复杂度O(M+log(N))</p>
-<p><img src="\images\b+_tree.png" alt="B+树"></p>
-<ul>
-<li>只有最底层的叶子才保存行信息</li>
-<li>底层节点是连续的</li>
-<li>尽量降低B+树的层数（表的索引），不然时间复杂度会变成$O(n)$</li>
-<li>当数据库进行删除插入操作时，需要自动更新B+索引树，所以创建太多索引影响性能</li>
-</ul>
-<h1 id="二、数据库全局概览"><a href="#二、数据库全局概览" class="headerlink" title="二、数据库全局概览"></a>二、数据库全局概览</h1><p><img src="\images\数据库全局概览.png" alt="数据库全局概览"><br><span style="border-bottom:2px solid red;">核心组件</span></p>
-<ul>
-<li>Process Manager：</li>
-<li>Network Manager：</li>
-<li>Memory Manager：</li>
-<li>Client Manager：</li>
-<li>File system Manager：</li>
-<li>Security Manager：对用户的验证和授权</li>
-</ul>
-<p><span style="border-bottom:2px solid red;">工具</span></p>
-<ul>
-<li>Backup Manager：</li>
-<li>Recovery Manager：崩溃后重启数据库到一致状态</li>
-<li>Monitor Manager：记录数据库活动信息</li>
-<li>Administration Manager：管理数据库、模式、表空间</li>
-</ul>
-<p><span style="border-bottom:2px solid red;">查询管理器</span></p>
-<ul>
-<li>Query executor：编译和执行查询</li>
-<li>Query parser：检查查询是否合法</li>
-<li>Query rewriter：预优化查询</li>
-<li>Query optimizer：优化查询</li>
-</ul>
-<p><span style="border-bottom:2px solid red;">数据管理器</span></p>
-<ul>
-<li>Transaction Manager：处理事务</li>
-<li>Cache Manager：</li>
-<li>Data access Manager：访问磁盘中的数据</li>
-</ul>
-<h1 id="三、查询过程"><a href="#三、查询过程" class="headerlink" title="三、查询过程"></a>三、查询过程</h1><p><img src="\images\数据库查询过程.png" alt="查询过程"></p>
-<h2 id="1、客户端管理器："><a href="#1、客户端管理器：" class="headerlink" title="1、客户端管理器："></a>1、客户端管理器：</h2><p>当你连接数据库时：</p>
-<ol>
-<li>客户端管理器检查你的<strong>验证信息</strong>，检查你是否具有<strong>访问权限</strong>。</li>
-<li>客户端管理器检查是否有空闲的进程或线程处理你的查询。</li>
-<li>客户端管理器检查数据库是否负载很重。</li>
-<li>如果客户端管理器等待超时还获取不到资源，会关闭连接。</li>
-<li>客户端管理器会把查询给查询管理器处理。</li>
-<li>查询处理进程从查询管理器获取数据后，会将部分结果保存至缓存并且给你发送</li>
-</ol>
-<h2 id="2、查询管理器："><a href="#2、查询管理器：" class="headerlink" title="2、查询管理器："></a>2、查询管理器：</h2><ol>
-<li>查询被解析并判断是否合法</li>
-<li>重写——去除无用的操作加入预优化部分</li>
-<li>优化提升性能，转换为可执行代码和数据查询计划</li>
-<li>计划被编译</li>
-<li>执行</li>
-</ol>
-<h3 id="第一步：查询解析器"><a href="#第一步：查询解析器" class="headerlink" title="第一步：查询解析器"></a>第一步：查询解析器</h3><ol>
-<li>语法是否有误</li>
-<li>关键字使用的顺序</li>
-<li>根据数据库的元数据检查<strong>表是否存在</strong>,表的<strong>字段是否存在</strong></li>
-<li>对类型的使用是否可行</li>
-<li>是否具有<strong>权限</strong>来读写表</li>
-</ol>
-<h3 id="第二步：查询重写器"><a href="#第二步：查询重写器" class="headerlink" title="第二步：查询重写器"></a>第二步：查询重写器</h3><ol>
-<li>预优化查询,避免不必要的运算</li>
-<li>根据一些规则寻找优化解决方案   <ul>
-<li><strong>视图合并</strong>:把查询中的试图转换为SQL代码</li>
-<li><strong>子查询扁平化</strong>:尝试移除子查询(因为子查询难以优化)</li>
-<li><strong>去除不必要的运算符</strong>:比如你用了<code>DISTINCT</code>和<code>UNIQUE</code>,那么<code>DISTINCT</code>就会被去掉.</li>
-<li>消除冗余的连接</li>
-<li><strong>常数计算赋值</strong>:比如 WHERE age &gt; 10 + 2 ,会转换为 WHERE age &lt; 12</li>
-<li><strong>分区裁剪</strong>:如果你用了分区表,重写器能够找到需要使用的分区</li>
-<li><strong>物化试图重写</strong>:如果有物化试图正好匹配查询谓词的一个子集,那么修改查询使用物化试图而不是原始表.</li>
-<li><strong>自定义规则</strong>:如果你有自定义规则和修改查询,重写器就会执行这些规则</li>
-<li><strong>OLAP转换</strong></li>
-</ul>
-</li>
-</ol>
-<p>例如:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> PERSON.*</span><br><span class="line"><span class="keyword">FROM</span> PERSON</span><br><span class="line"><span class="keyword">WHERE</span> PERSON.person_key <span class="keyword">IN</span></span><br><span class="line">(<span class="keyword">SELECT</span> MAILS.person_key</span><br><span class="line"><span class="keyword">FROM</span> MAILS</span><br><span class="line"><span class="keyword">WHERE</span> MAILS.mail <span class="keyword">LIKE</span> <span class="string">'christophe%'</span>);</span><br></pre></td></tr></table></figure>
-<p>会转换为:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> PERSON.*</span><br><span class="line"><span class="keyword">FROM</span> PERSON, MAILS</span><br><span class="line"><span class="keyword">WHERE</span> PERSON.person_key = MAILS.person_key</span><br><span class="line"><span class="keyword">and</span> MAILS.mail <span class="keyword">LIKE</span> <span class="string">'christophe%'</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="第三步：统计"><a href="#第三步：统计" class="headerlink" title="第三步：统计"></a>第三步：统计</h3><p>当你统计信息时,数据库会计算:</p>
-<ul>
-<li>表中行和列的数量</li>
-<li>表中列的唯一值,数据长度,数据范围</li>
-<li>表的索引</li>
-</ul>
-<p>统计的信息对于查询优化器做优化特别重要,所以统计必须要及时更新.</p>
-<h3 id="第四步：查询优化器"><a href="#第四步：查询优化器" class="headerlink" title="第四步：查询优化器"></a>第四步：查询优化器</h3><h4 id="获取数据的方法："><a href="#获取数据的方法：" class="headerlink" title="获取数据的方法："></a>获取数据的方法：</h4><ul>
-<li>全扫描：完整的读取一个表或索引</li>
-<li>范围扫描：使用B+树只是读取索引的一部分</li>
-<li>唯一扫描：二叉查找树就是查找唯一值的</li>
-</ul>
-<h4 id="联接运算符（获取数据后那么就要连接了）"><a href="#联接运算符（获取数据后那么就要连接了）" class="headerlink" title="联接运算符（获取数据后那么就要连接了）"></a>联接运算符（获取数据后那么就要连接了）</h4><p>大多数情况下，“A Join B” 和 “B Join A”的成本是不同的</p>
-<hr>
-<p><span style="border-bottom:2px solid red;">合并联接</span>：（a、b中挑选相同的元素）<br><img src="\images\数据库合并联接.png" alt="合并联接"><br>如果两个关系都已经排序，时间复杂度：$O(N+M)$<br>如果两个关系都未排序，时间复杂度：$O(N<em>log(N)+M</em>log(M))$</p>
-<hr>
-<p><span style="border-bottom:2px solid red;">哈希联接</span>：<br><img src="\images\数据库哈希联接.png" alt="哈希联接"><br>如果是个好的哈希函数，时间复杂度：$O(N+M)$</p>
-<hr>
-<p><span style="border-bottom:2px solid red;">嵌套循环联接</span>：<br><img src="\images\数据库循环嵌套联接.png" alt="循环嵌套"></p>
-<ul>
-<li>针对外关系的每一行，查看内关系里所有的行来寻找匹配的行。时间复杂度为$O(N^2)$。</li>
-<li>将两个关系<code>成簇的读取</code>对磁盘I/O有利，但时间复杂度没变。</li>
-<li>如果内关系足够小，那么时间复杂度最好能到：$O(N)$</li>
-</ul>
-<hr>
-<h4 id="执行联接的顺序的算法"><a href="#执行联接的顺序的算法" class="headerlink" title="执行联接的顺序的算法"></a>执行联接的顺序的算法</h4><p><img src="\images\数据库联接顺序.png" alt="执行联接顺序"><br><span style="border-bottom:2px solid red;">动态规划</span>：</p>
-<ul>
-<li>省掉一些相似的做法，比如（A Join B）是重复的。</li>
-</ul>
-<p><span style="border-bottom:2px solid red;">启发式</span>：</p>
-<ul>
-<li>如果一个表有针对指定谓词的索引，那么就不要对表进行合并联接，对索引</li>
-<li>增加一些规则，比如<code>联接运算要先于其他关系运算</code></li>
-</ul>
-<p><span style="border-bottom:2px solid red;">贪婪法</span>：</p>
-<ul>
-<li>先从要联接的表中选出一张表（A）</li>
-<li>计算每一个与（A）的联接，如果（A Join B）成本最低</li>
-<li>计算每一个与（A Join B）的结果成本最低的表</li>
-<li>…</li>
-<li>可以结合多个贪婪选项得出比较满意的答案</li>
-</ul>
-<h4 id="真实的优化器"><a href="#真实的优化器" class="headerlink" title="真实的优化器"></a>真实的优化器</h4><p><span style="border-bottom:2px solid red;">SQLite</span></p>
-<ul>
-<li>在有 CROSS JOIN（两个表的笛卡尔乘积）时从不给表重新排序</li>
-<li>使用嵌套联接</li>
-<li>3.8.0版本使用<code>最近邻居</code>的贪婪算法作为最佳查询计划</li>
-<li>…</li>
-</ul>
-<h3 id="第五步、查询执行器"><a href="#第五步、查询执行器" class="headerlink" title="第五步、查询执行器"></a>第五步、查询执行器</h3><blockquote>
-<p>这时我们有了一个优化了的执行代码，编译为可执行代码，如果计算机的硬件符合要求，就会执行。但是查询执行器不会直接从文件系统拿数据，而是向<code>缓存管理器</code>要。</p>
-</blockquote>
-<h2 id="4、数据管理器"><a href="#4、数据管理器" class="headerlink" title="4、数据管理器"></a>4、数据管理器</h2><h3 id="缓存管理器：与查询执行器进行数据的交互"><a href="#缓存管理器：与查询执行器进行数据的交互" class="headerlink" title="缓存管理器：与查询执行器进行数据的交互"></a>缓存管理器：与查询执行器进行数据的交互</h3><p><img src="\images\数据库缓存管理器.png" alt="缓存管理器"></p>
-<ul>
-<li>因为磁盘I/O的瓶颈，缓存管理器有一个内存缓冲区（缓冲池）：从内存读取数据提供性能</li>
-<li>缓存管理器需要在查询执行器使用数据之前<code>预读</code>数据</li>
-<li>使用<code>缓冲区命中率</code>来度量预读的效率</li>
-<li>缓冲容量有限，必须频繁加载移除，用<code>缓冲区置换策略</code>来解决</li>
-</ul>
-<p><span style="border-bottom:2px solid red;">预读</span></p>
-<blockquote>
-<p>当查询执行器处理它的第一批数据时，会告诉缓存管理器预先装载第二批数据，当开始处理第二批数据时，告诉缓存管理器预先装载第三批数据，并且告诉缓存管理器第一批可以从缓存里清掉。</p>
-</blockquote>
-<ul>
-<li>推测预读法：查询执行器想要（1，3，5）数据，推测其也许需要（7，9，11）</li>
-<li>顺序预读法：只是简单的加载下一批连续的数据</li>
-</ul>
-<p><span style="border-bottom:2px solid red;">缓冲/缓存命中率</span></p>
-<blockquote>
-<p>显示请求的数据在缓存中找到而不是从磁盘读取的频率</p>
-</blockquote>
-<p><span style="border-bottom:2px solid red;">缓冲区置换策略</span></p>
-<blockquote>
-<p>因为内存大小有限，必须移除旧的数据，一般使用LRU（最近最少使用）算法</p>
-</blockquote>
-<p><img src="\images\数据库缓存置换策略_LRU.png" alt="LRU算法"></p>
-<h4 id="写缓冲区"><a href="#写缓冲区" class="headerlink" title="写缓冲区"></a>写缓冲区</h4><blockquote>
-<p>预先加载数据、成批刷入磁盘都可以提升写缓冲区的速度。缓冲区最小的数据单位是<code>页</code>，不是行。如果缓冲区的页修改了但是没有写入磁盘，就是<code>脏页</code>。</p>
-</blockquote>
-<h2 id="5、事务管理器"><a href="#5、事务管理器" class="headerlink" title="5、事务管理器"></a>5、事务管理器</h2><p><span style="border-bottom:2px solid red;">一个事务就是一个工作单元</span></p>
-<ul>
-<li>原子性（Atomicity）：要么全完成，要么全部取消。</li>
-<li>隔离性（Isolation）：如果A，B事务同时运行，最终结果都是相同的，不管谁先结束。</li>
-<li>持久性（Durability）：一旦事务提交（成功运行），不管发生什么，数据要保存在数据库中。</li>
-<li>一致性（Consistency）：只有合法的数据才能写入数据库。</li>
-</ul>
-<p><span style="border-bottom:2px solid red;">4个隔离级别</span></p>
-<ul>
-<li>串行化（Serializable，SQLite默认模式）：最高级别，两个事务100%隔离</li>
-<li>可重复读（Repeatable read，MySQL默认模式）：每个事务都有自己的世界，只是在<code>新数据方面突破隔离，在旧数据仍然隔离</code>。比如事务A运行（select count(1) from table），事务B这时在table表中添加了一条新的数据，那么事务A再运行一次得到的结果是不一样的——幻读</li>
-<li>读取已提交（Oracle，PostgreSQL，SQL Server默认模式）：如果事务A读取数据D，这时事务B删除或修改数据D并提交，那么事务A再次读数据D时数据的变化是可见的——不可重复读</li>
-<li>读取未提交：最低级别，如果事务A读取数据D，事务B修改或删除数据D（并未提交，事务B还在运行），那么事务A读取数据D时数据的变化是可见的。如果事务B回滚，那么事务A中读取的数据D是无意义的——<code>脏读</code>。</li>
-</ul>
-<h1 id="四、数据库的并发控制"><a href="#四、数据库的并发控制" class="headerlink" title="四、数据库的并发控制"></a>四、数据库的并发控制</h1><h2 id="1、锁管理器"><a href="#1、锁管理器" class="headerlink" title="1、锁管理器"></a>1、锁管理器</h2><p><img src="\images\数据库锁管理器.png" alt="锁管理器"></p>
-<blockquote>
-<p>锁管理器是添加和释放锁的进程，用一个哈希表来保存锁信息（关键字是被锁的数据）</p>
-</blockquote>
-<p><span style="border-bottom:2px solid red;">排他锁原理</span></p>
-<blockquote>
-<p>如果事务A需要一条数据，就把他锁住，如果事务B也需要这个数据，必须等待事务A释放数据。</p>
-</blockquote>
-<p><span style="border-bottom:2px solid red;">共享锁原理</span></p>
-<ol>
-<li>事务A需要【读取】数据 X，它会给数据 X 加上【共享锁】并读取</li>
-<li>事务B也需要【读取】数据 X，它会给数据 X 加上【共享锁】并读取</li>
-<li>事务C要【修改】数据 X，它会给数据 X 加上【排他锁】，但是必须等待事务A，B释放【共享锁】</li>
-</ol>
-<p><span style="border-bottom:2px solid red;">两段锁原理</span></p>
-<ul>
-<li>将事务分为两个阶段：</li>
-<li>成长阶段：事务可以获得锁，但不能释放锁</li>
-<li>收缩阶段：事务可以释放锁（对于已经处理完而且不会再次处理的数据），但不能获得新锁</li>
-</ul>
-<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><ul>
-<li><code>超时设定</code>，如果一个锁再该时间内没有加上，那么就判断事务产生死锁——简单</li>
-<li>检查哈希表中是否有循环——代价很昂贵</li>
-<li>在加锁之前检查该锁是否会死锁——代价也很昂贵</li>
-</ul>
-<h2 id="2、版本控制"><a href="#2、版本控制" class="headerlink" title="2、版本控制"></a>2、版本控制</h2><ul>
-<li>每个事务可以同时修改【相同的】数据</li>
-<li>每个事务有自己的数据拷贝（版本）</li>
-<li>如果两个事务同时修改相同的数据，只接受一个修改，另一个将回滚或者重新运行</li>
-<li>读写事务不会相互阻塞</li>
-<li>没有锁管理器带来额外开销</li>
-<li>但是磁盘空间的消耗会很大</li>
-</ul>
-<h1 id="五、数据库的日志管理"><a href="#五、数据库的日志管理" class="headerlink" title="五、数据库的日志管理"></a>五、数据库的日志管理</h1><p><img src="\images\数据库日志管理器.png" alt="日志管理器"></p>
-<p>为了保证事务的持久性和原子性，有两个解决方法：</p>
-<ol>
-<li>副本：事务创建自己的副本，基于副本工作，如果失败，就删除副本；如果成功，就提交副本</li>
-<li>事务日志：在每次写入磁盘之前，在事务日志中写入信息，这样崩溃了也能知道该怎么办</li>
-</ol>
-<h2 id="WAL"><a href="#WAL" class="headerlink" title="WAL"></a>WAL</h2><p>大多数数据库使用<code>预写日志协议</code>（Write-Ahead Logging protocol，WAL）来处理事务日志。</p>
-<ol>
-<li>每个对数据库的修改都产生一条<code>日志记录</code>，在数据写入磁盘前都必须把<code>日志记录</code>写入事务日志。</li>
-<li>日志记录必须按顺序写入</li>
-<li>事务提交成功之前，必须把事务的提交顺序写入事务日志</li>
-</ol>
-<h2 id="ARIES"><a href="#ARIES" class="headerlink" title="ARIES"></a>ARIES</h2><p>比WAL在写日志时能保持良好的性能，快速可靠的数据恢复。</p>
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>日志的组成：磁盘上保存数据的每个页都记录着最后修改该数据的LSN</p>
-<ul>
-<li>LSN：日志序列号（Log Sequence Num），这是按时间顺序分配的</li>
-<li>TransID：产生操作事务的ID</li>
-<li>PagelD：被修改的数据在磁盘上页的位置</li>
-<li>PrevLSN：同一个事务产生的上一条日志的链接</li>
-<li>UNDO：取消本次操作的方法，回到原来状态的反向操作</li>
-<li>REDO：重复本次操作</li>
-</ul>
-<h3 id="日志缓冲区"><a href="#日志缓冲区" class="headerlink" title="日志缓冲区"></a>日志缓冲区</h3><p><img src="\images\数据库日志缓冲区.png" alt="日志缓冲区"></p>
-<p>当查询执行器要求做一次修改：</p>
-<ol>
-<li>缓存管理器将修改存入自己的缓存</li>
-<li>日志管理器将相关日志存入自己的日志缓冲区</li>
-<li>查询执行器认为操作已经完成</li>
-<li>日志管理器将日志写入事务日志</li>
-<li>缓存管理器将修改写入磁盘</li>
-</ol>
-<h3 id="STEAL-和-FORCE-策略"><a href="#STEAL-和-FORCE-策略" class="headerlink" title="STEAL 和 FORCE 策略"></a>STEAL 和 FORCE 策略</h3><ul>
-<li>NO-FORCE策略——如果第5步在事务提交之后完成，一旦发生崩溃，可以使用<code>REDO</code>恢复事务</li>
-<li>FORCE策略——第5步在事务提交之前必须完成。</li>
-<li>STEAL策略——数据是一步步的写入磁盘</li>
-<li>NO-STEAL策略——缓冲区管理器等待提交命令然后一次性写入磁盘</li>
-</ul>
-<p><span style="border-bottom:2px solid red;">大部分的数据库都选择<strong>No-Force/Steal</strong>策略，性能最好。</span></p>
-<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><p>如果事务被【手动】取消，或者被所管理器取消（取消死锁），或者因为网路故障取消，那么就不需要进行分析阶段，因为哪些需要Redo，哪些需要Undo的信息保存在2个内存表中：</p>
-<ul>
-<li>事务表：保存当前所有事务状态</li>
-<li>脏页表：保存哪些数据需要写入磁盘</li>
-</ul>
-<h4 id="1、分析阶段"><a href="#1、分析阶段" class="headerlink" title="1、分析阶段"></a>1、分析阶段</h4><blockquote>
-<p>恢复进程读取全部的事务日志，来重建崩溃中发生的时间线（生成2张表），决定哪些事务回滚（未提交的事务都需回滚）、崩溃时哪些数据需要写盘。</p>
-</blockquote>
-<p><span style="border-bottom:2px solid red;">检查点</span>：</p>
-<blockquote>
-<p>为了加快分析阶段，使用检查点技术，不时的把2张表的内容和最后一条LSN写入磁盘，那么在分析阶段中，只要分析这个LSN之后的日志就可以了。</p>
-</blockquote>
-<h4 id="2、Redo阶段"><a href="#2、Redo阶段" class="headerlink" title="2、Redo阶段"></a>2、Redo阶段</h4><ul>
-<li>Redo按日志的时间顺序（LSN）进行处理</li>
-<li>如果LSN（磁盘页）&gt;= LSN（日志记录），说明数据在崩溃前写入磁盘，所以不需要做什么</li>
-<li>如果LSN（磁盘页）&lt; LSN（日志记录），磁盘上的页将要被更新</li>
-</ul>
-<h4 id="3、Undo阶段"><a href="#3、Undo阶段" class="headerlink" title="3、Undo阶段"></a>3、Undo阶段</h4><p>从每个事务的最后一条日志开始回滚所有崩溃时未完成的事务。</p>
-<h1 id="六、数据库的数据存储"><a href="#六、数据库的数据存储" class="headerlink" title="六、数据库的数据存储"></a>六、数据库的数据存储</h1><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>数据类型分为：定长<code>char(20)</code>和变长<code>varchar(20)</code>，除非最长和最短相差太多，否则还是使用定长比较好。</p>
-<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><blockquote>
-<p>一个数据块中能存储的记录（行）分为：变长记录和定长记录。每个记录中都包含各自的<code>RID</code>。</p>
-<blockquote>
-<p>无序记录的文件被称为<code>堆文件</code>，有序的文件通常需要结合<code>聚簇索引</code>（将数据直接存储在数据库块的索引上）来排序。</p>
-</blockquote>
-</blockquote>
-<h3 id="文件组织"><a href="#文件组织" class="headerlink" title="文件组织"></a>文件组织</h3><p>顺序文件组织：能根据索引来检索文件<br>散列文件组织：hash索引</p>
-<h3 id="数据库存储的文件"><a href="#数据库存储的文件" class="headerlink" title="数据库存储的文件"></a>数据库存储的文件</h3><ul>
-<li>数据文件</li>
-<li>索引文件</li>
-<li>日志文件</li>
-</ul>
-<h3 id="MySQL的数据字典"><a href="#MySQL的数据字典" class="headerlink" title="MySQL的数据字典"></a>MySQL的数据字典</h3><ul>
-<li>mysql：保存数据库的元数据的</li>
-<li>information_schema：统计数据</li>
-<li>performance_schema：显示性能信息</li>
-</ul>
-<blockquote>
-<p>本文转载于<a href="http://blog.jobbole.com/100349/" target="_blank" rel="noopener">数据库原理</a></p>
-</blockquote>
-
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2283,7 +2048,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2305,7 +2070,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
