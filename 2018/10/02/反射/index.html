@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="linux,文件,目录," />
+  <meta name="keywords" content="golang,反射,orm," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="文件特殊权限SUID12$ ls -l /usr/bin/passwd-rwsr-xr-x. 1 root root 27832 Jun 10  2018 /usr/bin/passwd  SUID权限仅对二进制程序有效 执行者需要具有对于该文件的x属性 SUID权限仅在执行该程序过程中有效 执行者具有该程序拥有者的权限支持  SGID12$ ls -l /usr/bin/locate-rwx--">
-<meta name="keywords" content="linux,文件,目录">
+<meta name="description" content="TypeOf方法得出静态类型Kind方法得出底层类型123456789type MyInt intvar x MyInt = 7v:=reflect.TypeOf(x)k:=v.Kind()fmt.Println(v)fmt.Println(k)//输出：main.MyIntint Value的CanSet方法返回值是否可以被改变。1234var x float64=3.14v:=reflect.">
+<meta name="keywords" content="golang,反射,orm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux文件与目录">
-<meta property="og:url" content="http://www.llyltq.top/2018/08/26/linux文件与目录/index.html">
+<meta property="og:title" content="反射">
+<meta property="og:url" content="http://www.llyltq.top/2018/10/02/反射/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="文件特殊权限SUID12$ ls -l /usr/bin/passwd-rwsr-xr-x. 1 root root 27832 Jun 10  2018 /usr/bin/passwd  SUID权限仅对二进制程序有效 执行者需要具有对于该文件的x属性 SUID权限仅在执行该程序过程中有效 执行者具有该程序拥有者的权限支持  SGID12$ ls -l /usr/bin/locate-rwx--">
+<meta property="og:description" content="TypeOf方法得出静态类型Kind方法得出底层类型123456789type MyInt intvar x MyInt = 7v:=reflect.TypeOf(x)k:=v.Kind()fmt.Println(v)fmt.Println(k)//输出：main.MyIntint Value的CanSet方法返回值是否可以被改变。1234var x float64=3.14v:=reflect.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-28T05:09:55.201Z">
+<meta property="og:updated_time" content="2018-10-02T04:43:34.433Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux文件与目录">
-<meta name="twitter:description" content="文件特殊权限SUID12$ ls -l /usr/bin/passwd-rwsr-xr-x. 1 root root 27832 Jun 10  2018 /usr/bin/passwd  SUID权限仅对二进制程序有效 执行者需要具有对于该文件的x属性 SUID权限仅在执行该程序过程中有效 执行者具有该程序拥有者的权限支持  SGID12$ ls -l /usr/bin/locate-rwx--">
+<meta name="twitter:title" content="反射">
+<meta name="twitter:description" content="TypeOf方法得出静态类型Kind方法得出底层类型123456789type MyInt intvar x MyInt = 7v:=reflect.TypeOf(x)k:=v.Kind()fmt.Println(v)fmt.Println(k)//输出：main.MyIntint Value的CanSet方法返回值是否可以被改变。1234var x float64=3.14v:=reflect.">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://www.llyltq.top/2018/08/26/linux文件与目录/"/>
+  <link rel="canonical" href="http://www.llyltq.top/2018/10/02/反射/"/>
 
 
 
 
 
-  <title>linux文件与目录 | Hexo</title>
+  <title>反射 | Hexo</title>
   
 
 
@@ -254,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/26/linux文件与目录/">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/10/02/反射/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="冉某某">
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">linux文件与目录</h1>
+          <h1 class="post-title" itemprop="name headline">反射</h1>
         
 
         <div class="post-meta">
@@ -283,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-26T00:52:18+08:00">
-                2018-08-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-02T11:47:52+08:00">
+                2018-10-02
               </time>
             
 
@@ -306,8 +306,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">基础知识</span>
                   </a>
                 </span>
 
@@ -343,30 +354,10 @@
       
 	  
       
-        <h1 id="文件特殊权限"><a href="#文件特殊权限" class="headerlink" title="文件特殊权限"></a>文件特殊权限</h1><h3 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l /usr/bin/passwd</span><br><span class="line">-rwsr-xr-x. 1 root root 27832 Jun 10  2018 /usr/bin/passwd</span><br></pre></td></tr></table></figure>
-<ul>
-<li>SUID权限仅对二进制程序有效</li>
-<li>执行者需要具有对于该文件的<code>x</code>属性</li>
-<li>SUID权限仅在执行该程序过程中有效</li>
-<li>执行者具有该程序拥有者的权限支持</li>
-</ul>
-<h3 id="SGID"><a href="#SGID" class="headerlink" title="SGID"></a>SGID</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l /usr/bin/locate</span><br><span class="line">-rwx--s--x. 1 root slocate 40496 Jun 10  2018 /usr/bin/locate</span><br></pre></td></tr></table></figure>
-<p>当SGID权限作用于二进制程序时：</p>
-<ul>
-<li>执行者需要具备<code>x</code>权限</li>
-<li>执行者在执行过程中具有了该程序群组的权限支持</li>
-</ul>
-<p>当SGID权限作用于目录时：</p>
-<ul>
-<li>当使用者对于目录具有<code>r</code>和<code>x</code>权限时，可以进入该目录</li>
-<li>当使用者对于目录具有<code>w</code>权限时，创建的新文件或者新目录的群组就是具有SGID权限的群组</li>
-</ul>
-<h3 id="SBIT"><a href="#SBIT" class="headerlink" title="SBIT"></a>SBIT</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ll -d /tmp</span><br><span class="line">drwxrwxrwt. 10 root root 4096 Aug 26 01:23 /tmp</span><br></pre></td></tr></table></figure>
-<ul>
-<li>SBIT权限仅对目录有效</li>
-<li>当使用者具有<code>w</code>和<code>x</code>权限时，创建新文件或新目录时，只有自己和root才能删除</li>
-</ul>
-
+        <p><code>TypeOf</code>方法得出静态类型<br><code>Kind</code>方法得出底层类型<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyInt <span class="keyword">int</span></span><br><span class="line"><span class="keyword">var</span> x MyInt = <span class="number">7</span></span><br><span class="line">v:=reflect.TypeOf(x)</span><br><span class="line">k:=v.Kind()</span><br><span class="line">fmt.Println(v)</span><br><span class="line">fmt.Println(k)</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line">main.MyInt</span><br><span class="line"><span class="keyword">int</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Value</code>的<code>CanSet</code>方法返回值是否可以被改变。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x <span class="keyword">float64</span>=<span class="number">3.14</span></span><br><span class="line">v:=reflect.ValueOf(x)</span><br><span class="line">fmt.Println(v.CanSet())</span><br><span class="line"><span class="comment">//false：表明这时v是不能被修改的</span></span><br></pre></td></tr></table></figure></p>
+<p>先取得x的地址，然后使用p间接指向，就可以修改<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x <span class="keyword">float64</span>=<span class="number">3.14</span></span><br><span class="line">v:=reflect.ValueOf(&amp;x)</span><br><span class="line">p:=v.Elem()</span><br><span class="line">fmt.Println(p.CanSet())</span><br><span class="line"><span class="comment">//true：这时可以修改了</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> T <span class="keyword">struct</span> &#123;</span><br><span class="line">    A <span class="keyword">int</span></span><br><span class="line">    B <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    t := T&#123;<span class="number">23</span>, <span class="string">"skidoo"</span>&#125;</span><br><span class="line">    <span class="comment">//可设置的反射对象</span></span><br><span class="line">    s := reflect.ValueOf(&amp;t).Elem()</span><br><span class="line">    typeOfT := s.Type()</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; s.NumField(); i++ &#123;</span><br><span class="line">        f := s.Field(i)</span><br><span class="line">        fmt.Printf(<span class="string">"%d: %s %s = %v\n"</span>, i,</span><br><span class="line">        typeOfT.Field(i).Name, f.Type(), f.Interface())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//从地址创建发射对象,从结构体的类型中解析字段名字。</span></span><br><span class="line"><span class="comment">//字段本身是reflect.Value对象</span></span><br><span class="line"><span class="comment">//可设置字段必须大写</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -383,11 +374,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag"># linux</a>
+            <a href="/tags/golang/" rel="tag"># golang</a>
           
-            <a href="/tags/文件/" rel="tag"># 文件</a>
+            <a href="/tags/反射/" rel="tag"># 反射</a>
           
-            <a href="/tags/目录/" rel="tag"># 目录</a>
+            <a href="/tags/orm/" rel="tag"># orm</a>
           
         </div>
       
@@ -400,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/25/Linux指令大礼包/" rel="next" title="Linux指令">
-                <i class="fa fa-chevron-left"></i> Linux指令
+              <a href="/2018/10/02/interface理解/" rel="next" title="interface理解">
+                <i class="fa fa-chevron-left"></i> interface理解
               </a>
             
           </div>
@@ -409,10 +400,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/27/bash/" rel="prev" title="bash">
-                bash <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -560,7 +547,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件特殊权限"><span class="nav-number">1.</span> <span class="nav-text">文件特殊权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SUID"><span class="nav-number">1.0.1.</span> <span class="nav-text">SUID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SGID"><span class="nav-number">1.0.2.</span> <span class="nav-text">SGID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SBIT"><span class="nav-number">1.0.3.</span> <span class="nav-text">SBIT</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体"><span class="nav-number">1.</span> <span class="nav-text">结构体</span></a></li></ol></div>
             
 
           </div>
