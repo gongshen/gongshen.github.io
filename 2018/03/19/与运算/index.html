@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="golang,位运算," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="发现了一个有意思的表达式：x&amp;amp;(x-1)，分享给大家！">
+<meta name="description" content="与运算两个数都为1时，才是11fmt.Println(5 &amp;amp; 2) 或运算只有1个为1时，才是11fmt.Println(5 | 2) 异或两个数不同时，才是11fmt.Println(5 ^ 2) 取反1fmt.Println(^uint8(5)) 与运算的妙用 发现了一个有意思的表达式：x&amp;amp;(x-1)，分享给大家！">
+<meta name="keywords" content="golang,位运算">
 <meta property="og:type" content="article">
-<meta property="og:title" content="与运算的妙用">
+<meta property="og:title" content="位运算">
 <meta property="og:url" content="http://www.llyltq.top/2018/03/19/与运算/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="发现了一个有意思的表达式：x&amp;amp;(x-1)，分享给大家！">
+<meta property="og:description" content="与运算两个数都为1时，才是11fmt.Println(5 &amp;amp; 2) 或运算只有1个为1时，才是11fmt.Println(5 | 2) 异或两个数不同时，才是11fmt.Println(5 ^ 2) 取反1fmt.Println(^uint8(5)) 与运算的妙用 发现了一个有意思的表达式：x&amp;amp;(x-1)，分享给大家！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-23T15:11:00.506Z">
+<meta property="og:updated_time" content="2018-10-08T02:38:23.407Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="与运算的妙用">
-<meta name="twitter:description" content="发现了一个有意思的表达式：x&amp;amp;(x-1)，分享给大家！">
+<meta name="twitter:title" content="位运算">
+<meta name="twitter:description" content="与运算两个数都为1时，才是11fmt.Println(5 &amp;amp; 2) 或运算只有1个为1时，才是11fmt.Println(5 | 2) 异或两个数不同时，才是11fmt.Println(5 ^ 2) 取反1fmt.Println(^uint8(5)) 与运算的妙用 发现了一个有意思的表达式：x&amp;amp;(x-1)，分享给大家！">
 
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title>与运算的妙用 | Hexo</title>
+  <title>位运算 | Hexo</title>
   
 
 
@@ -270,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">与运算的妙用</h1>
+          <h1 class="post-title" itemprop="name headline">位运算</h1>
         
 
         <div class="post-meta">
@@ -316,8 +317,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/应用/" itemprop="url" rel="index">
-                    <span itemprop="name">应用</span>
+                  <a href="/categories/golang/基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">基础知识</span>
                   </a>
                 </span>
 
@@ -353,7 +354,12 @@
       
 	  
       
-        <p>发现了一个有意思的表达式：x&amp;(x-1)，分享给大家！<br><a id="more"></a></p>
+        <h1 id="与运算"><a href="#与运算" class="headerlink" title="与运算"></a>与运算</h1><p>两个数都为1时，才是1<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(<span class="number">5</span> &amp; <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="或运算"><a href="#或运算" class="headerlink" title="或运算"></a>或运算</h1><p>只有1个为1时，才是1<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(<span class="number">5</span> | <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="异或"><a href="#异或" class="headerlink" title="异或"></a>异或</h1><p>两个数不同时，才是1<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(<span class="number">5</span> ^ <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="取反"><a href="#取反" class="headerlink" title="取反"></a>取反</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(^<span class="keyword">uint8</span>(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="与运算的妙用"><a href="#与运算的妙用" class="headerlink" title="与运算的妙用"></a>与运算的妙用</h1><hr>
+<p>发现了一个有意思的表达式：x&amp;(x-1)，分享给大家！<br><a id="more"></a></p>
 <h3 id="1、计算输入值转化为二进制后有多少个1"><a href="#1、计算输入值转化为二进制后有多少个1" class="headerlink" title="1、计算输入值转化为二进制后有多少个1"></a>1、计算输入值转化为二进制后有多少个1</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">count_one</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> count:=<span class="number">0</span>;;count++&#123;</span><br><span class="line">        <span class="keyword">if</span> x==<span class="number">0</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> count</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            x=x&amp;(x<span class="number">-1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="2、判断输入的i是否是2的n次方"><a href="#2、判断输入的i是否是2的n次方" class="headerlink" title="2、判断输入的i是否是2的n次方"></a>2、判断输入的i是否是2的n次方</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">index</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> x&amp;(x<span class="number">-1</span>)==<span class="number">0</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
@@ -369,6 +375,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/golang/" rel="tag"># golang</a>
+          
+            <a href="/tags/位运算/" rel="tag"># 位运算</a>
+          
+        </div>
       
 
       
@@ -486,7 +500,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -535,7 +549,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、计算输入值转化为二进制后有多少个1"><span class="nav-number">1.</span> <span class="nav-text">1、计算输入值转化为二进制后有多少个1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、判断输入的i是否是2的n次方"><span class="nav-number">2.</span> <span class="nav-text">2、判断输入的i是否是2的n次方</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#与运算"><span class="nav-number">1.</span> <span class="nav-text">与运算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#或运算"><span class="nav-number">2.</span> <span class="nav-text">或运算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异或"><span class="nav-number">3.</span> <span class="nav-text">异或</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#取反"><span class="nav-number">4.</span> <span class="nav-text">取反</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#与运算的妙用"><span class="nav-number">5.</span> <span class="nav-text">与运算的妙用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、计算输入值转化为二进制后有多少个1"><span class="nav-number">5.0.1.</span> <span class="nav-text">1、计算输入值转化为二进制后有多少个1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、判断输入的i是否是2的n次方"><span class="nav-number">5.0.2.</span> <span class="nav-text">2、判断输入的i是否是2的n次方</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

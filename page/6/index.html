@@ -507,7 +507,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/19/与运算/" itemprop="url">与运算的妙用</a></h1>
+                <a class="post-title-link" href="/2018/03/19/与运算/" itemprop="url">位运算</a></h1>
         
 
         <div class="post-meta">
@@ -553,8 +553,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/应用/" itemprop="url" rel="index">
-                    <span itemprop="name">应用</span>
+                  <a href="/categories/golang/基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">基础知识</span>
                   </a>
                 </span>
 
@@ -592,7 +592,12 @@
       
 	  <!--
         
-          <p>发现了一个有意思的表达式：x&amp;(x-1)，分享给大家！<br>
+          <h1 id="与运算"><a href="#与运算" class="headerlink" title="与运算"></a>与运算</h1><p>两个数都为1时，才是1<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(<span class="number">5</span> &amp; <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="或运算"><a href="#或运算" class="headerlink" title="或运算"></a>或运算</h1><p>只有1个为1时，才是1<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(<span class="number">5</span> | <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="异或"><a href="#异或" class="headerlink" title="异或"></a>异或</h1><p>两个数不同时，才是1<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(<span class="number">5</span> ^ <span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="取反"><a href="#取反" class="headerlink" title="取反"></a>取反</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(^<span class="keyword">uint8</span>(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="与运算的妙用"><a href="#与运算的妙用" class="headerlink" title="与运算的妙用"></a>与运算的妙用</h1><hr>
+<p>发现了一个有意思的表达式：x&amp;(x-1)，分享给大家！<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/19/与运算/#more" rel="contents">
@@ -706,7 +711,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
