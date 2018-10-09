@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="SQL分类 DDL（数据定义语言）：create、drop、alter对数据库内部对象进行操作 DML（数据操纵语言）：insert、delete、update、select对表内部数据进行操作 DCL（数据控制语言）：grant、revoke  基础指令use mysql database changedshow databases;drop database databaseName;drop">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-06T04:44:21.059Z">
+<meta property="og:updated_time" content="2018-10-09T08:20:32.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL深入浅出">
 <meta name="twitter:description" content="SQL分类 DDL（数据定义语言）：create、drop、alter对数据库内部对象进行操作 DML（数据操纵语言）：insert、delete、update、select对表内部数据进行操作 DCL（数据控制语言）：grant、revoke  基础指令use mysql database changedshow databases;drop database databaseName;drop">
@@ -349,6 +349,7 @@
 <li>DCL（数据控制语言）：grant、revoke</li>
 </ul>
 <h3 id="基础指令"><a href="#基础指令" class="headerlink" title="基础指令"></a>基础指令</h3><p>use mysql database changed<br>show databases;<br>drop database databaseName;<br>drop table tableName;<br>create table tmp(ename varchar(10),hiredate date,saliary decimal(10,2),deptno int(2));<br>desc tmp;<br>//修改表字段类型<br>alter table tableName modify ename varchar(20);<br>//添加表字段<br>alter table tableName add column age int(3);<br>alter table tableName add column age int(3) after ename;<br>alter table tableName add column age int(3) first;<br>//删除表字段<br>alter table tableName drop column age;<br>//修改字段名和类型<br>alter table tableName change column age new_age int(4);</p>
+<p>//删除表记录<br>delete from tableName where …;</p>
 
       
     </div>
@@ -468,7 +469,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
