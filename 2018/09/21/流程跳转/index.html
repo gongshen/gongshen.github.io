@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Continue跳出LABEL1当前的循环，进入下一次循环1234567LABEL1:	for i := 0; i &amp;lt; 10; i++ &amp;#123;		for &amp;#123;			continue LABEL1		&amp;#125;	&amp;#125; goto直接跳转到标志位12345678	for &amp;#123;		for i := 0; i &amp;lt; 10; i++ &amp;#123;			if i &amp;gt">
+<meta name="description" content="Continue跳出LABEL1当前循环，进入下一次循环1234567LABEL1:	for i := 0; i &amp;lt; 10; i++ &amp;#123;		for &amp;#123;			continue LABEL1		&amp;#125;	&amp;#125; goto直接跳转到标志位12345678	for &amp;#123;		for i := 0; i &amp;lt; 10; i++ &amp;#123;			if i &amp;gt;">
 <meta name="keywords" content="golang,跳转语句">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跳转语句">
 <meta property="og:url" content="http://www.llyltq.top/2018/09/21/流程跳转/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Continue跳出LABEL1当前的循环，进入下一次循环1234567LABEL1:	for i := 0; i &amp;lt; 10; i++ &amp;#123;		for &amp;#123;			continue LABEL1		&amp;#125;	&amp;#125; goto直接跳转到标志位12345678	for &amp;#123;		for i := 0; i &amp;lt; 10; i++ &amp;#123;			if i &amp;gt">
+<meta property="og:description" content="Continue跳出LABEL1当前循环，进入下一次循环1234567LABEL1:	for i := 0; i &amp;lt; 10; i++ &amp;#123;		for &amp;#123;			continue LABEL1		&amp;#125;	&amp;#125; goto直接跳转到标志位12345678	for &amp;#123;		for i := 0; i &amp;lt; 10; i++ &amp;#123;			if i &amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-21T10:43:39.687Z">
+<meta property="og:updated_time" content="2018-10-09T18:58:21.143Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跳转语句">
-<meta name="twitter:description" content="Continue跳出LABEL1当前的循环，进入下一次循环1234567LABEL1:	for i := 0; i &amp;lt; 10; i++ &amp;#123;		for &amp;#123;			continue LABEL1		&amp;#125;	&amp;#125; goto直接跳转到标志位12345678	for &amp;#123;		for i := 0; i &amp;lt; 10; i++ &amp;#123;			if i &amp;gt">
+<meta name="twitter:description" content="Continue跳出LABEL1当前循环，进入下一次循环1234567LABEL1:	for i := 0; i &amp;lt; 10; i++ &amp;#123;		for &amp;#123;			continue LABEL1		&amp;#125;	&amp;#125; goto直接跳转到标志位12345678	for &amp;#123;		for i := 0; i &amp;lt; 10; i++ &amp;#123;			if i &amp;gt;">
 
 
 
@@ -343,7 +343,7 @@
       
 	  
       
-        <h3 id="Continue"><a href="#Continue" class="headerlink" title="Continue"></a>Continue</h3><p>跳出LABEL1当前的循环，进入下一次循环<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LABEL1:</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">continue</span> LABEL1</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="Continue"><a href="#Continue" class="headerlink" title="Continue"></a>Continue</h3><p>跳出LABEL1当前循环，进入下一次循环<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LABEL1:</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			<span class="keyword">continue</span> LABEL1</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="goto"><a href="#goto" class="headerlink" title="goto"></a>goto</h3><p>直接跳转到标志位<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">			<span class="keyword">if</span> i &gt; <span class="number">3</span> &#123;</span><br><span class="line">				<span class="keyword">goto</span> LABEL1</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">LABEL1:</span><br></pre></td></tr></table></figure></p>
 <h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>在不使用标签时，只是跳出第一层for循环；使用标签时，跳出标签的循环。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> a:=<span class="number">0</span>;a&lt;<span class="number">5</span>;a++&#123;</span><br><span class="line">       <span class="keyword">break</span> Loop</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
 
