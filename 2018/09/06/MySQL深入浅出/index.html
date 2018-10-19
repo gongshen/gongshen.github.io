@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="MySQL必知必会varchar(10) 和 varchar(100)的区别int(10) 和 int(1)的区别导入SQL脚本：source d:\xxx.sql MySQL基础SQL分类 DDL（数据定义语言）：create、drop、alter对数据库内部对象进行操作 DML（数据操纵语言）：insert、delete、update、select对表内部数据进行操作 DCL（数据控制语言）：">
+<meta name="description" content="1、MySQL基础SQL分类 DDL（数据定义语言）：create、drop、alter对数据库内部对象进行操作 DML（数据操纵语言）：insert、delete、update、select对表内部数据进行操作 DCL（数据控制语言）：grant、revoke  基础指令use mysql database changedshow databases;drop database database">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL深入浅出">
 <meta property="og:url" content="http://www.llyltq.top/2018/09/06/MySQL深入浅出/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="MySQL必知必会varchar(10) 和 varchar(100)的区别int(10) 和 int(1)的区别导入SQL脚本：source d:\xxx.sql MySQL基础SQL分类 DDL（数据定义语言）：create、drop、alter对数据库内部对象进行操作 DML（数据操纵语言）：insert、delete、update、select对表内部数据进行操作 DCL（数据控制语言）：">
+<meta property="og:description" content="1、MySQL基础SQL分类 DDL（数据定义语言）：create、drop、alter对数据库内部对象进行操作 DML（数据操纵语言）：insert、delete、update、select对表内部数据进行操作 DCL（数据控制语言）：grant、revoke  基础指令use mysql database changedshow databases;drop database database">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T08:27:32.411Z">
+<meta property="og:updated_time" content="2018-10-19T08:53:56.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL深入浅出">
-<meta name="twitter:description" content="MySQL必知必会varchar(10) 和 varchar(100)的区别int(10) 和 int(1)的区别导入SQL脚本：source d:\xxx.sql MySQL基础SQL分类 DDL（数据定义语言）：create、drop、alter对数据库内部对象进行操作 DML（数据操纵语言）：insert、delete、update、select对表内部数据进行操作 DCL（数据控制语言）：">
+<meta name="twitter:description" content="1、MySQL基础SQL分类 DDL（数据定义语言）：create、drop、alter对数据库内部对象进行操作 DML（数据操纵语言）：insert、delete、update、select对表内部数据进行操作 DCL（数据控制语言）：grant、revoke  基础指令use mysql database changedshow databases;drop database database">
 
 
 
@@ -343,14 +343,18 @@
       
 	  
       
-        <h1 id="MySQL必知必会"><a href="#MySQL必知必会" class="headerlink" title="MySQL必知必会"></a>MySQL必知必会</h1><p>varchar(10) 和 varchar(100)的区别<br>int(10) 和 int(1)的区别<br>导入SQL脚本：source d:\xxx.sql</p>
-<h1 id="MySQL基础"><a href="#MySQL基础" class="headerlink" title="MySQL基础"></a>MySQL基础</h1><h3 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h3><ul>
+        <h1 id="1、MySQL基础"><a href="#1、MySQL基础" class="headerlink" title="1、MySQL基础"></a>1、MySQL基础</h1><h3 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h3><ul>
 <li>DDL（数据定义语言）：create、drop、alter<br>对数据库内部对象进行操作</li>
 <li>DML（数据操纵语言）：insert、delete、update、select<br>对表内部数据进行操作</li>
 <li>DCL（数据控制语言）：grant、revoke</li>
 </ul>
 <h3 id="基础指令"><a href="#基础指令" class="headerlink" title="基础指令"></a>基础指令</h3><p>use mysql database changed<br>show databases;<br>drop database databaseName;<br>drop table tableName;<br>create table tmp(ename varchar(10),hiredate date,saliary decimal(10,2),deptno int(2));<br>desc tmp;<br>//修改表字段类型<br>alter table tableName modify ename varchar(20);<br>//添加表字段<br>alter table tableName add column age int(3);<br>alter table tableName add column age int(3) after ename;<br>alter table tableName add column age int(3) first;<br>//删除表字段<br>alter table tableName drop column age;<br>//修改字段名和类型<br>alter table tableName change column age new_age int(4);</p>
-<p>//删除表记录<br>delete from tableName where …;</p>
+<p>//删除表记录<br>delete from tableName where …;<br>//更新表记录<br>update tableName set first_name = “z”, last_name = “zy” where first_name = “Tom” and last_name = “Curise”;</p>
+<h3 id="综合建表语句"><a href="#综合建表语句" class="headerlink" title="综合建表语句"></a>综合建表语句</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT <span class="keyword">COMMENT</span> <span class="string">'自增主键'</span>,</span><br><span class="line">  <span class="string">`age`</span> <span class="built_in">smallint</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> <span class="keyword">COMMENT</span> <span class="string">'年龄'</span>,</span><br><span class="line">  <span class="string">`first_name`</span> <span class="built_in">varchar</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">''</span> <span class="keyword">COMMENT</span> <span class="string">'姓'</span>,</span><br><span class="line">  <span class="string">`last_name`</span> <span class="built_in">varchar</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">''</span> <span class="keyword">COMMENT</span> <span class="string">'名'</span>,</span><br><span class="line">  <span class="string">`email`</span> <span class="built_in">varchar</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">''</span> <span class="keyword">COMMENT</span> <span class="string">'邮箱地址'</span>,</span><br><span class="line">  <span class="string">`created_at`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</span><br><span class="line">  <span class="string">`updated_at`</span> <span class="keyword">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'更新时间'</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`idx_email`</span> (<span class="string">`email`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8 <span class="keyword">COMMENT</span>=<span class="string">'用户表'</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="2、MySQL细节"><a href="#2、MySQL细节" class="headerlink" title="2、MySQL细节"></a>2、MySQL细节</h1><h3 id="使用“”的作用："><a href="#使用“”的作用：" class="headerlink" title="使用“”的作用："></a>使用“<code></code>”的作用：</h3><p>当你创建表或者字段时，有时候表名或者字段名会和关键字冲突。那么使用“<code></code>”，就会避免这些问题。</p>
+<h3 id="varchar-10-和-varchar-100-的区别"><a href="#varchar-10-和-varchar-100-的区别" class="headerlink" title="varchar(10) 和 varchar(100)的区别"></a>varchar(10) 和 varchar(100)的区别</h3><p>两者都是按实际变量的大小来存储在硬盘上的，但是前者在内存中只分配<code>10字节</code>的空间，后者分配<code>100字节</code>空间。<br>对于需要在内存中操作的字段，比如排序，要根据实际情况分配内存空间。</p>
+<h3 id="int-10-和-int-1-的区别"><a href="#int-10-和-int-1-的区别" class="headerlink" title="int(10) 和 int(1)的区别"></a>int(10) 和 int(1)的区别</h3><p>其实没多大的区别，只有显示宽度的区别：比如<code>int(4)</code>，但是我储存的是个位数，那么前面用0填充（0003）。</p>
+<h3 id="导入SQL语句的脚本："><a href="#导入SQL语句的脚本：" class="headerlink" title="导入SQL语句的脚本："></a>导入SQL语句的脚本：</h3><p>source d:\xxx.sql</p>
 
       
     </div>
@@ -541,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL必知必会"><span class="nav-number">1.</span> <span class="nav-text">MySQL必知必会</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL基础"><span class="nav-number">2.</span> <span class="nav-text">MySQL基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL分类"><span class="nav-number">2.0.1.</span> <span class="nav-text">SQL分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础指令"><span class="nav-number">2.0.2.</span> <span class="nav-text">基础指令</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、MySQL基础"><span class="nav-number">1.</span> <span class="nav-text">1、MySQL基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL分类"><span class="nav-number">1.0.1.</span> <span class="nav-text">SQL分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础指令"><span class="nav-number">1.0.2.</span> <span class="nav-text">基础指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合建表语句"><span class="nav-number">1.0.3.</span> <span class="nav-text">综合建表语句</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、MySQL细节"><span class="nav-number">2.</span> <span class="nav-text">2、MySQL细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用“”的作用："><span class="nav-number">2.0.1.</span> <span class="nav-text">使用“”的作用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#varchar-10-和-varchar-100-的区别"><span class="nav-number">2.0.2.</span> <span class="nav-text">varchar(10) 和 varchar(100)的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#int-10-和-int-1-的区别"><span class="nav-number">2.0.3.</span> <span class="nav-text">int(10) 和 int(1)的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入SQL语句的脚本："><span class="nav-number">2.0.4.</span> <span class="nav-text">导入SQL语句的脚本：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
