@@ -982,6 +982,7 @@
 <h3 id="varchar-10-和-varchar-100-的区别"><a href="#varchar-10-和-varchar-100-的区别" class="headerlink" title="varchar(10) 和 varchar(100)的区别"></a>varchar(10) 和 varchar(100)的区别</h3><p>两者都是按实际变量的大小来存储在硬盘上的，但是前者在内存中只分配<code>10字节</code>的空间，后者分配<code>100字节</code>空间。<br>对于需要在内存中操作的字段，比如排序，要根据实际情况分配内存空间。</p>
 <h3 id="int-10-和-int-1-的区别"><a href="#int-10-和-int-1-的区别" class="headerlink" title="int(10) 和 int(1)的区别"></a>int(10) 和 int(1)的区别</h3><p>其实没多大的区别，只有显示宽度的区别：比如<code>int(4)</code>，但是我储存的是个位数，那么前面用0填充（0003）。</p>
 <h3 id="导入SQL语句的脚本："><a href="#导入SQL语句的脚本：" class="headerlink" title="导入SQL语句的脚本："></a>导入SQL语句的脚本：</h3><p>source d:\xxx.sql</p>
+<h3 id="“where-1-1”和“where-1-0”的用法"><a href="#“where-1-1”和“where-1-0”的用法" class="headerlink" title="“where 1=1”和“where 1=0”的用法"></a>“where 1=1”和“where 1=0”的用法</h3><p>根据旧表的字段来构造新表，因为<code>where 1=0</code>永远不成立，所以只是读取了表结构，不考虑表数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> newtable <span class="keyword">as</span> <span class="keyword">select</span> * <span class="keyword">from</span> oldtable <span class="keyword">where</span> <span class="number">1</span>=<span class="number">0</span>;</span><br></pre></td></tr></table></figure></p>
 
           
         
