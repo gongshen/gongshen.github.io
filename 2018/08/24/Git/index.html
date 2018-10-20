@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://www.llyltq.top/images/分支合并.jpg">
 <meta property="og:image" content="http://www.llyltq.top/images/分支合并2.jpg">
 <meta property="og:image" content="http://www.llyltq.top/images/分支管理策略.png">
-<meta property="og:updated_time" content="2018-08-24T05:40:42.044Z">
+<meta property="og:updated_time" content="2018-10-20T13:14:22.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git">
 <meta name="twitter:description" content="1、原理Git工作流当新建一个仓库后，当前目录就是工作区，隐藏文件.git就是版本库版本库有一个stage的暂存区，自动创建的master分支和指向当前分支的指针HEAD   git add files：将文件添加到暂存区 git commit：将暂存区的修改提交到当前分支 git reset -- files：用当前分支的修改覆盖暂存区，用来撤销最后一次git add git checkout">
@@ -374,7 +374,16 @@
 </ol>
 <h3 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h3><p><img src="\images\分支管理策略.png" alt=""><br><code>master</code>：用来发布新版本<br><code>dev</code>：用来日常开发</p>
 <h3 id="储藏（stashing）"><a href="#储藏（stashing）" class="headerlink" title="储藏（stashing）"></a>储藏（stashing）</h3><p>在一个分支上操作后，如果还没有将修改提交，那么切换分支后，另一支分支也能看到该修改。所以使用<code>git stash</code>将当前分支修改储藏在栈上，那么就不会显示任何修改，能安全切换分支。<br>该功能可以用于<strong>bug</strong>分支的实现。如果当前正在<strong>dev</strong> 分支上进行开发，但是此时<strong>master</strong>上有个bug需要修复，但是 <strong>dev</strong>分支上的开发还未完成，不想立即提交。在新建<strong>bug</strong>分支并切换到<strong>bug</strong>分支之前就需要将<strong>dev</strong>分支的未提交修改储藏起来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git stash				//存储当前dev工作现场</span><br><span class="line">$ git checkout master	//回到master分支</span><br><span class="line">$ git checkout -b issue-101		//创建issue-101分支</span><br><span class="line">$ git commit -m &quot;resolve the bug&quot;	//修复bug</span><br><span class="line">$ git checkout master		//回到master分支</span><br><span class="line">$ git branch -d issue-101		//删除issue-101分支</span><br><span class="line">$ git checkout dev		//回到dev分支</span><br><span class="line">$ git stash apply		//从栈中恢复dev分支的修改</span><br></pre></td></tr></table></figure></p>
+<h3 id="分支间追踪关系"><a href="#分支间追踪关系" class="headerlink" title="分支间追踪关系"></a>分支间追踪关系</h3><p>默认情况下，本地分支与远程分支会建立一种<code>追踪关系</code>。<br>比如在<strong>git clone</strong>时，本地分支与远程分支同名，本地的master分支默认追踪远程的master分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//手动建立分支追踪关系</span><br><span class="line">$ git branch --set-upstream master origin/next</span><br></pre></td></tr></table></figure></p>
 <h1 id="2、常用指令"><a href="#2、常用指令" class="headerlink" title="2、常用指令"></a>2、常用指令</h1><p><span style="border-bottom:2px solid red">1. 查看分支历史信息</span><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --graph --pretty=oneline --abbrev=commit</span><br></pre></td></tr></table></figure></p>
+<h3 id="当远程主机更新，本地没有更新，那么会拒绝本地的提交，怎么办？"><a href="#当远程主机更新，本地没有更新，那么会拒绝本地的提交，怎么办？" class="headerlink" title="当远程主机更新，本地没有更新，那么会拒绝本地的提交，怎么办？"></a>当远程主机更新，本地没有更新，那么会拒绝本地的提交，怎么办？</h3><ul>
+<li><p>取回远程主机的分支，与本地分支合并</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull origin master:master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上面的代码也就是下面两步</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch origin master</span><br><span class="line">$ git merge origin/master master</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <blockquote>
 <p>参考<a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Git.md" target="_blank" rel="noopener">Git</a></p>
 </blockquote>
@@ -568,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、原理"><span class="nav-number">1.</span> <span class="nav-text">1、原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git工作流"><span class="nav-number">1.0.1.</span> <span class="nav-text">Git工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支"><span class="nav-number">1.0.2.</span> <span class="nav-text">分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冲突"><span class="nav-number">1.0.3.</span> <span class="nav-text">冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支管理策略"><span class="nav-number">1.0.4.</span> <span class="nav-text">分支管理策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#储藏（stashing）"><span class="nav-number">1.0.5.</span> <span class="nav-text">储藏（stashing）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、常用指令"><span class="nav-number">2.</span> <span class="nav-text">2、常用指令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、原理"><span class="nav-number">1.</span> <span class="nav-text">1、原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git工作流"><span class="nav-number">1.0.1.</span> <span class="nav-text">Git工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支"><span class="nav-number">1.0.2.</span> <span class="nav-text">分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冲突"><span class="nav-number">1.0.3.</span> <span class="nav-text">冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支管理策略"><span class="nav-number">1.0.4.</span> <span class="nav-text">分支管理策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#储藏（stashing）"><span class="nav-number">1.0.5.</span> <span class="nav-text">储藏（stashing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支间追踪关系"><span class="nav-number">1.0.6.</span> <span class="nav-text">分支间追踪关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、常用指令"><span class="nav-number">2.</span> <span class="nav-text">2、常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当远程主机更新，本地没有更新，那么会拒绝本地的提交，怎么办？"><span class="nav-number">2.0.1.</span> <span class="nav-text">当远程主机更新，本地没有更新，那么会拒绝本地的提交，怎么办？</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
