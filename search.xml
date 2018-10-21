@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>分布式</title>
+      <link href="/2018/10/21/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+      <url>/2018/10/21/%E5%88%86%E5%B8%83%E5%BC%8F/</url>
+      <content type="html"><![CDATA[<ul><li><a href="https://www.zhihu.com/question/23645117" target="_blank" rel="noopener">知乎：分布式系统</a><ul><li><a href="http://www.cs.cmu.edu/~dga/15-440/S14/syllabus.html" target="_blank" rel="noopener">15-440</a></li><li><a href="http://www.cs.cmu.edu/afs/cs.cmu.edu/academic/class/15712-s12/www/" target="_blank" rel="noopener">15-712</a></li></ul></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> 分布式 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 分布式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>矩阵置零</title>
       <link href="/2018/10/19/%E7%9F%A9%E9%98%B5%E7%BD%AE%E9%9B%B6/"/>
       <url>/2018/10/19/%E7%9F%A9%E9%98%B5%E7%BD%AE%E9%9B%B6/</url>
@@ -414,9 +435,9 @@
       
         <tags>
             
-            <tag> 区块链 </tag>
-            
             <tag> 分布式 </tag>
+            
+            <tag> 区块链 </tag>
             
         </tags>
       
