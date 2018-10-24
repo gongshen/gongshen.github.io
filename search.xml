@@ -3,10 +3,33 @@
   
     
     <entry>
+      <title>Restful API</title>
+      <link href="/2018/10/24/Restful-API/"/>
+      <url>/2018/10/24/Restful-API/</url>
+      <content type="html"><![CDATA[<p>之前发现我对于Rest的概念根本就不了解，所以特地去看了资料，现在过来主要是总结一下和记个笔记 :)</p>]]></content>
+      
+      <categories>
+          
+          <category> web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+            <tag> restful </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>切片</title>
       <link href="/2018/10/21/%E5%88%87%E7%89%87/"/>
       <url>/2018/10/21/%E5%88%87%E7%89%87/</url>
-      <content type="html"><![CDATA[<h3 id="切片的注意点"><a href="#切片的注意点" class="headerlink" title="切片的注意点"></a>切片的注意点</h3><ul><li>当slice的cap没有变化时，始终是对原数组的引用，使用append会修改引用数组的值<h3 id="切片的坑"><a href="#切片的坑" class="headerlink" title="切片的坑"></a>切片的坑</h3>FindDigits函数是加载整个文件到内存，然后搜索第一个连续的数字，结果以切片形式返回<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> digitRegexp = regexp.MustCompile(<span class="string">"[0-9]+"</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">FindDigits</span><span class="params">(filename <span class="keyword">string</span>)</span> []<span class="title">byte</span></span>&#123;</span><br><span class="line">    b,_:=ioutil.ReadFile(filename)</span><br><span class="line">    <span class="keyword">return</span> digitRegexp.Find(b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>但是这段代码有问题，因为返回的切片<code>[]byte</code>指向保存整个文件的数组。所以<code>GC</code>不能释放数组空间，浪费了内存。</p><h5 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h5><p>将获得的数据复制到新的切片中<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CopyDigits</span><span class="params">(filename <span class="keyword">string</span>)</span> []<span class="title">byte</span></span>&#123;</span><br><span class="line">    b,_:=ioutil.ReadFile(filename)</span><br><span class="line">    b = digitRegexp.Find(b)</span><br><span class="line">    c:=<span class="built_in">make</span>([]<span class="keyword">byte</span>,<span class="built_in">len</span>(b))</span><br><span class="line">    <span class="built_in">copy</span>(c,b)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+      <content type="html"><![CDATA[<h3 id="切片的注意点"><a href="#切片的注意点" class="headerlink" title="切片的注意点"></a>切片的注意点</h3><ul><li>当slice的cap没有变化时，始终是对原数组的引用，使用append会修改引用数组的值</li></ul><h3 id="切片的坑"><a href="#切片的坑" class="headerlink" title="切片的坑"></a>切片的坑</h3><p>FindDigits函数是加载整个文件到内存，然后搜索第一个连续的数字，结果以切片形式返回<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> digitRegexp = regexp.MustCompile(<span class="string">"[0-9]+"</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">FindDigits</span><span class="params">(filename <span class="keyword">string</span>)</span> []<span class="title">byte</span></span>&#123;</span><br><span class="line">    b,_:=ioutil.ReadFile(filename)</span><br><span class="line">    <span class="keyword">return</span> digitRegexp.Find(b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>但是这段代码有问题，因为返回的切片<code>[]byte</code>指向保存整个文件的数组。所以<code>GC</code>不能释放数组空间，浪费了内存。</p><h5 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h5><p>将获得的数据复制到新的切片中<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CopyDigits</span><span class="params">(filename <span class="keyword">string</span>)</span> []<span class="title">byte</span></span>&#123;</span><br><span class="line">    b,_:=ioutil.ReadFile(filename)</span><br><span class="line">    b = digitRegexp.Find(b)</span><br><span class="line">    c:=<span class="built_in">make</span>([]<span class="keyword">byte</span>,<span class="built_in">len</span>(b))</span><br><span class="line">    <span class="built_in">copy</span>(c,b)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
       
       <categories>
           
@@ -414,11 +437,11 @@
       
         <tags>
             
-            <tag> 变量 </tag>
-            
             <tag> golang </tag>
             
             <tag> 坑 </tag>
+            
+            <tag> 变量 </tag>
             
         </tags>
       
@@ -558,9 +581,9 @@
       
         <tags>
             
-            <tag> linux </tag>
-            
             <tag> 变量 </tag>
+            
+            <tag> linux </tag>
             
             <tag> bash </tag>
             
@@ -610,6 +633,8 @@
       
         <tags>
             
+            <tag> 变量 </tag>
+            
             <tag> linux </tag>
             
             <tag> 指令 </tag>
@@ -619,8 +644,6 @@
             <tag> 群组 </tag>
             
             <tag> 数据处理 </tag>
-            
-            <tag> 变量 </tag>
             
             <tag> 文件 </tag>
             

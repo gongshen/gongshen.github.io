@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="切片的注意点 当slice的cap没有变化时，始终是对原数组的引用，使用append会修改引用数组的值切片的坑FindDigits函数是加载整个文件到内存，然后搜索第一个连续的数字，结果以切片形式返回12345var digitRegexp = regexp.MustCompile(&quot;[0-9]+&quot;)func FindDigits(filename string) []byte&amp;#123;">
+<meta name="description" content="切片的注意点 当slice的cap没有变化时，始终是对原数组的引用，使用append会修改引用数组的值  切片的坑FindDigits函数是加载整个文件到内存，然后搜索第一个连续的数字，结果以切片形式返回12345var digitRegexp = regexp.MustCompile(&quot;[0-9]+&quot;)func FindDigits(filename string) []byte&amp;#123;">
 <meta name="keywords" content="golang,slice">
 <meta property="og:type" content="article">
 <meta property="og:title" content="切片">
 <meta property="og:url" content="http://www.llyltq.top/2018/10/21/切片/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="切片的注意点 当slice的cap没有变化时，始终是对原数组的引用，使用append会修改引用数组的值切片的坑FindDigits函数是加载整个文件到内存，然后搜索第一个连续的数字，结果以切片形式返回12345var digitRegexp = regexp.MustCompile(&quot;[0-9]+&quot;)func FindDigits(filename string) []byte&amp;#123;">
+<meta property="og:description" content="切片的注意点 当slice的cap没有变化时，始终是对原数组的引用，使用append会修改引用数组的值  切片的坑FindDigits函数是加载整个文件到内存，然后搜索第一个连续的数字，结果以切片形式返回12345var digitRegexp = regexp.MustCompile(&quot;[0-9]+&quot;)func FindDigits(filename string) []byte&amp;#123;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-21T08:48:24.652Z">
+<meta property="og:updated_time" content="2018-10-24T08:34:20.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="切片">
-<meta name="twitter:description" content="切片的注意点 当slice的cap没有变化时，始终是对原数组的引用，使用append会修改引用数组的值切片的坑FindDigits函数是加载整个文件到内存，然后搜索第一个连续的数字，结果以切片形式返回12345var digitRegexp = regexp.MustCompile(&quot;[0-9]+&quot;)func FindDigits(filename string) []byte&amp;#123;">
+<meta name="twitter:description" content="切片的注意点 当slice的cap没有变化时，始终是对原数组的引用，使用append会修改引用数组的值  切片的坑FindDigits函数是加载整个文件到内存，然后搜索第一个连续的数字，结果以切片形式返回12345var digitRegexp = regexp.MustCompile(&quot;[0-9]+&quot;)func FindDigits(filename string) []byte&amp;#123;">
 
 
 
@@ -355,9 +355,9 @@
 	  
       
         <h3 id="切片的注意点"><a href="#切片的注意点" class="headerlink" title="切片的注意点"></a>切片的注意点</h3><ul>
-<li>当slice的cap没有变化时，始终是对原数组的引用，使用append会修改引用数组的值<h3 id="切片的坑"><a href="#切片的坑" class="headerlink" title="切片的坑"></a>切片的坑</h3>FindDigits函数是加载整个文件到内存，然后搜索第一个连续的数字，结果以切片形式返回<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> digitRegexp = regexp.MustCompile(<span class="string">"[0-9]+"</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">FindDigits</span><span class="params">(filename <span class="keyword">string</span>)</span> []<span class="title">byte</span></span>&#123;</span><br><span class="line">    b,_:=ioutil.ReadFile(filename)</span><br><span class="line">    <span class="keyword">return</span> digitRegexp.Find(b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>当slice的cap没有变化时，始终是对原数组的引用，使用append会修改引用数组的值</li>
 </ul>
+<h3 id="切片的坑"><a href="#切片的坑" class="headerlink" title="切片的坑"></a>切片的坑</h3><p>FindDigits函数是加载整个文件到内存，然后搜索第一个连续的数字，结果以切片形式返回<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> digitRegexp = regexp.MustCompile(<span class="string">"[0-9]+"</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">FindDigits</span><span class="params">(filename <span class="keyword">string</span>)</span> []<span class="title">byte</span></span>&#123;</span><br><span class="line">    b,_:=ioutil.ReadFile(filename)</span><br><span class="line">    <span class="keyword">return</span> digitRegexp.Find(b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>但是这段代码有问题，因为返回的切片<code>[]byte</code>指向保存整个文件的数组。所以<code>GC</code>不能释放数组空间，浪费了内存。</p>
 <h5 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h5><p>将获得的数据复制到新的切片中<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CopyDigits</span><span class="params">(filename <span class="keyword">string</span>)</span> []<span class="title">byte</span></span>&#123;</span><br><span class="line">    b,_:=ioutil.ReadFile(filename)</span><br><span class="line">    b = digitRegexp.Find(b)</span><br><span class="line">    c:=<span class="built_in">make</span>([]<span class="keyword">byte</span>,<span class="built_in">len</span>(b))</span><br><span class="line">    <span class="built_in">copy</span>(c,b)</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
@@ -401,6 +401,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/24/Restful-API/" rel="prev" title="Restful API">
+                Restful API <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -477,7 +481,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -488,7 +492,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -499,7 +503,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
