@@ -531,11 +531,11 @@
 <li>A  -&gt;  (FIN=1 seq=x)</li>
 <li>B  -&gt;  ACK=x+1</li>
 <li>B  -&gt;  (FIN=1 seq=y),ACK=x+1</li>
-<li><p>A  -&gt;  ACK=y+1</p>
+<li>A  -&gt;  ACK=y+1</li>
+</ol>
 <h4 id="2-Socket"><a href="#2-Socket" class="headerlink" title="2. Socket"></a>2. Socket</h4><p>socket是基于TCP/IP封装的，所以建立连接需要一对套接字：</p>
-</li>
-<li><p>Server绑定某个端口：bind()</p>
-</li>
+<ol>
+<li>Server绑定某个端口：bind()</li>
 <li>Server监听指定端口：listen()</li>
 <li>Client对服务器进行拨号：dial()</li>
 <li>Server对客户端的连接进行响应：accept()</li>
