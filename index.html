@@ -520,7 +520,7 @@
 <li>XML配置</li>
 <li>IDL文件</li>
 </ul>
-<h1 id="二、通信的协议"><a href="#二、通信的协议" class="headerlink" title="二、通信的协议"></a>二、通信的协议</h1><h3 id="1-HTTP"><a href="#1-HTTP" class="headerlink" title="1. HTTP"></a>1. HTTP</h3><p>HTTP是封装在TCP上的，所以每建立一次通信就是进行tcp的3次握手过程：</p>
+<h1 id="二、通信的协议"><a href="#二、通信的协议" class="headerlink" title="二、通信的协议"></a>二、通信的协议</h1><h4 id="1-HTTP"><a href="#1-HTTP" class="headerlink" title="1. HTTP"></a>1. HTTP</h4><p>HTTP是封装在TCP上的，所以每建立一次通信就是进行tcp的3次握手过程：</p>
 <ol>
 <li>A  -&gt;  (SYN=1 seq=x)</li>
 <li>B  -&gt;  ACK=x+1,(SYN=1 seq=y)</li>
@@ -532,7 +532,7 @@
 <li>B  -&gt;  ACK=x+1</li>
 <li>B  -&gt;  (FIN=1 seq=y),ACK=x+1</li>
 <li><p>A  -&gt;  ACK=y+1</p>
-<h3 id="2-Socket"><a href="#2-Socket" class="headerlink" title="2. Socket"></a>2. Socket</h3><p>socket是基于TCP/IP封装的，所以建立连接需要一对套接字：</p>
+<h4 id="2-Socket"><a href="#2-Socket" class="headerlink" title="2. Socket"></a>2. Socket</h4><p>socket是基于TCP/IP封装的，所以建立连接需要一对套接字：</p>
 </li>
 <li><p>Server绑定某个端口：bind()</p>
 </li>
@@ -543,7 +543,10 @@
 <li>Server接收数据：receive()</li>
 <li>关闭连接：close()</li>
 </ol>
-<h1 id="三、服务器端处理请求的方式"><a href="#三、服务器端处理请求的方式" class="headerlink" title="三、服务器端处理请求的方式"></a>三、服务器端处理请求的方式</h1>
+<h1 id="三、服务器端处理请求的方式"><a href="#三、服务器端处理请求的方式" class="headerlink" title="三、服务器端处理请求的方式"></a>三、服务器端处理请求的方式</h1><h4 id="同步阻塞"><a href="#同步阻塞" class="headerlink" title="同步阻塞"></a>同步阻塞</h4><p>客户端每发出一次请求，服务器都会生成一个线程去处理。</p>
+<h4 id="同步非阻塞"><a href="#同步非阻塞" class="headerlink" title="同步非阻塞"></a>同步非阻塞</h4><p>客户端每发出一次请求，服务器并不是每次都创建一个线程，而是将线程通过I/O多路复用技术，使得一个线程能处理多个请求。</p>
+<h4 id="异步非阻塞"><a href="#异步非阻塞" class="headerlink" title="异步非阻塞"></a>异步非阻塞</h4><p>客户端发起请求后立即返回，等I/O操作完成再对数据进行处理。</p>
+<h1 id="四、数据的序列化与反序列化"><a href="#四、数据的序列化与反序列化" class="headerlink" title="四、数据的序列化与反序列化"></a>四、数据的序列化与反序列化</h1>
           
         
 		-->
