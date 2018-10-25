@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一、服务对外的描述（框架） Restful API  Rest理解  Restful API设计指南 XML配置 IDL文件  二、通信的协议1. HTTPHTTP是封装在TCP上的，所以每建立一次通信就是进行tcp的3次握手过程：  A  -&amp;gt;  (SYN=1 seq=x) B  -&amp;gt;  ACK=x+1,(SYN=1 seq=y) A  -&amp;gt;  ACK=y+1  结束还需要进行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-25T06:33:13.702Z">
+<meta property="og:updated_time" content="2018-10-25T06:34:57.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="服务的架构">
 <meta name="twitter:description" content="一、服务对外的描述（框架） Restful API  Rest理解  Restful API设计指南 XML配置 IDL文件  二、通信的协议1. HTTPHTTP是封装在TCP上的，所以每建立一次通信就是进行tcp的3次握手过程：  A  -&amp;gt;  (SYN=1 seq=x) B  -&amp;gt;  ACK=x+1,(SYN=1 seq=y) A  -&amp;gt;  ACK=y+1  结束还需要进行">
@@ -361,6 +361,7 @@
 <li>B  -&gt;  (FIN=1 seq=y),ACK=x+1</li>
 <li>A  -&gt;  ACK=y+1</li>
 </ol>
+<hr>
 <h4 id="2-Socket"><a href="#2-Socket" class="headerlink" title="2. Socket"></a>2. Socket</h4><p>socket是基于TCP/IP封装的，所以建立连接需要一对套接字：</p>
 <ol>
 <li>Server绑定某个端口：bind()</li>
