@@ -253,6 +253,217 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/25/Linux指令大礼包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冉某某">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/Linux指令大礼包/" itemprop="url">Linux指令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-25T21:44:58+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+	  
+      
+	  <!--
+        
+          
+            <hr>
+<h3 id="撷取命令"><a href="#撷取命令" class="headerlink" title="撷取命令"></a>撷取命令</h3><ul>
+<li>cut：以特定的符号分割数据，并取出需要的区块</li>
+<li>grep：根据正则表达式显示符合要求的数据</li>
+<li>sed：可以分析标准输入，将数据取代、删除、新增等操作</li>
+<li>awk：对处理进行处理</li>
+</ul>
+<h3 id="格式化命令"><a href="#格式化命令" class="headerlink" title="格式化命令"></a>格式化命令</h3><ul>
+<li>printf：格式化输出数据</li>
+</ul>
+<h3 id="分区命令"><a href="#分区命令" class="headerlink" title="分区命令"></a>分区命令</h3><ul>
+<li>split：可以将一个大文件分为多个小文件</li>
+</ul>
+<h3 id="排序命令"><a href="#排序命令" class="headerlink" title="排序命令"></a>排序命令</h3><ul>
+<li>sort：对数据进行排序</li>
+<li>uniq：可以消除重复的数据</li>
+<li>wc：计算文件的行、字数、字符数</li>
+</ul>
+<h3 id="字符转换"><a href="#字符转换" class="headerlink" title="字符转换"></a>字符转换</h3><ul>
+<li>tr：删除数据中的文字或者进行替换</li>
+<li>col：将数据中的tab键特殊字符转换为空格</li>
+<li>join：将存在相同数据那一行整合在一起</li>
+<li>paste：仅仅将两个数据贴在一起</li>
+</ul>
+<h3 id="参数代换"><a href="#参数代换" class="headerlink" title="参数代换"></a>参数代换</h3><ul>
+<li>xargs：使得一些指令能引用标准输入</li>
+</ul>
+<h3 id="双重导向"><a href="#双重导向" class="headerlink" title="双重导向"></a>双重导向</h3><ul>
+<li>tee：可以将标准输入既输入到文件中又到标准输入中</li>
+</ul>
+<h3 id="文件比对工具"><a href="#文件比对工具" class="headerlink" title="文件比对工具"></a>文件比对工具</h3><ul>
+<li>diff：比较文件或目录的差异</li>
+<li>patch：依据补丁文件进行还原或更新数据</li>
+</ul>
+<h3 id="时间指令"><a href="#时间指令" class="headerlink" title="时间指令"></a>时间指令</h3><ul>
+<li>date：显示时间</li>
+</ul>
+<h3 id="数据测试指令"><a href="#数据测试指令" class="headerlink" title="数据测试指令"></a>数据测试指令</h3><ul>
+<li>test：用来判断文件的类型，权限，比较整数，判断是否为0等</li>
+</ul>
+<hr>
+<h3 id="变量的操作"><a href="#变量的操作" class="headerlink" title="变量的操作"></a>变量的操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var[1]	#定义阵列变量</span><br><span class="line">$&#123;#string&#125;	#求变量string长度</span><br><span class="line">$&#123;string/a/b&#125;	#a替换b，一次</span><br><span class="line">$&#123;string//a/b&#125;	#a替换b，全部</span><br><span class="line">$&#123;string#/*bin:&#125;	#将左边匹配到“/*bin:”的最短字符删除</span><br><span class="line">$&#123;string##/*bin:&#125;	#将左边匹配到“/*bin:”的最长字符删除</span><br><span class="line">$&#123;string%/*bin:&#125;	#将右边匹配到“/*bin:”的最短字符删除</span><br><span class="line">$&#123;string%%/*bin:&#125;	#将右边匹配到“/*bin:”的最长字符删除</span><br><span class="line">$&#123;string-string2&#125;	#变量未设定就输出string2</span><br><span class="line">$&#123;string:-sring2&#125;	#变量为空或未设定输出string2</span><br></pre></td></tr></table></figure>
+<h3 id="关于变量的指令"><a href="#关于变量的指令" class="headerlink" title="关于变量的指令"></a>关于变量的指令</h3><ul>
+<li><code>env</code>：显示环境变量</li>
+<li><code>unset</code>：取消变量</li>
+<li><code>export</code>：设置环境变量</li>
+<li><code>declare +x</code>：环境变量转换为自定义变量</li>
+<li><code>locale</code>：显示所有语言变量</li>
+</ul>
+<hr>
+<p>创建一个全0的110M的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dd if=/dev/zero of=file bs=1M count=110</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>创建账户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ useradd -u UID -g 初始群组 -G 次要群组 -d 主文件夹 -s Shell 账号名</span><br></pre></td></tr></table></figure></p>
+<p>查询用户的群组和查看有效群组（输出的第一个群组）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ groups</span><br><span class="line">group1 group2 group3</span><br></pre></td></tr></table></figure></p>
+<p>创建密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo &quot;密码&quot; | passwd --stdin 账号名</span><br><span class="line">$ echo &quot;用户名:密码&quot; | chpasswd</span><br></pre></td></tr></table></figure></p>
+<p>显示密码相关参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chage -l 账号名</span><br></pre></td></tr></table></figure></p>
+<p>修改账号参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ usermod -u UID -aG 次要群组</span><br></pre></td></tr></table></figure></p>
+<p>切换有效群组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ newgrp</span><br><span class="line">$ exit</span><br></pre></td></tr></table></figure></p>
+<p>改变文件的使用者和群组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chown -R 账号名:群组名 目录</span><br></pre></td></tr></table></figure></p>
+<p>查询<code>/etc/shadow</code>中密码是用什么加密的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ authconfig --test | grep hashing</span><br></pre></td></tr></table></figure></p>
+<p>设置文件或目录的ACL权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ setfacl -m u:使用者:权限 文件或目录名</span><br></pre></td></tr></table></figure></p>
+<p>切换身份运行指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u ssh touch 文件</span><br><span class="line">$ sudo -u ssh sh -c &quot;mkdir ~gongshen/www;cd ~gongshen/www;\</span><br><span class="line">&gt; echo &apos;This is index file!&apos; &gt; index.html&quot;</span><br></pre></td></tr></table></figure></p>
+<p>设置<code>/etc/sudoers</code>文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%群组名						 ALL= (ALL)			   ALL</span><br></pre></td></tr></table></figure></p>
+<hr>
+<ul>
+<li>expr：进行简单的数学运算</li>
+<li>bc：计算器</li>
+</ul>
+
+          
+        
+		-->
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/25/linux账号和群组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1801,212 +2012,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.llyltq.top/2018/08/18/test_Readme/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="冉某某">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/18/test_Readme/" itemprop="url">test_Readme</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-18T15:42:51+08:00">
-                2018-08-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-	  
-      
-	  <!--
-        
-          
-            <a id="more"></a>
-<h1 id="Test：矫正行为"><a href="#Test：矫正行为" class="headerlink" title="Test：矫正行为"></a>Test：矫正行为</h1><h3 id="包内测试"><a href="#包内测试" class="headerlink" title="包内测试"></a>包内测试</h3><ul>
-<li>文件名以<code>Test</code>开头</li>
-<li>指定运行匹配的测试函数：<code>-run=&quot;A|B&quot;</code></li>
-<li><code>t.Error</code>或者<code>t.Errorf</code>并不会因为测试失败而停止下面的测试</li>
-<li><code>t.Fatal</code>和<code>t.Fatalf</code>会因为测试失败而终止当前gorouting</li>
-</ul>
-<h3 id="运行更comprehensive案列"><a href="#运行更comprehensive案列" class="headerlink" title="运行更comprehensive案列"></a>运行更comprehensive案列</h3><ul>
-<li>table-driven 测试</li>
-<li>randomized 测试</li>
-</ul>
-<h3 id="覆盖率测试"><a href="#覆盖率测试" class="headerlink" title="覆盖率测试"></a>覆盖率测试</h3><ul>
-<li><code>go test -cover</code>：语句覆盖率测试</li>
-<li><code>go test -cover -coverprofile c.out</code>：将结果输出到文件（默认set模式，记录语句是否覆盖）</li>
-<li><code>go test -cover -coverprofile c.out -covermode count</code>：更改为count模式，记录语句覆盖次数</li>
-<li><code>go tool cover -html=c.out</code>：以c.out文件在浏览器显示</li>
-<li><code>go tool cover -func=c.out</code>：显示函数细节</li>
-</ul>
-<h3 id="外部测试"><a href="#外部测试" class="headerlink" title="外部测试"></a>外部测试</h3><p>我们知道两个package不能存在于同一个文件中，但是有一种特殊的外部测试包。如果文件中的包名<code>b</code>，那么可以创建外部测试包<code>b_test</code>。</p>
-<p><span style="border-bottom:2px solid red;">创建一个内部测试文件（export_test.go）</span>：将需要的内部暴露给外部测试包;测试文件中的函数和变量只能是当前package下的测试文件能访问</p>
-<p><span style="border-bottom:2px solid red;">仅显示开发代码文件</span>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go list -f=&#123;&#123;.GoFiles&#125;&#125; fmt</span><br></pre></td></tr></table></figure></p>
-<p><span style="border-bottom:2px solid red;">仅显示包内测试代码</span>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go list -f=&#123;&#123;.TestGoFiles&#125;&#125; fmt</span><br></pre></td></tr></table></figure></p>
-<p><span style="border-bottom:2px solid red;">仅显示外部测试代码</span>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go list -f=&#123;&#123;.XTestGoFiles&#125;&#125; fmt</span><br></pre></td></tr></table></figure></p>
-<h1 id="Profile"><a href="#Profile" class="headerlink" title="Profile"></a>Profile</h1><p><code>go test</code>会把可执行文件删除在完成测试之后，加上<code>-cpuprofile</code>标志可以保留其可执行文件<br>使用<code>go tool pprof</code>再加上<code>可执行文件</code>就可以解析profile文件</p>
-<ul>
-<li><code>go test -run=none -bench=ClientServerParallelTLS64 -cpuprofile=cpu.log net/http</code>：会生成<em>cpu.log</em>和<em>http.test.exe</em></li>
-<li><code>go tool pprof -text -nodecount=10 ./http.test.exe cpu.log</code>：使用<em>pprof</em>工具分析cpu使用文件</li>
-<li>-cpuprofile：列出使用最多CPU的函数</li>
-<li>-memprofile：列出分配最多内存的语句</li>
-<li>-blockprofile：列出最长阻塞gorouting的运算</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flat  flat%   sum%        cum   cum%</span><br><span class="line">1.10s 20.07% 59.85%      1.10s 20.07%  unicode.IsLetter</span><br><span class="line">0.75s 13.69% 73.54%      0.75s 13.69%  unicode.ToLower</span><br><span class="line">0.39s  7.12% 80.66%      0.44s  8.03%  runtime.mallocgc</span><br></pre></td></tr></table></figure>
-<p>Go运行时会100Hz对CPU进行抽样，也就是10毫秒一次</p>
-<ol>
-<li>第一列表示直接调用该函数总执行了<code>1.10s</code>，也就是抽样110次，占总数的20.07%（总数548次）</li>
-<li>第三列表示前几列加起来占总时间的百分之几</li>
-<li>第四列表示直接调用该函数加上间接调用函数用掉的时间</li>
-<li>第五列表示第四列占的百分比</li>
-</ol>
-<h3 id="graphviz工具的配合使用"><a href="#graphviz工具的配合使用" class="headerlink" title="graphviz工具的配合使用"></a>graphviz工具的配合使用</h3><ol>
-<li><code>go tool pprof ./word.test.exe cpu.log</code>：进入pprof模式</li>
-<li><code>web</code>：浏览器查看整个函数调用的过程</li>
-<li><code>web IsPalindrome</code>：浏览器查看IsPalindrome函数的调用过程</li>
-<li><code>list IsPalindrome</code>：查看IsPalindrome函数每一行的执行时间</li>
-</ol>
-<h1 id="Benchmark：测量操作"><a href="#Benchmark：测量操作" class="headerlink" title="Benchmark：测量操作"></a>Benchmark：测量操作</h1><ul>
-<li>使用<code>ResetTimer,StopTimer,StartTimer</code>等重置计时器，排除一些设定代码的时间</li>
-<li>抵制使用<code>b.N</code>作为参数的诱惑，使用多个固定参数进行测试比较</li>
-<li>性能测试过滤单元测试的输出，所以使用<code>-run=none</code></li>
-</ul>
-<h1 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h1><p>在<code>Example</code>函数中添加预期的答案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//Output: one</span><br><span class="line">//two</span><br></pre></td></tr></table></figure></p>
-<p>如果输出时随机的话：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//Unordered Output:two</span><br><span class="line">//one</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-		-->
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2057,7 +2062,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2068,7 +2073,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2079,7 +2084,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
