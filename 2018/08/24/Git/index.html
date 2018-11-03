@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="1、原理Git工作流当新建一个仓库后，当前目录就是工作区，隐藏文件.git就是版本库版本库有一个stage的暂存区，自动创建的master分支和指向当前分支的指针HEAD   git add files：将文件添加到暂存区 git commit：将暂存区的修改提交到当前分支 git reset -- files：用当前分支的修改覆盖暂存区，用来撤销最后一次git add git checkout">
+<meta name="description" content="1、原理Git工作流当新建一个仓库后，当前目录就是工作区，隐藏文件.git就是版本库版本库有一个stage的暂存区，自动创建的master分支和指向当前分支的指针HEAD   git add files：将文件添加到暂存区 git commit：将暂存区的修改提交到当前分支 git reset --hard files：用当前分支的修改覆盖暂存区，用来撤销最后一次git add git check">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git">
 <meta property="og:url" content="http://www.llyltq.top/2018/08/24/Git/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1、原理Git工作流当新建一个仓库后，当前目录就是工作区，隐藏文件.git就是版本库版本库有一个stage的暂存区，自动创建的master分支和指向当前分支的指针HEAD   git add files：将文件添加到暂存区 git commit：将暂存区的修改提交到当前分支 git reset -- files：用当前分支的修改覆盖暂存区，用来撤销最后一次git add git checkout">
+<meta property="og:description" content="1、原理Git工作流当新建一个仓库后，当前目录就是工作区，隐藏文件.git就是版本库版本库有一个stage的暂存区，自动创建的master分支和指向当前分支的指针HEAD   git add files：将文件添加到暂存区 git commit：将暂存区的修改提交到当前分支 git reset --hard files：用当前分支的修改覆盖暂存区，用来撤销最后一次git add git check">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.llyltq.top/images/git工作流.png">
 <meta property="og:image" content="http://www.llyltq.top/images/git指令操作1.png">
@@ -95,10 +95,10 @@
 <meta property="og:image" content="http://www.llyltq.top/images/分支合并.jpg">
 <meta property="og:image" content="http://www.llyltq.top/images/分支合并2.jpg">
 <meta property="og:image" content="http://www.llyltq.top/images/分支管理策略.png">
-<meta property="og:updated_time" content="2018-10-20T13:14:22.311Z">
+<meta property="og:updated_time" content="2018-11-03T07:36:59.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git">
-<meta name="twitter:description" content="1、原理Git工作流当新建一个仓库后，当前目录就是工作区，隐藏文件.git就是版本库版本库有一个stage的暂存区，自动创建的master分支和指向当前分支的指针HEAD   git add files：将文件添加到暂存区 git commit：将暂存区的修改提交到当前分支 git reset -- files：用当前分支的修改覆盖暂存区，用来撤销最后一次git add git checkout">
+<meta name="twitter:description" content="1、原理Git工作流当新建一个仓库后，当前目录就是工作区，隐藏文件.git就是版本库版本库有一个stage的暂存区，自动创建的master分支和指向当前分支的指针HEAD   git add files：将文件添加到暂存区 git commit：将暂存区的修改提交到当前分支 git reset --hard files：用当前分支的修改覆盖暂存区，用来撤销最后一次git add git check">
 <meta name="twitter:image" content="http://www.llyltq.top/images/git工作流.png">
 
 
@@ -357,7 +357,7 @@
 <ul>
 <li><code>git add files</code>：将文件添加到暂存区</li>
 <li><code>git commit</code>：将暂存区的修改提交到当前分支</li>
-<li><code>git reset -- files</code>：用当前分支的修改覆盖暂存区，用来撤销最后一次<strong>git add</strong></li>
+<li><code>git reset --hard files</code>：用当前分支的修改覆盖暂存区，用来撤销最后一次<strong>git add</strong></li>
 <li><code>git checkout -- files</code>：用暂存区的修改覆盖工作目录，来撤销本地修改</li>
 </ul>
 <p><img src="\images\git指令操作2.png" alt="git指令2"></p>
@@ -384,6 +384,11 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch origin master</span><br><span class="line">$ git merge origin/master master</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<h3 id="回退版本"><a href="#回退版本" class="headerlink" title="回退版本"></a>回退版本</h3><p>使用<code>git log</code>查看git历史<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br><span class="line">commit e52dfb250e729fde09e4a96d62612c092de04afa (HEAD -&gt; dev)</span><br><span class="line">Author: gongshen &lt;gongshen1995@gmail.com&gt;</span><br><span class="line">Date:   Sat Nov 3 14:52:13 2018 +0800</span><br><span class="line"></span><br><span class="line">    all</span><br><span class="line"></span><br><span class="line">commit 2b303e0a321c71576177427c63e61f444b51747a (origin/dev)</span><br><span class="line">Author: gongshen &lt;gongshen1995@gmail.com&gt;</span><br><span class="line">Date:   Wed Oct 10 16:53:37 2018 +0800</span><br><span class="line"></span><br><span class="line">    dev branch</span><br></pre></td></tr></table></figure></p>
+<p>如果想回退到<code>2b303e0</code>这个版本:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">//回退10个版本</span><br><span class="line">$ git reset --hard HEAD~10</span><br></pre></td></tr></table></figure></p>
+<p>如果后悔了，不想回退了，只要记住那个提交的ID：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard e52dfb25</span><br></pre></td></tr></table></figure></p>
+<p>git也会记录你的每次指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">e52dfb2 (HEAD -&gt; dev) HEAD@&#123;2&#125;: commit: all</span><br><span class="line">2b303e0 (origin/dev) HEAD@&#123;3&#125;: checkout: moving from master to dev</span><br><span class="line">2b303e0 (origin/dev) HEAD@&#123;4&#125;: checkout: moving from dev to master</span><br><span class="line">2b303e0 (origin/dev) HEAD@&#123;5&#125;: checkout: moving from master to dev</span><br></pre></td></tr></table></figure></p>
+<p>将撤销已经修改，但还未提交的数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout xxx.txt</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>参考<a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Git.md" target="_blank" rel="noopener">Git</a></p>
 </blockquote>
@@ -577,7 +582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、原理"><span class="nav-number">1.</span> <span class="nav-text">1、原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git工作流"><span class="nav-number">1.0.1.</span> <span class="nav-text">Git工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支"><span class="nav-number">1.0.2.</span> <span class="nav-text">分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冲突"><span class="nav-number">1.0.3.</span> <span class="nav-text">冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支管理策略"><span class="nav-number">1.0.4.</span> <span class="nav-text">分支管理策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#储藏（stashing）"><span class="nav-number">1.0.5.</span> <span class="nav-text">储藏（stashing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支间追踪关系"><span class="nav-number">1.0.6.</span> <span class="nav-text">分支间追踪关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、常用指令"><span class="nav-number">2.</span> <span class="nav-text">2、常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当远程主机更新，本地没有更新，那么会拒绝本地的提交，怎么办？"><span class="nav-number">2.0.1.</span> <span class="nav-text">当远程主机更新，本地没有更新，那么会拒绝本地的提交，怎么办？</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、原理"><span class="nav-number">1.</span> <span class="nav-text">1、原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git工作流"><span class="nav-number">1.0.1.</span> <span class="nav-text">Git工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支"><span class="nav-number">1.0.2.</span> <span class="nav-text">分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#冲突"><span class="nav-number">1.0.3.</span> <span class="nav-text">冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支管理策略"><span class="nav-number">1.0.4.</span> <span class="nav-text">分支管理策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#储藏（stashing）"><span class="nav-number">1.0.5.</span> <span class="nav-text">储藏（stashing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支间追踪关系"><span class="nav-number">1.0.6.</span> <span class="nav-text">分支间追踪关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、常用指令"><span class="nav-number">2.</span> <span class="nav-text">2、常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当远程主机更新，本地没有更新，那么会拒绝本地的提交，怎么办？"><span class="nav-number">2.0.1.</span> <span class="nav-text">当远程主机更新，本地没有更新，那么会拒绝本地的提交，怎么办？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回退版本"><span class="nav-number">2.0.2.</span> <span class="nav-text">回退版本</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
